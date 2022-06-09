@@ -1,8 +1,24 @@
-body{
+body {
     padding-top: 5rem;
     font-size: 1rem;
 }
+h1, h2, .title-secondary {
+    font-family: 'Estonia', cursive;
+    h4 {
+        color: $primary;
+    }
+}
 
+.title-primary {
+    font-size: 4rem;
+    color: $light;
+}
 
+.title-secondary {
+    font-size: 2.5rem;
+    color: $primary;
+}
+
+/* font-family: 'Manuale', serif; */
 
 

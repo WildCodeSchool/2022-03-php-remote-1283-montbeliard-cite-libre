@@ -9,7 +9,7 @@
     border-top-color: $primary;
     border-bottom-color: $primary;
   }
-  .btn-one span {
+  .btn-one  {
     transition: all 0.8s;
   }
   .btn-one::before {
@@ -30,7 +30,7 @@
     border-bottom-color: $primary;
     transform: scale(0.1, 1);
   }
-  .btn-one:hover span {
+  .btn-one:hover  {
     letter-spacing: 2px;
     color: $light;
   }

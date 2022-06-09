@@ -1,10 +1,16 @@
 .btn-one {
-    color: $primary;
+    color: $dark;
     transition: all 0.3s;
     position: relative;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-top-color: $primary;
+    border-bottom-color: $primary;
   }
   .btn-one span {
-    transition: all 0.3s;
+    transition: all 0.8s;
   }
   .btn-one::before {
     content: '';
@@ -16,8 +22,8 @@
     z-index: 1;
     opacity: 0;
     transition: all 0.3s;
-    border-top-width: 1px;
-    border-bottom-width: 1px;
+    border-top-width: 0.5px;
+    border-bottom-width: 0.5px;
     border-top-style: solid;
     border-bottom-style: solid;
     border-top-color: $primary;
@@ -41,7 +47,6 @@
     height: 100%;
     z-index: 1;
     transition: all 0.3s;
-    background-color: rgba(255,255,255,0.1);
   }
   .btn-one:hover::after {
     opacity: 0;

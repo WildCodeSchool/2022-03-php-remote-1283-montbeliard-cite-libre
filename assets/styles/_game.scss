@@ -1,0 +1,22 @@
+body {
+    background-image: url('/assets/images/plateau_vide.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    height: 100vh;
+    overflow: auto;
+    position: relative;
+
+}
+@media (max-width: $breakpoint-tablet) {
+  body {
+    background-image: url('/assets/images/plateau_vide_phone.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    height: 100vh;
+    overflow: auto;
+    position: relative;
+
+  }
+}

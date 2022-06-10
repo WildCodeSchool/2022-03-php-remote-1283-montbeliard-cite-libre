@@ -14,5 +14,21 @@
         top: 100px;
         bottom: 135px;
         overflow: auto;
+        h1 {
+            text-align: center;
+            font-size: 4rem;
+            color: $light;
+        }
+        h2 {
+            font-size: 2.5rem;
+            color: $primary;
+        }
+        h3 {
+            font-size: 2rem;
+        }
+        strong {
+            padding: 0.2em;
+            background-color: #fcf8e3;//utiliser une variable scss à la place
+        }
     }
 }

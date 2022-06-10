@@ -1,6 +1,0 @@
-<div class="container mb-5 text-center h-100">
-	{% for title in session.quizz_session.getQcmAnswers %}
-		<input type="radio" name="validate" id="{{title}}" value="{{title}}" onclick="form.submit()" class="position-absolute invisible">
-		<label for="{{title}}" class="col-4 btn mt-2 mb-2 ms-2 btn-qcm overflow-hidden">{{title}}</label>
-	{% endfor %}
-</div>

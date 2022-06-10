@@ -1,44 +1,61 @@
-{% extends "layout.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% block content %}
-    <div class="h-75 mt-5 d-flex flex-column justify-content-evenly align-items-center">
-        {% if tracks|length > 0 %}
-        <div class="boxContainer position-absolute">
-            <div class="box box1"></div>
-            <div class="box box2"></div>
-            <div class="box box3"></div>
-            <div class="box box4"></div>
-            <div class="box box5"></div>
-        </div>
-        {% endif %}
-        <div class="display-answer container d-flex flex-row justify-content-center position-absolute w-100">
-            <div class="col-6 text-center">
-                <ul class="p-0">
-                    <li class="list-unstyled mt-3">{{displayAnswer}}</li>
-                </ul>
-            </div>
-        </div>
+{% block title %}Partie de jeu d'histoire
+{% endblock %}
+{% block body %}
 
-        {% for track in tracks|slice(0,1) %}
-            <audio src="/uploads/tracks/{{track.path}}" class="audio" autoplay></audio>
-        {% endfor %}
 
-        <form action="" method="POST" name="form" id="form-quiz" class="container-fluid d-flex flex-column justify-content-evenly align-items-center h-100 mt-5">
-            <h2 class="mt-5">Devine le titre du morceau :</h2>
+	<div class="ingame">
+		<div class="container d-flex flex-column p-2 justify-content-between h-100">
+			<div class="row gx-0 d-flex  justify-content-between">
 
-			{% if session.level == 1 %}
-				{% include "Quizz/_levelEasy.html.twig" %}
-			{% else %}
-				{% include "Quizz/_levelHard.html.twig" %}
-			{% endif %}
+				<div class="col col-sm-6 col-md-3  d-flex justify-content-center ">
+					<div class="d-flex text-image"><img class="" src="{{asset('build/images/turn.svg')}}" alt="tour joué"><img class="" src="{{asset('build/images/bloc_turn.svg')}}" alt="tour joué"><p class="menu-score">Tour : 2</p>
+					</div>
 
-			<button class="btn ms-0 mt-2 mb-md-0 btn-tertiary btn-block col-6" type="submit" name="pass">PASSER</button>
+				</div>
+				<div class="col col-sm-6 col-md-3 d-flex justify-content-center ">
+					<div class="d-flex text-image"><img class="" src="{{asset('build/images/save.svg')}}" alt="carte gagnées"><img class="" src="{{asset('build/images/bloc_card.svg')}}" alt="carte gagnées">
+						<p class="menu-score">10 / 58</p>
+					</div>
 
-		</form>
-		<a type="button" class="btn mt-5 btn-danger" href="/quizz/pass">FINISH</a>
+				</div>
+				<div class="col col-sm-6 col-md-3 d-flex justify-content-center ">
+					<div class="d-flex text-image"><img class="" src="{{asset('build/images/clock.svg')}}" alt="temps écoulé"><img class="" src="{{asset('build/images/bloc_time.svg')}}" alt="temps écoulé">
+						<p class="menu-score">44mn 30sec</p>
+					</div>
+
+				</div>
+				<div class=" col col-sm-6 col-md-3 d-flex justify-content-center ">
+					<div class="d-flex  text-image"><img class="" src="{{asset('build/images/cup.svg')}}" alt="temps écoulé"><img class="" src="{{asset('build/images/bloc_point.svg')}}" alt="points gagnés">
+						<p class="menu-score">1000/1000pts</p>
+					</div>
+
+				</div>
+
+
+			</div>
+			<div class="row gx-0">
+				<div class=" d-flex  justify-content-between">
+					<div class="col col-md-4 artisans cardgame"><img class="left-img" src="{{asset('build/images/dos_artisans.jpg')}}" alt="dos artisan"></div>
+					<div>
+						<button class="col col-md-6 d-inline btn btn-secondary mt-5 w-auto h-5" type="submit" name="validate" value="coop">Classeur de cartes</button>
+					</div>
+					<div class="col col-md-4 artisans cardgame"><img class="" src="{{asset('build/images/dos_apocalypse.svg')}}" alt="dos apocalyspe"></div>
+				</div>
+			</div>
+			<div class="row gx-0">
+				<div= "d-flex align-items-end">
+					<div class=" col-md-4 w-100 d-flex  justify-content-between flex-wrap">
+						<div class="artisans cardgame"></div>
+						<div class="artisans cardgame"></div>
+						<div class="artisans cardgame"></div>
+						<div class="artisans cardgame"></div>
+						<div class="artisans cardgame"></div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 	</div>
-{% endblock %}
-{% block javascript %}
-    <script src="/assets/js/chrono.js"></script>
 {% endblock %}

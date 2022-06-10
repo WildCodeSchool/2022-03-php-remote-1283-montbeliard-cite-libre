@@ -1,22 +1,78 @@
-body {
+.board {
     background-image: url('/assets/images/plateau_vide.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 
-    height: 100vh;
+    height: 80vh;
     overflow: auto;
     position: relative;
 
 }
 @media (max-width: $breakpoint-tablet) {
-  body {
+  .board {
     background-image: url('/assets/images/plateau_vide_phone.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 
-    height: 100vh;
+    height: 80vh;
     overflow: auto;
     position: relative;
 
   }
 }
+
+.ingame {
+    background-image: url('/assets/images/plateau_jeu.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    height: 80vh;
+    overflow: auto;
+
+    .left-img {
+         height: 242px;
+    }
+.text-image {
+width: 200px;
+position: relative;
+.img {
+    width: 100%;
+}
+    .menu-score {
+        font-size: 1rem;
+        position:absolute;
+        top: 20%;
+        left:35%;
+
+         }
+}
+
+
+}
+
+@media (max-width: $breakpoint-tablet) {
+    .ingame {
+      background-image: url('/assets/images/plateau_jeu_phone.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+
+      height: 80vh;
+      overflow: auto;
+      position: relative;
+
+    }
+  }
+.btn {
+    font-family:'Estonia';
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.cardgame {
+height: 250px;
+width: 166px;
+margin: 1rem;
+border-radius: 10px;
+border: black 2px solid;
+}
+

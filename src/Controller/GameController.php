@@ -16,4 +16,12 @@ class GameController extends AbstractController
             'controller_name' => 'GameController',
         ]);
     }
+
+    #[Route('/progress', name: '_progress')]
+    public function progress(): Response
+    {
+        return $this->render('game/progress.html.twig', [
+            'controller_name' => 'GameController',
+        ]);
+    }
 }

@@ -1,28 +1,28 @@
 <header>
-    <nav class="navbar navbar-light  fixed-top shadow">
+    <nav class="navbar navbar-light fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">1283, Montbéliard, cité libre</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-                <span class="navbar-toggler-icon"></span>
+            {# <a class="navbar-brand" href="#">1283, Montbéliard, cité libre</a> #}
+            <button class="navbar-toggler ms-auto me-3 mt-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon burger"></span>
             </button>
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">1283, Montbéliard, cité libre</h5>
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <h5 class="offcanvas-title me-5" id="offcanvasNavbarLabel">1283, Montbéliard, cité libre</h5>
                 </div>
                 <div class="offcanvas-body bg-dark text-light">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <ul class="navbar-nav   pe-3">
                         <li class="nav-item">
-                            <a class="nav-link active ps-5 mt-5 fs-5 text-light" aria-current="page" href="/">Accueil</a>
+                            <a class="nav-link active pe-5 mt-5 fs-5 text-light text-end link-navbar" aria-current="page" href="/">Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link ps-5 mt-5 fs-5 text-light" href="#">Règles du jeu</a>
+                            <a class="nav-link pe-5 mt-5 fs-5 text-light text-end link-navbar" href="#">Règles du jeu</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link ps-5 mt-5 fs-5 text-light" href="#">Mes scores</a>
+                            <a class="nav-link pe-5 mt-5 fs-5 text-light text-end link-navbar" href="#">Mes scores</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link ps-5 mt-5 fs-5 text-light" href="#">Classement</a>
+                            <a class="nav-link pe-5 mt-5 fs-5 text-light text-end link-navbar" href="#">Classement</a>
                         </li>
                     </ul>
                 </div>

@@ -33,29 +33,84 @@
 
 				</div>
 
+			</div>
+
+			<div class="jeu-container">
+				<button class=" mx-auto d-inline btn-dice btn btn-secondary my-5" type="submit">Lancez le dé</button>
+				<div class="container">
+					<div class="row gx-0 jeu d-flex justify-content-around">
+						<div class="col-xs-12  col-md-4   artisans cardgame"><img class="left-img" src="{{asset('build/images/dos_artisans.jpg')}}" alt="dos artisan"></div>
+						<div class="classeur col-xs-12 col-md-4 d-flex align-items-center">
+							<button class=" mx-auto d-inline btn btn-secondary   h-5" type="submit">Classeur de cartes</button>
+						</div>
+						<div class="col-xs-12 col-md-4   artisans cardgame"><img class="right-img" src="{{asset('build/images/dos_apocalypse.svg')}}" alt="dos apocalyspe"></div>
+					</div>
+				</div>
+				<div class="show-allcard ">
+					<div class="col-m3 show-card mb-1">derniere carte gagnées</div>
+					<div class="col-m3 show-card mb-1">carte gagnées</div>
+					<div class="col-m3 show-card mb-1">carte gagnées</div>
+					<div class="col-m3 show-card mb-1">carte gagnées</div>
+					<div class="col-m3 show-card mb-1">carte gagnées</div>
+					<div class="col-m3 show-card mb-1">carte gagnées</div>
+					<div class="col-m3 show-card mb-1">carte gagnées</div>
+					<div class="col-m3 show-card mb-1">carte gagnées</div>
+					<div class="col-m3 show-card mb-1">carte gagnées</div>
+					<div class="col-m3 show-card mb-1">carte gagnées</div>
+
+					<button class=" d-inline btn btn-primary" type="submit">Classeur de cartes</button>
+
+				</div>
 
 			</div>
-			<div class="row gx-0">
-				<div class=" d-flex  justify-content-between">
-					<div class="col col-md-4 artisans cardgame"><img class="left-img" src="{{asset('build/images/dos_artisans.jpg')}}" alt="dos artisan"></div>
-					<div>
-						<button class="col col-md-6 d-inline btn btn-secondary mt-5 w-auto h-5" type="submit" name="validate" value="coop">Classeur de cartes</button>
-					</div>
-					<div class="col col-md-4 artisans cardgame"><img class="" src="{{asset('build/images/dos_apocalypse.svg')}}" alt="dos apocalyspe"></div>
-				</div>
-			</div>
-			<div class="row gx-0">
-				<div= "d-flex align-items-end">
-					<div class=" col-md-4 w-100 d-flex  justify-content-between flex-wrap">
-						<div class="artisans cardgame"></div>
-						<div class="artisans cardgame"></div>
-						<div class="artisans cardgame"></div>
-						<div class="artisans cardgame"></div>
-						<div class="artisans cardgame"></div>
+
+
+			<div class="d-flex  justify-content-around flex-wrap">
+
+				<div class="question-card cardgame">
+					<div class="two-face">
+						<span class="dot"></span>
+						<span class="dot"></span>
 					</div>
 				</div>
+				<div class="question-card cardgame">
+					<div class="three-face">
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+					</div>
+				</div>
+				<div class="question-card cardgame">
+					<div class="four-face">
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+					</div>
+				</div>
+				<div class="question-card-selected cardgame">
+					<div class="five-face">
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+					</div>
+				</div>
+				<div class="question-card cardgame">
+					<div class="six-face">
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+					</div>
+				</div>
+
 			</div>
 		</div>
+
 
 	</div>
 {% endblock %}

@@ -8,17 +8,18 @@
     position: relative;
 
 }
-@media (max-width: $breakpoint-tablet) {
-  .board {
-    background-image: url('/assets/images/plateau_vide_phone.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
 
-    height: 80vh;
-    overflow: auto;
-    position: relative;
+@include media-breakpoint-down(lg) {
+    .board {
+        background-image: url('/assets/images/plateau_vide_phone.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
 
-  }
+        height: 80vh;
+        overflow: auto;
+        position: relative;
+
+    }
 }
 
 .ingame {
@@ -30,49 +31,144 @@
     overflow: auto;
 
     .left-img {
-         height: 242px;
+        height: 242px;
     }
-.text-image {
-width: 200px;
-position: relative;
-.img {
-    width: 100%;
+
+    .text-image {
+        width: 200px;
+        position: relative;
+
+        .img {
+            width: 100%;
+        }
+
+        .menu-score {
+            font-size: 1rem;
+            position: absolute;
+            top: 20%;
+            left: 35%;
+        }
+    }
+
+    .show-allcard {
+        display: none;
+    }
+
+    .jeu-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.5fr 1.5fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+
+    }
+
+
+    @include media-breakpoint-up(lg) {
+        .classeur {
+            display: none !important;
+        }
+
+        .show-card {
+            width: 150px;
+            border: 1px $dark solid;
+            border-radius: 5px;
+            transform: translateX(-100px);
+            text-align: center;
+            vertical-align: baseline;
+            transition: all 0.3s ease-in-out;
+            background-color: $dark;
+            color: $light;
+            font-family: 'Manuale';
+
+        }
+
+        .show-card:hover {
+            transform: translateX(20px) scale(1.4);
+        }
+
+        .jeu-container {
+            display: grid;
+            grid-template-columns: 0.1fr 3.4fr;
+            grid-template-rows: 0.5fr 1.5fr;
+            gap: 0px 0px;
+            grid-auto-flow: row;
+            grid-template-areas:
+                "card btn"
+                "card jeu";
+        }
+
+        .btn-dice {
+            grid-area: btn;
+            height: fit-content;
+        }
+
+        .jeu {
+            grid-area: jeu;
+        }
+
+        .show-allcard {
+            grid-area: card;
+            display: inline-block;
+
+            .btn {
+                line-height: 1;
+                font-size: 1.5rem;
+                transform: translateX(-50px);
+                transition: all 0.3s ease-in-out;
+                font-size: bold;
+            }
+
+            .btn:hover {
+                transform: translateX(20px) scale(1.4);
+            }
+        }
+
+    }
+
 }
-    .menu-score {
-        font-size: 1rem;
-        position:absolute;
-        top: 20%;
-        left:35%;
 
-         }
-}
-
-
-}
-
-@media (max-width: $breakpoint-tablet) {
+@include media-breakpoint-down(lg) {
     .ingame {
-      background-image: url('/assets/images/plateau_jeu_phone.jpg');
-      background-repeat: no-repeat;
-      background-size: cover;
-
-      height: 80vh;
-      overflow: auto;
-      position: relative;
+        background-image: url('/assets/images/plateau_jeu_phone.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 80vh;
+        overflow: auto;
+        position: relative;
 
     }
-  }
+}
+
 .btn {
-    font-family:'Estonia';
+    font-family: 'Estonia';
     font-size: 2rem;
-    font-weight: bold;
 }
 
 .cardgame {
-height: 250px;
-width: 166px;
-margin: 1rem;
-border-radius: 10px;
-border: black 2px solid;
+    height: 250px;
+    width: 166px;
+    margin: 1rem;
+    border-radius: 10px;
+    border: $dark 2px solid;
 }
 
+.question-card {
+    background-image: url('/assets/images/dos_artisans.jpg');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.5;
+    height: 150px;
+    width: 150px;
+}
+
+.question-card-selected {
+    background-image: url('/assets/images/dos_artisans.jpg');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    height: 150px;
+    width: 150px;
+}

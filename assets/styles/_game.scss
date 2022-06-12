@@ -2,7 +2,6 @@
     background-image: url('/assets/images/plateau_vide.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-
     height: 80vh;
     overflow: auto;
     position: relative;
@@ -22,11 +21,22 @@
     }
 }
 
+[class^="bloc"] {
+    background-image: url('/assets/images/bloc.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 130px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .ingame {
     background-image: url('/assets/images/plateau_jeu.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-
     height: 80vh;
     overflow: auto;
 
@@ -85,6 +95,7 @@
 
         .show-card:hover {
             transform: translateX(20px) scale(1.4);
+            border-right: 2px $primary solid;
         }
 
         .jeu-container {

@@ -73,6 +73,10 @@
 
     }
 
+    .btn-dice {
+        height: fit-content;
+    }
+
 
     @include media-breakpoint-up(lg) {
         .classeur {
@@ -80,27 +84,40 @@
         }
 
         .show-card {
-            width: 150px;
-            border: 1px $dark solid;
+            min-width: 130px;
+            max-height: 45px;
             border-radius: 5px;
-            transform: translateX(-100px);
+            transform: translateX(-50px);
             text-align: center;
-            vertical-align: baseline;
+            padding: 5px;
             transition: all 0.3s ease-in-out;
             background-color: $dark;
             color: $light;
+            font-size: 0.8rem;
             font-family: 'Manuale';
+            z-index: 1;
+            box-shadow: 1px 2px 3px 2px rgba(255, 255, 255, 0.49) inset;
 
         }
 
+        .card-won {
+            display: none;
+        }
+
         .show-card:hover {
-            transform: translateX(20px) scale(1.4);
-            border-right: 2px $primary solid;
+            transform: translateX(20px) scale(1.2);
+
+
+            .card-won {
+                display: inherit;
+                height: 180px;
+                box-shadow: -5px 12px 26px -5px rgba(0, 0, 0, 0.5);
+            }
         }
 
         .jeu-container {
             display: grid;
-            grid-template-columns: 0.1fr 3.4fr;
+            grid-template-columns: 0.1fr 4fr;
             grid-template-rows: 0.5fr 1.5fr;
             gap: 0px 0px;
             grid-auto-flow: row;
@@ -127,11 +144,18 @@
                 font-size: 1.5rem;
                 transform: translateX(-50px);
                 transition: all 0.3s ease-in-out;
-                font-size: bold;
+            }
+
+            h2 {
+                margin-bottom: 5px;
+                font-family: 'Manuale';
+                color: $dark;
+                text-decoration: underline $primary;
             }
 
             .btn:hover {
-                transform: translateX(20px) scale(1.4);
+                margin-top: 10px;
+                transform: translateX(20px) scale(1.2);
             }
         }
 

@@ -91,26 +91,3 @@
         "d . b";
 }
 
-.dot:nth-child(2) {
-    grid-area: b;
-}
-
-.dot:nth-child(3) {
-    grid-area: c;
-}
-
-.dot:nth-child(4) {
-    grid-area: d;
-}
-
-.dot:nth-child(5) {
-    grid-area: e;
-}
-
-.dot:nth-child(6) {
-    grid-area: f;
-}
-
-.dot:nth-child(odd):last-child {
-    grid-area: g;
-}

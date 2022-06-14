@@ -3,6 +3,7 @@
     height: 80vh;
     overflow: auto;
     position: relative;
+
     .bg-image {
         position: absolute;
         top: 0;
@@ -12,23 +13,18 @@
         z-index: -1;
         opacity: 1;
         background-image: url('/assets/images/plateau_vide.jpg');
+
+        @include media-breakpoint-down(lg) {
+
+            background-image: url('/assets/images/plateau_vide_phone.jpg');
+
+        }
+
         background-repeat: no-repeat;
         background-size: cover;
     }
 }
 
-@include media-breakpoint-down(lg) {
-    .board {
-        background-image: url('/assets/images/plateau_vide_phone.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-
-        height: 80vh;
-        overflow: auto;
-        position: relative;
-
-    }
-}
 
 [class^="bloc"] {
     background-image: url('/assets/images/bloc.svg');
@@ -42,6 +38,20 @@
     align-items: center;
 }
 
+.bloc-time {
+    background-image: url('/assets/images/bloc_time.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 130px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $light;
+
+}
+
 .ingame {
     background-image: url('/assets/images/plateau_jeu.jpg');
     background-repeat: no-repeat;
@@ -50,7 +60,7 @@
     overflow: auto;
 
     p {
-        font-family: 'Manuale';
+        font-family: 'Manuale', serif;
     }
 
     .left-img {
@@ -188,10 +198,7 @@
     }
 }
 
-.btn {
-    font-family: 'Estonia';
-    font-size: 2rem;
-}
+
 
 .cardgame {
     height: 250px;

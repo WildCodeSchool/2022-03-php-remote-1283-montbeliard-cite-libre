@@ -1,0 +1,229 @@
+.board {
+
+    height: 80vh;
+    overflow: auto;
+    position: relative;
+
+    .bg-image {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        opacity: 1;
+        background-image: url('/assets/images/plateau_vide.jpg');
+
+        @include media-breakpoint-down(lg) {
+
+            background-image: url('/assets/images/plateau_vide_phone.jpg');
+
+        }
+
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+
+
+[class^="bloc"] {
+    background-image: url('/assets/images/bloc.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 130px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bloc-time {
+    background-image: url('/assets/images/bloc_time.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 130px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $light;
+
+}
+
+.ingame {
+    background-image: url('/assets/images/plateau_jeu.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 80vh;
+    overflow: auto;
+
+    p {
+        font-family: 'Manuale', serif;
+    }
+
+    .left-img {
+        height: 242px;
+    }
+
+    .text-image {
+        width: 200px;
+        position: relative;
+
+        .img {
+            width: 100%;
+        }
+
+        .menu-score {
+            font-size: 1rem;
+            position: absolute;
+            top: 20%;
+            left: 35%;
+        }
+    }
+
+    .show-allcard {
+        display: none;
+    }
+
+    .jeu-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.5fr 1.5fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+
+    }
+
+    .btn-dice {
+        height: fit-content;
+    }
+
+
+    @include media-breakpoint-up(lg) {
+        .classeur {
+            display: none !important;
+        }
+
+        .show-card {
+            min-width: 130px;
+            max-height: 45px;
+            border-radius: 5px;
+            transform: translateX(-50px);
+            text-align: center;
+            padding: 5px;
+            transition: all 0.3s ease-in-out;
+            background-color: $dark;
+            color: $light;
+            font-size: 0.8rem;
+            font-family: 'Manuale';
+            z-index: 1;
+            box-shadow: 1px 2px 3px 2px rgba(255, 255, 255, 0.38) inset;
+
+        }
+
+        .card-won {
+            display: none;
+        }
+
+        .show-card:hover {
+            transform: translateX(20px) scale(1.2);
+
+
+            .card-won {
+                display: inherit;
+                height: 180px;
+                box-shadow: -5px 12px 26px -5px rgba(0, 0, 0, 0.5);
+            }
+        }
+
+        .jeu-container {
+            display: grid;
+            grid-template-columns: 0.1fr 4fr;
+            grid-template-rows: 0.5fr 1.5fr;
+            gap: 0px 0px;
+            grid-auto-flow: row;
+            grid-template-areas:
+                "card btn"
+                "card jeu";
+        }
+
+        .btn-dice {
+            grid-area: btn;
+            height: fit-content;
+        }
+
+        .jeu {
+            grid-area: jeu;
+        }
+
+        .show-allcard {
+            grid-area: card;
+            display: inline-block;
+
+            .btn-classeur {
+                line-height: 1;
+                font-size: 1.5rem;
+                transform: translateX(-50px);
+                transition: all 0.3s ease-in-out;
+            }
+
+            h2 {
+                margin-bottom: 5px;
+                font-family: 'Manuale';
+                color: $dark;
+                text-decoration: underline $primary;
+            }
+
+            .btn-classeur:hover {
+                margin-top: 5px;
+                transform: translateX(20px) scale(1.2);
+            }
+        }
+
+    }
+
+}
+
+@include media-breakpoint-down(lg) {
+    .ingame {
+        background-image: url('/assets/images/plateau_jeu_phone.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 80vh;
+        overflow: auto;
+        position: relative;
+
+    }
+}
+
+
+
+.cardgame {
+    height: 250px;
+    width: 166px;
+    margin: 1rem;
+    border-radius: 10px;
+    border: $dark 2px solid;
+}
+
+.question-card {
+    background-image: url('/assets/images/dos_artisans.jpg');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.5;
+    height: 150px;
+    width: 150px;
+}
+
+.question-card-selected {
+    background-image: url('/assets/images/dos_artisans.jpg');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    height: 150px;
+    width: 150px;
+}

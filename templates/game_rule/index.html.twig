@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}1283, Montbéliard cité libre
+{% endblock %}
+
+{% block body %}
+
+	<div class="container-fluid d-flex justify-content-center position-relative">
+		<div class="parchment">
+            <div class="parchment-body">
+                <h1>Règles du jeu</h1>
+                <h2>Objectif ludique</h2>
+                <p>Gagner 1 000 points (livres estevenantes) en 30 minutes pour remporter la partie, c'est-à-dire obtenir la signature de la charte de franchise de le cité par le seigneur (voir narration).<br/><br/></p>
+
+                <h2>Objectif didactique</h2>
+                <p>Répondre à des questions sur la société urbaine au Moyen Âge pour gagner des cartes qui rapportent des points.<br/><br/></p>
+
+                <h2>Étape 1 :</h2>
+                <p>Un élève lance le dé 6 (le lanceur change à chaque tour)<br/><br/></p>
+                <h2>Étape 2 :</h2>
+                <p>
+                    La valeur du dé annonce ce qui va se passer :<br/>
+                    <strong>Valeur 1 -</strong> L'enseignant tire une carte « cavaliers de l'Apocalypse » et la lit : perte de points ou de cartes.<br/>
+                    <strong>Valeur 2 -</strong> Question très facile : les élèves obtiennent 2 cartes si la réponse est juste. Sinon, un autre tour commence.<br/>
+                    <strong>Valeur 3 -</strong> Question facile : les élèves obtiennent 3 cartes si la réponse est juste. Sinon, un autre tour commence.<br/>
+                    <strong>Valeur 4 -</strong> Question intermédiaire : les élèves obtiennent 4 cartes si la réponse est juste. Sinon, un autre tour commence.<br/>
+                    <strong>Valeur 5 -</strong> Question difficile : les élèves obtiennent 5 cartes si la réponse est juste. Sinon, un autre tour commence.<br/>
+                    <strong>Valeur 6 -</strong> Question très difficile : les élèves obtiennent 6 cartes si la réponse est juste. Sinon, un autre tour commence.<br/><br/>
+                    Les élèves prennent le temps nécessaire pour réfléchir (dans certains cas, le manuel ou Internet sera autorisé). L'enseignant demande à ceux qui sont sûrs d'avoir la bonne réponse de lever la main et donne la parole à l'un d'entre eux.<br/><br/>
+                </p>
+                <h2>Étape 3 :</h2>
+                <p>L'enseignant lit les cartes gagnées, les bonus et les malus éventuels. En cas de « cavaliers de l'apocalypse », l'enseignant lit la carte et sa répercussion négative sur le jeu (perte de points, pertes de cartes).<br/><br/></p>
+                <h2>Étape 4 :</h2>
+                <p>Les élèves calculent les points gagnés ou perdus, vérifient les familles et les cartes liées sur les listes, les bonus ou les malus et annoncent la somme accumulée sur le tour.<br/></p>
+            </div>
+        </div>
+	</div>
+        <div class="d-flex justify-content-center">
+            <a href="/game" class="btn btn-one">
+                LANCER UNE PARTIE
+            </a>
+        </div>
+
+{% endblock %}
+

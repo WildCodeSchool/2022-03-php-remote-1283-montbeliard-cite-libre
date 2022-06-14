@@ -1,0 +1,54 @@
+.btn-one {
+    color: $dark;
+    transition: all 0.3s;
+    position: relative;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-top-color: $primary;
+    border-bottom-color: $primary;
+  }
+  .btn-one  {
+    transition: all 0.8s;
+  }
+  .btn-one::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    border-top-width: 0.5px;
+    border-bottom-width: 0.5px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-top-color: $primary;
+    border-bottom-color: $primary;
+    transform: scale(0.1, 1);
+  }
+  .btn-one:hover  {
+    letter-spacing: 2px;
+    color: $light;
+  }
+  .btn-one:hover::before {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+  .btn-one::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition: all 0.3s;
+  }
+  .btn-one:hover::after {
+    opacity: 0;
+    transform: scale(0.1, 1);
+  }

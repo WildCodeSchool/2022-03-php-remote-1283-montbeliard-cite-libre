@@ -3,41 +3,45 @@
 {% block title %}Collection de cartes{% endblock %}
 
 {% block body %}
-<h1 class="text-center">Classeur de cartes</h1>
-<div class="row mt-5">
-<div class="col-6 text-center"><a class=" btn btn-outline-primary btn-filter" href="#"><i class="bi bi-funnel"></i> Trier par famille</a></div>
-<div class="col-6 text-center"><a class=" btn btn-outline-primary btn-filter" href="#"><i class="bi bi-funnel"></i> Trier par carte liée</a></div>
+    <h1 class="text-center">Classeur de cartes</h1>
 
-</div>
-<div class="row d-flex flex-row justify-content-around my-5 gy-4">
+    <div class="row mt-5">
+        <div class="col-6 text-center">
+            <a class=" btn btn-outline-primary btn-filter" href="#"><i class="bi bi-funnel"></i> Trier par famille</a>
+        </div>
+        <div class="col-6 text-center">
+            <a class=" btn btn-outline-primary btn-filter" href="#"><i class="bi bi-funnel"></i> Trier par carte liée</a>
+        </div>
+    </div>
 
-    {% for i in 0..1 %}
-        {% for i in 0..1 %}
-            <div class="col-12 col-md-4 col-lg-3 d-flex flex-row justify-content-center">
-                <div class="card-game-color text-center  px-0">
-                    <img src="{{ asset('build/images/parchemin.png')}}" alt="" class="img-fluide">
-                    <div class="card-content d-flex flex-column justify-content-around align-items-center">
-                        <div class=""><p class="m-0 pb-2">name</p></div>
-                        <div class="text-card "><p class=" m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit uo odio recusandae ipsa facilis amet quia. </p></div>
-                        <div class="card-img   ps-1"><img src="{{ asset('build/images/40-carabetier.jpg')}}" alt="" class="img-fluid"></div>
-                        <div class=""><p class="m-0 pt-2">bonus</p></div>
+    <div class="row d-flex flex-row justify-content-around my-5 gy-4 pb-4 collection overflow-auto">
+        {% for i in 0..10 %}
+            {% for i in 0..1 %}
+                <div class="col-12 col-md-4 col-lg-3 d-flex flex-row justify-content-center">
+                    <div class="card-game-color text-center  px-0">
+                        <img src="{{ asset('build/images/parchemin.png')}}" alt="" class="img-fluide">
+                        <div class="card-content d-flex flex-column justify-content-around align-items-center">
+                            <div class=""><p class="m-0 pb-2">name</p></div>
+                            <div class="text-card "><p class=" m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit uo odio recusandae ipsa facilis amet quia. </p></div>
+                            <div class="card-img   ps-1"><img src="{{ asset('build/images/40-carabetier.jpg')}}" alt="" class="img-fluid"></div>
+                            <div class=""><p class="m-0 pt-2">bonus</p></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
-        {% for i in 0..4 %}
-            <div class="col-12 col-md-4 col-lg-3 d-flex flex-row justify-content-center">
-                <div class="card-game text-center  px-0">
-                    <img src="{{ asset('build/images/parchemin.png')}}" alt="" class="img-fluide">
-                    <div class="card-content d-flex flex-column justify-content-around align-items-center">
-                        <div class=""><p class="m-0 pb-2">name</p></div>
-                        <div class="text-card "><p class=" m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit uo odio recusandae ipsa facilis amet quia. </p></div>
-                        <div class="card-img   ps-1"><img src="{{ asset('build/images/40-carabetier.jpg')}}" alt="" class="img-fluid"></div>
-                        <div class=""><p class="m-0 pt-2">bonus</p></div>
+            {% endfor %}
+            {% for i in 0..4 %}
+                <div class="col-12 col-md-4 col-lg-3 d-flex flex-row justify-content-center">
+                    <div class="card-game text-center  px-0">
+                        <img src="{{ asset('build/images/parchemin.png')}}" alt="" class="img-fluide">
+                        <div class="card-content d-flex flex-column justify-content-around align-items-center">
+                            <div class=""><p class="m-0 pb-2">name</p></div>
+                            <div class="text-card "><p class=" m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit uo odio recusandae ipsa facilis amet quia. </p></div>
+                            <div class="card-img   ps-1"><img src="{{ asset('build/images/40-carabetier.jpg')}}" alt="" class="img-fluid"></div>
+                            <div class=""><p class="m-0 pt-2">bonus</p></div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
-</div>
+    </div>
 {% endblock %}

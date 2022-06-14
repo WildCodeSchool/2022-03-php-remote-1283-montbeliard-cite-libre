@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Estonia&family=Manuale:wght@500&display=swap');
 @import "_variable";
 @import "~bootstrap/scss/bootstrap";
 @import "~bootstrap-icons/font/bootstrap-icons";
@@ -6,3 +7,8 @@
 @import "_navbar";
 @import "_card";
 @import "_collection";
+@import '_index';
+@import '_parchment';
+@import '_button';
+@import "_game";
+@import "_dice";

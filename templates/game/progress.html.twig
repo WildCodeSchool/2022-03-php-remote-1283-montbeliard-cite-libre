@@ -1,0 +1,129 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Partie de jeu d'histoire
+{% endblock %}
+{% block body %}
+
+
+	<div class="ingame">
+		<div class="container d-flex flex-column p-2 justify-content-between h-100">
+			<div class="row gx-0 d-flex  justify-content-between">
+
+				<div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
+					<div class="d-flex text-image"><img class="" src="{{asset('build/images/turn.svg')}}" alt="tour joué"><div class="bloc-turn">
+							<p>Tour : 2</p>
+						</div>
+					</div>
+
+				</div>
+				<div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
+					<div class="d-flex text-image"><img class="" src="{{asset('build/images/save.svg')}}" alt="carte gagnées"><div class="bloc-save">
+							<p>10 / 58</p>
+						</div>
+
+					</div>
+
+				</div>
+				<div class=" col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
+					<div class="d-flex  text-image"><img class="" src="{{asset('build/images/cup.svg')}}" alt="temps écoulé"><div class="bloc-point">
+							<p>1000/1000pts</p>
+						</div>
+
+					</div>
+
+				</div>
+				<div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
+					<div class="d-flex text-image"><img class="" src="{{asset('build/images/clock.svg')}}" alt="temps écoulé"><div class="bloc-time">
+
+							<p>44mn 30sec</p>
+						</div>
+					</div>
+
+				</div>
+
+
+			</div>
+
+			<div class="jeu-container">
+				<button class=" mx-auto d-inline btn-dice btn btn-secondary my-5" type="submit">Lancez le dé</button>
+				<div class="container">
+					<div class="row gx-0 jeu d-flex justify-content-around">
+						<div class="col-xs-12  col-md-4   artisans cardgame"><img class="left-img" src="{{asset('build/images/dos_artisans.jpg')}}" alt="dos artisan"></div>
+						<div class="classeur col-xs-12 col-md-4 d-flex align-items-center">
+							<button class=" mx-auto d-inline btn btn-secondary   h-5" type="submit">Classeur de cartes</button>
+						</div>
+						<div class="col-xs-12 col-md-4   artisans cardgame"><img class="right-img" src="{{asset('build/images/dos_apocalypse.svg')}}" alt="dos apocalyspe"></div>
+					</div>
+				</div>
+				<div class="show-allcard ">
+					<h2>10 dernières cartes gagnées</h2>
+					<div class="show-card mb-1 position-relative">Le menuisier
+						<img class="position-absolute top-50 start-100 translate-middle card-won" src="{{asset('build/images/menuisier.jpg')}}" alt="carte gagnée"></div>
+					<div class="show-card mb-1 position-relative">Le briquier et le maçon coucheur
+						<img class="position-absolute top-50 start-100 translate-middle card-won" src="{{asset('build/images/briquier.jpg')}}" alt="carte gagnée">
+					</div>
+					<div class="show-card mb-1 position-relative">carte gagnées</div>
+					<div class="show-card mb-1 position-relative">carte gagnées</div>
+					<div class="show-card mb-1 position-relative">carte gagnées</div>
+					<div class="show-card mb-1 position-relative">carte gagnées</div>
+					<div class="show-card mb-1 position-relative">carte gagnées</div>
+					<div class="show-card mb-1 position-relative">carte gagnées</div>
+					<div class="show-card mb-1 position-relative">carte gagnées</div>
+					<div class="show-card mb-1 position-relative">carte gagnées</div>
+
+					<button class=" d-inline btn-classeur btn btn-primary" type="submit">Classeur de cartes</button>
+
+				</div>
+
+			</div>
+
+
+			<div class="d-flex  justify-content-around flex-wrap">
+
+				<div class="question-card cardgame">
+					<div class="two-face">
+						<span class="dot"></span>
+						<span class="dot"></span>
+					</div>
+				</div>
+				<div class="question-card cardgame">
+					<div class="three-face">
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+					</div>
+				</div>
+				<div class="question-card cardgame">
+					<div class="four-face">
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+					</div>
+				</div>
+				<div class="question-card-selected cardgame">
+					<div class="five-face">
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+					</div>
+				</div>
+				<div class="question-card cardgame">
+					<div class="six-face">
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+	</div>
+{% endblock %}

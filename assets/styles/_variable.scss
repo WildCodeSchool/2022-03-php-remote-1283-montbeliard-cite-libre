@@ -3,9 +3,15 @@ $secondary: #536158;
 $dark: #1F2828;
 $light: #DADCC6;
 
-$theme-colors: (
-  "primary": $primary,
-  "secondary": $secondary,
-  "dark": $dark,
-  "light": $light
-);
+$theme-colors: ("primary": $primary,
+    "secondary": $secondary,
+    "dark": $dark,
+    "light": $light);
+
+$breakpoint-tablet: 768px;
+
+$breakpoint-mobile:576px;
+
+$btn-font-family : 'Estonia',
+serif;
+$btn-font-size: 2rem;

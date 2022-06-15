@@ -2,23 +2,32 @@
     <nav class="navbar navbar-light fixed-top">
         <div class="container-fluid">
             {% if app.user %}
-                <span class="ms-auto me-2">{{ app.user.username }}</span>
-            {% endif %}
-            <button class="navbar-toggler ms-auto me-3 mt-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-                <span class="navbar-toggler-icon burger"></span>
-            </button>
+                <span class="ms-auto me-2 pt-3">{{ app.user.username }}</span>
+                <button class="navbar-toggler me-3 mt-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                    <span class="navbar-toggler-icon burger"></span>
+                </button>
+            {% else %}
+                <button class="navbar-toggler ms-auto me-3 mt-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                    <span class="navbar-toggler-icon burger"></span>
+                </button>
+        {% endif %}
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
-                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    <h5 class="offcanvas-title me-5" id="offcanvasNavbarLabel">1283, Montbéliard, cité libre</h5>
+                    <button type="button" class="btn-close text-reset me-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <h5 class="offcanvas-title me-auto" id="offcanvasNavbarLabel">1283, Montbéliard, cité libre</h5>
                 </div>
                 <div class="offcanvas-body bg-dark text-light">
                     <ul class="navbar-nav   pe-3">
                         <li class="nav-item">
                             <a class="nav-link active mt-5 fs-5 text-light text-center link-navbar" aria-current="page" href="/">Accueil</a>
                         </li>
+                        {% if is_granted("ROLE_ADMIN") %}
+                            <li class="nav-item">
+                                <a class="nav-link active mt-5 fs-5 text-light text-center link-navbar" aria-current="page" href="{{ path('admin') }}">Tableau de bord admin</a>
+                            </li>
+                        {% endif %}
                         <li class="nav-item">
-                            <a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="#">Règles du jeu</a>
+                            <a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="{{ path('game_rule_index') }}">Règles du jeu</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="#">Mes scores</a>
@@ -28,9 +37,9 @@
                         </li>
                         <li class="nav-item">
                         {% if app.user %}
-                            <a class="nav-link ps-5 mt-5 fs-5 text-light" href="{{ path('app_logout') }}"> Se déconnecter</a>
+                            <a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="{{ path('app_logout') }}"> Se déconnecter</a>
                         {% else %}
-                            <a class="nav-link ps-5 mt-5 fs-5 text-light" href="{{ path('login') }}"> Se connecter</a>
+                            <a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="{{ path('login') }}"> Se connecter</a>
                         {% endif %}
                         </li>
                     </ul>

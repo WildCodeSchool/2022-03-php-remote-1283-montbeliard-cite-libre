@@ -1,18 +1,18 @@
 .parchment {
-    background-image: url('https://trello.com/1/cards/6297363fac90f371143ca2b8/attachments/62a0949947e399553c54131f/previews/62a0949b47e399553c541640/download/parchemin.png');
+    background-image: url('/assets/images/parchemin.png');
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: 100% 100%;
     height: 80vh;
     width: calc(1009px * 80vh / 1345px);
-    overflow: auto;
     position: relative;
     .parchment-body {
-        padding: 20px;
+        height: 76%;
+        width: 82%;
         position: absolute;
-        left: 70px;
-        right: 70px;
-        top: 100px;
-        bottom: 135px;
+        left: 10%;
+        // right: 70px;
+        top: 11.5%;
+        // bottom: 135px;
         overflow: auto;
         h1 {
             text-align: center;

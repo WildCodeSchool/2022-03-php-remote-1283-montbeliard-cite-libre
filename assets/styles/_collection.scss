@@ -1,8 +1,24 @@
 .collection{
     height: 100vh;
-    background-image: url('/assets/images/parchment-2.jpg');
+    background-image: url('/assets/images/parchemin.png');
+    background-size: 100% 100%;
+    position: relative;
+}
+
+.collection-content{
+    height: 76%;
+    width: 87%;
+    position: absolute;
+    top: 14%;
+    left: 7%;
+}
+
+@media(max-width: 950px) and (orientation: landscape) {
+    .collection-content{
+        top: 17.5%;
+    }
 }
 
 .btn-filter{
-    max-width: 90%;
+    max-width: 80%;
 }

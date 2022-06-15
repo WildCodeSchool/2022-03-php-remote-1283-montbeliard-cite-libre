@@ -24,4 +24,10 @@ class GameController extends AbstractController
             'controller_name' => 'GameController',
         ]);
     }
+
+    #[Route('/collection', name: '_collection')]
+    public function collection(): Response
+    {
+        return $this->render('game/collection.html.twig');
+    }
 }

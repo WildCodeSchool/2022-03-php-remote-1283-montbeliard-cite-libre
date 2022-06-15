@@ -10,7 +10,7 @@
     border-bottom-color: $primary;
   }
   .btn-one  {
-    transition: all 0.8s;
+    transition: $transition-base;
   }
   .btn-one::before {
     content: '';

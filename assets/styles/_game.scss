@@ -34,7 +34,6 @@
     width: 130px;
     height: 50px;
     display: flex;
-    justify-content: center;
     align-items: center;
 }
 
@@ -70,6 +69,10 @@
     .text-image {
         width: 200px;
         position: relative;
+
+        &>p {
+            width: 130px;
+        }
 
         .img {
             width: 100%;

@@ -4,16 +4,18 @@
 			<a href="{{ path('app_home') }}" class="ms-3">
 				<img class="blason" src="{{asset('build/images/blason.png')}}" aria-label="retour accueil" alt="blason Montbéliard">
 			</a>
-			{% if app.user %}
-				<span class="ms-auto me-2 p-3">{{ app.user.username }}</span>
+			<span class="ms-auto">
+
+
+				{% if app.user %}
+					<span class=" me-2 p-3">{{ app.user.username }}</span>
+				{% endif %}
 				<button class="navbar-toggler me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
 					<span class="navbar-toggler-icon burger"></span>
 				</button>
-			{% else %}
-				<button class="navbar-toggler ms-auto me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-					<span class="navbar-toggler-icon burger"></span>
-				</button>
-			{% endif %}
+
+			</span>
+
 			<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
 				<div class="offcanvas-header">
 					<button type="button" class="btn-close text-reset me-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>

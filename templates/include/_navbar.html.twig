@@ -38,6 +38,7 @@
                         <li class="nav-item">
                         {% if app.user %}
                             <a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="{{ path('app_logout') }}"> Se déconnecter</a>
+                            <a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="#"> Mon compte</a>
                         {% else %}
                             <a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="{{ path('login') }}"> Se connecter</a>
                         {% endif %}

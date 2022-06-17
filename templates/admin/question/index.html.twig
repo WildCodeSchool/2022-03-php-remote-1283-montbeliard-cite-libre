@@ -1,0 +1,41 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Index des questions{% endblock %}
+
+{% block body %}
+    <h1>Index des questions</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Question</th>
+                <th>Level</th>
+                <th>réponse</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for question in questions %}
+            <tr>
+                <td>{{ question.id }}</td>
+                <td>{{ question.question }}</td>
+                <td>{{ question.level }}</td>
+                    {% for answer in question.answers %}
+                        <td>{{ answer.answer }}</td>
+                    {% endfor %}
+                <td>
+                    <a class="btn btn-outline-primary" href="{{ path('admin_question_show', {'id': question.id}) }}"><i class="bi bi-eye"></i> afficher</a>
+                    <a class="btn btn-outline-primary" href="{{ path('admin_question_edit', {'id': question.id}) }}"><i class="bi bi-pencil"></i> éditer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">aucune question trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-outline-primary" href="{{ path('admin_question_new') }}"><i class="bi bi-plus-circle"></i> Créer</a>
+{% endblock %}

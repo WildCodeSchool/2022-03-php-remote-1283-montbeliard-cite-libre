@@ -21,7 +21,12 @@ class Question
     #[ORM\Column(type: 'integer')]
     private int $level;
 
-    #[ORM\OneToMany(mappedBy: 'question', targetEntity: Answer::class, orphanRemoval: true)]
+    #[ORM\OneToMany(
+        mappedBy: 'question',
+        targetEntity: Answer::class,
+        orphanRemoval: true,
+        cascade: ['persist', 'remove']
+    )]
     private Collection $answers;
 
     public function __construct()

@@ -1,0 +1,11 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}New Question{% endblock %}
+
+{% block body %}
+    <h1>Create new Question</h1>
+
+    {{ include('admin/question/_form.html.twig') }}
+
+<a class="btn btn-outline-primary" href="{{ path('admin_question_index') }}"><i class="bi bi-backspace"></i> retour à la liste</a>
+{% endblock %}

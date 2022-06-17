@@ -27,7 +27,6 @@ class AdminQuestionController extends AbstractController
     {
         $question = new Question();
         $answer = new Answer();
-        $answer->setIsCorrect(true);
         $question->addAnswer($answer);
 
         $form = $this->createForm(QuestionType::class, $question);
@@ -35,6 +34,8 @@ class AdminQuestionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $questionRepository->add($question, true);
+
+            $this->addFlash('success', 'La nouvelle question a bien été créée');
 
             return $this->redirectToRoute('admin_question_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -62,6 +63,8 @@ class AdminQuestionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $questionRepository->add($question, true);
 
+            $this->addFlash('success', 'La question a bien été modifiée');
+
             return $this->redirectToRoute('admin_question_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -77,6 +80,7 @@ class AdminQuestionController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $question->getId(), $request->request->get('_token'))) {
             $questionRepository->remove($question, true);
         }
+        $this->addFlash('success', 'La question a bien été supprimée');
 
         return $this->redirectToRoute('admin_question_index', [], Response::HTTP_SEE_OTHER);
     }

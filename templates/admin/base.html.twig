@@ -19,6 +19,13 @@
     <body class="h-100 d-flex flex-row">
         {% include "admin/include/_navbar.html.twig" %}
         <main class="px-3 pt-3 w-100">
+            {% for category, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ category }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
             {% block body %}{% endblock %}
         </main>
     </body>

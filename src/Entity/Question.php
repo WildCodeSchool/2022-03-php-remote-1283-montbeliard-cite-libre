@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\QuestionRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\QuestionRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints\Valid;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: QuestionRepository::class)]
 class Question
@@ -16,9 +18,21 @@ class Question
     private int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message: 'Ce champ ne doit pas être vide')]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'La question est trop longue {{ value }},
+        elle ne devrait pas dépasser {{ limit }} caractères',
+    )]
     private string $question;
 
     #[ORM\Column(type: 'integer')]
+    #[Assert\NotBlank(message: 'Ce champ ne doit pas être vide')]
+    #[Assert\Range(
+        min: 1,
+        max: 5,
+        notInRangeMessage: 'Veuillez choisir un niveau entre 1 et 5',
+    )]
     private int $level;
 
     #[ORM\OneToMany(

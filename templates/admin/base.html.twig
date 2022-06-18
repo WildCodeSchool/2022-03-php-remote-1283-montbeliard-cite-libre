@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" class="h-100">
+<html lang="fr" class="">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,9 +16,9 @@
             {{ encore_entry_script_tags('admin') }}
         {% endblock %}
     </head>
-    <body class="h-100 d-flex flex-row">
+    <body class="d-flex flex-row">
         {% include "admin/include/_navbar.html.twig" %}
-        <main class="px-3 pt-3 w-100">
+        <main class="p-3 w-100">
             {% for category, messages in app.flashes %}
                 {% for message in messages %}
                     <div class="alert alert-{{ category }}" role="alert">

@@ -21,7 +21,6 @@ class Answer
 
     #[ORM\Column(type: 'text')]
     #[Assert\NotBlank(message: 'Ce champ ne doit pas être vide')]
-    #[Assert\Valid]
     private string $answer;
 
     #[ORM\Column(type: 'boolean')]

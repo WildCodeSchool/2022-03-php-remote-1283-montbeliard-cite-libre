@@ -41,6 +41,7 @@ class Question
         orphanRemoval: true,
         cascade: ['persist', 'remove']
     )]
+    #[Assert\Valid]
     private Collection $answers;
 
     public function __construct()

@@ -54,7 +54,12 @@
 			</div>
 
 			<div class="jeu-container">
-				<button class=" mx-auto d-inline btn-dice btn btn-secondary my-5" type="submit">Lancez le dé</button>
+				<form action="" class=" mx-auto" method="POST">
+					<button class="d-inline btn-dice btn btn-secondary my-5" name="roll" value="roll" type="submit">Lancez le dé</button>
+					<pre>
+                        {{ dump(roll) }}
+                    </pre>
+				</form>
 				<div class="container">
 					<div class="row gx-0 jeu d-flex justify-content-around">
 						<div class="col-xs-12  col-md-4   artisans cardgame"><img class="left-img" src="{{asset('build/images/dos_artisans.jpg')}}" alt="dos artisan"></div>

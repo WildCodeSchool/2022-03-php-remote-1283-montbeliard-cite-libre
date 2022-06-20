@@ -1,18 +1,26 @@
 {{ form_start(form) }}
     {{ form_row(form.question) }}
     {{ form_row(form.level) }}
-    {% for answer in form.answers %}
-        {{ form_row(answer.answer) }}
-        {{ form_row(answer.isCorrect) }}
-    {% endfor %}
+
 
     {# the data-index attribute is required for the JavaScript code below #}
     <ul class="answers"
         data-index="{{ form.answers|length > 0 ? form.answers|last.vars.name + 1 : 0 }}"
         data-prototype="{{ form_widget(form.answers.vars.prototype)|e('html_attr') }}"
-    ></ul>
-    <button type="button" class="add_item_link btn btn-outline-primary mb-3 me-2" data-collection-holder-class="answers"><i class="bi bi-plus-circle"></i> Ajouter une réponse</button>
-    <button class="btn btn-outline-success mb-3"><i class="bi bi-save"></i>{{ button_label|default(' enregister') }}</button>
+    >
+        {% for answer in form.answers %}
+            <li>
+                {{ form_row(answer.answer) }}
+                {{ form_row(answer.isCorrect) }}
+            </li>
+        {% endfor %}
+    </ul>
+    <button type="button" class="add_item_link btn btn-outline-primary mb-3 me-2" data-collection-holder-class="answers">
+        <i class="bi bi-plus-circle"></i> Ajouter une réponse
+    </button>
+    <button class="btn btn-outline-success mb-3">
+        <i class="bi bi-save"></i>{{ button_label|default(' enregister') }}
+    </button>
 {{ form_end(form) }}
 
 <script>
@@ -32,6 +40,7 @@
   collectionHolder.appendChild(item);
 
   collectionHolder.dataset.index++;
+  window.trigCKEditor()
 };
 
 const btnClass = ['btn', 'btn-outline-danger', 'mb-3'];
@@ -66,7 +75,7 @@ const addTagFormDeleteLink = (item) => {
   });
 
   document
-    .querySelectorAll('div.answers div')
+    .querySelectorAll('ul.answers li')
     .forEach((answer) => {
         addTagFormDeleteLink(answer)
     })

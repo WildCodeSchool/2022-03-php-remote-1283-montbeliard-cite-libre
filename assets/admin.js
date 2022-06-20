@@ -12,3 +12,14 @@ import './styles/admin/admin.scss';
 import './bootstrap';
 
 require('bootstrap');
+
+
+window.trigCKEditor = () => {
+    const editors = document.querySelectorAll('[data-editor]');
+    editors.forEach((editor) => {
+        const instance = editor.id;
+        const scripts = document.getElementById(instance).parentElement.getElementsByTagName('script')
+        eval(scripts[0].innerHTML);
+        eval(scripts[2].innerHTML);
+    });
+}

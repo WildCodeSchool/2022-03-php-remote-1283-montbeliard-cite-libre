@@ -22,12 +22,11 @@ class RightAnswerType extends AbstractType
                     'uiColor' => '#DD7110',
                     'language' => 'fr'
                 ],
-
+                'attr' => ['data-editor' => true]
             ])
             ->add('isCorrect', CheckboxType::class, [
                 'label' => 'correct',
                 'required' => false,
-                // 'data' => true,
             ])
         ;
     }

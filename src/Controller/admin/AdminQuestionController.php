@@ -5,11 +5,13 @@ namespace App\Controller\admin;
 use App\Entity\Answer;
 use App\Entity\Question;
 use App\Form\QuestionType;
+use App\Repository\AnswerRepository;
 use App\Repository\QuestionRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/admin/question', name: 'admin_question_')]
 class AdminQuestionController extends AbstractController
@@ -55,12 +57,26 @@ class AdminQuestionController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Question $question, QuestionRepository $questionRepository): Response
-    {
+    public function edit(
+        Request $request,
+        Question $question,
+        QuestionRepository $questionRepository,
+        AnswerRepository $answerRepository
+    ): Response {
         $form = $this->createForm(QuestionType::class, $question);
+        $originalAnswers = new ArrayCollection();
+
+        foreach ($question->getAnswers() as $answer) {
+            $originalAnswers->add($answer);
+        }
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            foreach ($originalAnswers as $answer) {
+                if (false === $question->getAnswers()->contains($answer)) {
+                    $answerRepository->remove($answer, true);
+                }
+            }
             $questionRepository->add($question, true);
 
             $this->addFlash('success', 'La question a bien été modifiée');

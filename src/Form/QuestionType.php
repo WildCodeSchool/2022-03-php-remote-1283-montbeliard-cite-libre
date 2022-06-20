@@ -27,9 +27,9 @@ class QuestionType extends AbstractType
             ])
             ->add('answers', CollectionType::class, [
                 'entry_type' => RightAnswerType::class,
-                'by_reference' => false,
                 'allow_add' => true,
                 'allow_delete' => true,
+                'by_reference' => false,
             ])
         ;
     }

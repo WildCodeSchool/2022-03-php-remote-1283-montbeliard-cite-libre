@@ -16,7 +16,11 @@ class QuestionType extends AbstractType
     {
         $builder
             ->add('question', CKEditorType::class, [
-                'config' => ['toolbar' => 'standard'],
+                'config' => [
+                    'toolbar' => 'standard',
+                    'uiColor' => '#DD7110',
+                    'language' => 'fr'
+                ],
             ])
             ->add('level', IntegerType::class, [
                 'label' => 'Niveau'

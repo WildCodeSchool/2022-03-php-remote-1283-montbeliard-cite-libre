@@ -17,14 +17,14 @@ class Question
     #[ORM\Column(type: 'integer')]
     private int $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     #[Assert\NotBlank(message: 'Ce champ ne doit pas être vide')]
     #[Assert\Length(
         max: 255,
         maxMessage: 'La question est trop longue {{ value }},
         elle ne devrait pas dépasser {{ limit }} caractères',
     )]
-    private string $question;
+    private ?string $question;
 
     #[ORM\Column(type: 'integer')]
     #[Assert\NotBlank(message: 'Ce champ ne doit pas être vide')]

@@ -15,9 +15,9 @@ class Answer
     private int $id;
 
     #[ORM\ManyToOne(targetEntity: Question::class, inversedBy: 'answers')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     #[Assert\NotBlank(message: 'Ce champ ne doit pas être vide')]
-    private Question $question;
+    private ?Question $question;
 
     #[ORM\Column(type: 'text')]
     #[Assert\NotBlank(message: 'Ce champ ne doit pas être vide')]

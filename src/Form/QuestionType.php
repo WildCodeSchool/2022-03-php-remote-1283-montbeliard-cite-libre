@@ -18,7 +18,6 @@ class QuestionType extends AbstractType
             ->add('question', CKEditorType::class, [
                 'config' => [
                     'toolbar' => 'standard',
-                    'uiColor' => '#DD7110',
                     'language' => 'fr'
                 ],
             ])

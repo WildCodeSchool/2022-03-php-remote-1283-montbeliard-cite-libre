@@ -16,16 +16,15 @@ class RightAnswerType extends AbstractType
     {
         $builder
             ->add('answer', CKEditorType::class, [
-                'label' => 'réponse',
+                'label' => 'Réponse',
                 'config' => [
                     'toolbar' => 'standard',
-                    'uiColor' => '#DD7110',
                     'language' => 'fr'
                 ],
                 'attr' => ['data-editor' => true]
             ])
             ->add('isCorrect', CheckboxType::class, [
-                'label' => 'correct',
+                'label' => 'Cette réponse, est-elle correcte ?',
                 'required' => false,
             ])
         ;

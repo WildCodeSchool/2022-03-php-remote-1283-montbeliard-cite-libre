@@ -47,6 +47,16 @@ class QuestionRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findLikeQuestion(string $question): array
+    {
+        return $this->createQueryBuilder('q')
+            ->where('q.question LIKE :question')
+            ->setParameter('question', '%' . $question . '%')
+            ->orderBy('q.question', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
     //    /**
     //     * @return Question[] Returns an array of Question objects
     //     */

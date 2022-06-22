@@ -4,10 +4,8 @@
 
 {% block body %}
     <h1 class="text-center mb-4">Index des questions</h1>
-        {# total items count #}
-    <div class="count">
-      <p>Nombre de résultat trouvé : {{ pagination.getTotalItemCount }}</p>
-    </div>
+
+    {% include "admin/include/_search_form.html.twig" %}
 
     <table class="table table-hover">
         <thead>
@@ -15,10 +13,6 @@
                 <th class="table-dark">Questions</th>
                 <th class="table-dark">Niveau</th>
                 <th class="table-dark">actions</th>
-                {# <th>{{ knp_pagination_sortable(pagination, 'Id', 'q.id') }}</th>
-                <th{% if pagination.isSorted('q.Question') %} class="sorted"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'Question', 'q.question') }}
-                </th> #}
             </tr>
         </thead>
         <tbody>

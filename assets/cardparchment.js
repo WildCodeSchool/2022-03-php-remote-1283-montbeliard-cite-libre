@@ -1,6 +1,6 @@
-let div = document.getElementById("div");
+let btnDisplayResponse = document.getElementById("btn-display-response");
 let response = document.getElementById("response");
 
-div.addEventListener("mouseover", () => {response.style.display = "block";});
-div.addEventListener("mouseout", () => {response.style.display = "none";});
-/* div.addEventListener("mouseout", () => {helpdisplay.style.display = "none";}); */
+btnDisplayResponse.addEventListener("click", () => {
+    response.classList.toggle('d-none');
+});

@@ -17,7 +17,7 @@ class QuestionAsked
     private ?Question $question;
 
     #[ORM\ManyToOne(targetEntity: Game::class, inversedBy: 'questionAskeds')]
-    private ?Game $Game;
+    private ?Game $game;
 
     public function getId(): ?int
     {
@@ -39,12 +39,12 @@ class QuestionAsked
 
     public function getGame(): ?Game
     {
-        return $this->Game;
+        return $this->game;
     }
 
-    public function setGame(?Game $Game): self
+    public function setGame(?Game $game): self
     {
-        $this->Game = $Game;
+        $this->game = $game;
 
         return $this;
     }

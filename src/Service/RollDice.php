@@ -9,7 +9,7 @@ class RollDice
     /**
      * Get the value of rollDice
      */
-    public function getRollDice()
+    public function getRollDice(): int
     {
         return $this->rollDice;
     }
@@ -21,8 +21,7 @@ class RollDice
      */
     public function setRollDice()
     {
-
-        $this->rollDice =  rand(1, 6);;
+        $this->rollDice = rand(1, 6);
 
         return $this;
     }

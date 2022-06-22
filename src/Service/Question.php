@@ -4,7 +4,8 @@ namespace App\Service;
 
 class Question
 {
-    public function getQuestion()
+    public function getQuestion(): string
     {
+        return 'question';
     }
 }

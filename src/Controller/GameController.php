@@ -20,7 +20,7 @@ class GameController extends AbstractController
     }
 
     #[Route('/progress', name: '_progress')]
-    public function progress(QuestionAskedRepository $questionAskedRepository): Response
+    public function progress(QuestionAskedRepository $qAskedRepository): Response
     {
         $roll = null;
         if (isset($_GET['roll']) && !empty($_GET['roll'])) {

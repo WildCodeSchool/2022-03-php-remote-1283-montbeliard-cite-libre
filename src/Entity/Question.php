@@ -16,7 +16,7 @@ class Question
     private int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private string $question;
+    private string $content;
 
     #[ORM\Column(type: 'integer')]
     private int $level;
@@ -38,14 +38,14 @@ class Question
         return $this->id;
     }
 
-    public function getQuestion(): string
+    public function getContent(): string
     {
-        return $this->question;
+        return $this->content;
     }
 
-    public function setQuestion(string $question): self
+    public function setContent(string $content): self
     {
-        $this->question = $question;
+        $this->content = $content;
 
         return $this;
     }

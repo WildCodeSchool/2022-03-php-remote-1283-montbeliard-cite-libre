@@ -1,22 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Questions{% endblock %}
+{% block title %}Questions
+{% endblock %}
 
 {% block body %}
-<div class="card-parchment">
-    <div class="parchment-body">
-        <h1>Quelle est la principale raison des épidémies de peste au Moyen Âge ?</h1>
+	<div class="card-parchment">
+		<div class="parchment-body">
+			<h1>Quelle est la principale raison des épidémies de peste <br/>au Moyen Âge ?</h1>
+			<div id="div">
+				<p class="mt-3">Afficher la réponse</p>
+				<div id="p" class="hide mt-3">
+					<p>Les rats ont été la principale cause des épidémies.</p>
+					<div class="d-flex justify-content-center mt-5">
+						<button id="p" class="btn btn-one me-5 w-25">Bonne réponse</button>
+						<button class="btn btn-one w-25">Mauvaise réponse</button>
+					</div>
+				</div>
+			</div>
 
-        {# <p class="mt-5">Les rats ont été la principale cause des épidémies.</p> #}
-        <script>
-        {# addEventListener #}
-	    </script>
-
-        <div class="d-flex justify-content-center mt-5">
-            <button class="btn btn-one me-5 w-25">Bonne réponse</button>
-            <button class="btn btn-one w-25">Mauvaise réponse</button>
-        </div>
-    </div>
-</div>
-
-{% endblock %}
+		{% endblock %}

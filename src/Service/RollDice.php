@@ -6,10 +6,6 @@ class RollDice
 {
     private int $rollDice;
 
-    public function getQuestion()
-    {
-    }
-
     /**
      * Get the value of rollDice
      */

@@ -24,9 +24,13 @@ class Question
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: Answer::class, orphanRemoval: true)]
     private Collection $answers;
 
+    #[ORM\OneToMany(mappedBy: 'question', targetEntity: QuestionAsked::class)]
+    private Collection $questionAskeds;
+
     public function __construct()
     {
         $this->answers = new ArrayCollection();
+        $this->questionAskeds = new ArrayCollection();
     }
 
     public function getId(): int
@@ -82,6 +86,36 @@ class Question
             // set the owning side to null (unless already changed)
             if ($answer->getQuestion() === $this) {
                 $answer->setQuestion(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, QuestionAsked>
+     */
+    public function getQuestionAskeds(): Collection
+    {
+        return $this->questionAskeds;
+    }
+
+    public function addQuestionAsked(QuestionAsked $questionAsked): self
+    {
+        if (!$this->questionAskeds->contains($questionAsked)) {
+            $this->questionAskeds[] = $questionAsked;
+            $questionAsked->setQuestion($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuestionAsked(QuestionAsked $questionAsked): self
+    {
+        if ($this->questionAskeds->removeElement($questionAsked)) {
+            // set the owning side to null (unless already changed)
+            if ($questionAsked->getQuestion() === $this) {
+                $questionAsked->setQuestion(null);
             }
         }
 

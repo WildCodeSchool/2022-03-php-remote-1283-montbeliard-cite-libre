@@ -17,8 +17,8 @@ class RightAnswerType extends AbstractType
         $builder
             ->add('answer', CKEditorType::class, [
                 'label' => 'Réponse',
+                'config_name' => 'medium',
                 'config' => [
-                    'toolbar' => 'standard',
                     'language' => 'fr'
                 ],
                 'attr' => ['data-editor' => true]

@@ -12,8 +12,11 @@ class SearchQuestionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('search', SearchType::class)
-        ;
+            ->add('search', SearchType::class, [
+                'attr' => ['placeholder' => 'Entrez un mot-clé'],
+                'label' => ' ',
+                'required' => false
+                ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

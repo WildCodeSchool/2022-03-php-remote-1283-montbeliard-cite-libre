@@ -16,8 +16,8 @@ class QuestionType extends AbstractType
     {
         $builder
             ->add('question', CKEditorType::class, [
+                'config_name' => 'medium',
                 'config' => [
-                    'toolbar' => 'standard',
                     'language' => 'fr'
                 ],
             ])

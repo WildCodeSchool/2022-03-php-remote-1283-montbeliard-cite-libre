@@ -30,7 +30,11 @@ class AdminQuestionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $search = $form->getData()['search'];
-            $query = $questionRepository->findLikeQuestion($search);
+            if (!empty($search)) {
+                $query = $questionRepository->findLikeQuestion($search);
+            } else {
+                $query = $questionRepository->findByDescendingId();
+            }
         } else {
             $query = $questionRepository->findByDescendingId();
         }

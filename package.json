@@ -24,5 +24,6 @@
     "dependencies": {
         "bootstrap-icons": "^1.8.3",
         "canvas-confetti": "^1.5.1"
+        "ckeditor4": "^4.13.0"
     }
 }

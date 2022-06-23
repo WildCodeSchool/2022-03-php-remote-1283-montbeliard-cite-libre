@@ -51,12 +51,20 @@
 
 }
 
+
+
+
 .ingame {
     background-image: url('/assets/images/plateau_jeu.jpg');
     background-repeat: no-repeat;
-    background-size: cover;
-    height: 80vh;
+    height: 85vh;
     overflow: auto;
+    background-size: 100% 100%;
+
+    @include media-breakpoint-down(lg) {
+        background-image: url('/assets/images/plateau_jeu_phone.jpg');
+        position: relative;
+    }
 
     p {
         font-family: 'Manuale', serif;
@@ -187,18 +195,6 @@
 
     }
 
-}
-
-@include media-breakpoint-down(lg) {
-    .ingame {
-        background-image: url('/assets/images/plateau_jeu_phone.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        height: 80vh;
-        overflow: auto;
-        position: relative;
-
-    }
 }
 
 

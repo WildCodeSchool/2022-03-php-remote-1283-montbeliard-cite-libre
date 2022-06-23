@@ -2,7 +2,15 @@
     box-shadow: 0 -5px 20px rgb(186, 186, 186);
 }
 
-.link-navbar:hover{
+.link-navbar:hover {
     color: $primary !important;
 }
 
+.navbar {
+    box-shadow: 0 -5px 20px rgb(186, 186, 186);
+    background-color: white;
+
+    .blason {
+        width: 50px;
+    }
+}

@@ -5,7 +5,7 @@ const myConfetti = confetti.create(false, {
     useWorker: true
 });
 const colors = ["#DD7110", "#6a696b"];
-const duration = 27 * 1000;
+const duration = 10 * 1000;
 const end = Date.now() + duration;
 
 window.gameWin = () => {

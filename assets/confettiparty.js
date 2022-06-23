@@ -1,7 +1,6 @@
 const confetti = require('canvas-confetti');
-const canvasConfetti = document.getElementById('confettis');
 
-const myConfetti = confetti.create(canvasConfetti, {
+const myConfetti = confetti.create(false, {
     resize: true,
     useWorker: true
 });
@@ -12,6 +11,7 @@ const end = Date.now() + duration;
 window.gameWin = () => {
     window.launchConfetties();
 }
+
 window.launchConfetties = () => {
     myConfetti({
         particleCount: 2,

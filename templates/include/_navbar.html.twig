@@ -22,14 +22,19 @@
                         <li class="nav-item">
                             <a class="nav-link active mt-5 fs-5 text-light text-center link-navbar" aria-current="page" href="/">Accueil</a>
                         </li>
+                        <li class="nav-item">
+                            {% if app.user %}
+                                <a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="{{ path('app_logout') }}"> Se déconnecter</a>
+                                <a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="#"> Mon compte</a>
+                            {% else %}
+                                <a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="{{ path('login') }}"> Se connecter</a>
+                            {% endif %}
+                        </li>
                         {% if is_granted("ROLE_ADMIN") %}
                             <li class="nav-item">
                                 <a class="nav-link active mt-5 fs-5 text-light text-center link-navbar" aria-current="page" href="{{ path('admin') }}">Tableau de bord admin</a>
                             </li>
                         {% endif %}
-                        <li class="nav-item">
-                            <a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="{{ path('game_rule_index') }}">Règles du jeu</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="#">Mes scores</a>
                         </li>
@@ -37,12 +42,7 @@
                             <a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="#">Classement</a>
                         </li>
                         <li class="nav-item">
-                        {% if app.user %}
-                            <a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="{{ path('app_logout') }}"> Se déconnecter</a>
-                            <a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="#"> Mon compte</a>
-                        {% else %}
-                            <a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="{{ path('login') }}"> Se connecter</a>
-                        {% endif %}
+                            <a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="{{ path('game_rule_index') }}">Règles du jeu</a>
                         </li>
                     </ul>
                 </div>

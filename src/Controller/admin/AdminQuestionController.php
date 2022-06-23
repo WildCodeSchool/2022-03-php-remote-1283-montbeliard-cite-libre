@@ -5,8 +5,10 @@ namespace App\Controller\admin;
 use App\Entity\Answer;
 use App\Entity\Question;
 use App\Form\QuestionType;
+use App\Form\SearchQuestionType;
 use App\Repository\AnswerRepository;
 use App\Repository\QuestionRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,11 +18,37 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/admin/question', name: 'admin_question_')]
 class AdminQuestionController extends AbstractController
 {
-    #[Route('/', name: 'index', methods: ['GET'])]
-    public function index(QuestionRepository $questionRepository): Response
-    {
+    #[Route('/', name: 'index', methods: ['GET', 'POST'])]
+    public function index(
+        QuestionRepository $questionRepository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
+
+        $form = $this->createForm(SearchQuestionType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $search = $form->getData()['search'];
+            if (!empty($search)) {
+                $query = $questionRepository->findLikeQuestion($search);
+            } else {
+                $query = $questionRepository->findByDescendingId();
+            }
+        } else {
+            $query = $questionRepository->findByDescendingId();
+        }
+
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            10 /*limit per page*/
+        );
+
+
         return $this->render('admin/question/index.html.twig', [
-            'questions' => $questionRepository->findAll(),
+            'pagination' => $pagination,
+            'form' => $form->createView()
         ]);
     }
 

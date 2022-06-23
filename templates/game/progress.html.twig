@@ -59,7 +59,7 @@
 
 				<div class="container">
 					<h1 class="h1">
-						{% if question is defined %}
+						{% if question.question.content is defined %}
 							{{ question.question.content }}
 						{% endif %}
 					</h2>

@@ -41,7 +41,7 @@ class QuestionRepository extends ServiceEntityRepository
         }
     }
 
-    public function selectRandomByLevel(int $level): Question
+    public function selectRandomByLevel(int $level): array
     {
         return $this->createQueryBuilder('q')
             ->leftJoin('q.questionAskeds', 'qa')

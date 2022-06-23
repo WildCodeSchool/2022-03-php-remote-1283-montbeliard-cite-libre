@@ -41,12 +41,13 @@ class QuestionRepository extends ServiceEntityRepository
         }
     }
 
-    public function selectRandomByLevel(int $level)
+    public function selectRandomByLevel(int $level): Question
     {
         return $this->createQueryBuilder('q')
             ->leftJoin('q.questionAskeds', 'qa')
             ->addSelect('RAND() as HIDDEN rand')
             ->where('q.level = :level')
+            ->andWhere('qa.question IS NULL')
             ->setParameter('level', $level)
             ->orderBy('rand')
             ->setMaxResults(1)
@@ -66,7 +67,7 @@ class QuestionRepository extends ServiceEntityRepository
 
         return $statement
             ->executeQuery()
-            ->fetchOne(); */
+            ->fetchAllAssociative(); */
     }
 
 

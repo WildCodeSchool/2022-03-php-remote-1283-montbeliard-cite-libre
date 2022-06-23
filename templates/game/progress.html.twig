@@ -54,15 +54,15 @@
 			</div>
 
 			<div class="jeu-container">
-				<pre>
-    {{ dump(question) }}
-</pre>
-				<pre>
-    {{ dump(roll) }}
-</pre>
+
 				<a class="mx-auto d-inline btn-dice btn btn-secondary my-5" href="{{path('game_dice')}}">Lancez le dé</a>
-				{% if roll is defined %}{% endif %}
+
 				<div class="container">
+					<h1 class="h1">
+						{% if question is defined %}
+							{{ question.question.content }}
+						{% endif %}
+					</h2>
 					<div class="row gx-0 jeu d-flex justify-content-around">
 						<div class="col-xs-12  col-md-4   artisans cardgame"><img class="left-img" src="{{asset('build/images/dos_artisans.jpg')}}" alt="dos artisan"></div>
 						<div class="classeur col-xs-12 col-md-4 d-flex align-items-center">

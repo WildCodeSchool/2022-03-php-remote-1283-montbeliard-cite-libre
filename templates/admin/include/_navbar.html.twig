@@ -1,5 +1,5 @@
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark nav-width">
-	<a href="{{ path('app_home') }}" target="”_blank”" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+<nav class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark min-vh-100">
+	<a href="{{ path('app_home') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
 		<span class="fs-4 text-center ms-3 text-light">1283, Montbéliard,<br>
 			cité libre</span>
 	</a>
@@ -10,11 +10,15 @@
 				Accueil
 			</a>
 		</li>
-		<li>
-			<a href="#" class="nav-link text-light ps-5 mt-4">
-				Dashboard
-			</a>
-		</li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-light ps-5 mt-4" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Question
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li><a class="dropdown-item" href="{{ path('admin_question_index') }}">Afficher toutes questions</a></li>
+            <li><a class="dropdown-item" href="{{ path('admin_question_new') }}">Créer une nouvelle question</a></li>
+          </ul>
+        </li>
 		<li>
 			<a href="#" class="nav-link text-light ps-5 mt-4">
 				Orders
@@ -53,4 +57,4 @@
 			</li>
 		</ul>
 	</div>
-</div>
+</nav>

@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Question;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\QuestionAsked;
+use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Question>
@@ -39,28 +41,57 @@ class QuestionRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Question[] Returns an array of Question objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('q')
-//            ->andWhere('q.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('q.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function selectRandomByLevel(int $level)
+    {
+        return $this->createQueryBuilder('q')
+            ->leftJoin('q.questionAskeds', 'qa')
+            ->addSelect('RAND() as HIDDEN rand')
+            ->where('q.level = :level')
+            ->setParameter('level', $level)
+            ->orderBy('rand')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
+        /* $connection = $this->getEntityManager()->getConnection();
+        $statement = $connection->prepare(
+            'SELECT *
+            FROM question q
+            LEFT JOIN question_asked qa
+            ON q.id = qa.question_id
+            WHERE q.level = :level
+            AND qa.question_id IS NULL
+            ORDER BY RAND() LIMIT 0,1'
+        );
+        $statement->bindValue('level', $level);
 
-//    public function findOneBySomeField($value): ?Question
-//    {
-//        return $this->createQueryBuilder('q')
-//            ->andWhere('q.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        return $statement
+            ->executeQuery()
+            ->fetchOne(); */
+    }
+
+
+    //    /**
+    //     * @return Question[] Returns an array of Question objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('q')
+    //            ->andWhere('q.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('q.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Question
+    //    {
+    //        return $this->createQueryBuilder('q')
+    //            ->andWhere('q.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Service\RollDice;
+use App\Service\QuestionAsk;
+use App\Repository\QuestionRepository;
 use App\Repository\QuestionAskedRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,23 +22,31 @@ class GameController extends AbstractController
     }
 
     #[Route('/progress', name: '_progress')]
-    public function progress(QuestionAskedRepository $qAskedRepository): Response
+    public function progress(QuestionAskedRepository $qAskedRepository, QuestionAsk $question): Response
     {
         $roll = null;
+        $questionAsk = null;
         if (isset($_GET['roll']) && !empty($_GET['roll'])) {
             $roll = $_GET['roll'];
+            $questionAsk = $question->setQuestion($roll);
+            $question->addQuestionAsked();
         }
 
         return $this->render('game/progress.html.twig', [
-            'roll' => $roll
+            'roll' => $roll,
+            'question' => $questionAsk
+
         ]);
     }
 
+
+
     #[Route('/progress/dice', name: '_dice')]
-    public function dice(RollDice $diceRoll): Response
+    public function dice(RollDice $diceRoll, QuestionAsk $question): Response
     {
         $diceRoll->setRollDice();
         $roll = $diceRoll->getRollDice();
+
         return $this->redirectToRoute('game_progress', [
             'roll' => $roll,
         ]);

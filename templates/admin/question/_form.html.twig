@@ -4,7 +4,7 @@
 
 
     {# the data-index attribute is required for the JavaScript code below #}
-    <ul class="answers"
+    <ul class="answers list-unstyled bg-light p-3"
         data-index="{{ form.answers|length > 0 ? form.answers|last.vars.name + 1 : 0 }}"
         data-prototype="{{ form_widget(form.answers.vars.prototype)|e('html_attr') }}"
     >

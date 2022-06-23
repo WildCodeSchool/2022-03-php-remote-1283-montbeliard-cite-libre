@@ -1,0 +1,6 @@
+{{ form_start(form) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.roles) }}
+    {{ form_row(form.password) }}
+    <button class="btn btn-success mb-2">{{ button_label|default('enregistrer') }}</button>
+{{ form_end(form) }}

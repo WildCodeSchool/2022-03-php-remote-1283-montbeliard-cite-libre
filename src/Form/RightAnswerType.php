@@ -19,7 +19,6 @@ class RightAnswerType extends AbstractType
                 'label' => 'réponse',
                 'config' => [
                     'toolbar' => 'standard',
-                    'uiColor' => '#DD7110',
                     'language' => 'fr'
                 ],
                 'attr' => ['data-editor' => true]

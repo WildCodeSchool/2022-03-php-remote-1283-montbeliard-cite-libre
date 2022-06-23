@@ -1,0 +1,26 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Fiche utilisateur{% endblock %}
+
+{% block body %}
+    <h1 class>Fiche de {{ user.username }}</h1>
+
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th>Nom</th>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <th>Rôles</th>
+                <td>{{ user.roles ? user.roles|json_encode : 'aucun rôle' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-outline-primary" href="{{ path('manage_users_index') }}"><i class="bi bi-backspace"></i> retour à la liste</a>
+
+    <a class="btn btn-outline-primary" href="{{ path('manage_users_edit', {'id': user.id}) }}"><i class="bi bi-pencil"></i> éditer</a>
+
+    {{ include('admin/manage_users/_delete_form.html.twig') }}
+{% endblock %}

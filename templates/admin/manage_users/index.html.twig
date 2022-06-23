@@ -1,0 +1,33 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <h1>Liste des utilisateurs</h1>
+
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-dark">
+                <th>Nom</th>
+                <th>Rôle(s)</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : 'aucun rôle' }}</td>
+                <td>
+                    <a class="btn btn-outline-primary" href="{{ path('manage_users_show', {'id': user.id}) }}"><i class="bi bi-eye"></i> afficher</a>
+                    <a class="btn btn-outline-primary" href="{{ path('manage_users_edit', {'id': user.id}) }}"><i class="bi bi-pencil"></i> éditer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

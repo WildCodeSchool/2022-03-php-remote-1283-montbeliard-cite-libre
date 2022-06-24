@@ -1,0 +1,13 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Éditer la question{% endblock %}
+
+{% block body %}
+    <h1>Éditer la question</h1>
+
+    {{ include('admin/question/_form.html.twig', {'button_label': ' enregister'}) }}
+
+    <a class="btn btn-outline-primary" href="{{ path('admin_question_index') }}"><i class="bi bi-backspace"></i> retour à la liste</a>
+
+    {{ include('admin/question/_delete_form.html.twig') }}
+{% endblock %}

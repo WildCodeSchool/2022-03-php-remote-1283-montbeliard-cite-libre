@@ -1,0 +1,144 @@
+# Read the documentation: https://symfony.com/doc/current/bundles/FOSCKEditorBundle/index.html
+
+twig:
+    form_themes:
+        - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
+
+fos_ck_editor:
+    configs:
+        contentsCss:
+            - '/build/admin.css'
+        light:
+            toolbar:
+                - name: main
+                  items:
+                      - Bold
+                      - Italic
+                      - Underline
+                      - Strike
+                      - Subscript
+                      - Superscript
+                      - '-'
+                      - CopyFormatting
+                      - RemoveFormat
+
+        medium:
+            toolbar:
+                - name: main
+                  items:
+                      - Bold
+                      - Italic
+                      - Underline
+                      - Strike
+                      - Subscript
+                      - Superscript
+                      - '-'
+                      - CopyFormatting
+                      - RemoveFormat
+                      - '-'
+                - name: clipboard
+                  items:
+                      - Cut
+                      - Copy
+                      - Paste
+                      - PasteText
+                      - PasteFromWord
+                      - '-'
+                      - Undo
+                      - Redo
+                - name: insert
+                  items:
+                      - Smiley
+                      - SpecialChar
+                - name: colors
+                  items:
+                      - TextColor
+                      - BGColor
+
+        full:
+            toolbar:
+                - name: document
+                  items:
+                      - Source
+                      - '-'
+                      - ExportPdf
+                      - Preview
+                      - Print
+                      - '-'
+                      - Templates
+                - name: clipboard
+                  items:
+                      - Cut
+                      - Copy
+                      - Paste
+                      - PasteText
+                      - PasteFromWord
+                      - '-'
+                      - Undo
+                      - Redo
+                - name: editing
+                  items:
+                      - Find
+                      - Replace
+                      - '-'
+                      - SelectAll
+                      - '-'
+                      - Scayt
+                - /
+                - name: basicstyles
+                  items:
+                      - Bold
+                      - Italic
+                      - Underline
+                      - Strike
+                      - Subscript
+                      - Superscript
+                      - '-'
+                      - CopyFormatting
+                      - RemoveFormat
+                      - '-'
+                      - NumberedList
+                      - BulletedList
+                      - '-'
+                      - Outdent
+                      - Indent
+                      - '-'
+                      - Blockquote
+                      - CreateDiv
+                      - '-'
+                      - JustifyLeft
+                      - JustifyCenter
+                      - JustifyRight
+                      - JustifyBlock
+                      - '-'
+                      - BidiLtr
+                      - BidiRtl
+                      - Language
+                - name: links
+                  items:
+                      - Link
+                      - Unlink
+                      - Anchor
+                - name: insert
+                  items:
+                      - Image
+                      - Table
+                      - HorizontalRule
+                      - Smiley
+                      - SpecialChar
+                      - PageBreak
+                      - Iframe
+                - /
+                - name: styles
+                  items:
+                      - Format
+                      - Font
+                      - FontSize
+                - name: colors
+                  items:
+                      - TextColor
+                      - BGColor
+                - name: tools
+                  items:
+                      - Maximize
+                      - ShowBlocks

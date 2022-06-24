@@ -2,11 +2,9 @@
 	<nav class="navbar navbar-light fixed-top">
 		<div class="container-fluid">
 			<a href="{{ path('app_home') }}" class="ms-3">
-				<img class="blason" src="{{asset('build/images/blason.png')}}" aria-label="retour accueil" alt="blason Montbéliard">
+				{# <img class="blason" src="{{asset('build/images/blason.png')}}" aria-label="retour accueil" alt="blason Montbéliard"> #}
 			</a>
 			<span class="ms-auto">
-
-
 				{% if app.user %}
 					<span class=" me-2 p-3">{{ app.user.username }}</span>
 				{% endif %}
@@ -50,6 +48,17 @@
 						</li>
 					</ul>
 				</div>
+{#                 <footer class="mt-auto bg-light py-2">
+                    <div class="container d-flex flex-row justify-content-between align-items-center">
+                        <p class="col-md-4 mb-0 text-muted text-center">&copy; 2021 Company, Inc</p>
+                        <a href="#" class="col-md-4  text-center link-dark text-decoration-none">
+                        Crédits
+                        </a>
+                        <a href="#" class="col-md-4 text-center  link-dark text-decoration-none">
+                        Mentions légales
+                        </a>
+                    </div>
+                </footer> #}
 			</div>
 		</div>
 	</nav>

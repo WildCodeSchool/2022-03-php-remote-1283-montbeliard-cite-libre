@@ -4,18 +4,5 @@
 {% endblock %}
 
 {% block body %}
-	<div class="card-parchment">
-		<div class="parchment-body">
-			<h1>Quelle est la principale raison des épidémies de peste <br/>au Moyen Âge ?</h1>
-			<div class="text-center">
-				<button id="btn-display-response" class="btn btn-one mt-3">Afficher la réponse</button>
-				<div id="response" class="d-none mt-3">
-					<p>Les rats ont été la principale cause des épidémies.</p>
-					<div class="d-flex justify-content-center mt-5">
-						<button id="p" class="btn btn-one bg-white bg-opacity-75 me-5 w-25">Bonne réponse</button>
-						<button class="btn btn-one bg-white bg-opacity-75 w-25">Mauvaise réponse</button>
-					</div>
-				</div>
-			</div>
-
-		{% endblock %}
+{% include "/include/_questions.html.twig" %}
+{% endblock %}

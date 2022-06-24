@@ -11,10 +11,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[Route('/manage/users', name: 'manage_users_')]
 class AdminManageUsersController extends AbstractController
 {
+    private UserPasswordHasherInterface $passwordHasher;
+
+    public function __construct(UserPasswordHasherInterface $passwordHasher)
+    {
+        $this->passwordHasher = $passwordHasher;
+    }
+
     #[Route('/', name: 'index')]
     public function index(
         UserRepository $userRepository,
@@ -56,13 +64,20 @@ class AdminManageUsersController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, User $user, UserRepository $userRepository): Response
-    {
+    public function edit(
+        Request $request,
+        User $user,
+        UserRepository $userRepository
+    ): Response {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $password = $form->getData('password');
+            $hashedPassword = $this->passwordHasher->hashPassword(
+                $user,
+                $form->getData()->getPassword()
+            );
+            $user->setPassword($hashedPassword);
             $userRepository->add($user, true);
 
             return $this->redirectToRoute('manage_users_index', [], Response::HTTP_SEE_OTHER);

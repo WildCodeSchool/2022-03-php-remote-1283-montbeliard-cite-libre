@@ -42,6 +42,18 @@ class UserFixtures extends Fixture
         $admin->setPassword($hashedPassword);
         $manager->persist($admin);
 
+
+        // Création d’un utilisateur de type “administrateur”
+        $superAdmin = new User();
+        $superAdmin->setUsername('super admin');
+        $superAdmin->setRoles(['ROLE_SUPER_ADMIN']);
+        $hashedPassword = $this->passwordHasher->hashPassword(
+            $superAdmin,
+            'password'
+        );
+        $superAdmin->setPassword($hashedPassword);
+        $manager->persist($superAdmin);
+
         // Sauvegarde des 2 nouveaux utilisateurs :
         $manager->flush();
     }

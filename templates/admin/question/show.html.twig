@@ -1,0 +1,37 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Question{% endblock %}
+
+{% block body %}
+    <h1>Question</h1>
+    {% autoescape false %}
+        <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <th class="table-dark">Question</th>
+                    <th class="table-dark">Niveau</th>
+                </tr>
+                <tr>
+                    <td>{{ question.question }}</td>
+                    <td>{{ question.level }}</td>
+                </tr>
+                {% for answer in question.answers %}
+                    <tr>
+                        <th class="table-primary">Réponse</th>
+                        <th class="table-primary">Correcte</th>
+                    </tr>
+                    <tr>
+                        <td>{{ answer.answer }}</td>
+                        <td>{{ answer.isCorrect ? '🟢 oui' : '❌ non' }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endautoescape %}
+
+    <a class="btn btn-outline-primary" href="{{ path('admin_question_index') }}"><i class="bi bi-backspace"></i> retour à la liste</a>
+
+    <a class="btn btn-outline-primary" href="{{ path('admin_question_edit', {'id': question.id}) }}"><i class="bi bi-pencil"></i> éditer</a>
+
+    {{ include('admin/question/_delete_form.html.twig') }}
+{% endblock %}

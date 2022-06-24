@@ -22,19 +22,18 @@ class GameController extends AbstractController
     }
 
     #[Route('/progress', name: '_progress')]
-    public function progress(QuestionAskedRepository $qAskedRepository, QuestionAsk $question): Response
+    public function progress(QuestionAskedRepository $qAskedRepository, QuestionAsk $questionAsk): Response
     {
         $roll = null;
-        $questionAsk = null;
+        $question = null;
         if (isset($_GET['roll']) && !empty($_GET['roll'])) {
             $roll = $_GET['roll'];
-            $questionAsk = $question->setQuestion($roll);
-            $question->addQuestionAsked();
+            $question = $questionAsk->rollQuestion($roll);
         }
 
         return $this->render('game/progress.html.twig', [
             'roll' => $roll,
-            'question' => $questionAsk
+            'question' => $question
 
         ]);
     }

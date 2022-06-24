@@ -21,10 +21,11 @@ class QuestionAsk
         $this->qAskedRepository = $qAskedRepository;
     }
 
-    public function setQuestion(int $level): QuestionAsk
+    public function rollQuestion(int $level): Question
     {
         $this->question =  $this->questionRepository->selectRandomByLevel($level)[0];
-        return $this;
+        $this->addQuestionAsked($this->question);
+        return $this->question;
     }
     /**
      * Get the value of question
@@ -35,10 +36,10 @@ class QuestionAsk
     }
 
 
-    public function addQuestionAsked(): void
+    public function addQuestionAsked(Question $question): void
     {
         $questionAsked = new QuestionAsked();
-        $questionAsked->setQuestion($this->getQuestion());
+        $questionAsked->setQuestion($question);
         $this->qAskedRepository->add($questionAsked, true);
     }
 }

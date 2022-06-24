@@ -59,8 +59,10 @@
 
 				<div class="container">
 					<h1 class="h1">
-						{% if question.question.content is defined %}
-							{{ question.question.content }}
+
+						{% if question.content is defined %}
+							{% dump(question) %}
+
 						{% endif %}
 					</h2>
 					<div class="row gx-0 jeu d-flex justify-content-around">

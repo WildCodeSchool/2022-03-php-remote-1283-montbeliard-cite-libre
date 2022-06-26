@@ -1,82 +1,71 @@
 {{ form_start(form) }}
-    {{ form_row(form.question) }}
-    {{ form_row(form.level) }}
+{{ form_row(form.question) }}
+{{ form_row(form.level) }}
 
 
-    {# the data-index attribute is required for the JavaScript code below #}
-    <ul class="answers bg-light rounded list-unstyled p-3"
-        data-index="{{ form.answers|length > 0 ? form.answers|last.vars.name + 1 : 0 }}"
-        data-prototype="{{ form_widget(form.answers.vars.prototype)|e('html_attr') }}"
-    >
-        {% for answer in form.answers %}
-            <li>
-                {{ form_row(answer.answer) }}
-                {{ form_row(answer.isCorrect) }}
-            </li>
-        {% endfor %}
-    </ul>
-    <button type="button" class="add_item_link btn btn-outline-primary mb-3 me-2" data-collection-holder-class="answers">
-        <i class="bi bi-plus-circle"></i> Ajouter une réponse
-    </button>
-    <button class="btn btn-outline-success mb-3">
-        <i class="bi bi-save"></i>{{ button_label|default(' enregister') }}
-    </button>
+{# the data-index attribute is required for the JavaScript code below #}
+<ul class="answers bg-light rounded list-unstyled p-3" data-index="{{ form.answers|length > 0 ? form.answers|last.vars.name + 1 : 0 }}" data-prototype="{{ form_widget(form.answers.vars.prototype)|e('html_attr') }}">
+	{% for answer in form.answers %}
+		<li>
+			{{ form_row(answer.content) }}
+			{{ form_row(answer.isCorrect) }}
+		</li>
+	{% endfor %}
+</ul>
+<button type="button" class="add_item_link btn btn-outline-primary mb-3 me-2" data-collection-holder-class="answers">
+	<i class="bi bi-plus-circle"></i>
+	Ajouter une réponse
+</button>
+<button class="btn btn-outline-success mb-3">
+	<i class="bi bi-save"></i>
+	{{ button_label|default(' enregister') }}
+</button>
 {{ form_end(form) }}
 
 <script>
-const addFormToCollection = (e) => {
-  const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+	const addFormToCollection = (e) => {
+const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
 
-  const item = document.createElement('li');
+const item = document.createElement('li');
 
-  item.innerHTML = collectionHolder
-    .dataset
-    .prototype
-    .replace(
-      /__name__/g,
-      collectionHolder.dataset.index
-    );
-  addTagFormDeleteLink(item);
-  collectionHolder.appendChild(item);
+item.innerHTML = collectionHolder.dataset.prototype.replace(/__name__/g, collectionHolder.dataset.index);
+addTagFormDeleteLink(item);
+collectionHolder.appendChild(item);
 
-  collectionHolder.dataset.index++;
-  window.trigCKEditor()
+collectionHolder.dataset.index ++;
+window.trigCKEditor()
 };
 
 const btnClass = ['btn', 'btn-outline-danger', 'mb-3'];
 const iconClass = ['bi', 'bi-trash3'];
 
 const addTagFormDeleteLink = (item) => {
-    const icon = document.createElement('i');
-    for (let i = 0; i < iconClass.length; i++) {
-        icon.classList.add(iconClass[i]);
-    }
-
-    const removeFormButton = document.createElement('button');
-    for (let i = 0; i < btnClass.length; i++) {
-        removeFormButton.classList.add(btnClass[i]);
-    }
-
-    removeFormButton.append(icon);
-    removeFormButton.append(' Suprimer');
-    item.append(removeFormButton);
-
-    removeFormButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        // remove the li for the tag form
-        item.remove();
-    });
+const icon = document.createElement('i');
+for (let i = 0; i < iconClass.length; i++) {
+icon.classList.add(iconClass[i]);
 }
 
-    document
-  .querySelectorAll('.add_item_link')
-  .forEach(btn => {
-      btn.addEventListener("click", addFormToCollection)
-  });
+const removeFormButton = document.createElement('button');
+for (let i = 0; i < btnClass.length; i++) {
+removeFormButton.classList.add(btnClass[i]);
+}
 
-  document
-    .querySelectorAll('ul.answers li')
-    .forEach((answer) => {
-        addTagFormDeleteLink(answer)
-    })
+removeFormButton.append(icon);
+removeFormButton.append(' Suprimer');
+item.append(removeFormButton);
+
+removeFormButton.addEventListener('click', (e) => {
+e.preventDefault();
+// remove the li for the tag form
+item.remove();
+});
+}
+
+document.querySelectorAll('.add_item_link').forEach(btn => {
+btn.addEventListener("click", addFormToCollection)
+});
+
+document.querySelectorAll('ul.answers li').forEach((answer) => {
+addTagFormDeleteLink(answer)
+})
 </script>

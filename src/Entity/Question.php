@@ -36,7 +36,7 @@ class Question
     private int $level;
 
     #[ORM\OneToMany(
-        mappedBy: 'Question',
+        mappedBy: 'question',
         targetEntity: Answer::class,
         orphanRemoval: true,
         cascade: ['persist', 'remove']

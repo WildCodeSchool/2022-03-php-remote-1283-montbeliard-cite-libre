@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\AnswerRepository;
 use App\Service\RollDice;
 use App\Service\QuestionAsk;
 use App\Repository\QuestionRepository;
@@ -23,9 +24,17 @@ class GameController extends AbstractController
     }
 
     #[Route('/progress', name: '_progress')]
-    public function progress(): Response
-    {
-        return $this->render('game/progress.html.twig', []);
+    public function progress(
+        RequestStack $requestStack,
+        AnswerRepository $answerRepository
+    ): Response {
+        $session = $requestStack->getSession();
+        $answer = null;
+        if ($session->has('question')) {
+            $question = $session->get('question')->getID();
+            $answer = $answerRepository->findBy(['id' => $question], ['id' => 'desc'], 1);
+        }
+        return $this->render('game/progress.html.twig', ['answer' => $answer]);
     }
 
 

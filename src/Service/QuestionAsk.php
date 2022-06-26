@@ -6,19 +6,23 @@ use App\Repository\QuestionRepository;
 use App\Repository\QuestionAskedRepository;
 use App\Entity\QuestionAsked;
 use App\Entity\Question;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class QuestionAsk
 {
     private QuestionRepository $questionRepository;
     private QuestionAskedRepository $qAskedRepository;
     private Question $question;
+    private RequestStack $requestStack;
 
     public function __construct(
         QuestionRepository $questionRepository,
-        QuestionAskedRepository $qAskedRepository
+        QuestionAskedRepository $qAskedRepository,
+        RequestStack $requestStack
     ) {
         $this->questionRepository = $questionRepository;
         $this->qAskedRepository = $qAskedRepository;
+        $this->requestStack = $requestStack;
     }
 
     public function rollQuestion(int $level): Question
@@ -38,8 +42,10 @@ class QuestionAsk
 
     public function addQuestionAsked(Question $question): void
     {
+        $session = $this->requestStack->getSession();
         $questionAsked = new QuestionAsked();
         $questionAsked->setQuestion($question);
         $this->qAskedRepository->add($questionAsked, true);
+        $session->set('question', $question);
     }
 }

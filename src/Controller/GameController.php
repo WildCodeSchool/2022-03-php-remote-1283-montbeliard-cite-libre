@@ -9,6 +9,7 @@ use App\Repository\QuestionAskedRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 #[Route('/game', name: 'game')]
 class GameController extends AbstractController
@@ -22,20 +23,9 @@ class GameController extends AbstractController
     }
 
     #[Route('/progress', name: '_progress')]
-    public function progress(QuestionAskedRepository $qAskedRepository, QuestionAsk $questionAsk): Response
+    public function progress(): Response
     {
-        $roll = null;
-        $question = null;
-        if (isset($_GET['roll']) && !empty($_GET['roll'])) {
-            $roll = $_GET['roll'];
-            $question = $questionAsk->rollQuestion($roll);
-        }
-
-        return $this->render('game/progress.html.twig', [
-            'roll' => $roll,
-            'question' => $question
-
-        ]);
+        return $this->render('game/progress.html.twig', []);
     }
 
 
@@ -44,11 +34,10 @@ class GameController extends AbstractController
     public function dice(RollDice $diceRoll, QuestionAsk $question): Response
     {
         $diceRoll->setRollDice();
-        $roll = $diceRoll->getRollDice();
+        $roll = $diceRoll->getRoll();
+        $question->rollQuestion($roll);
 
-        return $this->redirectToRoute('game_progress', [
-            'roll' => $roll,
-        ]);
+        return $this->redirectToRoute('game_progress', []);
     }
 
     #[Route('/collection', name: '_collection')]

@@ -4,7 +4,6 @@
 {% endblock %}
 {% block body %}
 
-
 	<div class="ingame mt-3 mb-3">
 		<div class="container d-flex flex-column p-2 justify-content-between h-100">
 			<div class="row gx-0 d-flex  justify-content-between">
@@ -60,8 +59,8 @@
 				<div class="container">
 					<h1 class="h1">
 
-						{% if question.content is defined %}
-							{% dump(question) %}
+						{% if app.session.get('question') is defined %}
+							{{app.session.get('question').content}}
 
 						{% endif %}
 					</h2>
@@ -98,20 +97,20 @@
 
 			<div class="d-flex  justify-content-around flex-wrap">
 
-				<div class="question-card cardgame">
+				<div class="{{ app.session.get('roll') == 2 ? 'question-card-selected' : 'question-card' }} cardgame">
 					<div class="two-face">
 						<span class="dot"></span>
 						<span class="dot"></span>
 					</div>
 				</div>
-				<div class="question-card cardgame">
+				<div class="{{ app.session.get('roll') == 3 ? 'question-card-selected' : 'question-card' }} cardgame">
 					<div class="three-face">
 						<span class="dot"></span>
 						<span class="dot"></span>
 						<span class="dot"></span>
 					</div>
 				</div>
-				<div class="question-card cardgame">
+				<div class="{{ app.session.get('roll') == 4 ? 'question-card-selected' : 'question-card' }} cardgame">
 					<div class="four-face">
 						<span class="dot"></span>
 						<span class="dot"></span>
@@ -119,7 +118,7 @@
 						<span class="dot"></span>
 					</div>
 				</div>
-				<div class="question-card-selected cardgame">
+				<div class="{{ app.session.get('roll') == 5 ? 'question-card-selected' : 'question-card' }} cardgame">
 					<div class="five-face">
 						<span class="dot"></span>
 						<span class="dot"></span>
@@ -128,7 +127,7 @@
 						<span class="dot"></span>
 					</div>
 				</div>
-				<div class="question-card cardgame">
+				<div class="{{ app.session.get('roll') == 6 ? 'question-card-selected' : 'question-card' }} cardgame">
 					<div class="six-face">
 						<span class="dot"></span>
 						<span class="dot"></span>

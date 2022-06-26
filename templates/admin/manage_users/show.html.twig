@@ -3,7 +3,7 @@
 {% block title %}Fiche utilisateur{% endblock %}
 
 {% block body %}
-    <h1 class>Fiche de {{ user.username }}</h1>
+    <h1 class="text-center mt-3 mb-4">Fiche de {{ user.username }}</h1>
 
     <table class="table table-hover">
         <tbody>
@@ -12,7 +12,7 @@
                 <td>{{ user.username }}</td>
             </tr>
             <tr>
-                <th>Rôles</th>
+                <th>Rôle(s)</th>
                 <td>{{ user.roles ? user.roles|json_encode : 'aucun rôle' }}</td>
             </tr>
         </tbody>

@@ -24,12 +24,13 @@ class UserType extends AbstractType
                 'multiple' => true,
                 'choices' => [
                     'Administrateur' => 'ROLE_ADMIN',
-                    'Super administrateur' => 'SUPER_ADMIN'
+                    'Super administrateur' => 'ROLE_SUPER_ADMIN'
                 ]
             ])
-            ->add('password', PasswordType::class, [
+            ->add('password', null, [
                 'label' => 'Mot de passe',
             ])
+            ->add('classe', TextType::class)
         ;
     }
 

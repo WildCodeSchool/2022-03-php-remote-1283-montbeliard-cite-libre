@@ -19,19 +19,22 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        // Création d’un utilisateur de type “contributeur” (= auteur)
-        for ($i = 0; $i < 10; $i++) {
-            $user = new User();
-            $user->setUsername('student' . $i);
-            $hashedPassword = $this->passwordHasher->hashPassword(
-                $user,
-                'password'
-            );
-            $user->setPassword($hashedPassword);
-            $manager->persist($user);
+
+        $classes = ['6A', '5A', '4A', '3A'];
+        // Création d’un utilisateur de type user
+        for ($i = 0; $i < 4; $i++) {
+            for ($j = 0; $j < 9; $j++) {
+                $user = new User();
+                $user->setUsername('student' . $i . $j);
+                $hashedPassword = $this->passwordHasher->hashPassword(
+                    $user,
+                    'password' . $i . $j
+                );
+                $user->setPassword($hashedPassword);
+                $user ->setClasse($classes[$i]);
+                $manager->persist($user);
+            }
         }
-
-
 
 
         // Création d’un utilisateur de type “administrateur”
@@ -46,7 +49,7 @@ class UserFixtures extends Fixture
         $manager->persist($admin);
 
 
-        // Création d’un utilisateur de type “administrateur”
+        // Création d’un utilisateur de type “super administrateur”
         $superAdmin = new User();
         $superAdmin->setUsername('super admin');
         $superAdmin->setRoles(['ROLE_SUPER_ADMIN']);

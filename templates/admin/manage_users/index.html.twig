@@ -11,6 +11,7 @@
             <tr class="table-dark">
                 <th>Nom</th>
                 <th>Rôle(s)</th>
+                <th>Classe</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,6 +20,7 @@
                     <tr {% if loop.index is odd %}class="color"{% endif %}>
                         <td>{{ user.username }}</td>
                         <td>{{ user.roles ? user.roles|json_encode : 'aucun rôle' }}</td>
+                            <td>{{ user.classe }}</td>
                         <td>
                             <a class="btn btn-outline-primary" href="{{ path('manage_users_show', {'id': user.id}) }}"><i class="bi bi-eye"></i> afficher</a>
                             <a class="btn btn-outline-primary" href="{{ path('manage_users_edit', {'id': user.id}) }}"><i class="bi bi-pencil"></i> éditer</a>

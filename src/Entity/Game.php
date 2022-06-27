@@ -24,8 +24,8 @@ class Game
     #[ORM\Column(type: 'datetime_immutable')]
     private ?\DateTimeImmutable $endedAt;
 
-    #[ORM\Column(type: 'time', nullable: true)]
-    private ?\DateTimeInterface $duration;
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $duration;
 
     #[ORM\Column(type: 'integer', nullable: true)]
     private ?int $score;
@@ -85,12 +85,12 @@ class Game
         return $this;
     }
 
-    public function getDuration(): ?\DateTimeInterface
+    public function getDuration(): ?string
     {
         return $this->duration;
     }
 
-    public function setDuration(?\DateTimeInterface $duration): self
+    public function setDuration(?string $duration): self
     {
         $this->duration = $duration;
 

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\AnswerRepository;
+use App\Repository\GameRepository;
 use App\Service\RollDice;
 use App\Service\QuestionAsk;
 use App\Repository\QuestionRepository;
@@ -21,6 +22,12 @@ class GameController extends AbstractController
         return $this->render('game/index.html.twig', [
             'controller_name' => 'GameController',
         ]);
+    }
+    #[Route('/new', name: '_new')]
+    public function new(RequestStack $requestStack, GameRepository $gameRepository): Response
+    {
+
+        return $this->render('game/progress.html.twig', []);
     }
 
     #[Route('/progress', name: '_progress')]

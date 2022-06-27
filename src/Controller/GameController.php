@@ -30,4 +30,16 @@ class GameController extends AbstractController
     {
         return $this->render('game/collection.html.twig');
     }
+
+    #[Route('/check', name: '_checking_answers', methods: ['POST'])]
+    public function checkingTheAnswers(): Response
+    {
+        if ($_POST["verif"] == "true") {
+            dd('bonne réponse');
+        }
+        if ($_POST["verif"] == "false") {
+            dd('vaumaise réponse');
+        }
+        return $this->render('game/collection.html.twig');
+    }
 }

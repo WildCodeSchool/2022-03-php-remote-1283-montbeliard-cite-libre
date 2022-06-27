@@ -10,8 +10,10 @@
 			<div id="response" class="d-none mt-3">
 				<p>Les rats ont été la principale cause des épidémies.<br/>Les rats ont été la principale cause des épidémies.</p>
 				<div class="d-flex justify-content-center mt-5">
-					<a id="p" class="btn btn-one bg-white bg-opacity-75 me-5 w-25 close">Bonne réponse</a>
-					<a class="btn btn-one bg-white bg-opacity-75 w-25 close">Mauvaise réponse</a>
+                <form action="{{ path('game_checking_answers') }}" method="post">
+                    <button id="p" class="btn btn-one bg-white bg-opacity-75 me-5 w-25 close" name="verif" value="true">Bonne réponse</button>
+                    <button class="btn btn-one bg-white bg-opacity-75 w-25 close" name="verif" value="false">Mauvaise réponse</button>
+                </form>
 				</div>
 			</div>
 		</div>

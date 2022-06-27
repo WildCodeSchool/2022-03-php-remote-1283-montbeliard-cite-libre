@@ -9,10 +9,12 @@
 import './styles/app.scss';
 
 // import js
-import './cardparchment';
-import './cardquestion';
+
 
 // start the Stimulus application
 import './bootstrap';
 
 require('bootstrap');
+
+import './cardparchment.js';
+import './cardquestion.js';

@@ -20,9 +20,8 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
 
-        $classes = ['6A', '5A', '4A', '3A'];
         // Création d’un utilisateur de type user
-        for ($i = 0; $i < 4; $i++) {
+        for ($i = 0; $i < count(ClasseFixtures::CLASSES); $i++) {
             for ($j = 0; $j < 9; $j++) {
                 $user = new User();
                 $user->setUsername('student' . $i . $j);
@@ -31,7 +30,7 @@ class UserFixtures extends Fixture
                     'password' . $i . $j
                 );
                 $user->setPassword($hashedPassword);
-                $user ->setClasse($classes[$i]);
+                $user ->setClasse($this->getReference('classe_' . ClasseFixtures::CLASSES[$i]));
                 $manager->persist($user);
             }
         }

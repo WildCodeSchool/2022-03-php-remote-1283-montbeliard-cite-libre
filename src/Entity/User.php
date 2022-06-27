@@ -26,8 +26,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private string $password;
 
-    #[ORM\Column(type: 'string', length: 10, nullable: true)]
-    private string $classe;
+    #[ORM\ManyToOne(targetEntity: Classe::class, inversedBy: 'users')]
+    private ?Classe $classe;
 
     public function getId(): ?int
     {
@@ -99,12 +99,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getClasse(): ?string
+    public function getClasse(): ?Classe
     {
         return $this->classe;
     }
 
-    public function setClasse(?string $classe): self
+    public function setClasse(?Classe $classe): self
     {
         $this->classe = $classe;
 

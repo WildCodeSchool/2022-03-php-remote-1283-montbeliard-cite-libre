@@ -45,7 +45,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('classe', TextType::class)
+            ->add('classe', null, ['choice_label' => 'classe'])
         ;
     }
 

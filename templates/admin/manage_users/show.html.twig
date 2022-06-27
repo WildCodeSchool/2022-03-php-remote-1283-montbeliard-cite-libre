@@ -15,6 +15,10 @@
                 <th>Rôle(s)</th>
                 <td>{{ user.roles ? user.roles|json_encode : 'aucun rôle' }}</td>
             </tr>
+            <tr>
+                <th>Classe</th>
+                <td>{{ user.classe.classe}}</td>
+            </tr>
         </tbody>
     </table>
 

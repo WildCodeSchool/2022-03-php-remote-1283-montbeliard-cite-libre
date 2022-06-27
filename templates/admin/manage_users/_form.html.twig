@@ -1,0 +1,11 @@
+{{ form_start(form) }}
+    {{ form_row(form.username) }}
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+        {{ form_row(form.roles) }}
+    {% endif %}
+    {{ form_row(form.password) }}
+    {{ form_row(form.classe) }}
+    <button class="btn btn-outline-success mb-3">
+        <i class="bi bi-save"> </i>{{ button_label|default("enregistrer") }}
+    </button>
+{{ form_end(form) }}

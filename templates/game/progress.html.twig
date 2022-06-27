@@ -29,7 +29,7 @@
 					<div class=" text-image">
 						<p class="text-muted  text-center">Max :1000 points</p>
 						<div class="bloc-point   d-flex justify-content-around pe-3"><img class="" src="{{asset('build/images/cup.svg')}}" aria-label="Points" alt="points">
-							<p>150 pts</p>
+							<p>{{ app.session.get('points') }} pts</p>
 						</div>
 
 					</div>

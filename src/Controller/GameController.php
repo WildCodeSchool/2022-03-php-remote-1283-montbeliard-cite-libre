@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\PointsManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/game', name: 'game')]
 class GameController extends AbstractController
@@ -18,8 +20,12 @@ class GameController extends AbstractController
     }
 
     #[Route('/progress', name: '_progress')]
-    public function progress(): Response
+    public function progress(RequestStack $requestStack): Response
     {
+        $session = $requestStack->getSession();
+        if (!$session->has('points')) {
+            $session->set('points', 0);
+        }
         return $this->render('game/progress.html.twig', [
             'controller_name' => 'GameController',
         ]);
@@ -32,14 +38,11 @@ class GameController extends AbstractController
     }
 
     #[Route('/check', name: '_checking_answers', methods: ['POST'])]
-    public function checkingTheAnswers(): Response
+    public function checkingTheAnswers(PointsManager $pointsManager): Response
     {
         if ($_POST["verif"] == "true") {
-            dd('bonne réponse');
+            $pointsManager->calcuatePoints(100);
         }
-        if ($_POST["verif"] == "false") {
-            dd('vaumaise réponse');
-        }
-        return $this->render('game/collection.html.twig');
+        return $this->redirectToRoute('game_progress');
     }
 }

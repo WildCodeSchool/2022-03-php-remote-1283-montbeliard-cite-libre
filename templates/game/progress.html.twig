@@ -1,14 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends '/game/base.html.twig' %}
 
 {% block title %}Partie de jeu d'histoire
 {% endblock %}
 {% block body %}
 
-
-	<div class="ingame mt-3 mb-3">
-		<div class="container d-flex flex-column p-2 justify-content-between h-100">
-			<div class="row gx-0 d-flex  justify-content-between">
-
+            <div class="row gx-0 d-flex justify-content-between">
 				<div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
 					<div class="text-image">
 						<p class="text-muted text-center">Tour</p>
@@ -47,12 +43,11 @@
 							<p>44:33</p>
 						</div>
 					</div>
-
 				</div>
-
-
 			</div>
 
+	<div class="ingame">
+		<div class="container d-flex flex-column p-2 justify-content-between h-100">
 			<div class="jeu-container">
 				<button class=" mx-auto d-inline btn-dice btn btn-secondary my-5" type="submit">Lancez le dé</button>
 				<div class="container">
@@ -132,7 +127,7 @@
 
 			</div>
 		</div>
-
-
 	</div>
+
+{% include "include/_questions.html.twig" %}
 {% endblock %}

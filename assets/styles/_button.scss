@@ -1,4 +1,6 @@
 .btn-one {
+    --bs-bg-opacity: 0.75;
+    background-color: rgba(var(--bs-white-rgb), var(--bs-bg-opacity));
     color: $dark;
     transition: all 0.3s;
     position: relative;
@@ -32,7 +34,7 @@
   }
   .btn-one:hover  {
     letter-spacing: 2px;
-    color: $light;
+    color: $primary;
   }
   .btn-one:hover::before {
     opacity: 1;

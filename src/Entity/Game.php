@@ -39,6 +39,9 @@ class Game
     #[ORM\OneToMany(mappedBy: 'Game', targetEntity: QuestionAsked::class)]
     private Collection $questionAskeds;
 
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private int $turn;
+
     public function __construct()
     {
         $this->questionAskeds = new ArrayCollection();
@@ -159,6 +162,18 @@ class Game
                 $questionAsked->setGame(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTurn(): ?int
+    {
+        return $this->turn;
+    }
+
+    public function setTurn(?int $turn): self
+    {
+        $this->turn = $turn;
 
         return $this;
     }

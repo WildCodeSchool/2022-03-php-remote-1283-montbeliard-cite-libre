@@ -27,7 +27,6 @@ class RollDice
         $session =  $this->requestStack->getSession();
         $this->rollDice = rand(1, 6);
         $session->set('roll', $this->rollDice);
-        $session->set('game', 'active');
 
         return $this->rollDice;
     }

@@ -1,20 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LegalNoticesController!{% endblock %}
+{% block title %}Mentions légales et crédits
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/melissacallejon/Documents/WCS/projets/projet03_jeuhistoire/2022-03-php-remote-1283-montbeliard-cite-libre/src/Controller/LegalNoticesController.php'|file_link(0) }}">src/Controller/LegalNoticesController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/melissacallejon/Documents/WCS/projets/projet03_jeuhistoire/2022-03-php-remote-1283-montbeliard-cite-libre/templates/legal_notices/index.html.twig'|file_link(0) }}">templates/legal_notices/index.html.twig</a></code></li>
-    </ul>
-</div>
+	<div class="container-fluid d-flex justify-content-center">
+		<div class="parchment">
+			<div class="parchment-body">
+                <h1>Mentions légales :</h1><br/>
+                Conformément aux dispositions des articles 6-III et 19 de la Loi n° 2004-575 du 21 juin 2004 pour la Confiance dans l’économie numérique, dite L.C.E.N., nous portons à la connaissance des utilisateurs et visiteurs les informations suivantes :
+                <h2>Informations légales</h2>
+                Statut du propriétaire : fonctionnaire de l'éducation nationale<br/>
+                Adresse : 16 Rue Dom. Devienne, 33800 Bordeaux<br/>
+                Adresse de courrier électronique : <a href="mailto:jean-bernard.marot@ac-bordeaux.fr">jean-bernard.marot@ac-bordeaux.fr</a><br/>
+                Le Créateur du jeu : Jean-Bernard MAROT<br/>
+                L’hébergeur du jeu :<br/>
+                <h2>Droits d’auteur et marques</h2>
+                Les informations (textes) diffusées sur ce site via internet ne sont pas susceptibles, à priori, de contrevenir à la réglementation afférente aux droits d’auteur.
+                Si ce n´était pas le cas, merci de nous le signaler par e-mail à : <br/><a href="mailto:jean-bernard.marot@ac-bordeaux.fr">jean-bernard.marot@ac-bordeaux.fr</a><br/><br/>
+                <h2>Images et textes</h2>
+                Les images et textes présents dans ce jeu ont été récupérés sur des sites référencés en Crédits.
+                Si vous souhaitez qu’un élément graphique ou qu’un texte soit modifié ou supprimé, n’hésitez pas à nous contacter par e-mail :<br/> <a href="mailto:jean-bernard.marot@ac-bordeaux.fr">jean-bernard.marot@ac-bordeaux.fr</a><br/><br/>
+                <h1 id="#">Crédits</h1>
+                Projet imaginé et réalisé par Jean-Bernard MAROT avec la collaboration d'élèves de 5e du collège d'Aliénor d'Aquitaine.<br/>
+                Cette interface a été développée par <a href="https://www.linkedin.com/in/mickael-desbiens/">Mickaël Desbiens</a>, <a href="https://www.linkedin.com/in/johan-ala/">Johan Ala</a> et <a href="https://www.linkedin.com/in/m%C3%A9lissa-callejon-010013187/">Mélissa Callejon</a>
+                durant leur formation de développeur web et web mobile à la <a href="https://www.wildcodeschool.com/fr-FR">Wild Code School</a>.<br/><br/>
+                <h2>Sitographie non exhaustive</h2>
+                <a href="https://fr.wikipedia.org/wiki/M%C3%A9tiers_du_Moyen_%C3%82ge">Wikipédia - Métiers du Moyen Âge</a><br/>
+                <a href="https://www.histoire-pour-tous.fr/dossiers/2721-les-metiers-du-moyen-age-12.html">Histoire pour tous - Les métiers du Moyen Âge</a>
+            </div>
+        </div>
+	</div>
 {% endblock %}

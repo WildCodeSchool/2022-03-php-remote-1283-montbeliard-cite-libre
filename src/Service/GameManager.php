@@ -10,42 +10,39 @@ use Symfony\Component\Security\Core\Security;
 
 class GameManager
 {
-    private $security;
-
     public function __construct(
         private GameRepository $gameRepository,
         private RequestStack $requestStack,
-        Security $security
+        private Security $security
     ) {
         $this->gameRepository = $gameRepository;
         $this->requestStack = $requestStack;
         $this->security = $security;
     }
 
-    public function setGame()
+    public function setGame(): void
     {
         $session = $this->requestStack->getSession();
         $datetime = new DateTimeImmutable();
 
-        if (isset($_POST) && !empty($_POST)) {
-            $user = $this->security->getUser();
-            $gameData = $_POST;
-            $game = new Game();
-            $game->setName($gameData['name']);
-            $game->setStartedAt($datetime);
-            $game->setEndedAt($datetime->modify('+ ' . $gameData['duration'] . ' minutes'));
-            $interval = ($game->getEndedAt()->diff($datetime, absolute: true));
-            $game->setType($gameData['choice']);
-            $game->setTurn(1);
-            $game->setUser($user);
-            $game->setScore(0);
-            $game->setDuration($interval->format('%H heure %I minutes %S secondes'));
-            $this->gameRepository->add($game, true);
-            $session->set('game', $game);
-        }
+        //if (isset($_POST) && !empty($_POST))
+        $user = $this->security->getUser();
+        $gameData = $_POST;
+        $game = new Game();
+        $game->setName($gameData['name']);
+        $game->setStartedAt($datetime);
+        $game->setEndedAt($datetime->modify('+ ' . $gameData['duration'] . ' minutes'));
+        $interval = ($game->getEndedAt()->diff($datetime, absolute: true));
+        $game->setType($gameData['choice']);
+        $game->setTurn(1);
+        $game->setUser($user);
+        $game->setScore(0);
+        $game->setDuration($interval->format('%H heure %I minutes %S secondes'));
+        $this->gameRepository->add($game, true);
+        $session->set('game', $game);
     }
 
-    public function checkGameType()
+    public function checkGameType(): void
     {
         $session = $this->requestStack->getSession();
 

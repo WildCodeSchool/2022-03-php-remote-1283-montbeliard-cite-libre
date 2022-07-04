@@ -6,6 +6,7 @@ use App\Repository\GameRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: GameRepository::class)]
 class Game
@@ -34,7 +35,7 @@ class Game
     private ?string $type;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'games')]
-    private ?User $user;
+    private ?UserInterface $user;
 
     #[ORM\OneToMany(mappedBy: 'Game', targetEntity: QuestionAsked::class)]
     private Collection $questionAskeds;
@@ -124,12 +125,12 @@ class Game
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getUser(): ?UserInterface
     {
         return $this->user;
     }
 
-    public function setUser(?User $user): self
+    public function setUser(?UserInterface $user): self
     {
         $this->user = $user;
 

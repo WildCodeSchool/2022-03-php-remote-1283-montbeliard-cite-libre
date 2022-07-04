@@ -81,7 +81,7 @@ class GameController extends AbstractController
         return $this->render('game/collection.html.twig');
     }
     #[Route('/reset', name: '_reset')]
-    public function  reset(RequestStack $requestStack): Response
+    public function reset(RequestStack $requestStack): Response
     {
         $session = $requestStack->getSession();
         $session->invalidate();

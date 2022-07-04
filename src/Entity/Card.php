@@ -28,6 +28,12 @@ class Card
     #[ORM\Column(type: 'json', nullable: true)]
     private array $rule = [];
 
+    #[ORM\ManyToOne(targetEntity: Family::class, inversedBy: 'cards')]
+    private ?Family $family;
+
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'cards')]
+    private ?Category $category;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +95,30 @@ class Card
     public function setRule(?array $rule): self
     {
         $this->rule = $rule;
+
+        return $this;
+    }
+
+    public function getFamily(): ?Family
+    {
+        return $this->family;
+    }
+
+    public function setFamily(?Family $family): self
+    {
+        $this->family = $family;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

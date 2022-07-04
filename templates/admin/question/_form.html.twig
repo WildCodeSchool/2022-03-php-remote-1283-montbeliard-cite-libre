@@ -7,7 +7,7 @@
 <ul class="answers bg-light rounded list-unstyled p-3" data-index="{{ form.answers|length > 0 ? form.answers|last.vars.name + 1 : 0 }}" data-prototype="{{ form_widget(form.answers.vars.prototype)|e('html_attr') }}">
 	{% for answer in form.answers %}
 		<li>
-			{{ form_row(answer.content) }}
+			{{ form_row(answer.answer) }}
 			{{ form_row(answer.isCorrect) }}
 		</li>
 	{% endfor %}
@@ -18,7 +18,7 @@
 </button>
 <button class="btn btn-outline-success mb-3">
 	<i class="bi bi-save"></i>
-	{{ button_label|default(' enregister') }}
+	{{ button_label|default('enregister') }}
 </button>
 {{ form_end(form) }}
 

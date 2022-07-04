@@ -5,7 +5,7 @@ namespace App\Controller\admin;
 use App\Entity\Answer;
 use App\Entity\Question;
 use App\Form\QuestionType;
-use App\Form\SearchQuestionType;
+use App\Form\KeywordSearchType;
 use App\Repository\AnswerRepository;
 use App\Repository\QuestionRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -25,7 +25,7 @@ class AdminQuestionController extends AbstractController
         Request $request
     ): Response {
 
-        $form = $this->createForm(SearchQuestionType::class);
+        $form = $this->createForm(KeywordSearchType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -46,9 +46,9 @@ class AdminQuestionController extends AbstractController
         );
 
 
-        return $this->render('admin/question/index.html.twig', [
+        return $this->renderForm('admin/question/index.html.twig', [
             'pagination' => $pagination,
-            'form' => $form->createView()
+            'form' => $form
         ]);
     }
 

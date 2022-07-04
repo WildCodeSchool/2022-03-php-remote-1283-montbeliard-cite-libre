@@ -1,65 +1,60 @@
-{% extends 'base.html.twig' %}
+{% extends '/game/base.html.twig' %}
 
 {% block title %}Partie de jeu d'histoire
 {% endblock %}
 {% block body %}
 
-	<div class="ingame mt-3 mb-3">
-
-		<div class="container d-flex flex-column p-2 justify-content-between h-100">
-			<div class="row gx-0 d-flex  justify-content-between">
-
-				<div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
-					<div class="text-image">
-						<p class="text-muted text-center">Tour</p>
-						<div class="bloc-turn d-flex justify-content-around pe-3"><img class="" src="{{asset('build/images/turn.svg')}}" aria-label="Tour" alt="tour joué">
-							<p>
-								{{app.session.get('game').getTurn}}</p>
-						</div>
-					</div>
-
+	<div class="row gx-0 d-flex justify-content-between">
+		<div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
+			<div class="text-image">
+				<p class="text-muted text-center">Tour</p>
+				<div class="bloc-turn d-flex justify-content-around pe-3"><img class="" src="{{asset('build/images/turn.svg')}}" aria-label="Tour" alt="tour joué">
+					<p>
+						{{app.session.get('game').getTurn}}</p>
 				</div>
-				<div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
-					<div class="text-image">
-						<p class="text-muted   text-center">Cartes</p>
-						<div class="bloc-save  d-flex justify-content-around pe-3 "><img class="" src="{{asset('build/images/save.svg')}}" aria-label="Gagnées" alt="carte gagnées">
-							<p>
-								{% if qAsked is defined and qAsked is not empty %}
-									{{qAsked|length}}
-									{% else %}0
-								{% endif %}
+			</div>
 
-								/ 58</p>
-						</div>
+		</div>
+		<div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
+			<div class="text-image">
+				<p class="text-muted   text-center">Cartes</p>
+				<div class="bloc-save  d-flex justify-content-around pe-3 "><img class="" src="{{asset('build/images/save.svg')}}" aria-label="Gagnées" alt="carte gagnées">
+					<p>
+						{% if qAsked is defined and qAsked is not empty %}
+							{{qAsked|length}}
+							{% else %}0
+						{% endif %}
 
-					</div>
-
+						/ 58</p>
 				</div>
-				<div class=" col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
-					<div class=" text-image">
-						<p class="text-muted  text-center">Max :1000 points</p>
-						<div class="bloc-point   d-flex justify-content-around pe-3"><img class="" src="{{asset('build/images/cup.svg')}}" aria-label="Points" alt="points">
-							<p>{{app.session.get('game').getScore}}
-								pts</p>
-						</div>
-
-					</div>
-
-				</div>
-				<div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
-					<div class="text-image">
-						<p class="text-muted  ps-1">Temps restant</p>
-						<div class="bloc-time  d-flex justify-content-around pe-3"><img class="" src="{{asset('build/images/clock.svg')}}" aria-label="Chrono" alt="temps écoulé">
-
-							<p>44:33</p>
-						</div>
-					</div>
-
-				</div>
-
 
 			</div>
 
+		</div>
+		<div class=" col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
+			<div class=" text-image">
+				<p class="text-muted  text-center">Max :1000 points</p>
+				<div class="bloc-point   d-flex justify-content-around pe-3"><img class="" src="{{asset('build/images/cup.svg')}}" aria-label="Points" alt="points">
+					<p>{{app.session.get('game').getScore}}
+						pts</p>
+				</div>
+
+			</div>
+
+		</div>
+		<div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
+			<div class="text-image">
+				<p class="text-muted  ps-1">Temps restant</p>
+				<div class="bloc-time  d-flex justify-content-around pe-3"><img class="" src="{{asset('build/images/clock.svg')}}" aria-label="Chrono" alt="temps écoulé">
+
+					<p>44:33</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="ingame">
+		<div class="container d-flex flex-column p-2 justify-content-between h-100">
 			<div class="jeu-container">
 
 				<a class="mx-auto d-inline btn-dice btn btn-secondary my-5" href="{{path('game_dice')}}">Lancez le dé</a>
@@ -152,4 +147,6 @@
 
 
 	</div>
+
+	{% include "include/_questions.html.twig" %}
 {% endblock %}

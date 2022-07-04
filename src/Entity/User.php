@@ -36,6 +36,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->games = new ArrayCollection();
     }
+    #[ORM\ManyToOne(targetEntity: Classe::class, inversedBy: 'users')]
+    private ?Classe $classe;
 
     public function getId(): ?int
     {
@@ -138,5 +140,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
     public function getSalt(): void
     {
+    }
+    public function getClasse(): ?Classe
+    {
+        return $this->classe;
+    }
+
+    public function setClasse(?Classe $classe): self
+    {
+        $this->classe = $classe;
+
+        return $this;
     }
 }

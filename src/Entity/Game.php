@@ -40,7 +40,7 @@ class Game
     private Collection $questionAskeds;
 
     #[ORM\OneToMany(mappedBy: 'game', targetEntity: CardWon::class)]
-    private $cardWons;
+    private Collection $cardWons;
 
 
 

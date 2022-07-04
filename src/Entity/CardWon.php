@@ -11,13 +11,13 @@ class CardWon
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\ManyToOne(targetEntity: Game::class, inversedBy: 'cardWons')]
-    private $game;
+    private ?Game $game;
 
     #[ORM\ManyToOne(targetEntity: CardApocalypse::class, inversedBy: 'cardWons')]
-    private $cardApocalypse;
+    private ?CardApocalypse $cardApocalypse;
 
     public function getId(): ?int
     {

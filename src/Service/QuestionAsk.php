@@ -24,15 +24,13 @@ class QuestionAsk
         QuestionRepository $questionRepository,
         QuestionAskedRepository $qAskedRepository,
         RequestStack $requestStack,
-        private RollDice $rollDice,
-        private CardApocalypseRepository $cardApocalypseRepository,
+        private CardApocalypseRepository $cardApoRepository,
         private CardWonRepository $cardWonRepository
     ) {
         $this->questionRepository = $questionRepository;
         $this->qAskedRepository = $qAskedRepository;
         $this->requestStack = $requestStack;
-        $this->rollDice = $rollDice;
-        $this->cardApocalypseRepository = $cardApocalypseRepository;
+        $this->cardApoRepository = $cardApoRepository;
         $this->cardWonRepository = $cardWonRepository;
     }
 
@@ -54,7 +52,7 @@ class QuestionAsk
     public function apocalypse(): CardApocalypse
     {
         $session = $this->requestStack->getSession();
-        $this->cardApocalypse = $this->cardApocalypseRepository->selectRandom()[0];
+        $this->cardApocalypse = $this->cardApoRepository->selectRandom()[0];
         $cardWon = new CardWon();
         $cardWon->setCardApocalypse($this->cardApocalypse);
         $this->cardWonRepository->add($cardWon, true);

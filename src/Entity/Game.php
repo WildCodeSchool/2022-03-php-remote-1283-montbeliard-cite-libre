@@ -39,9 +39,15 @@ class Game
     #[ORM\OneToMany(mappedBy: 'Game', targetEntity: QuestionAsked::class)]
     private Collection $questionAskeds;
 
+    #[ORM\OneToMany(mappedBy: 'game', targetEntity: CardWon::class)]
+    private $cardWons;
+
+
+
     public function __construct()
     {
         $this->questionAskeds = new ArrayCollection();
+        $this->cardWons = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -157,6 +163,36 @@ class Game
             // set the owning side to null (unless already changed)
             if ($questionAsked->getGame() === $this) {
                 $questionAsked->setGame(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CardWon>
+     */
+    public function getCardWons(): Collection
+    {
+        return $this->cardWons;
+    }
+
+    public function addCardWon(CardWon $cardWon): self
+    {
+        if (!$this->cardWons->contains($cardWon)) {
+            $this->cardWons[] = $cardWon;
+            $cardWon->setGame($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCardWon(CardWon $cardWon): self
+    {
+        if ($this->cardWons->removeElement($cardWon)) {
+            // set the owning side to null (unless already changed)
+            if ($cardWon->getGame() === $this) {
+                $cardWon->setGame(null);
             }
         }
 

@@ -45,6 +45,7 @@ class QuestionRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('q')
             ->leftJoin('q.questionAskeds', 'qa')
+            ->join('q.answers', 'a')
             ->addSelect('RAND() as HIDDEN rand')
             ->where('q.level = :level')
             ->andWhere('qa.question IS NULL')

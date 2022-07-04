@@ -55,11 +55,13 @@
 			<div class="jeu-container">
 
 				<a class="mx-auto d-inline btn-dice btn btn-secondary my-5" href="{{path('game_dice')}}">Lancez le dé</a>
-
+				<pre>
+    {{ dump(app.session.get('question')) }}
+</pre>
 				<div class="container">
 					<h1 class="h1">
 
-						{% if app.session.get('question') is defined %}
+						{% if app.session.get('question').content is defined and app.session.get('question').content is not empty %}
 							{{app.session.get('question').content}}
 
 						{% endif %}

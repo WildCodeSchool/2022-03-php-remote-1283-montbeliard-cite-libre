@@ -35,8 +35,12 @@ class GameController extends AbstractController
     {
         $diceRoll->setRollDice();
         $roll = $diceRoll->getRoll();
-        $question->rollQuestion($roll);
 
+        if ($roll === 1) {
+            $question->apocalypse();
+        } else {
+            $question->rollQuestion($roll);
+        }
         return $this->redirectToRoute('game_progress', []);
     }
 

@@ -57,6 +57,9 @@
 		<div class="container d-flex flex-column p-2 justify-content-between h-100">
 			<div class="jeu-container">
 
+				<div class="mx-auto d-inline btn-dice my-5">
+					{% include "include/_diceanimation.html.twig" %}
+				</div>
 				<a class="mx-auto d-inline btn-dice btn btn-secondary my-5" href="{{path('game_dice')}}">Lancez le dé</a>
 
 				<div class="container">

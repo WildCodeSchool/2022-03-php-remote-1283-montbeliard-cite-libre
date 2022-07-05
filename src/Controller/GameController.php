@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Game;
+use App\Form\GameType;
 use App\Repository\AnswerRepository;
 use App\Repository\GameRepository;
 use App\Service\RollDice;
@@ -9,36 +11,49 @@ use App\Service\QuestionAsk;
 use App\Repository\QuestionRepository;
 use App\Repository\QuestionAskedRepository;
 use App\Service\GameManager;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RequestStack;
 
+#[IsGranted('ROLE_USER')]
 #[Route('/game', name: 'game')]
 class GameController extends AbstractController
 {
     #[Route('/', name: '_index')]
-    public function index(RequestStack $requestStack): Response
+    public function index(RequestStack $requestStack, Request $request, GameManager $gameManager): Response
     {
         $session = $requestStack->getSession();
         if ($session->has('game')) {
             return $this->redirectToRoute('game_progress', []);
         }
-        return $this->render('game/index.html.twig', [
-            'controller_name' => 'GameController',
+
+        $game = new Game();
+        $form = $this->createForm(GameType::class, $game);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $gameManager->setGame($game);
+            return $this->redirectToRoute('game_progress');
+        }
+
+        return $this->renderForm('game/index.html.twig', [
+            'form' => $form,
         ]);
     }
 
-    #[Route('/new', name: '_new')]
-    public function new(RequestStack $requestStack, GameManager $gameManager): Response
-    {
-        $session = $requestStack->getSession();
-        if ($session->has('game')) {
-            return $this->redirectToRoute('game_progress', []);
-        }
-        $gameManager->setGame();
-        return $this->render('game/progress.html.twig', []);
-    }
+//    #[Route('/new', name: '_new', methods: ['POST'])]
+//    public function new(RequestStack $requestStack, GameManager $gameManager): Response
+//    {
+//        $session = $requestStack->getSession();
+//        if ($session->has('game')) {
+//            return $this->redirectToRoute('game_progress', []);
+//        }
+//        $gameManager->setGame();
+//        return $this->redirectToRoute('game_progress');
+////        return $this->render('game/progress.html.twig', []);
+//    }
 
     #[Route('/progress', name: '_progress')]
     public function progress(

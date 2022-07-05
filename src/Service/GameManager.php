@@ -20,20 +20,20 @@ class GameManager
         $this->security = $security;
     }
 
-    public function setGame(): void
+    public function setGame(Game $game): void
     {
         $session = $this->requestStack->getSession();
         $datetime = new DateTimeImmutable();
 
         //if (isset($_POST) && !empty($_POST))
         $user = $this->security->getUser();
-        $gameData = $_POST;
-        $game = new Game();
-        $game->setName($gameData['name']);
+//        $gameData = $_POST;
+//        $game = new Game();
+//        $game->setName($gameData['name']);
         $game->setStartedAt($datetime);
-        $game->setEndedAt($datetime->modify('+ ' . $gameData['duration'] . ' minutes'));
+        $game->setEndedAt($datetime->modify('+ ' . $game->getDuration() . ' minutes'));
         $interval = ($game->getEndedAt()->diff($datetime, absolute: true));
-        $game->setType($gameData['choice']);
+//        $game->setType($gameData['type']);
         $game->setTurn(1);
         $game->setUser($user);
         $game->setScore(0);

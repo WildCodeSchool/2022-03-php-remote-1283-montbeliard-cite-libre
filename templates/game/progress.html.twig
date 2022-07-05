@@ -4,45 +4,6 @@
 {% endblock %}
 {% block body %}
 
-            <div class="row gx-0 d-flex justify-content-between">
-				<div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
-					<div class="text-image">
-						<p class="text-muted text-center">Tour</p>
-						<div class="bloc-turn d-flex justify-content-around pe-3"><img class="" src="{{asset('build/images/turn.svg')}}" aria-label="Tour" alt="tour joué">
-							<p>
-								2</p>
-						</div>
-					</div>
-
-				</div>
-				<div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
-					<div class="text-image">
-						<p class="text-muted   text-center">Cartes</p>
-						<div class="bloc-save  d-flex justify-content-around pe-3 "><img class="" src="{{asset('build/images/save.svg')}}" aria-label="Gagnées" alt="carte gagnées">
-							<p>10 / 58</p>
-						</div>
-
-					</div>
-
-				</div>
-				<div class=" col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
-					<div class=" text-image">
-						<p class="text-muted  text-center">Max :1000 points</p>
-						<div class="bloc-point   d-flex justify-content-around pe-3"><img class="" src="{{asset('build/images/cup.svg')}}" aria-label="Points" alt="points">
-							<p>{{ app.session.get('points') }} pts</p>
-						</div>
-
-					</div>
-
-				</div>
-				<div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
-					<div class="text-image">
-						<p class="text-muted  ps-1">Temps restant</p>
-						<div class="bloc-time  d-flex justify-content-around pe-3"><img class="" src="{{asset('build/images/clock.svg')}}" aria-label="Chrono" alt="temps écoulé">
-
-							<p>44:33</p>
-						</div>
-					</div>
 	<div class="row gx-0 d-flex justify-content-between">
 		<div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
 			<div class="text-image">
@@ -68,7 +29,7 @@
 			<div class=" text-image">
 				<p class="text-muted  text-center">Max :1000 points</p>
 				<div class="bloc-point   d-flex justify-content-around pe-3"><img class="" src="{{asset('build/images/cup.svg')}}" aria-label="Points" alt="points">
-					<p>150 pts</p>
+					<p>{{ app.session.get('points') }}</p>
 				</div>
 
 			</div>

@@ -9,6 +9,7 @@
 import './styles/app.scss';
 
 // import js
+import './confettiparty';
 import './cardparchment';
 import './cardquestion';
 import './diceanimation';
@@ -17,3 +18,4 @@ import './diceanimation';
 import './bootstrap';
 
 require('bootstrap');
+

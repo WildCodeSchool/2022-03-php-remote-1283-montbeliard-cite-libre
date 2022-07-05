@@ -64,7 +64,6 @@ class GameController extends AbstractController
     }
 
 
-
     #[Route('/progress/dice', name: '_dice')]
     public function dice(RollDice $diceRoll, QuestionAsk $question): Response
     {

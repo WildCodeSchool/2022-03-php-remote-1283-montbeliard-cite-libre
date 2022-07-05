@@ -6,6 +6,7 @@ use App\Repository\GameRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: GameRepository::class)]
 class Game
@@ -24,8 +25,8 @@ class Game
     #[ORM\Column(type: 'datetime_immutable')]
     private ?\DateTimeImmutable $endedAt;
 
-    #[ORM\Column(type: 'time', nullable: true)]
-    private ?\DateTimeInterface $duration;
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $duration;
 
     #[ORM\Column(type: 'integer', nullable: true)]
     private ?int $score;
@@ -34,7 +35,7 @@ class Game
     private ?string $type;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'games')]
-    private ?User $user;
+    private ?UserInterface $user;
 
     #[ORM\OneToMany(mappedBy: 'Game', targetEntity: QuestionAsked::class)]
     private Collection $questionAskeds;
@@ -43,6 +44,8 @@ class Game
     private Collection $cardWons;
 
 
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private int $turn;
 
     public function __construct()
     {
@@ -91,12 +94,12 @@ class Game
         return $this;
     }
 
-    public function getDuration(): ?\DateTimeInterface
+    public function getDuration(): ?string
     {
         return $this->duration;
     }
 
-    public function setDuration(?\DateTimeInterface $duration): self
+    public function setDuration(?string $duration): self
     {
         $this->duration = $duration;
 
@@ -127,12 +130,12 @@ class Game
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getUser(): ?UserInterface
     {
         return $this->user;
     }
 
-    public function setUser(?User $user): self
+    public function setUser(?UserInterface $user): self
     {
         $this->user = $user;
 
@@ -195,6 +198,17 @@ class Game
                 $cardWon->setGame(null);
             }
         }
+
+        return $this;
+    }
+    public function getTurn(): ?int
+    {
+        return $this->turn;
+    }
+
+    public function setTurn(?int $turn): self
+    {
+        $this->turn = $turn;
 
         return $this;
     }

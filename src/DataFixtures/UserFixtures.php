@@ -19,17 +19,22 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        // Création d’un utilisateur de type “contributeur” (= auteur)
-        $contributor = new User();
-        $contributor->setUsername('student');
-        /* $contributor->setRoles(['ROLE_CONTRIBUTOR']); */
-        $hashedPassword = $this->passwordHasher->hashPassword(
-            $contributor,
-            'password'
-        );
 
-        $contributor->setPassword($hashedPassword);
-        $manager->persist($contributor);
+        // Création d’un utilisateur de type user
+        for ($i = 0; $i < count(ClasseFixtures::CLASSES); $i++) {
+            for ($j = 0; $j < 9; $j++) {
+                $user = new User();
+                $user->setUsername('student' . $i . $j);
+                $hashedPassword = $this->passwordHasher->hashPassword(
+                    $user,
+                    'password' . $i . $j
+                );
+                $user->setPassword($hashedPassword);
+                $user->setClasse($this->getReference('classe_' . ClasseFixtures::CLASSES[$i]));
+                $manager->persist($user);
+            }
+        }
+
 
         // Création d’un utilisateur de type “administrateur”
         $admin = new User();
@@ -41,6 +46,18 @@ class UserFixtures extends Fixture
         );
         $admin->setPassword($hashedPassword);
         $manager->persist($admin);
+
+
+        // Création d’un utilisateur de type “super administrateur”
+        $superAdmin = new User();
+        $superAdmin->setUsername('super admin');
+        $superAdmin->setRoles(['ROLE_SUPER_ADMIN']);
+        $hashedPassword = $this->passwordHasher->hashPassword(
+            $superAdmin,
+            'password'
+        );
+        $superAdmin->setPassword($hashedPassword);
+        $manager->persist($superAdmin);
 
         // Sauvegarde des 2 nouveaux utilisateurs :
         $manager->flush();

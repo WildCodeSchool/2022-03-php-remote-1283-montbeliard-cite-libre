@@ -10,6 +10,7 @@ use App\Entity\Question;
 use App\Entity\CardWon;
 use App\Repository\CardApocalypseRepository;
 use App\Repository\CardWonRepository;
+use App\Repository\GameRepository;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class QuestionAsk
@@ -25,20 +26,23 @@ class QuestionAsk
         QuestionAskedRepository $qAskedRepository,
         RequestStack $requestStack,
         private CardApocalypseRepository $cardApoRepository,
-        private CardWonRepository $cardWonRepository
+        private CardWonRepository $cardWonRepository,
+        private GameRepository $gameRepository
     ) {
         $this->questionRepository = $questionRepository;
         $this->qAskedRepository = $qAskedRepository;
         $this->requestStack = $requestStack;
         $this->cardApoRepository = $cardApoRepository;
         $this->cardWonRepository = $cardWonRepository;
+        $this->gameRepository = $gameRepository;
     }
 
     public function rollQuestion(int $level): Question
     {
-        $this->question =  $this->questionRepository->selectRandomByLevel($level)[0];
+        $session = $this->requestStack->getSession();
+        $gameId = $session->get('game')->getId();
+        $this->question =  $this->questionRepository->selectRandomByLevel($level, $gameId)[0];
         $this->addQuestionAsked($this->question);
-
         return $this->question;
     }
     /**
@@ -60,12 +64,20 @@ class QuestionAsk
 
         return $this->cardApocalypse;
     }
+
+
     public function addQuestionAsked(Question $question): void
     {
+
         $session = $this->requestStack->getSession();
+        $game = $this->gameRepository->findOneById($session->get('game')->getId());
         $questionAsked = new QuestionAsked();
         $questionAsked->setQuestion($question);
+        $questionAsked->setGame($game);
+        $game->setTurn($game->getTurn() + 1);
+        $this->gameRepository->add($game, true);
         $this->qAskedRepository->add($questionAsked, true);
+        $session->set('game', $game);
         $session->set('question', $question);
     }
 }

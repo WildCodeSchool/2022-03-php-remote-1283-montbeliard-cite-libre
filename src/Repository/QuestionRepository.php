@@ -41,34 +41,19 @@ class QuestionRepository extends ServiceEntityRepository
         }
     }
 
-    public function selectRandomByLevel(int $level): array
+    public function selectRandomByLevel(int $level, int $gameId): array
     {
         return $this->createQueryBuilder('q')
-            ->leftJoin('q.questionAskeds', 'qa')
-            ->join('q.answers', 'a')
+            ->leftJoin('q.questionAskeds', 'qa', 'WITH', 'qa.game=:gameId')
             ->addSelect('RAND() as HIDDEN rand')
             ->where('q.level = :level')
             ->andWhere('qa.question IS NULL')
             ->setParameter('level', $level)
+            ->setParameter('gameId', $gameId)
             ->orderBy('rand')
             ->setMaxResults(1)
             ->getQuery()
             ->getResult();
-        /* $connection = $this->getEntityManager()->getConnection();
-        $statement = $connection->prepare(
-            'SELECT *
-            FROM question q
-            LEFT JOIN question_asked qa
-            ON q.id = qa.question_id
-            WHERE q.level = :level
-            AND qa.question_id IS NULL
-            ORDER BY RAND() LIMIT 0,1'
-        );
-        $statement->bindValue('level', $level);
-
-        return $statement
-            ->executeQuery()
-            ->fetchAllAssociative(); */
     }
 
 

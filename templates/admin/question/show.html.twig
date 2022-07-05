@@ -5,30 +5,29 @@
 
 {% block body %}
 	<h1>Question</h1>
-	{% autoescape false %}
-		<table class="table table-hover">
-			<tbody>
+
+	<table class="table table-hover">
+		<tbody>
+			<tr>
+				<th class="table-dark">Question</th>
+				<th class="table-dark">Niveau</th>
+			</tr>
+			<tr>
+				<td>{{ question.question|raw }}</td>
+				<td>{{ question.level }}</td>
+			</tr>
+			{% for answer in question.answers %}
 				<tr>
-					<th class="table-dark">Question</th>
-					<th class="table-dark">Niveau</th>
+					<th class="table-primary">Réponse</th>
+					<th class="table-primary">Correcte</th>
 				</tr>
 				<tr>
-					<td>{{ question.content }}</td>
-					<td>{{ question.level }}</td>
+					<td>{{ answer.answer|raw }}</td>
+					<td>{{ answer.isCorrect ? '🟢 oui' : '❌ non' }}</td>
 				</tr>
-				{% for answer in question.answers %}
-					<tr>
-						<th class="table-primary">Réponse</th>
-						<th class="table-primary">Correcte</th>
-					</tr>
-					<tr>
-						<td>{{ answer.content }}</td>
-						<td>{{ answer.isCorrect ? '🟢 oui' : '❌ non' }}</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-	{% endautoescape %}
+			{% endfor %}
+		</tbody>
+	</table>
 
 	<a class="btn btn-outline-primary" href="{{ path('admin_question_index') }}">
 		<i class="bi bi-backspace"></i>

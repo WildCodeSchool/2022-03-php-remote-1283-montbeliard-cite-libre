@@ -13,7 +13,7 @@ class RollDiceTest extends KernelTestCase
 
         $container = static::getContainer();
         $roll = $container->get(RollDice::class);
-        $roll->setRollDice();
-        $this->assertIsInt($roll->getRollDice(), 'pas un entier');
+        $roll->setRollDiceTest();
+        $this->assertIsInt($roll->getRoll(), 'pas un entier');
     }
 }

@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 
-class SearchQuestionType extends AbstractType
+class KeywordSearchType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -16,7 +16,7 @@ class SearchQuestionType extends AbstractType
                 'attr' => ['placeholder' => 'Entrez un mot-clé'],
                 'label' => ' ',
                 'required' => false
-                ]);
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

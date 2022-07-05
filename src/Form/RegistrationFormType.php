@@ -47,8 +47,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('classe', null, ['choice_label' => 'classe'])
-        ;
+            ->add('classe', null, ['choice_label' => 'classe']);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

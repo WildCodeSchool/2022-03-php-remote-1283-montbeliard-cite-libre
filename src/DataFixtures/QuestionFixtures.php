@@ -16,7 +16,7 @@ class QuestionFixtures extends Fixture
             while (($data = fgetcsv($handle, null, ";")) !== false) {
                 if ($row >  0) {
                     $question = new Question();
-                    $question->setQuestion($data[0]);
+                    $question->setContent($data[0]);
                     $question->setLevel($data[1]);
                     $manager->persist($question);
                     $this->addReference('question_' . $row, $question);

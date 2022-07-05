@@ -7,3 +7,30 @@ span {
     font-size: 1.2rem;
 }
 
+#game{
+    font-family: 'Manuale', 'Courier New', Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    .mb-3{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+    #game_type{
+        .form-check{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+        }
+    }
+    legend.fs-3{
+        margin-top : 2rem;
+        background-color: rgb(255, 255, 255, 0.5);
+        box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%) !important;
+
+    }
+}

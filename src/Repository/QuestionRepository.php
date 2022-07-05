@@ -54,22 +54,6 @@ class QuestionRepository extends ServiceEntityRepository
             ->setMaxResults(1)
             ->getQuery()
             ->getResult();
-        /* $connection = $this->getEntityManager()->getConnection();
-        $statement = $connection->prepare(
-            'SELECT *
-            FROM question q
-            LEFT JOIN question_asked qa
-            ON q.id = qa.question_id
-            AND qa.game_id = 6
-            WHERE q.level = :level
-            AND qa.question_id IS NULL
-            ORDER BY RAND() LIMIT 0,1'
-        );
-        $statement->bindValue('level', $level);
-
-        return $statement
-            ->executeQuery()
-            ->fetchAllAssociative(); */
     }
 
 

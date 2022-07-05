@@ -35,16 +35,4 @@ class GameManager
         $this->gameRepository->add($game, true);
         $session->set('game', $game);
     }
-
-    public function checkGameType(): void
-    {
-        $session = $this->requestStack->getSession();
-
-        if ($session->get('game') !== null && !empty($session->get('game'))) {
-            $game = $session->get('game');
-            $gameType = $game->getType();
-            if ($gameType == 'mdj') {
-            }
-        }
-    }
 }

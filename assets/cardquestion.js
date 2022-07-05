@@ -3,7 +3,7 @@ const btn = document.querySelector('.btn-dice');
 const ingame = document.querySelector('.ingame');
 
 btn.addEventListener('click', () => {
-    setTimeout(showModal, 3000)
+    setTimeout(showModal, 2500)
 })
 
 function showModal() {

@@ -16,4 +16,10 @@ class GameRuleController extends AbstractController
             'controller_name' => 'GameRuleController',
         ]);
     }
+
+    #[Route('/animation', name: 'animation')]
+    public function animation(): Response
+    {
+        return $this->render('confetties/index.html.twig');
+    }
 }

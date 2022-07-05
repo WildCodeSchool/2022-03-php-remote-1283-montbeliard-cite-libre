@@ -43,13 +43,56 @@
 							<p>44:33</p>
 						</div>
 					</div>
+	<div class="row gx-0 d-flex justify-content-between">
+		<div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
+			<div class="text-image">
+				<p class="text-muted text-center">Tour</p>
+				<div class="bloc-turn d-flex justify-content-around pe-3"><img class="" src="{{asset('build/images/turn.svg')}}" aria-label="Tour" alt="tour joué">
+					<p>
+						2</p>
 				</div>
 			</div>
+
+		</div>
+		<div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
+			<div class="text-image">
+				<p class="text-muted   text-center">Cartes</p>
+				<div class="bloc-save  d-flex justify-content-around pe-3 "><img class="" src="{{asset('build/images/save.svg')}}" aria-label="Gagnées" alt="carte gagnées">
+					<p>10 / 58</p>
+				</div>
+
+			</div>
+
+		</div>
+		<div class=" col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
+			<div class=" text-image">
+				<p class="text-muted  text-center">Max :1000 points</p>
+				<div class="bloc-point   d-flex justify-content-around pe-3"><img class="" src="{{asset('build/images/cup.svg')}}" aria-label="Points" alt="points">
+					<p>150 pts</p>
+				</div>
+
+			</div>
+
+		</div>
+		<div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
+			<div class="text-image">
+				<p class="text-muted  ps-1">Temps restant</p>
+				<div class="bloc-time  d-flex justify-content-around pe-3"><img class="" src="{{asset('build/images/clock.svg')}}" aria-label="Chrono" alt="temps écoulé">
+
+					<p>44:33</p>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div class="ingame">
 		<div class="container d-flex flex-column p-2 justify-content-between h-100">
 			<div class="jeu-container">
-				<button class=" mx-auto d-inline btn-dice btn btn-secondary my-5" type="submit">Lancez le dé</button>
+				<div class="mx-auto d-inline btn-dice my-5">
+                {% include "include/_diceanimation.html.twig" %}
+				</div>
+				{# <button class=" mx-auto d-inline btn-dice btn btn-secondary my-5" type="submit">Lancez le dé</button> #}
+
 				<div class="container">
 					<div class="row gx-0 jeu d-flex justify-content-around">
 						<div class="col-xs-12  col-md-4   artisans cardgame"><img class="left-img" src="{{asset('build/images/dos_artisans.jpg')}}" alt="dos artisan"></div>
@@ -129,5 +172,5 @@
 		</div>
 	</div>
 
-{% include "include/_questions.html.twig" %}
+	{% include "include/_questions.html.twig" %}
 {% endblock %}

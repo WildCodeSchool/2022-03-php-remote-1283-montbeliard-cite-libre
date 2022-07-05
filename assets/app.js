@@ -9,13 +9,21 @@
 import './styles/app.scss';
 
 // import js
+<<<<<<< HEAD
 
+=======
+import './confettiparty';
+import './cardparchment';
+import './cardquestion';
+import './diceanimation';
+>>>>>>> 3ac7840c7935651655b0d5fb4ee85f3c9bcd071f
 
 // start the Stimulus application
 import './bootstrap';
 
 require('bootstrap');
 
+<<<<<<< HEAD
 // import './cardparchment.js';
 // import './cardquestion.js';
 
@@ -38,3 +46,5 @@ let response = document.getElementById("response");
 btnDisplayResponse.addEventListener("click", () => {
     response.classList.toggle('d-none');
 });
+=======
+>>>>>>> 3ac7840c7935651655b0d5fb4ee85f3c9bcd071f

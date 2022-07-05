@@ -17,8 +17,7 @@ class RollDice
      */
     public function getRoll(): int
     {
-        $session =  $this->requestStack->getSession();
-        return $session->get('roll');
+        return $this->rollDice;
     }
 
 
@@ -28,6 +27,13 @@ class RollDice
         $this->rollDice = rand(1, 6);
         $session->set('roll', $this->rollDice);
 
+        return $this->rollDice;
+    }
+
+
+    public function setRollDiceTest(): int
+    {
+        $this->rollDice = rand(1, 6);
         return $this->rollDice;
     }
 }

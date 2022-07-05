@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Question;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\QuestionAsked;
+use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Question>
@@ -38,6 +40,37 @@ class QuestionRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    public function selectRandomByLevel(int $level, int $gameId): array
+    {
+        return $this->createQueryBuilder('q')
+            ->leftJoin('q.questionAskeds', 'qa', 'WITH', 'qa.game=:gameId')
+            ->addSelect('RAND() as HIDDEN rand')
+            ->where('q.level = :level')
+            ->andWhere('qa.question IS NULL')
+            ->setParameter('level', $level)
+            ->setParameter('gameId', $gameId)
+            ->orderBy('rand')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
+    }
+
+
+    //    /**
+    //     * @return Question[] Returns an array of Question objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('q')
+    //            ->andWhere('q.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('q.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
 
 
     public function findByDescendingId(): array

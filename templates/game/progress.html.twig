@@ -10,7 +10,7 @@
 				<p class="text-muted text-center">Tour</p>
 				<div class="bloc-turn d-flex justify-content-around pe-3"><img class="" src="{{asset('build/images/turn.svg')}}" aria-label="Tour" alt="tour joué">
 					<p>
-						2</p>
+						{{app.session.get('game').getTurn}}</p>
 				</div>
 			</div>
 
@@ -19,7 +19,13 @@
 			<div class="text-image">
 				<p class="text-muted   text-center">Cartes</p>
 				<div class="bloc-save  d-flex justify-content-around pe-3 "><img class="" src="{{asset('build/images/save.svg')}}" aria-label="Gagnées" alt="carte gagnées">
-					<p>10 / 58</p>
+					<p>
+						{% if qAsked is defined and qAsked is not empty %}
+							{{qAsked|length}}
+							{% else %}0
+						{% endif %}
+
+						/ 58</p>
 				</div>
 
 			</div>
@@ -29,7 +35,8 @@
 			<div class=" text-image">
 				<p class="text-muted  text-center">Max :1000 points</p>
 				<div class="bloc-point   d-flex justify-content-around pe-3"><img class="" src="{{asset('build/images/cup.svg')}}" aria-label="Points" alt="points">
-					<p>150 pts</p>
+					<p>{{app.session.get('game').getScore}}
+						pts</p>
 				</div>
 
 			</div>
@@ -49,12 +56,20 @@
 	<div class="ingame">
 		<div class="container d-flex flex-column p-2 justify-content-between h-100">
 			<div class="jeu-container">
+
 				<div class="mx-auto d-inline btn-dice my-5">
-                {% include "include/_diceanimation.html.twig" %}
+					{% include "include/_diceanimation.html.twig" %}
 				</div>
-				{# <button class=" mx-auto d-inline btn-dice btn btn-secondary my-5" type="submit">Lancez le dé</button> #}
+				<a class="mx-auto d-inline btn-dice btn btn-secondary my-5" href="{{path('game_dice')}}">Lancez le dé</a>
 
 				<div class="container">
+					<h1 class="h1">
+
+						{% if app.session.get('question') is defined and  app.session.get('question') is not empty  %}
+							{{app.session.get('question').content}}
+
+						{% endif %}
+					</h2>
 					<div class="row gx-0 jeu d-flex justify-content-around">
 						<div class="col-xs-12  col-md-4   artisans cardgame"><img class="left-img" src="{{asset('build/images/dos_artisans.jpg')}}" alt="dos artisan"></div>
 						<div class="classeur col-xs-12 col-md-4 d-flex align-items-center">
@@ -88,20 +103,20 @@
 
 			<div class="d-flex  justify-content-around flex-wrap">
 
-				<div class="question-card cardgame">
+				<div class="{{ app.session.get('roll') == 2 ? 'question-card-selected' : 'question-card' }} cardgame">
 					<div class="two-face">
 						<span class="dot"></span>
 						<span class="dot"></span>
 					</div>
 				</div>
-				<div class="question-card cardgame">
+				<div class="{{ app.session.get('roll') == 3 ? 'question-card-selected' : 'question-card' }} cardgame">
 					<div class="three-face">
 						<span class="dot"></span>
 						<span class="dot"></span>
 						<span class="dot"></span>
 					</div>
 				</div>
-				<div class="question-card cardgame">
+				<div class="{{ app.session.get('roll') == 4 ? 'question-card-selected' : 'question-card' }} cardgame">
 					<div class="four-face">
 						<span class="dot"></span>
 						<span class="dot"></span>
@@ -109,7 +124,7 @@
 						<span class="dot"></span>
 					</div>
 				</div>
-				<div class="question-card-selected cardgame">
+				<div class="{{ app.session.get('roll') == 5 ? 'question-card-selected' : 'question-card' }} cardgame">
 					<div class="five-face">
 						<span class="dot"></span>
 						<span class="dot"></span>
@@ -118,7 +133,7 @@
 						<span class="dot"></span>
 					</div>
 				</div>
-				<div class="question-card cardgame">
+				<div class="{{ app.session.get('roll') == 6 ? 'question-card-selected' : 'question-card' }} cardgame">
 					<div class="six-face">
 						<span class="dot"></span>
 						<span class="dot"></span>
@@ -131,6 +146,9 @@
 
 			</div>
 		</div>
+		<a href="{{ path('game_reset')}}" type="button" class="mx-auto d-inline btn-dice btn btn-primary my-5">Reset</a>
+
+
 	</div>
 
 	{% include "include/_questions.html.twig" %}

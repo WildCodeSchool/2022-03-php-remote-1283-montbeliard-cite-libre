@@ -18,7 +18,7 @@ class AnswerFixtures extends Fixture implements DependentFixtureInterface
                 if ($row >  0) {
                     $answer = new Answer();
                     $answer->setQuestion($this->getReference('question_' . $row));
-                    $answer->setAnswer($data[2]);
+                    $answer->setContent($data[2]);
                     $answer->setIsCorrect($data[3]);
                     $manager->persist($answer);
                 }

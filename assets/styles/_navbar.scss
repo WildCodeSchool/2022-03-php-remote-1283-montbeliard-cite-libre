@@ -6,7 +6,7 @@
     color: $primary !important;
 }
 
-.navbar {
+.navbar-1 {
     box-shadow: 0 -5px 20px rgb(186, 186, 186);
     background-color: white;
 
@@ -14,3 +14,10 @@
         width: 50px;
     }
 }
+
+.navbar {
+    .blason {
+        width: 50px;
+    }
+}
+

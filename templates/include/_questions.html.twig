@@ -1,0 +1,19 @@
+<div id="myModal" class="card-parchment position-absolute z-1000 d-none">
+	<div class="parchment-body">
+		<h1>
+			{% if question.question.content is defined %}
+				{{ question.question.content }}
+			{% endif %}
+		</h1>
+		<div class="text-center">
+			<button id="btn-display-response" class="btn btn-one mt-3">Afficher la réponse</button>
+			<div id="response" class="d-none mt-3">
+				<p>Les rats ont été la principale cause des épidémies.<br/>Les rats ont été la principale cause des épidémies.</p>
+				<div class="d-flex justify-content-center mt-5">
+					<a id="p" class="btn btn-one bg-white bg-opacity-75 me-5 w-25 close">Bonne réponse</a>
+					<a class="btn btn-one bg-white bg-opacity-75 w-25 close">Mauvaise réponse</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

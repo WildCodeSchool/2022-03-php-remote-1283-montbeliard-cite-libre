@@ -1,0 +1,40 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Liste des utilisateurs</h1>
+    {% include "admin/include/_search_form.html.twig" %}
+
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-dark">
+                <th>Nom</th>
+                <th>Rôle(s)</th>
+                <th>Classe</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in pagination %}
+                    <tr {% if loop.index is odd %}class="color"{% endif %}>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.roles ? user.roles|json_encode : 'aucun rôle' }}</td>
+                        <td>{{ user.classe ? user.classe.classe : 'pas de classe trouvé' }}</td>
+                        <td>
+                            <a class="btn btn-outline-primary" href="{{ path('manage_users_show', {'id': user.id}) }}"><i class="bi bi-eye"></i> afficher</a>
+                            <a class="btn btn-outline-primary" href="{{ path('manage_users_edit', {'id': user.id}) }}"><i class="bi bi-pencil"></i> éditer</a>
+                        </td>
+                    </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">aucun utilisateur trouvée</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+{% endblock %}

@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Question</h1>
-    {% autoescape false %}
+
         <table class="table table-hover">
             <tbody>
                 <tr>
@@ -12,7 +12,7 @@
                     <th class="table-dark">Niveau</th>
                 </tr>
                 <tr>
-                    <td>{{ question.question }}</td>
+                    <td>{{ question.question|raw }}</td>
                     <td>{{ question.level }}</td>
                 </tr>
                 {% for answer in question.answers %}
@@ -21,13 +21,12 @@
                         <th class="table-primary">Correcte</th>
                     </tr>
                     <tr>
-                        <td>{{ answer.answer }}</td>
+                        <td>{{ answer.answer|raw }}</td>
                         <td>{{ answer.isCorrect ? '🟢 oui' : '❌ non' }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-    {% endautoescape %}
 
     <a class="btn btn-outline-primary" href="{{ path('admin_question_index') }}"><i class="bi bi-backspace"></i> retour à la liste</a>
 

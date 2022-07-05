@@ -1,18 +1,17 @@
 .board {
-
     height: 80vh;
     overflow: auto;
     position: relative;
 
     .bg-image {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: -1;
-        opacity: 0.5;
-        background-image: url('/assets/images/plateau_vide.jpg');
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    opacity: 0.5;
+    background-image: url('/assets/images/plateau_vide.jpg');
 
         @include media-breakpoint-down(lg) {
 
@@ -54,7 +53,7 @@
 
 
 
-.ingame {
+.body-game {
     background-image: url('/assets/images/plateau_jeu.jpg');
     background-repeat: no-repeat;
     height: 85vh;
@@ -129,7 +128,6 @@
             color: $light;
             font-size: 0.8rem;
             font-family: 'Manuale';
-            z-index: 1;
             box-shadow: 1px 2px 3px 2px rgba(255, 255, 255, 0.38) inset;
 
         }

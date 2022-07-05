@@ -12,6 +12,7 @@ import './styles/app.scss';
 import './confettiparty';
 import './cardparchment';
 import './cardquestion';
+import './diceanimation';
 
 // start the Stimulus application
 import './bootstrap';

@@ -41,7 +41,8 @@ class GameController extends AbstractController
     public function checkingTheAnswers(PointsManager $pointsManager): Response
     {
         if ($_POST["verif"] == "true") {
-            $pointsManager->calcuatePoints(100);
+            //requete bdd
+            $pointsManager->calcuatePoints([]);//<= retour de la requete
         }
         return $this->redirectToRoute('game_progress');
     }

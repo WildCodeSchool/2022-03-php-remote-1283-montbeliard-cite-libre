@@ -39,6 +39,20 @@ class CardRepository extends ServiceEntityRepository
         }
     }
 
+    // public function selectRandomByLevel(int $level, int $gameId): array
+    // {
+    //     return $this->createQueryBuilder('c')
+    //         ->leftJoin('c.card_won', 'cw', 'WITH', 'cw.game=:gameId')
+    //         ->addSelect('RAND() as HIDDEN rand')
+    //         ->where('c.id !== cw.id')
+    //         ->setParameter(':level', $level)
+    //         ->setParameter(':gameId', $gameId)
+    //         ->orderBy('rand')
+    //         ->setMaxResults(':level')
+    //         ->getQuery()
+    //         ->getResult();
+    // }
+
 //    /**
 //     * @return Card[] Returns an array of Card objects
 //     */

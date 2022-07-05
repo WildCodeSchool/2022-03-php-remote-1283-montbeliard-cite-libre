@@ -11,6 +11,12 @@
                 <button class="navbar-toggler me-3 mt-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                     <span class="navbar-toggler-icon burger"></span>
                 </button>
+            {% else %}
+            <a class="navbar-brand" href="/">1283, Montbéliard cité libre</a>
+                <button class="navbar-toggler ms-auto me-3 mt-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                    <span class="navbar-toggler-icon burger"></span>
+                </button>
+        {% endif %}
             </span>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">

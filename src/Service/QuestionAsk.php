@@ -56,8 +56,9 @@ class QuestionAsk
         $apocalypses = $session->get('apocalypses');
         $this->cardApocalypse = $apocalypses[0];
         $session->set('apocalypse', $apocalypses[0]);
-
+        $session->set('question', null);
         $this->replaceCardApocalypse();
+        $this->addTurn();
         return $this->cardApocalypse;
     }
 
@@ -69,6 +70,14 @@ class QuestionAsk
         $apocalypses[] = $firstCard;
         $session->set('apocalypses', $apocalypses);
     }
+    public function addTurn(): void
+    {
+        $session = $this->requestStack->getSession();
+        $game = $this->gameRepository->findOneById($session->get('game')->getId());
+        $game->setTurn($game->getTurn() + 1);
+        $this->gameRepository->add($game, true);
+        $session->set('game', $game);
+    }
 
     public function addQuestionAsked(Question $question): void
     {
@@ -78,10 +87,8 @@ class QuestionAsk
         $questionAsked = new QuestionAsked();
         $questionAsked->setQuestion($question);
         $questionAsked->setGame($game);
-        $game->setTurn($game->getTurn() + 1);
-        $this->gameRepository->add($game, true);
+        $this->addTurn();
         $this->qAskedRepository->add($questionAsked, true);
-        $session->set('game', $game);
         $session->set('question', $question);
     }
 }

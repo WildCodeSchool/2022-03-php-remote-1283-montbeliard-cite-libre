@@ -68,14 +68,14 @@ class GameController extends AbstractController
 
 
     #[Route('/progress/dice', name: '_dice')]
-    public function dice(RollDice $diceRoll, QuestionAsk $question): Response
+    public function dice(RollDice $diceRoll, QuestionAsk $questionAsk): Response
     {
         $diceRoll->setRollDice();
         $roll = $diceRoll->getRoll();
         if ($roll === 1) {
-            $question->apocalypse();
+            $questionAsk->apocalypse();
         } else {
-            $question->rollQuestion($roll);
+            $questionAsk->rollQuestion($roll);
         }
         return $this->redirectToRoute('game_progress', []);
     }

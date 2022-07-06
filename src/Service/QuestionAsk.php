@@ -12,6 +12,7 @@ use App\Repository\CardApocalypseRepository;
 use App\Repository\CardWonRepository;
 use App\Repository\GameRepository;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\VarDumper\VarDumper;
 
 class QuestionAsk
 {
@@ -25,15 +26,11 @@ class QuestionAsk
         QuestionRepository $questionRepository,
         QuestionAskedRepository $qAskedRepository,
         RequestStack $requestStack,
-        private CardApocalypseRepository $cardApoRepository,
-        private CardWonRepository $cardWonRepository,
         private GameRepository $gameRepository
     ) {
         $this->questionRepository = $questionRepository;
         $this->qAskedRepository = $qAskedRepository;
         $this->requestStack = $requestStack;
-        $this->cardApoRepository = $cardApoRepository;
-        $this->cardWonRepository = $cardWonRepository;
         $this->gameRepository = $gameRepository;
     }
 
@@ -56,15 +53,22 @@ class QuestionAsk
     public function apocalypse(): CardApocalypse
     {
         $session = $this->requestStack->getSession();
-        $this->cardApocalypse = $this->cardApoRepository->selectRandom()[0];
-        $cardWon = new CardWon();
-        $cardWon->setCardApocalypse($this->cardApocalypse);
-        $this->cardWonRepository->add($cardWon, true);
-        $session->set('question', $this->cardApocalypse);
+        $apocalypses = $session->get('apocalypses');
+        $this->cardApocalypse = $apocalypses[0];
+        $session->set('apocalypse', $apocalypses[0]);
 
+        $this->replaceCardApocalypse();
         return $this->cardApocalypse;
     }
 
+    public function replaceCardApocalypse(): void
+    {
+        $session = $this->requestStack->getSession();
+        $apocalypses = $session->get('apocalypses');
+        $firstCard = array_shift($apocalypses);
+        $apocalypses[] = $firstCard;
+        $session->set('apocalypses', $apocalypses);
+    }
 
     public function addQuestionAsked(Question $question): void
     {

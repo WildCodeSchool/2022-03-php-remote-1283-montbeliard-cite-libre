@@ -59,7 +59,7 @@
 				<p class="text-muted  ps-1">Temps restant</p>
 				<div class="bloc-time  d-flex justify-content-around pe-3"><img class="" src="{{asset('build/images/clock.svg')}}" aria-label="Chrono" alt="temps écoulé">
 
-					<p>44:33</p>
+					<p>{{ app.session.get('game').getDuration }}</p>
 				</div>
 			</div>
 		</div>

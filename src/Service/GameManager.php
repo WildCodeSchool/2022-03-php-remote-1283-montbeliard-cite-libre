@@ -31,7 +31,7 @@ class GameManager
         $game->setTurn(1);
         $game->setUser($user);
         $game->setScore(0);
-        $game->setDuration($interval->format('%H heure %I minutes %S secondes'));
+        $game->setDuration($interval->format('%I : %S'));
         $this->gameRepository->add($game, true);
         $session->set('game', $game);
     }

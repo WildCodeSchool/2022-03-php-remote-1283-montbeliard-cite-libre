@@ -6,6 +6,7 @@ use App\Entity\Game;
 use App\Form\GameType;
 use App\Service\PointsManager;
 use App\Repository\AnswerRepository;
+use App\Repository\CardRepository;
 use App\Repository\GameRepository;
 use App\Service\RollDice;
 use App\Service\QuestionAsk;
@@ -52,9 +53,6 @@ class GameController extends AbstractController
         QuestionAskedRepository $qAskedRepository
     ): Response {
         $session = $requestStack->getSession();
-        if (!$session->has('points')) {
-            $session->set('points', 0);
-        }
         $answer = null;
         $qAsked = null;
         $game = $gameRepository->findOneById($session->get('game')->getId());
@@ -91,11 +89,15 @@ class GameController extends AbstractController
     }
 
     #[Route('/check', name: '_checking_answers', methods: ['POST'])]
-    public function checkingTheAnswers(PointsManager $pointsManager): Response
+    public function checkingTheAnswers(
+        PointsManager $pointsManager,
+        CardRepository $cardRepository
+        ): Response
     {
-        if ($_POST["verif"] == "true") {
-            //requete bdd
-            $pointsManager->calcuatePoints([]);//<= retour de la requete
+        if ($_POST["verif"] !== "false") {
+            $cards = $cardRepository->selectRandomByNumber($_POST["verif"]);
+            // dd($cards);
+            $pointsManager->calcuatePoints($cards);//<= retour de la requete
         }
         return $this->redirectToRoute('game_progress');
     }

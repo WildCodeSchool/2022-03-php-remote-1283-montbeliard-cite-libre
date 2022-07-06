@@ -2,24 +2,28 @@
 
 namespace App\Service;
 
+use App\Repository\GameRepository;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class PointsManager
 {
-    private RequestStack $requestStack;
-
-    public function __construct(RequestStack $requestStack)
+    public function __construct(
+        private RequestStack $requestStack,
+        private GameRepository $gameRipository
+        )
     {
         $this->requestStack = $requestStack;
+        $this->gameRipository = $gameRipository;
     }
 
     public function calcuatePoints(array $cards): void
     {
-        $session = $this->requestStack->getSession();
-        $points =  $session->get('points');
+        $game =  $this->requestStack->getSession()->get('game');
+        $points = $game->getScore();
         foreach ($cards as $card) {
-            $rules = json_decode($card->getRule(), true);
+            $rules = $card->getRule();
             if ($card->getFamily() === 'Apocalypse') {
+                dd($rules);
                 if ($rules['type'] === 'points') {
                     $points -= $rules['value'];
                 } elseif ($rules['type'] === 'artisant') {
@@ -35,12 +39,20 @@ class PointsManager
             } else {
                 if (!empty($rules['association'])) {
                     #vérifier si la carte associer est bien dans le classeur
-                } elseif (!empty($rules['constraint'])) {
+                    dd('bonus');
+                }
+
+                if (!empty($rules['constraint'])) {
+                    dd('malus');
                     # requéte apocalypse
+                }
+
+                if (empty($rules['association']) && empty($rules['constraint'])) {
+                    $points += $card->getCredit();
                 }
                 $points += 10;
             }
         }
-        $session->set('points', $points);
+    $game->setScore($points);
     }
 }

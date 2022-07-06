@@ -53,6 +53,17 @@ class CardRepository extends ServiceEntityRepository
     //         ->getResult();
     // }
 
+    public function selectRandomByNumber(int $number): array
+    {
+        return $this->createQueryBuilder('c')
+            ->addSelect('RAND() as HIDDEN rand')
+            // ->setParameter(':number', $number)
+            ->orderBy('rand')
+            ->setMaxResults($number)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Card[] Returns an array of Card objects
 //     */

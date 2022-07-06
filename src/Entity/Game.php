@@ -40,12 +40,17 @@ class Game
     #[ORM\OneToMany(mappedBy: 'Game', targetEntity: QuestionAsked::class)]
     private Collection $questionAskeds;
 
+    #[ORM\OneToMany(mappedBy: 'game', targetEntity: CardWon::class)]
+    private Collection $cardWons;
+
+
     #[ORM\Column(type: 'integer', nullable: true)]
     private int $turn;
 
     public function __construct()
     {
         $this->questionAskeds = new ArrayCollection();
+        $this->cardWons = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -167,6 +172,35 @@ class Game
         return $this;
     }
 
+    /**
+     * @return Collection<int, CardWon>
+     */
+    public function getCardWons(): Collection
+    {
+        return $this->cardWons;
+    }
+
+    public function addCardWon(CardWon $cardWon): self
+    {
+        if (!$this->cardWons->contains($cardWon)) {
+            $this->cardWons[] = $cardWon;
+            $cardWon->setGame($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCardWon(CardWon $cardWon): self
+    {
+        if ($this->cardWons->removeElement($cardWon)) {
+            // set the owning side to null (unless already changed)
+            if ($cardWon->getGame() === $this) {
+                $cardWon->setGame(null);
+            }
+        }
+
+        return $this;
+    }
     public function getTurn(): ?int
     {
         return $this->turn;

@@ -2,6 +2,18 @@
 
 {% block title %}Partie de jeu d'histoire
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if app.session.get('roll') is defined %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function(event) {
+                rollDice({{ app.session.get('roll') }})
+            })
+        </script>
+    {% endif %}
+{% endblock %}
+
 {% block body %}
 
 	<div class="row gx-0 d-flex justify-content-between">
@@ -63,13 +75,6 @@
 				<a class="mx-auto d-inline btn-dice btn btn-secondary my-5" href="{{path('game_dice')}}">Lancez le dé</a>
 
 				<div class="container">
-					<h1 class="h1">
-
-						{% if app.session.get('question').content is defined and  app.session.get('question').content is not empty  %}
-							{{app.session.get('question').content}}
-
-						{% endif %}
-					</h1>
 					<div class="row gx-0 jeu d-flex justify-content-around">
 						<div class="col-xs-12  col-md-4   artisans cardgame"><img class="left-img" src="{{asset('build/images/dos_artisans.jpg')}}" alt="dos artisan"></div>
 						<div class="classeur col-xs-12 col-md-4 d-flex align-items-center">

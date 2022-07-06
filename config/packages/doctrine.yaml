@@ -17,7 +17,7 @@ doctrine:
                 alias: App
         dql:
             numeric_functions:
-                Rand: App\Bundle\DQL\RandFunction
+                Rand: App\Bundle\Dql
 
 when@test:
     doctrine:

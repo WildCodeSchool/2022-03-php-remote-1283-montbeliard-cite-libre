@@ -40,14 +40,11 @@ class CardApocalypseRepository extends ServiceEntityRepository
     }
 
 
-    public function selectRandom(): array
+    public function selectAllRandom(): array
     {
         return $this->createQueryBuilder('ca')
-            ->leftJoin('ca.cardWons', 'cw')
             ->addSelect('RAND() as HIDDEN rand')
-            ->where('cw.cardApocalypse IS NULL')
             ->orderBy('rand')
-            ->setMaxResults(1)
             ->getQuery()
             ->getResult();
     }

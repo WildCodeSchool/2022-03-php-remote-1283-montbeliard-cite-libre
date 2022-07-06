@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Entity\Game;
+use App\Repository\CardApocalypseRepository;
 use App\Repository\GameRepository;
 use DateTimeImmutable;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -13,11 +14,13 @@ class GameManager
     public function __construct(
         private GameRepository $gameRepository,
         private RequestStack $requestStack,
-        private Security $security
+        private Security $security,
+        private CardApocalypseRepository $cardApoRepository,
     ) {
         $this->gameRepository = $gameRepository;
         $this->requestStack = $requestStack;
         $this->security = $security;
+        $this->cardApoRepository = $cardApoRepository;
     }
 
     public function setGame(Game $game): void
@@ -31,8 +34,10 @@ class GameManager
         $game->setTurn(1);
         $game->setUser($user);
         $game->setScore(0);
-        $game->setDuration($interval->format('%H heure %I minutes %S secondes'));
+        $game->setDuration($interval->format('%I : %S'));
         $this->gameRepository->add($game, true);
+        $apocalypses = $this->cardApoRepository->selectAllRandom();
+        $session->set('apocalypses', $apocalypses);
         $session->set('game', $game);
     }
 }

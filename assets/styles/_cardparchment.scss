@@ -5,8 +5,8 @@
     height: 90vh;
     width: 70%;
     left: 15%;
+position: relative;
 
-    position: relative;
     .parchment-body {
         padding: 1rem;
         position: absolute;
@@ -24,6 +24,35 @@
     }
 }
 
+.close-modal {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 32px;
+    height: 32px;
+    opacity: 0.5;
+  }
+  .close-modal:hover {
+    opacity: 1;
+  }
+  .close-modal:before, .close-modal:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: #333;
+  }
+  .close-modal:before {
+    transform: rotate(45deg);
+  }
+  .close-modal:after {
+    transform: rotate(-45deg);
+  }
+
 .body-bg {
     opacity: 0.5;
 }
+
+
+

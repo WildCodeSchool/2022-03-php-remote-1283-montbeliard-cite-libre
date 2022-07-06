@@ -4,14 +4,14 @@
 {% endblock %}
 
 {% block javascripts %}
-    {{ parent() }}
-    {% if app.session.get('roll') is defined %}
-        <script>
-            document.addEventListener('DOMContentLoaded', function(event) {
-                rollDice({{ app.session.get('roll') }})
-            })
-        </script>
-    {% endif %}
+	{{ parent() }}
+	{% if app.session.get('roll') is defined %}
+		<script>
+			document.addEventListener('DOMContentLoaded', function (event) {
+rollDice({{ app.session.get('roll') }})
+})
+		</script>
+	{% endif %}
 {% endblock %}
 
 {% block body %}
@@ -46,7 +46,7 @@
 		<div class=" col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
 			<div class=" text-image">
 				<p class="text-muted  text-center">Max :1000 points</p>
-				<div class="bloc-point   d-flex justify-content-around pe-3"><img class="" src="{{asset('build/images/cup.svg')}}" aria-label="Points" alt="points">
+				<div class="bloc-point d-flex justify-content-around pe-3"><img class="" src="{{asset('build/images/cup.svg')}}" aria-label="Points" alt="points">
 					<p>{{app.session.get('game').getScore}}
 						pts</p>
 				</div>

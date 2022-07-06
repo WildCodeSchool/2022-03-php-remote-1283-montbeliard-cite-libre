@@ -37,7 +37,7 @@ class Game
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'games')]
     private ?UserInterface $user;
 
-    #[ORM\OneToMany(mappedBy: 'Game', targetEntity: QuestionAsked::class)]
+    #[ORM\OneToMany(mappedBy: 'game', targetEntity: QuestionAsked::class)]
     private Collection $questionAskeds;
 
     #[ORM\OneToMany(mappedBy: 'game', targetEntity: CardWon::class)]

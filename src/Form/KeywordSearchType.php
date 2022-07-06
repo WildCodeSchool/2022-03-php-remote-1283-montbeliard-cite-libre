@@ -16,7 +16,7 @@ class KeywordSearchType extends AbstractType
                 'attr' => ['placeholder' => 'Entrez un mot-clé'],
                 'label' => ' ',
                 'required' => false
-                ]);
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

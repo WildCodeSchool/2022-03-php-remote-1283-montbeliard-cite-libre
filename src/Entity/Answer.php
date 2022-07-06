@@ -21,7 +21,7 @@ class Answer
 
     #[ORM\Column(type: 'text')]
     #[Assert\NotBlank(message: 'Ce champ ne doit pas être vide')]
-    private string $answer;
+    private string $content;
 
     #[ORM\Column(type: 'boolean')]
     private bool $isCorrect;
@@ -43,14 +43,14 @@ class Answer
         return $this;
     }
 
-    public function getAnswer(): ?string
+    public function getContent(): ?string
     {
-        return $this->answer;
+        return $this->content;
     }
 
-    public function setAnswer(string $answer): self
+    public function setContent(string $content): self
     {
-        $this->answer = $answer;
+        $this->content = $content;
 
         return $this;
     }

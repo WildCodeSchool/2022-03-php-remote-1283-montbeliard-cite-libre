@@ -1,17 +1,11 @@
-let dice = document.getElementById('dice');
-var outputDiv = document.getElementById('diceResult');
-
-function rollDice() {
-    let result = Math.floor(Math.random() * (6 - 1 + 1)) + 1;
+window.rollDice = (result) => {
+    let dice = document.getElementById('dice');
     dice.dataset.side = result;
     dice.classList.toggle("reRoll");
-
-    outputDiv.classList.remove("reveal");
-    outputDiv.classList.add("hide");
-    outputDiv.innerHTML = "You've got " + result;
-    setTimeout(function () {
-        outputDiv.classList.add("reveal");
-    }, 1500);
+    const modal = document.getElementById("myModal");
+    const ingame = document.querySelector('.ingame');
+    setTimeout(function() {
+        modal.classList.remove('d-none');
+        ingame.style.opacity = '0.5'
+    }, 2000)
 }
-
-dice.addEventListener("click", rollDice);

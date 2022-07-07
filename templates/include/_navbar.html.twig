@@ -18,35 +18,71 @@
 					<h5 class="offcanvas-title me-auto" id="offcanvasNavbarLabel">1283, Montbéliard, cité libre</h5>
 				</div>
 				<div class="offcanvas-body bg-dark text-light">
-					<ul class="navbar-nav   pe-3">
+					<ul class="navbar-nav h-100 d-flex flex-column  pe-3">
 						<li class="nav-item">
-							<a class="nav-link active mt-5 fs-5 text-light text-center link-navbar" aria-current="page" href="/">Accueil</a>
+							<a class="nav-link active fs-5 text-light text-center link-navbar" aria-current="page" href="/">
+                                Accueil
+                            </a>
 						</li>
-						<li class="nav-item">
-							{% if app.user %}
-								<a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="{{ path('app_logout') }}">
-									Se déconnecter</a>
-								<a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="#">
-									Mon compte</a>
-							{% else %}
-								<a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="{{ path('login') }}">
-									Se connecter</a>
-							{% endif %}
-						</li>
+                        <li class="nav-item">
+                            <a class="nav-link fs-5 text-light text-center link-navbar" href="{{ path('game_rule_index') }}">
+                                <i class="fas fa-book-bookmark"></i>
+                                Règles du jeu
+                            </a>
+                        </li>
+                        <li class="nav-item"><hr></li>
+                        {% if is_granted('ROLE_USER') %}
+                            <li class="nav-item">
+                                <a class="nav-link fs-5 text-light text-center link-navbar" href="#">
+                                    <i class="fas fa-chart-column"></i>
+                                    Mes scores
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fs-5 text-light text-center link-navbar" href="#">
+                                    <i class="fas fa-ranking-star"></i>
+                                    Classement
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fs-5 text-light text-center link-navbar" href="#">
+                                    <i class="fas fa-user"></i>
+                                    Mon compte
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fs-5 text-light text-center link-navbar" href="{{ path('app_logout') }}">
+                                    <i class="fas fa-sign-out"></i>
+                                    Déconnexion
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link fs-5 text-light text-center link-navbar" href="{{ path('login') }}">
+                                    <i class="fas fa-sign-in"></i>
+                                    Connexion
+                                </a>
+                            </li>
+                        {% endif %}
+                        <li class="mt-auto"></li>
 						{% if is_granted("ROLE_ADMIN") %}
-							<li class="nav-item">
-								<a class="nav-link active mt-5 fs-5 text-light text-center link-navbar" aria-current="page" href="{{ path('admin') }}">Tableau de bord admin</a>
+							<li class="nav-item ">
+								<a class="nav-link active fs-5 text-light text-center link-navbar"
+                                   href="{{ path('admin') }}">
+                                    <i class="fas fa-gauge-high"></i>
+                                    Tableau de bord admin
+                                </a>
 							</li>
 						{% endif %}
-						<li class="nav-item">
-							<a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="#">Mes scores</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="#">Classement</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="{{ path('game_rule_index') }}">Règles du jeu</a>
-						</li>
+                        <li class="nav-item text-center">
+                            <a href="#" class=" fs-6 text-light link-navbar">
+                                Crédits
+                            </a>
+                            |
+                            <a href="{{ path('app_legal_notices') }}" class=" fs-6 text-light link-navbar">
+                                Mentions légales
+                            </a>
+                        </li>
 					</ul>
 				</div>
 			</div>

@@ -17,9 +17,9 @@
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</head>
-	<body class="h-100 d-flex flex-column">
+	<body class="h-100 d-flex flex-column justify-content-center">
 		{% include "include/_navbar.html.twig" %}
-		    <main class="container"> {% block body %}{% endblock %}
+		    <main class="container mt-auto"> {% block body %}{% endblock %}
 			</main>
 		{% include "include/_footer.html.twig" %}
 	</body>

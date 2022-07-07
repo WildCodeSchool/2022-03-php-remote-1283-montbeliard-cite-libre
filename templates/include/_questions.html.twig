@@ -1,7 +1,7 @@
-<div id="myModal" class="card-parchment position-absolute z-1000 d-none">
-
+<div id="myModal" class="card-parchment card-parchment--modal position-absolute z-1000 d-none">
+    <div class="parchment-background"></div>
 	<div class="parchment-body">
-		<span class="close-modal"></span>
+		<button aria-label="close" class="close-modal"></button>
 		{% if app.session.get('question').content is defined and  app.session.get('question').content is not empty  %}
 			<p class="fs-3 mb-1">
 				Niveau

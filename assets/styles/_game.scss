@@ -56,9 +56,48 @@
 .body-game {
     background-image: url('/assets/images/plateau_jeu.jpg');
     background-repeat: no-repeat;
-    height: 85vh;
+    height: 100vh;
     overflow: auto;
     background-size: 100% 100%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 2fr 1fr;
+    grid-template-areas:
+        "head head head"
+        "left center right"
+        "footer footer footer"
+    ;
+
+    .widget-top {
+        grid-area: head;
+    }
+
+    .deck-left,
+    .deck-right,
+    .center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .deck-left {
+        grid-area: left;
+    }
+    .center {
+        grid-area: center;
+    }
+    .deck-right {
+        grid-area: right;
+    }
+
+    .dices {
+        grid-area: footer;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: end;
+    }
+
 
     @include media-breakpoint-down(lg) {
         background-image: url('/assets/images/plateau_jeu_phone.jpg');
@@ -98,11 +137,11 @@
     }
 
     .jeu-container {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 0.5fr 1.5fr;
-        gap: 0px 0px;
-        grid-auto-flow: row;
+        //display: grid;
+        //grid-template-columns: 1fr;
+        //grid-template-rows: 0.5fr 1.5fr;
+        //gap: 0px 0px;
+        //grid-auto-flow: row;
 
     }
 
@@ -147,16 +186,16 @@
             }
         }
 
-        .jeu-container {
-            display: grid;
-            grid-template-columns: 0.1fr 4fr;
-            grid-template-rows: 0.5fr 1.5fr;
-            gap: 0px 0px;
-            grid-auto-flow: row;
-            grid-template-areas:
-                "card btn"
-                "card jeu";
-        }
+        //.jeu-container {
+        //    display: grid;
+        //    grid-template-columns: 0.1fr 4fr;
+        //    grid-template-rows: 0.5fr 1.5fr;
+        //    gap: 0px 0px;
+        //    grid-auto-flow: row;
+        //    grid-template-areas:
+        //        "card btn"
+        //        "card jeu";
+        //}
 
         .btn-dice {
             grid-area: btn;
@@ -168,6 +207,9 @@
         }
 
         .show-allcard {
+            position: fixed;
+            left: 0;
+            top: 200px;
             grid-area: card;
             display: inline-block;
 

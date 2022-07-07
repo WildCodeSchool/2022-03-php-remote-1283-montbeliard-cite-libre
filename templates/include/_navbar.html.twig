@@ -32,6 +32,14 @@
                         </li>
                         <li class="nav-item"><hr></li>
                         {% if is_granted('ROLE_USER') %}
+                            {% if app.session.get('game') %}
+                                <li class="nav-item">
+                                    <a class="nav-link fs-5 text-light text-center link-navbar" href="{{ path('game_progress') }}">
+                                        <i class="fas fa-dice-six"></i>
+                                        Partie en cours
+                                    </a>
+                                </li>
+                            {% endif %}
                             <li class="nav-item">
                                 <a class="nav-link fs-5 text-light text-center link-navbar" href="#">
                                     <i class="fas fa-chart-column"></i>

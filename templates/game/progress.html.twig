@@ -1,171 +1,212 @@
-{% extends '/game/base.html.twig' %}
+{% extends 'layout/full-page.html.twig' %}
 
 {% block title %}Partie de jeu d'histoire
 {% endblock %}
 
 {% block javascripts %}
-	{{ parent() }}
-	{% if app.session.get('roll') is defined %}
-		<script>
-			document.addEventListener('DOMContentLoaded', function (event) {
-rollDice({{ app.session.get('roll') }})
-})
-		</script>
-	{% endif %}
-
+    {{ parent() }}
+    {% if app.session.get('roll') is defined %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function (event) {
+                rollDice({{ app.session.get('roll') }})
+            })
+        </script>
+    {% endif %}
 {% endblock %}
 
-{% block body %}
+{% block main %}
 
-	<div class="row gx-0 d-flex justify-content-between">
-		<div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
-			<div class="text-image">
-				<p class="text-muted text-center">Tour</p>
-				<div class="bloc-turn d-flex justify-content-around pe-3"><img class="" src="{{asset('build/images/turn.svg')}}" aria-label="Tour" alt="tour joué">
-					<p>
-						{{app.session.get('game').getTurn}}</p>
-				</div>
-			</div>
+    <div class="body-game">
+        {# allcard #}
+        <div class="show-allcard ">
+            <h2>10 dernières cartes gagnées</h2>
+            <div class="show-card mb-1 position-relative">Le menuisier
+                <img class="position-absolute top-50 start-100 translate-middle card-won"
+                     src="{{ asset('build/images/menuisier.jpg') }}" alt="carte gagnée"></div>
+            <div class="show-card mb-1 position-relative">Le briquier et le maçon coucheur
+                <img class="position-absolute top-50 start-100 translate-middle card-won"
+                     src="{{ asset('build/images/briquier.jpg') }}" alt="carte gagnée">
+            </div>
+            <div class="show-card mb-1 position-relative">carte gagnées</div>
+            <div class="show-card mb-1 position-relative">carte gagnées</div>
+            <div class="show-card mb-1 position-relative">carte gagnées</div>
+            <div class="show-card mb-1 position-relative">carte gagnées</div>
+            <div class="show-card mb-1 position-relative">carte gagnées</div>
+            <div class="show-card mb-1 position-relative">carte gagnées</div>
+            <div class="show-card mb-1 position-relative">carte gagnées</div>
+            <div class="show-card mb-1 position-relative">carte gagnées</div>
 
-		</div>
-		<div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
-			<div class="text-image">
-				<p class="text-muted   text-center">Cartes</p>
-				<div class="bloc-save  d-flex justify-content-around pe-3 "><img class="" src="{{asset('build/images/save.svg')}}" aria-label="Gagnées" alt="carte gagnées">
-					<p>
-						{% if qAsked is defined and qAsked is not empty %}
-							{{qAsked|length}}
-							{% else %}0
-						{% endif %}
+            <a class="btn-classeur btn btn-primary" href="{{ path('game_collection') }}">Classeur de cartes</a>
 
-						/ 58</p>
-				</div>
+        </div>
 
-			</div>
+        {# widget-top #}
+        <div class="row gx-0 d-flex justify-content-between widget-top">
+            <div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
+                <div class="text-image">
+                    <p class="text-muted text-center">Tour</p>
+                    <div class="bloc-turn d-flex justify-content-around pe-3">
+                        <img src="{{ asset('build/images/turn.svg') }}"
+                             aria-label="Tour" alt="tour joué">
+                        <p>{{ app.session.get('game').getTurn }}</p>
+                    </div>
+                </div>
 
-		</div>
-		<div class=" col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
-			<div class=" text-image">
-				<p class="text-muted  text-center">Max :1000 points</p>
-				<div class="bloc-point d-flex justify-content-around pe-3"><img class="" src="{{asset('build/images/cup.svg')}}" aria-label="Points" alt="points">
-					<p>{{app.session.get('game').getScore}}
-						pts</p>
-				</div>
+            </div>
+            <div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
+                <div class="text-image">
+                    <p class="text-muted   text-center">Cartes</p>
+                    <div class="bloc-save  d-flex justify-content-around pe-3 ">
+                        <img src="{{ asset('build/images/save.svg') }}"
+                             aria-label="Gagnées"
+                             alt="carte gagnées">
+                        <p>
+                            {% if qAsked is defined and qAsked is not empty %}
+                                {{ qAsked|length }}
+                            {% else %}0
+                            {% endif %}
 
-			</div>
+                            / 58</p>
+                    </div>
 
-		</div>
-		<div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
-			<div class="text-image">
-				<p class="text-muted  ps-1">Temps restant</p>
-				<div class="bloc-time  d-flex justify-content-around pe-3"><img class="" src="{{asset('build/images/clock.svg')}}" aria-label="Chrono" alt="temps écoulé">
+                </div>
 
-					<p>{{ app.session.get('game').getDuration }}</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="row d-flex w-100"></div>
+            </div>
+            <div class=" col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
+                <div class=" text-image">
+                    <p class="text-muted  text-center">Max :1000 points</p>
+                    <div class="bloc-point d-flex justify-content-around pe-3">
+                        <img class=""
+                             src="{{ asset('build/images/cup.svg') }}"
+                             aria-label="Points" alt="points">
+                        <p>{{ app.session.get('game').getScore }}pts</p>
+                    </div>
 
-	<div class="ingame">
-		<div class="container d-flex flex-column p-2 justify-content-between h-100">
+                </div>
 
-			<div class="jeu-container">
+            </div>
+            <div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
+                <div class="text-image">
+                    <p class="text-muted  ps-1">Temps restant</p>
+                    <div class="bloc-time  d-flex justify-content-around pe-3">
+                        <img class=""
+                             src="{{ asset('build/images/clock.svg') }}"
+                             aria-label="Chrono"
+                             alt="temps écoulé">
 
-				<div class="mx-auto d-inline btn-dice my-5">
-					{% include "include/_diceanimation.html.twig" %}
-				</div>
-				<a class="mx-auto d-inline btn-dice btn btn-secondary my-5" href="{{path('game_dice')}}">Lancez le dé</a>
+                        <p>{{ app.session.get('game').getDuration }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="deck-left">
+            <div class="artisans cardgame">
+                <img class="left-img"
+                     src="{{ asset('build/images/dos_artisans.jpg') }}"
+                     alt="dos artisan">
+            </div>
+        </div>
+
+        <div class="center">
+            <div class="d-flex flex-column align-items-center justify-content-center">
+                {% include "include/_diceanimation.html.twig" %}
+                {% if app.session.get('question').content is defined and  app.session.get('question').content is not empty %}
+                    <button class="mx-auto show-modal btn btn-one my-5">Afficher la question active
+                    </button>
+
+                {% endif %}
+            </div>
+            {# <a class="mx-auto d-inline btn-dice btn btn-secondary my-5" href="{{ path('game_dice') }}"> #}
+            {# Lancez le #}
+            {# dé #}
+            {# </a> #}
+        </div>
+
+        <div class="deck-right">
+            <div class="artisans cardgame">
+                <img class="right-img"
+                     src="{{ asset('build/images/dos_apocalypse.svg') }}"
+                     alt="dos apocalyspe">
+            </div>
+        </div>
+
+        <div class="dices">
+
+            <div class="{{ app.session.get('roll') == 2 ? 'question-card-selected' : 'question-card' }} cardgame">
+                <div class="two-face">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+            <div class="{{ app.session.get('roll') == 3 ? 'question-card-selected' : 'question-card' }} cardgame">
+                <div class="three-face">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+            <div class="{{ app.session.get('roll') == 4 ? 'question-card-selected' : 'question-card' }} cardgame">
+                <div class="four-face">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+            <div class="{{ app.session.get('roll') == 5 ? 'question-card-selected' : 'question-card' }} cardgame">
+                <div class="five-face">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+            <div class="{{ app.session.get('roll') == 6 ? 'question-card-selected' : 'question-card' }} cardgame">
+                <div class="six-face">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    {% include "include/_questions.html.twig" %}
+    {# <div class="ingame"> #}
+    {# <div class="container d-flex flex-column p-2 justify-content-between h-100"> #}
+    {# <div class="jeu-container"> #}
+
+    {# <div class="mx-auto d-inline  my-5"> #}
+
+    {# </div> #}
 
 
-				<div class="container">
-					<div class="row gx-0 jeu d-flex justify-content-around">
-						<div class="col-xs-12  col-md-4   artisans cardgame"><img class="left-img" src="{{asset('build/images/dos_artisans.jpg')}}" alt="dos artisan"></div>
-						<div class=" col-xs-12 col-md-4 d-flex align-items-center">
-							<div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center w-100">
-								{% if app.session.get('question').content is defined and  app.session.get('question').content is not empty  %}
-									<button class="mx-auto show-modal btn btn-one my-5">Afficher la question active
-									</button>
+    {# <div class="container"> #}
+    {# <div class="row gx-0 jeu d-flex justify-content-around"> #}
 
-								{% endif %}
+    {# <div class="classeur col-xs-12 col-md-4 d-flex align-items-center"> #}
+    {# <button class=" mx-auto d-inline btn btn-secondary   h-5" type="submit">Classeur de cartes #}
+    {# </button> #}
+    {# </div> #}
 
-							</div>
-						</div>
-						<div class="col-xs-12 col-md-4   artisans cardgame"><img class="right-img" src="{{asset('build/images/dos_apocalypse.svg')}}" alt="dos apocalyspe"></div>
-					</div>
-				</div>
-				<div class="show-allcard ">
-					<h2>10 dernières cartes gagnées</h2>
-					<div class="show-card mb-1 position-relative">Le menuisier
-						<img class="position-absolute top-50 start-100 translate-middle card-won" src="{{asset('build/images/menuisier.jpg')}}" alt="carte gagnée"></div>
-					<div class="show-card mb-1 position-relative">Le briquier et le maçon coucheur
-						<img class="position-absolute top-50 start-100 translate-middle card-won" src="{{asset('build/images/briquier.jpg')}}" alt="carte gagnée">
-					</div>
-					<div class="show-card mb-1 position-relative">carte gagnées</div>
-					<div class="show-card mb-1 position-relative">carte gagnées</div>
-					<div class="show-card mb-1 position-relative">carte gagnées</div>
-					<div class="show-card mb-1 position-relative">carte gagnées</div>
-					<div class="show-card mb-1 position-relative">carte gagnées</div>
-					<div class="show-card mb-1 position-relative">carte gagnées</div>
-					<div class="show-card mb-1 position-relative">carte gagnées</div>
-					<div class="show-card mb-1 position-relative">carte gagnées</div>
-
-					<a class="btn-classeur btn btn-primary" href="{{ path('game_collection') }}">Classeur de cartes</a>
-
-				</div>
-
-			</div>
+    {# </div> #}
+    {# </div> #}
 
 
-			<div class="d-flex  justify-content-around flex-wrap">
-
-				<div class="{{ app.session.get('roll') == 2 ? 'question-card-selected' : 'question-card' }} cardgame">
-					<div class="two-face">
-						<span class="dot"></span>
-						<span class="dot"></span>
-					</div>
-				</div>
-				<div class="{{ app.session.get('roll') == 3 ? 'question-card-selected' : 'question-card' }} cardgame">
-					<div class="three-face">
-						<span class="dot"></span>
-						<span class="dot"></span>
-						<span class="dot"></span>
-					</div>
-				</div>
-				<div class="{{ app.session.get('roll') == 4 ? 'question-card-selected' : 'question-card' }} cardgame">
-					<div class="four-face">
-						<span class="dot"></span>
-						<span class="dot"></span>
-						<span class="dot"></span>
-						<span class="dot"></span>
-					</div>
-				</div>
-				<div class="{{ app.session.get('roll') == 5 ? 'question-card-selected' : 'question-card' }} cardgame">
-					<div class="five-face">
-						<span class="dot"></span>
-						<span class="dot"></span>
-						<span class="dot"></span>
-						<span class="dot"></span>
-						<span class="dot"></span>
-					</div>
-				</div>
-				<div class="{{ app.session.get('roll') == 6 ? 'question-card-selected' : 'question-card' }} cardgame">
-					<div class="six-face">
-						<span class="dot"></span>
-						<span class="dot"></span>
-						<span class="dot"></span>
-						<span class="dot"></span>
-						<span class="dot"></span>
-						<span class="dot"></span>
-					</div>
-				</div>
-
-			</div>
-		</div>
-		<a href="{{ path('game_reset')}}" type="button" class="mx-auto d-inline btn-dice btn btn-primary my-5">Reset</a>
+    {# </div> #}
 
 
-	</div>
 
-	{% include "include/_questions.html.twig" %}
+    {# </div> #}
+    {# <a href="{{ path('game_reset') }}" type="button" #}
+    {# class="mx-auto d-inline btn-dice btn btn-primary my-5">Reset</a> #}
+    {# </div> #}
+    {# #}
+    {# #}
 {% endblock %}

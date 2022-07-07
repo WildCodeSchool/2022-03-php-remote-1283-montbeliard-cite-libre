@@ -44,7 +44,6 @@ table {
 // fin du reset
 
 body{
-    padding-top: 1rem;
     width: 100vw;
     height: 100vh;
 }
@@ -70,6 +69,9 @@ h4 {
     color: $primary;
 }
 
+.pointer-event-none {
+    pointer-events: none;
+}
 /* font-family: 'Manuale', serif; */
 
 a {

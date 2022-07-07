@@ -12,6 +12,7 @@ rollDice({{ app.session.get('roll') }})
 })
 		</script>
 	{% endif %}
+
 {% endblock %}
 
 {% block body %}
@@ -64,9 +65,11 @@ rollDice({{ app.session.get('roll') }})
 			</div>
 		</div>
 	</div>
+	<div class="row d-flex w-100"></div>
 
 	<div class="ingame">
 		<div class="container d-flex flex-column p-2 justify-content-between h-100">
+
 			<div class="jeu-container">
 
 				<div class="mx-auto d-inline btn-dice my-5">
@@ -74,11 +77,19 @@ rollDice({{ app.session.get('roll') }})
 				</div>
 				<a class="mx-auto d-inline btn-dice btn btn-secondary my-5" href="{{path('game_dice')}}">Lancez le dé</a>
 
+
 				<div class="container">
 					<div class="row gx-0 jeu d-flex justify-content-around">
 						<div class="col-xs-12  col-md-4   artisans cardgame"><img class="left-img" src="{{asset('build/images/dos_artisans.jpg')}}" alt="dos artisan"></div>
-						<div class="classeur col-xs-12 col-md-4 d-flex align-items-center">
-							<button class=" mx-auto d-inline btn btn-secondary   h-5" type="submit">Classeur de cartes</button>
+						<div class=" col-xs-12 col-md-4 d-flex align-items-center">
+							<div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center w-100">
+								{% if app.session.get('question').content is defined and  app.session.get('question').content is not empty  %}
+									<button class="mx-auto show-modal btn btn-one my-5">Afficher la question active
+									</button>
+
+								{% endif %}
+
+							</div>
 						</div>
 						<div class="col-xs-12 col-md-4   artisans cardgame"><img class="right-img" src="{{asset('build/images/dos_apocalypse.svg')}}" alt="dos apocalyspe"></div>
 					</div>

@@ -54,7 +54,7 @@ class GameController extends AbstractController
         $answer = null;
         $qAsked = null;
         $game = $gameRepository->findOneById($session->get('game')->getId());
-        if ($session->has('question')) {
+        if ($session->has('question') and !empty($session->get('question'))) {
             $question = $session->get('question')->getID();
             $answer = $answerRepository->findBy(['id' => $question], ['id' => 'desc'], 1);
             $qAsked = $qAskedRepository->findBy(['game' => $game]);

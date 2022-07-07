@@ -18,7 +18,7 @@
 					<h5 class="offcanvas-title me-auto" id="offcanvasNavbarLabel">1283, Montbéliard, cité libre</h5>
 				</div>
 				<div class="offcanvas-body bg-dark text-light">
-					<ul class="navbar-nav h-100 d-flex flex-column  pe-3">
+					<ul class="navbar-nav h-100 d-flex flex-column align-items-start pe-3">
 						<li class="nav-item">
 							<a class="nav-link active fs-5 text-light text-center link-navbar" aria-current="page" href="/">
                                 Accueil
@@ -26,48 +26,55 @@
 						</li>
                         <li class="nav-item">
                             <a class="nav-link fs-5 text-light text-center link-navbar" href="{{ path('game_rule_index') }}">
-                                <i class="fas fa-book-bookmark"></i>
+                                <i class="fas fa-book-bookmark fa-fw"></i>
                                 Règles du jeu
                             </a>
                         </li>
-                        <li class="nav-item"><hr></li>
+                        <li class="nav-item w-100"><hr></li>
                         {% if is_granted('ROLE_USER') %}
                             {% if app.session.get('game') %}
                                 <li class="nav-item">
                                     <a class="nav-link fs-5 text-light text-center link-navbar" href="{{ path('game_progress') }}">
-                                        <i class="fas fa-dice-six"></i>
+                                        <i class="fas fa-dice-six fa-fw"></i>
                                         Partie en cours
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link fs-5 text-light text-center link-navbar" href="{{ path('game_index') }}">
+                                        <i class="fas fa-dice-six fa-fw"></i>
+                                        Nouvelle partie
                                     </a>
                                 </li>
                             {% endif %}
                             <li class="nav-item">
                                 <a class="nav-link fs-5 text-light text-center link-navbar" href="#">
-                                    <i class="fas fa-chart-column"></i>
+                                    <i class="fas fa-chart-column fa-fw"></i>
                                     Mes scores
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link fs-5 text-light text-center link-navbar" href="#">
-                                    <i class="fas fa-ranking-star"></i>
+                                    <i class="fas fa-ranking-star fa-fw"></i>
                                     Classement
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link fs-5 text-light text-center link-navbar" href="#">
-                                    <i class="fas fa-user"></i>
+                                    <i class="fas fa-user fa-fw"></i>
                                     Mon compte
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link fs-5 text-light text-center link-navbar" href="{{ path('app_logout') }}">
-                                    <i class="fas fa-sign-out"></i>
+                                    <i class="fas fa-sign-out fa-fw"></i>
                                     Déconnexion
                                 </a>
                             </li>
                         {% else %}
                             <li class="nav-item">
                                 <a class="nav-link fs-5 text-light text-center link-navbar" href="{{ path('login') }}">
-                                    <i class="fas fa-sign-in"></i>
+                                    <i class="fas fa-sign-in fa-fw"></i>
                                     Connexion
                                 </a>
                             </li>
@@ -77,7 +84,7 @@
 							<li class="nav-item ">
 								<a class="nav-link active fs-5 text-light text-center link-navbar"
                                    href="{{ path('admin') }}">
-                                    <i class="fas fa-gauge-high"></i>
+                                    <i class="fas fa-gauge-high fa-fw"></i>
                                     Tableau de bord admin
                                 </a>
 							</li>

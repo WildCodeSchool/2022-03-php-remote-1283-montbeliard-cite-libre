@@ -36,8 +36,12 @@
             <div class="show-card mb-1 position-relative">carte gagnées</div>
             <div class="show-card mb-1 position-relative">carte gagnées</div>
 
-            <a class="btn-classeur btn btn-primary" href="{{ path('game_collection') }}">Classeur de cartes</a>
 
+                <a class="btn-classeur btn btn-primary" href="{{ path('game_collection') }}">Classeur de cartes</a>
+            <div>
+                <a href="{{ path('game_reset') }}"
+                   class="mx-auto d-inline btn-dice btn btn-primary my-5">Reset</a>
+            </div>
         </div>
 
         {# widget-top #}
@@ -86,6 +90,7 @@
 
             </div>
             <div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
+
                 <div class="text-image">
                     <p class="text-muted  ps-1">Temps restant</p>
                     <div class="bloc-time  d-flex justify-content-around pe-3">
@@ -97,6 +102,7 @@
                         <p>{{ app.session.get('game').getDuration }}</p>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -178,35 +184,4 @@
 
     </div>
     {% include "include/_questions.html.twig" %}
-    {# <div class="ingame"> #}
-    {# <div class="container d-flex flex-column p-2 justify-content-between h-100"> #}
-    {# <div class="jeu-container"> #}
-
-    {# <div class="mx-auto d-inline  my-5"> #}
-
-    {# </div> #}
-
-
-    {# <div class="container"> #}
-    {# <div class="row gx-0 jeu d-flex justify-content-around"> #}
-
-    {# <div class="classeur col-xs-12 col-md-4 d-flex align-items-center"> #}
-    {# <button class=" mx-auto d-inline btn btn-secondary   h-5" type="submit">Classeur de cartes #}
-    {# </button> #}
-    {# </div> #}
-
-    {# </div> #}
-    {# </div> #}
-
-
-    {# </div> #}
-
-
-
-    {# </div> #}
-    {# <a href="{{ path('game_reset') }}" type="button" #}
-    {# class="mx-auto d-inline btn-dice btn btn-primary my-5">Reset</a> #}
-    {# </div> #}
-    {# #}
-    {# #}
 {% endblock %}

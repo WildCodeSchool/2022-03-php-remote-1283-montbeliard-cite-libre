@@ -29,6 +29,9 @@
         }
     }
     &.card-parchment--modal {
+        position: fixed;
+        height: 100vh;
+        top: 0;
         &:before {
             content: "";
             position: fixed;

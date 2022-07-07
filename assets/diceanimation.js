@@ -5,18 +5,20 @@ window.rollDice = (result) => {
     dice.dataset.side = result;
     dice.classList.toggle("reRoll");
     const modal = document.getElementById("myModal");
-    const ingame = document.querySelector(".ingame");
-    setTimeout(function () {
+    const bodyGame = document.querySelector(".body-game");
+    const showModal = () => {
+        bodyGame.classList.add('pointer-event-none')
         modal.classList.remove("d-none");
-        ingame.style.opacity = "0.5";
+    }
+    setTimeout(function () {
+        showModal();
     }, 2000);
     closeModal.addEventListener("click", () => {
         modal.classList.add("d-none");
-        ingame.style.opacity = "1";
+        bodyGame.classList.remove('pointer-event-none')
     });
-    const showModal = document.querySelector(".show-modal");
-    showModal.addEventListener("click", () => {
-        modal.classList.remove("d-none");
-        ingame.style.opacity = "0.5";
+    const showModalBtn = document.querySelector(".show-modal");
+    showModalBtn.addEventListener("click", () => {
+        showModal();
     });
 };

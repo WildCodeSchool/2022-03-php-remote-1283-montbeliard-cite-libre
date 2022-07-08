@@ -1,0 +1,32 @@
+<div {{ attributes }}>
+	<div id="myModal" class="card-parchment position-absolute z-1000 d-none">
+
+		<div class="parchment-body" data-action="live#action">>
+			<span class="close-modal"></span>
+			{% if app.session.get('question').content is defined and  app.session.get('question').content is not empty  %}
+				<p class="fs-3 mb-1">
+					Niveau
+					{{app.session.get('question').getLevel}}
+				</p>
+				<h1>{{app.session.get('question').content}}
+				</h1>
+
+			{% endif %}
+
+			<div class="text-center">
+				<button id="btn-display-response" class="btn btn-one mt-3">Afficher la réponse</button>
+				<div id="response" class="d-none mt-3">
+					{% if app.session.get('question').content is defined and  app.session.get('question').content is not empty  %}
+						<pre>
+    {{ dump(this.answer) }}
+</pre>
+					{% endif %}
+					<div class="d-flex justify-content-center mt-5">
+						<a href="{{path('game_index')}}" id="p" class="btn btn-one bg-white bg-opacity-75 me-5 w-25 close">Bonne réponse</a>
+						<a class="btn btn-one bg-white bg-opacity-75 w-25 close">Mauvaise réponse</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

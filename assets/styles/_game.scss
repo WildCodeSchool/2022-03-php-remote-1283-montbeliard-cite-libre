@@ -4,21 +4,17 @@
     position: relative;
 
     .bg-image {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: -1;
-    opacity: 0.5;
-    background-image: url('/assets/images/plateau_vide.jpg');
-
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        opacity: 0.5;
+        background-image: url('/assets/images/plateau_vide.jpg');
         @include media-breakpoint-down(lg) {
-
             background-image: url('/assets/images/plateau_vide_phone.jpg');
-
         }
-
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -34,23 +30,15 @@
     height: 50px;
     display: flex;
     align-items: center;
+    @include media-breakpoint-down(lg) {
+        display: none;
+    }
 }
 
 .bloc-time {
     background-image: url('/assets/images/bloc_time.svg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    width: 130px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     color: $light;
-
 }
-
-
 
 
 .body-game {
@@ -61,16 +49,26 @@
     background-size: 100% 100%;
 
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 2fr 1fr;
+    grid-template-columns: calc(100% / 3) calc(100% / 3) calc(100% / 3);
+    grid-template-rows: 25vh 50vh 25vh;
+    @include media-breakpoint-down(lg) {
+        grid-template-rows: 15vh 60vh 25vh;
+    }
     grid-template-areas:
         "head head head"
         "left center right"
-        "footer footer footer"
-    ;
+        "footer footer footer";
 
     .widget-top {
         grid-area: head;
+        display: flex;
+        //justify-content: space-evenly;
+        align-items: start;
+        flex-wrap: wrap;
+        margin: 0 100px;
+        @include media-breakpoint-down(lg) {
+            justify-content: start;
+        }
     }
 
     .deck-left,
@@ -84,9 +82,11 @@
     .deck-left {
         grid-area: left;
     }
+
     .center {
         grid-area: center;
     }
+
     .deck-right {
         grid-area: right;
     }
@@ -96,8 +96,8 @@
         display: flex;
         justify-content: space-evenly;
         align-items: end;
+        flex-wrap: wrap;
     }
-
 
     @include media-breakpoint-down(lg) {
         background-image: url('/assets/images/plateau_jeu_phone.jpg');
@@ -112,37 +112,8 @@
         height: 242px;
     }
 
-    .text-image {
-        width: 200px;
-        position: relative;
-
-        &>p {
-            width: 130px;
-        }
-
-        .img {
-            width: 100%;
-        }
-
-        .menu-score {
-            font-size: 1rem;
-            position: absolute;
-            top: 20%;
-            left: 35%;
-        }
-    }
-
     .show-allcard {
         display: none;
-    }
-
-    .jeu-container {
-        //display: grid;
-        //grid-template-columns: 1fr;
-        //grid-template-rows: 0.5fr 1.5fr;
-        //gap: 0px 0px;
-        //grid-auto-flow: row;
-
     }
 
     .btn-dice {
@@ -178,7 +149,6 @@
         .show-card:hover {
             transform: translateX(20px) scale(1.2);
 
-
             .card-won {
                 display: inherit;
                 height: 180px;
@@ -186,30 +156,15 @@
             }
         }
 
-        //.jeu-container {
-        //    display: grid;
-        //    grid-template-columns: 0.1fr 4fr;
-        //    grid-template-rows: 0.5fr 1.5fr;
-        //    gap: 0px 0px;
-        //    grid-auto-flow: row;
-        //    grid-template-areas:
-        //        "card btn"
-        //        "card jeu";
-        //}
-
         .btn-dice {
             grid-area: btn;
             height: fit-content;
         }
 
-        .jeu {
-            grid-area: jeu;
-        }
-
         .show-allcard {
             position: fixed;
             left: 0;
-            top: 200px;
+            top: 100px;
             grid-area: card;
             display: inline-block;
 
@@ -238,7 +193,6 @@
 }
 
 
-
 .cardgame {
     height: 250px;
     width: 166px;
@@ -247,22 +201,57 @@
     border: $dark 2px solid;
 }
 
-.question-card {
+.question-card,
+.question-card-selected {
+    --question-card-size: 150px;
     background-image: url('/assets/images/dos_artisans.jpg');
     display: flex;
     justify-content: center;
     align-items: center;
     opacity: 0.5;
-    height: 150px;
-    width: 150px;
+    height: var(--question-card-size);
+    width: var(--question-card-size);
+    @include media-breakpoint-down(lg) {
+        --question-card-size: 70px;
+    }
 }
 
 .question-card-selected {
-    background-image: url('/assets/images/dos_artisans.jpg');
-    display: flex;
-    justify-content: center;
-    align-items: center;
     opacity: 1;
-    height: 150px;
-    width: 150px;
+}
+
+.widget {
+    padding: .5rem;
+    margin-left: 1rem;
+    font-weight: 600;
+    .widget-icon {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: $border-radius;
+        padding: 0.25rem 1.25rem;
+        background-color: $primary;
+        filter: drop-shadow(2px 2px 1px #666);
+        &.widget-icon-timer {
+            background-color: $gray-600;
+            color: color-contrast($gray-600);
+            font-weight: 500;
+        }
+    }
+    .widget-badge {
+        --widget-badge-size: 75px;
+        padding: .5rem;
+        text-align: center;
+        width: var(--widget-badge-size);
+        @include media-breakpoint-down(lg) {
+            --widget-badge-size: auto;
+        }
+    }
+    .widget-text {
+        margin-bottom: .5rem;
+        @include media-breakpoint-down(lg) {
+            display: none;
+        }
+    }
 }

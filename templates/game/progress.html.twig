@@ -45,64 +45,46 @@
         </div>
 
         {# widget-top #}
-        <div class="row gx-0 d-flex justify-content-between widget-top">
-            <div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
-                <div class="text-image">
-                    <p class="text-muted text-center">Tour</p>
-                    <div class="bloc-turn d-flex justify-content-around pe-3">
-                        <img src="{{ asset('build/images/turn.svg') }}"
-                             aria-label="Tour" alt="tour joué">
-                        <p>{{ app.session.get('game').getTurn }}</p>
+        <div class="widget-top">
+            <div class="widget">
+                <div class="widget-text">Tour</div>
+                <div class="widget-icon">
+                    <i class="fas fa-flag fa-lg"></i>
+                    <div class="widget-badge">
+                        {{ app.session.get('game').getTurn }}
                     </div>
                 </div>
-
             </div>
-            <div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
-                <div class="text-image">
-                    <p class="text-muted   text-center">Cartes</p>
-                    <div class="bloc-save  d-flex justify-content-around pe-3 ">
-                        <img src="{{ asset('build/images/save.svg') }}"
-                             aria-label="Gagnées"
-                             alt="carte gagnées">
-                        <p>
-                            {% if qAsked is defined and qAsked is not empty %}
-                                {{ qAsked|length }}
-                            {% else %}0
-                            {% endif %}
-
-                            / 58</p>
+            <div class="widget">
+                <div class="widget-text">Cartes</div>
+                <div class="widget-icon">
+                    <i class="fas fa-cards-blank fa-lg"></i>
+                    <div class="widget-badge">
+                        {% if qAsked is defined and qAsked is not empty %}
+                            {{ qAsked|length }}
+                        {% else %}0
+                        {% endif %}
+                            / 58
                     </div>
-
                 </div>
-
             </div>
-            <div class=" col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
-                <div class=" text-image">
-                    <p class="text-muted  text-center">Max :1000 points</p>
-                    <div class="bloc-point d-flex justify-content-around pe-3">
-                        <img class=""
-                             src="{{ asset('build/images/cup.svg') }}"
-                             aria-label="Points" alt="points">
-                        <p>{{ app.session.get('game').getScore }}pts</p>
+            <div class="widget">
+                <div class="widget-text">Gains</div>
+                <div class="widget-icon">
+                    <i class="fas fa-sparkles fa-lg"></i>
+                    <div class="widget-badge">
+                        {{ app.session.get('game').getScore }}pts
                     </div>
-
                 </div>
-
             </div>
-            <div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
-
-                <div class="text-image">
-                    <p class="text-muted  ps-1">Temps restant</p>
-                    <div class="bloc-time  d-flex justify-content-around pe-3">
-                        <img class=""
-                             src="{{ asset('build/images/clock.svg') }}"
-                             aria-label="Chrono"
-                             alt="temps écoulé">
-
-                        <p>{{ app.session.get('game').getDuration }}</p>
+            <div class="widget">
+                <div class="widget-text">Temps restant</div>
+                <div class="widget-icon widget-icon-timer">
+                    <i class="fas fa-hourglass-clock fa-lg"></i>
+                    <div class="widget-badge">
+                        {{ app.session.get('game').getDuration }}
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -116,6 +98,9 @@
 
         <div class="center">
             <div class="d-flex flex-column align-items-center justify-content-center">
+             <a class="mx-auto d-inline btn-dice btn btn-secondary my-5" href="{{ path('game_dice') }}">
+                Lancer le dé
+             </a>
                 {% include "include/_diceanimation.html.twig" %}
                 {% if app.session.get('question').content is defined and  app.session.get('question').content is not empty %}
                     <button class="mx-auto show-modal btn btn-one my-5">Afficher la question active
@@ -123,10 +108,6 @@
 
                 {% endif %}
             </div>
-            {# <a class="mx-auto d-inline btn-dice btn btn-secondary my-5" href="{{ path('game_dice') }}"> #}
-            {# Lancez le #}
-            {# dé #}
-            {# </a> #}
         </div>
 
         <div class="deck-right">

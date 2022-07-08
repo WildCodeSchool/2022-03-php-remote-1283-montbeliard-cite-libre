@@ -39,13 +39,12 @@ class CardApocalypseRepository extends ServiceEntityRepository
         }
     }
 
-
+    // public function selectAllRandom(): array
     public function selectRandom(): ?CardApocalypse
     {
         return $this->createQueryBuilder('ca')
             ->addSelect('RAND() as HIDDEN rand')
             ->orderBy('rand')
-            ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult();
     }

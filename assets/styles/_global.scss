@@ -44,8 +44,8 @@ table {
 // fin du reset
 
 body{
-    padding-top: 5rem;
-    font-size: 1rem;
+    width: 100vw;
+    height: 100vh;
 }
 h1, h2, h4, .title-secondary {
     font-family: 'Estonia', cursive;
@@ -69,6 +69,9 @@ h4 {
     color: $primary;
 }
 
+.pointer-event-none {
+    pointer-events: none;
+}
 /* font-family: 'Manuale', serif; */
 
 a {

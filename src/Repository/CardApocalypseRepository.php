@@ -46,7 +46,7 @@ class CardApocalypseRepository extends ServiceEntityRepository
             ->addSelect('RAND() as HIDDEN rand')
             ->orderBy('rand')
             ->getQuery()
-            ->getOneOrNullResult();
+            ->getResult();
     }
 
     public function selectRandom(): ?CardApocalypse

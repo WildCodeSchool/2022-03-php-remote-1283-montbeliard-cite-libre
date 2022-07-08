@@ -100,7 +100,7 @@ class GameController extends AbstractController
             $session = $requestStack->getSession();
             $game = $gameRepository->findOneById($session->get('game')->getId());
             if ($session->get('roll') === 1) {
-                $pointsManager->lostPoints($session->get('question'), $game);
+                $pointsManager->lostPoints($session->get('apocalypse'), $game);
             } else {
                 $cards = $cardRepository->selectRandomByNumber($session->get('roll'), $game);
                 $pointsManager->pointsWon($cards, $game);

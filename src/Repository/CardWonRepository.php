@@ -2,9 +2,11 @@
 
 namespace App\Repository;
 
+use App\Entity\Game;
+use App\Entity\Family;
 use App\Entity\CardWon;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<CardWon>
@@ -39,28 +41,53 @@ class CardWonRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return CardWon[] Returns an array of CardWon objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
 
-//    public function findOneBySomeField($value): ?CardWon
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function withdrawTheLastCards(int $number, string $category, Game $game): array
+    {
+        return $this->createQueryBuilder('c')
+            ->join('c.card', 'cat', 'WITH', 'c.game=:game')
+            ->where('cat = :category')
+            ->setParameter('game', $game)
+            ->setParameter('category', $category)
+            ->orderBy('c.id', 'DESC')
+            ->setMaxResults($number)
+            ->getQuery()
+            ->getResult();
+    }
+
+
+    public function findByFamily(Family $family, Game $game): array
+    {
+        return $this->createQueryBuilder('c')
+            ->join('c.card', 'cf', 'WITH', 'c.game=:game')
+            ->where('cf = :family')
+            ->setParameter('game', $game)
+            ->setParameter('family', $family)
+            ->getQuery()
+            ->getResult();
+    }
+    //    /**
+    //     * @return CardWon[] Returns an array of CardWon objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('c')
+    //            ->andWhere('c.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('c.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?CardWon
+    //    {
+    //        return $this->createQueryBuilder('c')
+    //            ->andWhere('c.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

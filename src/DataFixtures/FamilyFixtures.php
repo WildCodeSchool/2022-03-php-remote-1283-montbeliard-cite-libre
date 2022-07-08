@@ -23,6 +23,7 @@ class FamilyFixtures extends Fixture
         "Les métiers du cuir et du textile",
         "Les métiers intellectuels et artistiques",
         "Les marchands",
+        "Cavaliers de l'apocalypse",
     ];
     public function load(ObjectManager $manager): void
     {

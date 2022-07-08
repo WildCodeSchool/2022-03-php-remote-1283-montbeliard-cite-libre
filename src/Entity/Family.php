@@ -21,9 +21,13 @@ class Family
     #[ORM\OneToMany(mappedBy: 'family', targetEntity: Card::class)]
     private Collection $cards;
 
+    #[ORM\OneToMany(mappedBy: 'family', targetEntity: CardApocalypse::class)]
+    private Collection $cardApocalypses;
+
     public function __construct()
     {
         $this->cards = new ArrayCollection();
+        $this->cardApocalypses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -67,6 +71,36 @@ class Family
             // set the owning side to null (unless already changed)
             if ($card->getFamily() === $this) {
                 $card->setFamily(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CardApocalypse>
+     */
+    public function getCardApocalypses(): Collection
+    {
+        return $this->cardApocalypses;
+    }
+
+    public function addCardApocalypse(CardApocalypse $cardApocalypse): self
+    {
+        if (!$this->cardApocalypses->contains($cardApocalypse)) {
+            $this->cardApocalypses[] = $cardApocalypse;
+            $cardApocalypse->setFamily($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCardApocalypse(CardApocalypse $cardApocalypse): self
+    {
+        if ($this->cardApocalypses->removeElement($cardApocalypse)) {
+            // set the owning side to null (unless already changed)
+            if ($cardApocalypse->getFamily() === $this) {
+                $cardApocalypse->setFamily(null);
             }
         }
 

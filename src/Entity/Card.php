@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CardRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CardRepository::class)]
@@ -33,6 +35,14 @@ class Card
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'cards')]
     private ?Category $category;
+
+    #[ORM\OneToMany(mappedBy: 'card', targetEntity: CardWon::class)]
+    private Collection $cardWons;
+
+    public function __construct()
+    {
+        $this->cardWons = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -119,6 +129,36 @@ class Card
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CardWon>
+     */
+    public function getCardWons(): Collection
+    {
+        return $this->cardWons;
+    }
+
+    public function addCardWon(CardWon $cardWon): self
+    {
+        if (!$this->cardWons->contains($cardWon)) {
+            $this->cardWons[] = $cardWon;
+            $cardWon->setCard($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCardWon(CardWon $cardWon): self
+    {
+        if ($this->cardWons->removeElement($cardWon)) {
+            // set the owning side to null (unless already changed)
+            if ($cardWon->getCard() === $this) {
+                $cardWon->setCard(null);
+            }
+        }
 
         return $this;
     }

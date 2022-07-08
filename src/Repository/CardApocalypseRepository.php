@@ -40,18 +40,27 @@ class CardApocalypseRepository extends ServiceEntityRepository
     }
 
 
-    public function selectRandom(): array
+    public function selectRandom(): ?CardApocalypse
     {
         return $this->createQueryBuilder('ca')
-            ->leftJoin('ca.cardWons', 'cw')
             ->addSelect('RAND() as HIDDEN rand')
-            ->where('cw.cardApocalypse IS NULL')
             ->orderBy('rand')
             ->setMaxResults(1)
             ->getQuery()
-            ->getResult();
+            ->getOneOrNullResult();
     }
 
+    public function selectRandomByName(string $name): ?CardApocalypse
+    {
+        return $this->createQueryBuilder('ca')
+            ->addSelect('RAND() as HIDDEN rand')
+            ->where('ca.name = :name')
+            ->setParameter('name', $name)
+            ->orderBy('rand')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
     //    /**
     //     * @return CardApocalypse[] Returns an array of CardApocalypse objects
     //     */

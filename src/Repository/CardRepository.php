@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Card;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\Game;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Card>
@@ -39,53 +40,42 @@ class CardRepository extends ServiceEntityRepository
         }
     }
 
-    // public function selectRandomByLevel(int $level, int $gameId): array
-    // {
-    //     return $this->createQueryBuilder('c')
-    //         ->leftJoin('c.card_won', 'cw', 'WITH', 'cw.game=:gameId')
-    //         ->addSelect('RAND() as HIDDEN rand')
-    //         ->where('c.id !== cw.id')
-    //         ->setParameter(':level', $level)
-    //         ->setParameter(':gameId', $gameId)
-    //         ->orderBy('rand')
-    //         ->setMaxResults(':level')
-    //         ->getQuery()
-    //         ->getResult();
-    // }
-
-    public function selectRandomByNumber(int $number): array
+    public function selectRandomByNumber(int $number, Game $game): array
     {
         return $this->createQueryBuilder('c')
+            ->leftjoin('c.cardWons', 'cw', 'WITH', 'cw.game=:game')
             ->addSelect('RAND() as HIDDEN rand')
-            // ->setParameter(':number', $number)
+            ->where('c.id != cw.card')
+            ->orWhere('cw.id IS NULL')
+            ->setParameter('game', $game)
             ->orderBy('rand')
             ->setMaxResults($number)
             ->getQuery()
             ->getResult();
     }
 
-//    /**
-//     * @return Card[] Returns an array of Card objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    //    /**
+    //     * @return Card[] Returns an array of Card objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('c')
+    //            ->andWhere('c.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('c.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
 
-//    public function findOneBySomeField($value): ?Card
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    public function findOneBySomeField($value): ?Card
+    //    {
+    //        return $this->createQueryBuilder('c')
+    //            ->andWhere('c.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

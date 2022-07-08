@@ -19,8 +19,8 @@
 					<p>{{answer[0].content}}</p>
 				{% endif %}
 				<div class="d-flex justify-content-center mt-5">
-					<a href="{{path('game_index')}}" id="p" class="btn btn-one bg-white bg-opacity-75 me-5 w-25 close">Bonne réponse</a>
-					<a class="btn btn-one bg-white bg-opacity-75 w-25 close">Mauvaise réponse</a>
+					<a href="{{path('game_calculate_score', {'answer': 'true'})}}" id="p" class="btn btn-one bg-white bg-opacity-75 me-5 w-25 close">Bonne réponse</a>
+					<a href="{{path('game_calculate_score', {'answer': 'false'})}}" class="btn btn-one bg-white bg-opacity-75 w-25 close">Mauvaise réponse</a>
 				</div>
 			</div>
 		</div>

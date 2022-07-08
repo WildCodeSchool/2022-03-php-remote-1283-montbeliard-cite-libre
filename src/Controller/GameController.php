@@ -88,16 +88,23 @@ class GameController extends AbstractController
         return $this->render('game/collection.html.twig');
     }
 
-    #[Route('/check', name: '_checking_answers', methods: ['POST'])]
+    #[Route('/check/{answer}', name: '_calculate_score')]
     public function checkingTheAnswers(
+        string $answer,
         PointsManager $pointsManager,
-        CardRepository $cardRepository
-        ): Response
-    {
-        if ($_POST["verif"] !== "false") {
-            $cards = $cardRepository->selectRandomByNumber($_POST["verif"]);
-            // dd($cards);
-            $pointsManager->calcuatePoints($cards);//<= retour de la requete
+        CardRepository $cardRepository,
+        RequestStack $requestStack,
+        GameRepository $gameRepository,
+    ): Response {
+        if ($answer !== "false") {
+            $session = $requestStack->getSession();
+            $game = $gameRepository->findOneById($session->get('game')->getId());
+            if ($session->get('roll') === 1) {
+                $pointsManager->lostPoints($session->get('question'), $game);
+            } else {
+                $cards = $cardRepository->selectRandomByNumber($session->get('roll'), $game);
+                $pointsManager->pointsWon($cards, $game);
+            }
         }
         return $this->redirectToRoute('game_progress');
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Components;
+namespace App\Components;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;

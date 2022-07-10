@@ -1,5 +1,5 @@
 <div id="myModal" class="card-parchment card-parchment--modal d-none">
-    <div class="parchment-background"></div>
+	<div class="parchment-background"></div>
 	<div class="parchment-body">
 		<button aria-label="close" class="close-modal"></button>
 		{% if app.session.get('question').content is defined and  app.session.get('question').content is not empty  %}
@@ -10,6 +10,10 @@
 			<h1>{{app.session.get('question').content}}
 			</h1>
 
+		{% endif %}
+		{% if app.session.get('alert') is not empty %}
+			<p class="fs-3 mb-1 mt-5">
+				{{ app.session.get('alert') }}</p>
 		{% endif %}
 
 		<div class="text-center">

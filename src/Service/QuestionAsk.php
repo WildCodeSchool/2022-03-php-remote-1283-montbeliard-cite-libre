@@ -18,7 +18,7 @@ class QuestionAsk
 {
     private QuestionRepository $questionRepository;
     private QuestionAskedRepository $qAskedRepository;
-    private Question $question;
+    private Question|string $question;
     private CardApocalypse $cardApocalypse;
     private RequestStack $requestStack;
 
@@ -34,10 +34,17 @@ class QuestionAsk
         $this->gameRepository = $gameRepository;
     }
 
-    public function rollQuestion(int $level): Question
+    public function rollQuestion(int $level): Question|string
     {
         $session = $this->requestStack->getSession();
         $gameId = $session->get('game')->getId();
+        $session->set('alert', null);
+        if (!isset($this->questionRepository->selectRandomByLevel($level, $gameId)[0])) {
+            $this->question = "Plus aucune question de disponible pour ce niveau";
+            $session->set('question', null);
+            $session->set('alert', $this->question);
+            return $this->question;
+        }
         $this->question =  $this->questionRepository->selectRandomByLevel($level, $gameId)[0];
         $this->addQuestionAsked($this->question);
         return $this->question;

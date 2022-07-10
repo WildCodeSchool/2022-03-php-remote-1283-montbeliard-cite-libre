@@ -7,6 +7,7 @@ use App\Form\GameType;
 use App\Service\PointsManager;
 use App\Repository\AnswerRepository;
 use App\Repository\CardRepository;
+use App\Repository\CardWonRepository;
 use App\Repository\GameRepository;
 use App\Service\RollDice;
 use App\Service\QuestionAsk;
@@ -83,9 +84,21 @@ class GameController extends AbstractController
     }
 
     #[Route('/collection', name: '_collection')]
-    public function collection(): Response
-    {
-        return $this->render('game/collection.html.twig');
+    public function collection(
+        CardRepository $cardRepository,
+        CardWonRepository $cardWonRepository,
+        GameRepository $gameRepository,
+        RequestStack $requestStack,
+    ): Response {
+        $session = $requestStack->getSession();
+        $game = $gameRepository->findOneById($session->get('game')->getId());
+        $cards = $cardRepository->findByUnearnedCard($game);
+        $cardWons = $cardWonRepository->findBy(['game' => $game]);
+
+        return $this->render('game/collection.html.twig', [
+            'cards' => $cards,
+            'cardWons' => $cardWons,
+        ]);
     }
 
     #[Route('/check/{answer}', name: '_calculate_score')]

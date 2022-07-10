@@ -41,6 +41,15 @@ class CardWonRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByCard(Game $game): array
+    {
+        return $this->createQueryBuilder('c')
+            ->select('identity(c.card)')
+            ->where('c.game = :game')
+            ->setParameter('game', $game)
+            ->getQuery()
+            ->getResult();
+    }
 
     public function withdrawTheLastCards(int $number, string $category, Game $game): array
     {

@@ -1,3 +1,7 @@
+.collection-title{
+    margin-top: 10rem;
+}
+
 .collection{
     height: 100vh;
     background-image: url('/assets/images/parchemin.png');
@@ -13,14 +17,25 @@
     left: 7%;
 }
 
+.btn-box{
+    position: absolute;
+    top: 10%;
+    margin: auto;
+    z-index: 1000;
+    width: 100%;
+    .btn-filter{
+        max-width: 80%;
+        background-color: transparent;
+    }
+}
+
 @media(max-width: 950px) and (orientation: landscape) {
     .collection-content{
         top: 17.5%;
     }
-}
-
-.btn-filter{
-    max-width: 80%;
+    .btn-box{
+        top: 10%;
+    }
 }
 
 .filter-shadow {

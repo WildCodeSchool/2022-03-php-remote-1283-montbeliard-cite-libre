@@ -1,27 +1,16 @@
-.card-game{
-    height: 300px;
-    width: 200px;
-    position: relative;
+.grey{
     filter: grayscale(100%);
 }
 
-.card-game-color{
-    height: 300px;
-    width: 200px;
-    position: relative;
-}
 
-.card-game:hover, .card-game-color:hover{
-    transform: scale(1.2);
-}
-
-.text-card{
-    font-size: 80%;
-    width: 85%;
-}
 
 .card-img{
+    height: 75%;
     width: 80%;
+    .img-size{
+        height: 100%;
+        width: 100%;
+    }
 }
 
 .card-content{
@@ -29,8 +18,54 @@
     top: 0;
     z-index: 100;
     height: 98%;
+    width: 100%;
     p{
         line-height: 1.30;
     }
+    .card-title{
+        height: 28px;
+        z-index: 10;
+    }
+    .text-card{
+        font-size: 80%;
+        width: 85%;
+        margin: auto;
+    }
+}
+
+/**/
+
+.flip-card, .card-size {
+    position: relative;
+    height: 300px;
+    width: 225px;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}
+
+/* Style the back side */
+.flip-card-back {
+    transform: rotateY(180deg);
 }
 

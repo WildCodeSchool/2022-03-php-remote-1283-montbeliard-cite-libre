@@ -134,11 +134,11 @@ class PointsManager
             $families = $this->cardWonRepository->findByFamily($card->getFamily(), $game);
             if (count($families) == 4) {
                 $points += 10;
-            } else {
-                $families = $this->cardWonRepository->findByFamily($card->getFamily(), $game);
-                if (count($families) == 4) {
-                    $points -= 10;
-                }
+            }
+        } else {
+            $families = $this->cardWonRepository->findByFamily($card->getFamily(), $game);
+            if (count($families) == 4) {
+                $points -= 10;
             }
         }
     }

@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Game;
 use App\Form\GameType;
+use App\Service\PointsManager;
 use App\Repository\AnswerRepository;
+use App\Repository\CardRepository;
 use App\Repository\GameRepository;
 use App\Service\RollDice;
 use App\Service\QuestionAsk;
@@ -85,6 +87,28 @@ class GameController extends AbstractController
     {
         return $this->render('game/collection.html.twig');
     }
+
+    #[Route('/check/{answer}', name: '_calculate_score')]
+    public function checkingTheAnswers(
+        string $answer,
+        PointsManager $pointsManager,
+        CardRepository $cardRepository,
+        RequestStack $requestStack,
+        GameRepository $gameRepository,
+    ): Response {
+        if ($answer !== "false") {
+            $session = $requestStack->getSession();
+            $game = $gameRepository->findOneById($session->get('game')->getId());
+            if ($session->get('roll') === 1) {
+                $pointsManager->lostPoints($session->get('apocalypse'), $game);
+            } else {
+                $cards = $cardRepository->selectRandomByNumber($session->get('roll'), $game);
+                $pointsManager->pointsWon($cards, $game);
+            }
+        }
+        return $this->redirectToRoute('game_progress');
+    }
+
     #[Route('/reset', name: '_reset')]
     public function reset(RequestStack $requestStack): Response
     {

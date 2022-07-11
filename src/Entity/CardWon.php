@@ -16,8 +16,8 @@ class CardWon
     #[ORM\ManyToOne(targetEntity: Game::class, inversedBy: 'cardWons')]
     private ?Game $game;
 
-    #[ORM\ManyToOne(targetEntity: CardApocalypse::class, inversedBy: 'cardWons')]
-    private ?CardApocalypse $cardApocalypse;
+    #[ORM\ManyToOne(targetEntity: Card::class, inversedBy: 'cardWons')]
+    private Card $card;
 
     public function getId(): ?int
     {
@@ -36,14 +36,14 @@ class CardWon
         return $this;
     }
 
-    public function getCardApocalypse(): ?CardApocalypse
+    public function getCard(): ?Card
     {
-        return $this->cardApocalypse;
+        return $this->card;
     }
 
-    public function setCardApocalypse(?CardApocalypse $cardApocalypse): self
+    public function setCard(?Card $card): self
     {
-        $this->cardApocalypse = $cardApocalypse;
+        $this->card = $card;
 
         return $this;
     }

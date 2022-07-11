@@ -2,28 +2,27 @@
 
 namespace App\Repository;
 
+use App\Entity\Card;
 use App\Entity\Game;
-use App\Entity\Family;
-use App\Entity\CardWon;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
- * @extends ServiceEntityRepository<CardWon>
+ * @extends ServiceEntityRepository<Card>
  *
- * @method CardWon|null find($id, $lockMode = null, $lockVersion = null)
- * @method CardWon|null findOneBy(array $criteria, array $orderBy = null)
- * @method CardWon[]    findAll()
- * @method CardWon[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Card|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Card|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Card[]    findAll()
+ * @method Card[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CardWonRepository extends ServiceEntityRepository
+class CardRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, CardWon::class);
+        parent::__construct($registry, Card::class);
     }
 
-    public function add(CardWon $entity, bool $flush = false): void
+    public function add(Card $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -32,7 +31,7 @@ class CardWonRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(CardWon $entity, bool $flush = false): void
+    public function remove(Card $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -41,33 +40,22 @@ class CardWonRepository extends ServiceEntityRepository
         }
     }
 
-
-    public function withdrawTheLastCards(int $number, string $category, Game $game): array
+    public function selectRandomByNumber(int $number, Game $game): array
     {
         return $this->createQueryBuilder('c')
-            ->join('c.card', 'cat', 'WITH', 'c.game=:game')
-            ->where('cat = :category')
+            ->leftjoin('c.cardWons', 'cw', 'WITH', 'cw.game=:game')
+            ->addSelect('RAND() as HIDDEN rand')
+            ->where('c.id != cw.card')
+            ->orWhere('cw.id IS NULL')
             ->setParameter('game', $game)
-            ->setParameter('category', $category)
-            ->orderBy('c.id', 'DESC')
+            ->orderBy('rand')
             ->setMaxResults($number)
             ->getQuery()
             ->getResult();
     }
 
-
-    public function findByFamily(Family $family, Game $game): array
-    {
-        return $this->createQueryBuilder('c')
-            ->join('c.card', 'cf', 'WITH', 'c.game=:game')
-            ->where('cf = :family')
-            ->setParameter('game', $game)
-            ->setParameter('family', $family)
-            ->getQuery()
-            ->getResult();
-    }
     //    /**
-    //     * @return CardWon[] Returns an array of CardWon objects
+    //     * @return Card[] Returns an array of Card objects
     //     */
     //    public function findByExampleField($value): array
     //    {
@@ -81,7 +69,7 @@ class CardWonRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?CardWon
+    //    public function findOneBySomeField($value): ?Card
     //    {
     //        return $this->createQueryBuilder('c')
     //            ->andWhere('c.exampleField = :val')

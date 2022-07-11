@@ -24,19 +24,11 @@ class CardApocalypse
     #[ORM\Column(type: 'json', nullable: true)]
     private array $rule = [];
 
-    #[ORM\OneToMany(mappedBy: 'cardApocalypse', targetEntity: CardWon::class)]
-    private Collection $cardWons;
-
-    #[ORM\Column(type: 'string', length: 255)]
-    private string $type;
-
     #[ORM\Column(type: 'string', length: 255)]
     private string $image;
 
-    public function __construct()
-    {
-        $this->cardWons = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(targetEntity: Family::class, inversedBy: 'cardApocalypses')]
+    private Family $family;
 
     public function getId(): ?int
     {
@@ -79,48 +71,6 @@ class CardApocalypse
         return $this;
     }
 
-    /**
-     * @return Collection<int, CardWon>
-     */
-    public function getCardWons(): Collection
-    {
-        return $this->cardWons;
-    }
-
-    public function addCardWon(CardWon $cardWon): self
-    {
-        if (!$this->cardWons->contains($cardWon)) {
-            $this->cardWons[] = $cardWon;
-            $cardWon->setCardApocalypse($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCardWon(CardWon $cardWon): self
-    {
-        if ($this->cardWons->removeElement($cardWon)) {
-            // set the owning side to null (unless already changed)
-            if ($cardWon->getCardApocalypse() === $this) {
-                $cardWon->setCardApocalypse(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
     public function getImage(): ?string
     {
         return $this->image;
@@ -129,6 +79,18 @@ class CardApocalypse
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getFamily(): ?Family
+    {
+        return $this->family;
+    }
+
+    public function setFamily(?Family $family): self
+    {
+        $this->family = $family;
 
         return $this;
     }

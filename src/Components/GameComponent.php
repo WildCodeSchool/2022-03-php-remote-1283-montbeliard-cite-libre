@@ -19,12 +19,13 @@ use Symfony\UX\LiveComponent\Attribute\LiveProp;
 #[AsLiveComponent('game')]
 class GameComponent
 {
+    use DefaultActionTrait;
+
     private SessionInterface $session;
 
     #[LiveProp()]
     public bool $reRoll = false;
 
-    use DefaultActionTrait;
 
     public function __construct(
         private RollDice $diceRoll,

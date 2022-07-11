@@ -2,11 +2,12 @@
 
 namespace App\DataFixtures;
 
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
 use App\Entity\CardApocalypse;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class CardApocalypseFixtures extends Fixture
+class CardApocalypseFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
@@ -21,7 +22,7 @@ class CardApocalypseFixtures extends Fixture
                         'exception' => intval($data[7])
                     ];
                     $apocalypse = new CardApocalypse();
-                    $apocalypse->setType($data[0]);
+                    $apocalypse->setFamily($this->getReference('family_' . intval($data[0])));
                     $apocalypse->setName($data[1]);
                     $apocalypse->setDescription($data[2]);
                     $apocalypse->setImage($data[3]);
@@ -33,5 +34,12 @@ class CardApocalypseFixtures extends Fixture
             fclose($handle);
         }
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return [
+            FamilyFixtures::class,
+        ];
     }
 }

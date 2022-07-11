@@ -56,12 +56,14 @@
         </div>
 	</div>
         <div class="d-flex justify-content-center mb-4">
-            <a href="/game/rule" class="btn btn-one m-3">
+            <a href="{{ path('rule_index') }}" class="btn btn-one m-3">
                 VOIR LES RÈGLES DU JEU
             </a>
-            <a href="/game" class="btn btn-one m-3">
-                LANCER UNE PARTIE
-            </a>
+            {% if is_granted('ROLE_USER') %}
+                <a href="/game" class="btn btn-one m-3">
+                    LANCER UNE PARTIE
+                </a>
+            {% endif %}
         </div>
 
 {% endblock %}

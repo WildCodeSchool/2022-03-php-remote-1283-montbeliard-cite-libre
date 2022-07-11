@@ -49,6 +49,27 @@ class CardApocalypseRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function selectRandom(): ?CardApocalypse
+    {
+        return $this->createQueryBuilder('ca')
+            ->addSelect('RAND() as HIDDEN rand')
+            ->orderBy('rand')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    public function selectRandomByName(string $name): ?CardApocalypse
+    {
+        return $this->createQueryBuilder('ca')
+            ->addSelect('RAND() as HIDDEN rand')
+            ->where('ca.name = :name')
+            ->setParameter('name', $name)
+            ->orderBy('rand')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
     //    /**
     //     * @return CardApocalypse[] Returns an array of CardApocalypse objects
     //     */

@@ -1,0 +1,152 @@
+family;name;description;image;crédi;association;constraint;category;;;;;;
+0;Le forgeron;"Les forgerons transforment et façonnent le métal  dans de
+modestes ateliers avec enclumes, cheminée soufflet, tenailles
+et martea";5_leforgeron.jpg;;;;0;;;;;;
+0;Le serrurier;"Les serruriers posent et réparent les serrures, forgent
+les grilles, les chandeliers, parfois les cloches et les horloges";5_leserrurier.jpg;;;;0;;;;;;
+0;Le coutelier;"Les couteliers fabriquent les lames et les armes tranchantes
+assemblées ensuite par les couteliers faiseurs de manches";5_lecoutelier.jpg;;;;0;;;;;;
+0;L'artilleur;"Les artilleurs produisent cette
+arme terrible qu'est l'arbalète de fer";5_artilleur.jpg;;;;0;;;;;;
+1;Le potier;"Les potiers sont nombreux dans la ville médiévale.
+Au XIIIe siècle la céramique se développe, destinée à l'usage
+c";8_lepotier.jpg;;;;0;;;;;;
+1;Le menuisier;"Les menuisiers, appelés fustiers, fabriquent tables,
+bancs et coffres";8_lesaleur.jpg;;;;0;;;;;;
+1;Le sabotier;"Les sabotiers fabriquent les sabots, très demandés au
+Moyen Âge, car bien moins chères que les « souliers »,
+les chaussures de l'�";8_lesabotier.jpg;;;;0;;;;;;
+1;Le saleur;"La « maison du sel » est indispensable à la conservation
+des aliments au Moyen Âge comme les poissons...
+Le commerce du sel est source de riches reven";8_lesaleur.jpg;50;;;0;;;;;;
+2;Le tailleur de pierre;"Les tailleurs de pierre, payés à la pièce,  gravent leur marque
+sur chaque  pierre taillée.  Elles sont ensuite utilisées sur
+les chant";11_tailleurdepierre.jpg;;;;0;;;;;;
+2;Le verrier (1/2);"Les verriers vitriers sont les spécialistes des
+vitraux utilisés dans les églises, les cathédrales,
+les palais, mais aussi les riches demeures bourgeoi";11_leverrier1.jpg;;;;0;;;;;;
+2;Le verrier (1/2);"L'artisan du verre mélange le sable silicieux et la cendre
+de hêtre pour produire la pâte de verre qu'il utilise pour
+ses créati";11_leverrier2.jpg;;;;0;;;;;;
+2;Le lunetier;"Les lunetiers fabriquent les lunettes de vue portées par
+les riches et les savants";11_lelunetier.jpg;;;;0;;;;;;
+3;Le tuilier;"Les tuiliers sont des artisans qui préparent, sèchent et cuisent
+les tuiles dans des four";14_tuilier.jpg;;;;0;;;;;;
+3;Le charpentier;"Les charpentiers œuvrent sur les chantiers. Ils construisent
+les maisons à pans de bois et couvrent les toits en bardeau";14_charpentier.jpg;;;;0;;;;;;
+3;"Le briquieret le maçon
+coucheu";"Le maçon a pour charge de monter les murs, c'est-à-dire
+d'asseoir la pierre, de la poser, de la coucher et enfin de la
+cimente";14_briquier_maconcoucheur.jpg;;;;0;;;;;;
+3;Le paveuret le plâtrie;"Les premières mentions de chaussées pavées remplaçant
+les rues en terre battue coïncident avec l'essor urbain
+du XIIe si";14_paveur_platrier.jpg;;;;0;;;;;;
+4;Le lapicide;"Les lapicides sont les ouvriers qui gravent des inscriptions
+sur la pierre ou qui la décorent";17_lelapicide.jpg;;;;0;;;;;;
+4;L'espilleur;Les espilleurs taillent les pierres sur les chantiers.;17_espilleur.jpg;;;;0;;;;;;
+4;L'entailleurs;Ce terme propre au Moyen Âge désigne les sculpteur;17_entailleurs.jpg;;;;0;;;;;;
+4;"Le maçondit
+« supérieu";"Les maçons supérieurs taillent les pierres pour les
+ajuster entre elle";17_macon.jpg;;;;0;;;;;;
+4;Le maître d’œ;"C'est un maçon dont la longue expérience lui permet de
+dresser des plans. Les architectes n'existent pas encore";23_maitre_oeuvre.jpg;100;;;0;;;;;;
+5;Le forcetier;"Les forcetiers fabriquent les forces, de grands ciseaux
+destinés à tondre les tissus de lain";23_forcetier.jpg;;;;0;;;;;;
+5;Le lormier;"Les lormiers fabriquent les mors des chevaux, les étriers
+et les éperons. Ils sont liés aux sellie";23_lormier.jpg;50;23;;0;;;;;;
+5;Le sellier;"Les selliers fabriquent les selles des chevaux.
+Ils sont liés aux lormiers.";23_sellier.jpg;50;22;;0;;;;;;
+5;Le charron et le tonnelier;Les charrons cerclent de fer les jantes des roues en bois.;23_charron_tonnelier.jpg;;;;0;;;;;;
+6;L'artisan d'étai;Les artisans d'étain fabriquent les miroirs et les sonnettes;26_artisan_d_etain.jpg;;;;0;;;;;;
+6;Le potier d'étai;Les potiers d'étain fabriquent la vaisselle en étai;26_potier_d_etain.jpg;;;;0;;;;;;
+6;"Le fondeuret le mouleur de
+cuivre";"Les fondeurs et les mouleurs de cuivre produisent
+les boucles de ceinture et les ustensiles de la vie quotidienne.";26_fondeur_mouleur_cuivre.jpg;;;;0;;;;;;
+6;Le lampier;"Les lampiers fabriquent des chandeliers et des lampes en
+cuivre.";26_lampier.jpg;;;;0;;;;;;
+7;Le chaudronnier;"Les chaudronniers (ou peyroliers) façonnent les
+poêles, pots et chaudron";29_chaudronnier.jpg;;;;0;;;;;;
+7;Le plombier;Les plombiers travaillent le plomb pour les gouttières;29_plombier.jpg;;;;0;;;;;;
+7;Le fourbisseur de harnois;Les fourbisseurs de harnois fabriquent les armures.;29_fourbisseur_harnois.jpg;;;;0;;;;;;
+7;Le haubergieret de haumier;"Les haubergiers fabriquent les cottes de maille. Les
+haumiers font les pièces d'armure";29_haubergier_haumier.jpg;;;;0;;;;;;
+8;Le meunier;"Les meuniers transforment le blé en farine grâce à la meule
+de leur moul";32_meunier.jpg;;34;;0;;;;;;
+8;Le blatier;"Les blatiers procurent la farine aux boulangers.
+Ils sont liés aux meuniers.";32_blatier.jpg;50;33;;0;;;;;;
+8;Le boulanger;"Les boulangers pétrissent la pâte pour faire le pain.
+Ils sont liés aux blatier";32_boulanger.jpg;50;34;;0;;;;;;
+8;Le fournier;"Les fourniers cuisent la pâte pour faire le pain.
+Ils sont liés aux boulangers";32_fournier.jpg;50;35;;0;;;;;;
+9;Le pâtissie;"Au XIIIe siècle, les pâtissiers ou « oublieurs » fabriquent
+des petits fours croquants, les « casse-museaux » et des
+g�";35_patissier.jpg;;;;0;;;;;;
+9;Le boucher;"Les bouchers sont prospères car les citadins consomment
+beaucoup de viande.
+Mais les déchets qu'ils génèrent polluent la rue.
+(Vous piochez une carte «cavaliers de l'Apocaly";35_boucher.jpg;50;;apocalypse;0;;;;;;
+9;Le poissonnier;"Les harengs et les morues sont faciles à conserver grâce
+au sel. Ils sont liés à la maison du sel.
+Mais les déchets qu'ils génèrent polluent la rue.
+(Vous piochez une carte «cavaliers de l'Apoc";35_poissonnier.jpg;50;7;apocalypse;0;;;;;;
+9;L'aubergiste et l'hôtelie;"Les aubergistes nourrissent et logent les voyageurs.
+Ce sont des lieux de transaction où l'on passe des
+contrats d'affaires. Ils sont liés aux grands marchand";35_aubergistes_hotelier.jpg;50;;;0;;;;;;
+9;Le cabaretier;"Les cabaretiers vendent du vin et les cervoisiers de la
+bière. Les hommes saouls posent des problèmes à l'ordre
+publ";38_cabaretier.jpg;-50;;;0;;;;;;
+10;Le tanneur;"Les tanneurs sont repoussés hors des remparts à cause de
+l'odeur qu'ils dégagent. Il produisent une dangereuse
+pollution. Vous piochez une carte « cavaliers de l'Apocalypse »
+Ils sont liés aux selliers qu'ils approvisionnent en ";41_tanneur.jpg;50;23;apocalypse;0;;;;;;
+10;Le cordonnier;"Les cordonniers doivent leur nom au cuir de Cordoue
+avec lequel ils fabriquent les plus belles chaussures destinées
+à l'aristocrati";41_cordonnier.jpg;;;;0;;;;;;
+10;Le tisserand;"Depuis le XIe siècle et le développement des métiers
+à tisser horizontaux, la dimension des pièces tissées ne cesse
+d'augmenter. La création de motifs devient possible grâce à
+la navette que deux hommes se r";41_tisserand.jpg;;;;0;;;;;;
+10;Le teinturier;"Les teinturiers, appelés « ongles bleus » piétinent les draps
+de colorants, de mordants et d'alun. Les produits utilisés
+peuvent être dangereux pour la santé. Vous piochez une
+carte « cavaliers de l'Apoca";41_teinturier.jpg;;;apocalypse;0;;;;;;
+11;L'enseignant;"Au Moyen-Âge, les enseignants sont des clercs. L'éducation
+est contrôlée par l’�";44_enseignant.jpg;;;;0;;;;;;
+11;Le libraire;"Les libraires apparaissent au XIIIe siècle. Ils font travailler
+les parcheminiers, les scribes ou copistes produisant
+les ouvrages destinés aux professeurs et aux étudiants.
+Les aristocrates et le haut clergé leur commande de beaux
+manuscrits enlumi";44_libraire.jpg;50;;;0;;;;;;
+11;Le médeci;"Les médecins au Moyen-Âge ont suivi des cours à la faculté.
+Ils observent les malades et prescrives des poti";44_medecin.jpg;;;;0;;;;;;
+11;L'apothicaire;"Les apothicaires fabriquent des potions pour les malades.
+Ils sont liés aux médecin";44_apothicaire.jpg;50;48;;0;;;;;;
+11;L'orfèvr;"Les orfèvres pratiquent le métier le plus lucratif
+du Moyen-Âge. Après un apprentissage de 10 ans,
+ils fabriquent des bijous. Puissants et honorés, ils dominent
+toutes les autres professions artisti";47_orfevre.jpg;100;;;0;;;;;;
+12;Le marchand de chandelles;"Selon le niveau de fortune, la famille médiévale s'éclaire à
+la cire d'abeille (coûteuse) ou au ";50-marche_de_chandelle.jpg;;;;1;;;;;;
+12;"Le marchand de vêtements
+de lain";"Le commerce de la laine fait partie du grand commerce. Il
+est tenu par les marchands du nord de l'Europe.";50-marchand_de_vetement_de_laine.jpg;50;;;1;;;;;;
+12;"Le marchand de vêtements
+de soi";"Le commerce de la soie fait partie du grand commerce. Il
+est tenu par les marchands du sud de l'Europe. ";50-marchand_vetements_de_soie.jpg;50;;;1;;;;;;
+12;Le marchand de riz;"Le riz, denrée exotique, est un produit de luxe au Moyen Âge.
+On le trouve seulement aux tables des papes, des princes
+et des roi";50-marchand_de_riz.jpg;100;;;1;;;;;;
+12;Le marchand d'épice;"Le commerce des épices fait partie du grand commerce. Il
+est tenu par les marchands du sud de l'Europe";53-marchand_epices.jpg;50;;;1;;;;;;
+12;Le marchand de vin;"Les marchands de vin vendent directement dans la rue. Les
+hommes saouls posent des problèmes à l'ordre public";53-marchand_de_vin.jpg;-50;;;1;;;;;;
+12;Le drapier;"Un drapier est une personne dont l'activité est de fabriquer
+des draps et de les vendre. Cette profession était exercée
+par de riches corps de marchan";53-drapier2.jpg;50;;;1;;;;;;
+12;Le banquier;"Au XIIe siècle, le commerce permet aux banques de
+s’implanter partout en Europe. L’importance des foires de
+Champagne et de Lyon, facilite l’utilisation de la lettre
+de paiement, puis de la lettre de";53-banquier.jpg;100;;;1;;;;;;
+12;Le persemier;"Les persemiers lèvent les impôts. Plus tard ils contrôlent
+l’échange et le commerce de pièces d’argent,
+et le prêt";56-persemier.jpg;;;;1;;;;;;

@@ -25,7 +25,7 @@
                             </a>
 						</li>
                         <li class="nav-item">
-                            <a class="nav-link fs-5 text-light text-center link-navbar" href="{{ path('game_rule_index') }}">
+                            <a class="nav-link fs-5 text-light text-center link-navbar" href="{{ path('rule_index') }}">
                                 <i class="fas fa-book-bookmark fa-fw"></i>
                                 Règles du jeu
                             </a>
@@ -90,7 +90,7 @@
 							</li>
 						{% endif %}
                         <li class="nav-item text-center">
-                            <a href="#" class=" fs-6 text-light link-navbar">
+                            <a href="{{ path('app_legal_notices', {'_fragment': 'ancre-credits'}) }}" class=" fs-6 text-light link-navbar">
                                 Crédits
                             </a>
                             |

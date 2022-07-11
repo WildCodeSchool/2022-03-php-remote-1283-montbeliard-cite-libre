@@ -5,11 +5,11 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {% if app.session.get('roll') is defined %}
+    {% if app.session.get("roll") is defined %}
         <script>
-            document.addEventListener('DOMContentLoaded', function (event) {
-                rollDice({{ app.session.get('roll') }})
-            })
+            document.addEventListener("DOMContentLoaded", function (event) {
+                rollDice({{ app.session.get("roll") }});
+            });
         </script>
     {% endif %}
 {% endblock %}
@@ -88,8 +88,10 @@
             </div>
         </div>
 
-        <div class="deck-left">
+        <div class="deck-left d-flex flex-column">
+        <p>Artisans et commerçants</p>
             <div class="artisans cardgame">
+
                 <img class="left-img"
                      src="{{ asset('build/images/dos_artisans.jpg') }}"
                      alt="dos artisan">
@@ -110,7 +112,8 @@
             </div>
         </div>
 
-        <div class="deck-right">
+        <div class="deck-right d-flex flex-column">
+                 <p>Cavaliers de l'apocalyspe</p>
             <div class="artisans cardgame">
                 <img class="right-img"
                      src="{{ asset('build/images/dos_apocalypse.svg') }}"

@@ -49,6 +49,19 @@ class QuestionAsk
         $this->addQuestionAsked($this->question);
         return $this->question;
     }
+
+    public function addQuestionAsked(Question $question): void
+    {
+
+        $session = $this->requestStack->getSession();
+        $game = $this->gameRepository->findOneById($session->get('game')->getId());
+        $questionAsked = new QuestionAsked();
+        $questionAsked->setQuestion($question);
+        $questionAsked->setGame($game);
+        $this->addTurn();
+        $this->qAskedRepository->add($questionAsked, true);
+        $session->set('question', $question);
+    }
     /**
      * Get the value of question
      */
@@ -84,18 +97,5 @@ class QuestionAsk
         $game->setTurn($game->getTurn() + 1);
         $this->gameRepository->add($game, true);
         $session->set('game', $game);
-    }
-
-    public function addQuestionAsked(Question $question): void
-    {
-
-        $session = $this->requestStack->getSession();
-        $game = $this->gameRepository->findOneById($session->get('game')->getId());
-        $questionAsked = new QuestionAsked();
-        $questionAsked->setQuestion($question);
-        $questionAsked->setGame($game);
-        $this->addTurn();
-        $this->qAskedRepository->add($questionAsked, true);
-        $session->set('question', $question);
     }
 }

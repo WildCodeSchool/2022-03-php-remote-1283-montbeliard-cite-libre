@@ -1,6 +1,14 @@
 <div class="" {{ attributes }}>
-	<a class="mx-auto d-inline btn-dice btn btn-secondary my-5" href="#" data-action-name="setQuestion()" data-action="live#action">Lancez le dé</a>
-</div>
-<div class="mx-auto d-inline btn-dice my-5">
-	{% include "include/_diceanimation.html.twig" %}
+
+	<div class="d-flex flex-column align-items-center justify-content-center">
+		<a class="mx-auto d-inline btn-dice btn btn-secondary my-5" href="#" data-action-name="setQuestion()" data-action="live#action">
+			Lancer le dé
+		</a>
+		{% include "include/_diceanimation.html.twig" %}
+		{% if app.session.get('question').content is defined and  app.session.get('question').content is not empty %}
+			<button class="mx-auto show-modal btn btn-one my-5">Afficher la question active
+			</button>
+
+		{% endif %}
+	</div>
 </div>

@@ -1,0 +1,219 @@
+<div {{attributes}}>
+	<div {{stimulus_controller('game')}}>
+		<div
+			class="body-game" {{stimulus_target('game', 'bodyGame')}}>
+			{# allcard #}
+			<div class="show-allcard ">
+				<h2>10 dernières cartes gagnées</h2>
+				<div class="show-card mb-1 position-relative">Le menuisier
+					<img class="position-absolute top-50 start-100 translate-middle card-won" src="{{ asset('build/images/menuisier.jpg') }}" alt="carte gagnée"></div>
+				<div class="show-card mb-1 position-relative">Le briquier et le maçon coucheur
+					<img class="position-absolute top-50 start-100 translate-middle card-won" src="{{ asset('build/images/briquier.jpg') }}" alt="carte gagnée">
+				</div>
+				<div class="show-card mb-1 position-relative">carte gagnées</div>
+				<div class="show-card mb-1 position-relative">carte gagnées</div>
+				<div class="show-card mb-1 position-relative">carte gagnées</div>
+				<div class="show-card mb-1 position-relative">carte gagnées</div>
+				<div class="show-card mb-1 position-relative">carte gagnées</div>
+				<div class="show-card mb-1 position-relative">carte gagnées</div>
+				<div class="show-card mb-1 position-relative">carte gagnées</div>
+				<div class="show-card mb-1 position-relative">carte gagnées</div>
+
+
+				<a class="btn-classeur btn btn-primary" href="{{ path('game_collection') }}">Classeur de cartes</a>
+				<div>
+					<a href="{{ path('game_reset') }}" class="mx-auto d-inline btn-dice btn btn-primary my-5">Reset</a>
+				</div>
+			</div>
+
+			{# widget-top #}
+
+			<div class="widget-top">
+				<div class="widget">
+					<div class="widget-text">Tour</div>
+					<div class="widget-icon">
+						<i class="fas fa-flag fa-lg"></i>
+						<div class="widget-badge">
+							{{ app.session.get('game').getTurn }}
+						</div>
+					</div>
+				</div>
+				<div class="widget">
+					<div class="widget-text">Cartes</div>
+					<div class="widget-icon">
+						<i class="fas fa-cards-blank fa-lg"></i>
+						<div class="widget-badge">
+							{% if qAsked is defined and qAsked is not empty %}
+								{{ qAsked|length }}
+								{% else %}0
+							{% endif %}
+							/ 58
+						</div>
+					</div>
+				</div>
+				<div class="widget">
+					<div class="widget-text">Gains</div>
+					<div class="widget-icon">
+						<i class="fas fa-sparkles fa-lg"></i>
+						<div class="widget-badge">
+							{{ app.session.get('game').getScore }}pts
+						</div>
+					</div>
+				</div>
+				<div class="widget">
+					<div class="widget-text">Temps restant</div>
+					<div class="widget-icon widget-icon-timer">
+						<i class="fas fa-hourglass-clock fa-lg"></i>
+						<div class="widget-badge">
+							{{ app.session.get('game').getDuration }}
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="deck-left">
+				<div class="artisans cardgame">
+					<img class="left-img" src="{{ asset('build/images/dos_artisans.jpg') }}" alt="dos artisan">
+				</div>
+			</div>
+
+			<div class="center">
+				<div class="d-flex flex-column align-items-center justify-content-center">
+					<a class="mx-auto d-inline btn-dice btn btn-secondary my-5" href="#" data-action-name="setQuestion()" data-action="live#action">
+						Lancer le dé
+					</a>
+
+					{% if this.roll %}
+						<div id="dice" data-side="{{this.roll}}" {% if this.reRoll %} class="reRoll" {% endif %}>
+							<div class="sides side-1">
+								<span class="dot-dice dot-1"></span>
+							</div>
+							<div class="sides side-2">
+								<span class="dot-dice dot-1"></span>
+								<span class="dot-dice dot-2"></span>
+							</div>
+							<div class="sides side-3">
+								<span class="dot-dice dot-1"></span>
+								<span class="dot-dice dot-2"></span>
+								<span class="dot-dice dot-3"></span>
+							</div>
+							<div class="sides side-4">
+								<span class="dot-dice dot-1"></span>
+								<span class="dot-dice dot-2"></span>
+								<span class="dot-dice dot-3"></span>
+								<span class="dot-dice dot-4"></span>
+							</div>
+							<div class="sides side-5">
+								<span class="dot-dice dot-1"></span>
+								<span class="dot-dice dot-2"></span>
+								<span class="dot-dice dot-3"></span>
+								<span class="dot-dice dot-4"></span>
+								<span class="dot-dice dot-5"></span>
+							</div>
+							<div class="sides side-6">
+								<span class="dot-dice dot-1"></span>
+								<span class="dot-dice dot-2"></span>
+								<span class="dot-dice dot-3"></span>
+								<span class="dot-dice dot-4"></span>
+								<span class="dot-dice dot-5"></span>
+								<span class="dot-dice dot-6"></span>
+							</div>
+						</div>
+					{% endif %}
+
+					{% if this.question %}
+						<button class="mx-auto show-modal btn btn-one my-5" {{stimulus_action('game', 'openModal')}}>Afficher la question active
+						</button>
+
+					{% endif %}
+				</div>
+			</div>
+
+			<div class="deck-right">
+				<div class="artisans cardgame">
+					<img class="right-img" src="{{ asset('build/images/dos_apocalypse.svg') }}" alt="dos apocalyspe">
+				</div>
+			</div>
+
+			<div class="dices">
+
+				<div class="{{ app.session.get('roll') == 2 ? 'question-card-selected' : 'question-card' }} cardgame">
+					<div class="two-face">
+						<span class="dot"></span>
+						<span class="dot"></span>
+					</div>
+				</div>
+				<div class="{{ app.session.get('roll') == 3 ? 'question-card-selected' : 'question-card' }} cardgame">
+					<div class="three-face">
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+					</div>
+				</div>
+				<div class="{{ app.session.get('roll') == 4 ? 'question-card-selected' : 'question-card' }} cardgame">
+					<div class="four-face">
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+					</div>
+				</div>
+				<div class="{{ app.session.get('roll') == 5 ? 'question-card-selected' : 'question-card' }} cardgame">
+					<div class="five-face">
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+					</div>
+				</div>
+				<div class="{{ app.session.get('roll') == 6 ? 'question-card-selected' : 'question-card' }} cardgame">
+					<div class="six-face">
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+
+		<div id="myModal" class="card-parchment card-parchment--modal d-none" {{stimulus_target('game', 'modal')}}>
+			<div class="parchment-background"></div>
+			<div class="parchment-body">
+				<button aria-label="close" class="close-modal" {{stimulus_action('game', 'closeModal')}}></button>
+				{% if this.question %}
+					<p class="fs-3 mb-1">
+						Niveau
+						{{this.question.getLevel}}
+					</p>
+					<h1>{{this.question.content}}
+					</h1>
+
+				{% endif %}
+				{% if app.session.get('alert') is not empty %}
+					<p class="fs-3 mb-1 mt-5">
+						{{ app.session.get('alert') }}</p>
+				{% endif %}
+
+				<div class="text-center">
+					<button id="btn-display-response" class="btn btn-one mt-3">Afficher la réponse</button>
+					<div id="response" class="d-none mt-3">
+						{% if this.answer %}
+							<p>{{this.answer.content}}</p>
+						{% endif %}
+						<div class="d-flex justify-content-center mt-5">
+							<a href="{{path('game_index')}}" id="p" class="btn btn-one bg-white bg-opacity-75 me-5 w-25 close">Bonne réponse</a>
+							<a class="btn btn-one bg-white bg-opacity-75 w-25 close">Mauvaise réponse</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

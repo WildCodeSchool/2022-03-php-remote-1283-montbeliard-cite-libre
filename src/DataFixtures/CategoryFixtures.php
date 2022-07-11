@@ -9,8 +9,8 @@ use Doctrine\Persistence\ObjectManager;
 class CategoryFixtures extends Fixture
 {
     public const CATEGORIES = [
-        "Artisan",
-        "Marchand",
+        "artisan",
+        "marchand",
     ];
     public function load(ObjectManager $manager): void
     {

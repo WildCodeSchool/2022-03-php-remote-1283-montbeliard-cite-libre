@@ -11,13 +11,13 @@
 
     <div class="row mt-2 btn-box">
         <div class="col-6 text-center">
-            <a class=" btn btn-one btn-filter" href="#">
+            <a class=" btn btn-one btn-filter" href="{{ path('game_collection', {'filter': 'family'}) }}">
                 <i class="bi bi-funnel"></i>
                  par famille
             </a>
         </div>
         <div class="col-6 text-center">
-            <a class=" btn btn-one btn-filter" href="#">
+            <a class=" btn btn-one btn-filter" href="{{ path('game_collection', {'filter': 'association'}) }}">
                 <i class="bi bi-funnel"></i>
                 par carte liée
             </a>
@@ -27,13 +27,13 @@
     <div class="collection mb-3">
         <div class="row d-flex flex-row justify-content-around gy-4 overflow-auto collection-content">
             {% for cardWon in cardWons %}
-                <div class="col-12 col-md-4 col-lg-3 d-flex flex-row justify-content-center">
+                <div class="col-12 col-md-4 col-lg-3 d-flex flex-row justify-content-center mb-4">
                     <div class="flip-card ">
+                        <div class="cards-title my-auto text-center d-flex flex-column justify-content-center"><p>{{ cardWon.card.name }}</p></div>
                         <div class="flip-card-inner">
                             <div class="flip-card-front card-size">
                                 <img src="{{ asset('build/images/parchemin.png')}}" alt="" class="h-100 w-100 filter-shadow">
                                 <div class="card-content d-flex flex-column align-items-center">
-                                    <div class="card-title pt-1"><p>{{ cardWon.card.name }}</p></div>
                                     <div class="card-img"><img src="{{ asset('build/images/img-carte/' ~ cardWon.card.image)}}" alt="{{cardWon.card.name}}" class="img-size"></div>
                                 </div>
                             </div>
@@ -41,8 +41,8 @@
                                 <div class="card-size">
                                     <img src="{{ asset('build/images/parchemin.png')}}" alt="" class="h-100 w-100 filter-shadow">
                                     <div class="card-content d-flex flex-column align-items-center">
-                                        <div class="card-title pt-1"><p>{{ cardWon.card.name }}</p></div>
                                         <div class="text-card "><p>{{ cardWon.card.description }}</p></div>
+                                        <div>{{ cardWon.card.family.name }}</div>
                                     </div>
                                 </div>
                             </div>
@@ -51,47 +51,27 @@
                 </div>
             {% endfor %}
             {% for card in cards %}
-            <div class="col-12 col-md-4 col-lg-3 d-flex flex-row justify-content-center">
-            <div class="flip-card ">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front card-size grey">
-                        <img src="{{ asset('build/images/parchemin.png')}}" alt="" class="h-100 w-100 filter-shadow">
-                        <div class="card-content d-flex flex-column align-items-center">
-                            <div class="card-title pt-1"><p>{{ card.name }}</p></div>
-                            <div class="card-img"><img src="{{ asset('build/images/img-carte/' ~ card.image)}}" alt="{{card.name}}" class="img-size"></div>
-                        </div>
-                    </div>
-                    <div class="flip-card-back">
-                        <div class="card-size grey">
-                            <img src="{{ asset('build/images/parchemin.png')}}" alt="" class="h-100 w-100 filter-shadow">
-                            <div class="card-content d-flex flex-column align-items-center">
-                                <div class="card-title pt-1"><p class="m-0">{{ card.name }}</p></div>
-                                <div class="text-card "><p class=" m-0">{{ card.description }}</p></div>
+                <div class="col-12 col-md-4 col-lg-3 d-flex flex-row justify-content-center mb-4">
+                    <div class="flip-card ">
+                        <div class="cards-title my-auto text-center d-flex flex-column justify-content-center"><p>{{ card.name }}</p></div>
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front card-size grey">
+                                <img src="{{ asset('build/images/parchemin.png')}}" alt="" class="h-100 w-100 filter-shadow">
+                                <div class="card-content d-flex flex-column align-items-center">
+                                    <div class="card-img"><img src="{{ asset('build/images/img-carte/' ~ card.image)}}" alt="{{card.name}}" class="img-size"></div>
+                                </div>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="card-size grey overflow-auto">
+                                    <img src="{{ asset('build/images/parchemin.png')}}" alt="" class="h-100 w-100 filter-shadow">
+                                    <div class="card-content d-flex flex-column align-items-center">
+                                        <div class="text-card"><p>{{ card.description }}</p></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-            {# <div class="col-12 col-md-4 col-lg-3 d-flex flex-row justify-content-center">
-                <div class="card-size grey text-center px-0">
-                    <img src="{{ asset('build/images/parchemin.png') }}" alt="" class="h-100 w-100 filter-shadow">
-                        <div class="card-content d-flex flex-column justify-content-around align-items-center">
-                            <div class="">
-                                <p class="m-0 pb-2">
-                                    {{ card.name }}
-                                </p>
-                            </div>
-                            <div class="text-card ">
-                                <p class=" m-0">
-                                    {{ card.description }}
-                                </p>
-                            </div>
-                            <div class="card-img ps-1">
-                                <img src="{{ asset('build/images/img-carte/' ~ card.image) }}" alt="{{ card.name }}" class="img-size"></div>
-                            </div>
-                        </div>
-                    </div> #}
             {% endfor %}
         </div>
     </div>

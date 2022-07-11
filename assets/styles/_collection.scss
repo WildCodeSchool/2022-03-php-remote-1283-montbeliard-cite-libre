@@ -1,5 +1,5 @@
 .collection-title{
-    margin-top: 10rem;
+    margin-top: 15rem;
 }
 
 .collection{
@@ -7,35 +7,25 @@
     background-image: url('/assets/images/parchemin.png');
     background-size: 100% 100%;
     position: relative;
-}
-
-.collection-content{
-    height: 76%;
-    width: 87%;
-    position: absolute;
-    top: 14%;
-    left: 7%;
-}
-
-.btn-box{
-    position: absolute;
-    top: 10%;
-    margin: auto;
-    z-index: 1000;
-    width: 100%;
-    .btn-filter{
-        max-width: 80%;
-        background-color: transparent;
+    .collection-content{
+        height: 76%;
+        width: 85%;
+        position: absolute;
+        top: 14%;
+        left: 8%;
     }
 }
 
 @media(max-width: 950px) and (orientation: landscape) {
-    .collection-content{
-        top: 17.5%;
+    .collection{
+        .collection-content{
+            top: 17.5%;
+        }
     }
-    .btn-box{
-        top: 10%;
-    }
+}
+.btn-filter{
+    max-width: 80%;
+    background-color: transparent;
 }
 
 .filter-shadow {

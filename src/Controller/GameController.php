@@ -83,8 +83,9 @@ class GameController extends AbstractController
         return $this->redirectToRoute('game_progress', []);
     }
 
-    #[Route('/collection', name: '_collection')]
+    #[Route('/collection/{filter}', name: '_collection')]
     public function collection(
+        string $filter,
         CardRepository $cardRepository,
         CardWonRepository $cardWonRepository,
         GameRepository $gameRepository,
@@ -94,6 +95,14 @@ class GameController extends AbstractController
         $game = $gameRepository->findOneById($session->get('game')->getId());
         $cards = $cardRepository->findByUnearnedCard($game);
         $cardWons = $cardWonRepository->findBy(['game' => $game]);
+
+        if ($filter === 'family') {
+            $cardWons = $cardWonRepository->findByOrderFamily($game);
+        }
+        if ($filter === 'association') {
+            $cardWons = $cardWonRepository->findBy(['game' => $game]);
+        }
+
 
         return $this->render('game/collection.html.twig', [
             'cards' => $cards,

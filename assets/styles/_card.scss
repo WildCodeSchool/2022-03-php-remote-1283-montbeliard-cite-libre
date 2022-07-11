@@ -2,9 +2,15 @@
     filter: grayscale(100%);
 }
 
-
+.cards-title{
+    height: 50px;
+    p{
+        line-height: initial;
+    }
+}
 
 .card-img{
+    margin-top: 2.1rem;
     height: 75%;
     width: 80%;
     .img-size{
@@ -17,17 +23,12 @@
     position: absolute;
     top: 0;
     z-index: 100;
-    height: 98%;
+    height: 100%;
     width: 100%;
     p{
         line-height: 1.30;
     }
-    .card-title{
-        height: 28px;
-        z-index: 10;
-    }
     .text-card{
-        font-size: 80%;
         width: 85%;
         margin: auto;
     }
@@ -44,7 +45,6 @@
 
 /* This container is needed to position the front and back side */
 .flip-card-inner {
-
     width: 100%;
     height: 100%;
     text-align: center;

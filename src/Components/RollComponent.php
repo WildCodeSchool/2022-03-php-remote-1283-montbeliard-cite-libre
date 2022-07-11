@@ -22,9 +22,9 @@ class RollComponent extends AbstractController
 {
     use DefaultActionTrait;
 
-    public ?Answer $answer = null;
+    public ?array $answer = null;
     public ?Game $game = null;
-    public ?QuestionAsked $qAsked = null;
+    public ?array $qAsked = null;
 
     #[LiveAction]
     public function setQuestion(
@@ -51,7 +51,7 @@ class RollComponent extends AbstractController
         }
     }
 
-    public function getAnswer(): ?Answer
+    public function getAnswer(): ?array
     {
         return $this->answer ? $this->answer : null;
     }

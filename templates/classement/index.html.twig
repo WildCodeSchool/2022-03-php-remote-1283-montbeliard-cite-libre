@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page des classements
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid d-flex justify-content-center">
+		<div class="parchment">
+			<div class="parchment-body">
+				<h1>Page des classements</h1>
+				<div class="d-flex flex-column">
+					<table class="text-center w-100">
+						<tr>
+							<th>
+								<h2>Nom de la partie</h2>
+							</th>
+							<th>
+								<h2>Durée de la partie</h2>
+							</th>
+							<th>
+								<h2>Score</h2>
+							</th>
+						</tr>
+						{% for game in games %}
+							<tr>
+								<td>{{ game.name }}</td>
+								<td>{{ game.duration }}</td>
+								<td>{{ game.score }}</td>
+							</tr>
+						{% endfor %}
+					</table>
+
+				</div>
+			</div>
+		</div>
+	{% endblock %}

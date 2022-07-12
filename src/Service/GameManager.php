@@ -34,7 +34,7 @@ class GameManager
         $game->setTurn(1);
         $game->setUser($user);
         $game->setScore(0);
-        $game->setDuration($interval->format('%I : %S'));
+        $game->setDuration($interval->format('%I minutes'));
         $this->gameRepository->add($game, true);
         $apocalypses = $this->cardApoRepository->selectAllRandom();
         $session->set('apocalypses', $apocalypses);

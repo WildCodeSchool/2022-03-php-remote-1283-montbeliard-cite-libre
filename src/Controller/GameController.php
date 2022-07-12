@@ -86,9 +86,8 @@ class GameController extends AbstractController
         return $this->redirectToRoute('game_progress', []);
     }
 
-    #[Route('/collection/{filter}', name: '_collection')]
+    #[Route('/collection', name: '_collection')]
     public function collection(
-        string $filter,
         CardRepository $cardRepository,
         CardWonRepository $cardWonRepository,
         GameRepository $gameRepository,

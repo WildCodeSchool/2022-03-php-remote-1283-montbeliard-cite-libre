@@ -44,7 +44,7 @@ class Question
     #[Assert\Valid]
     private Collection $answers;
 
-    #[ORM\OneToMany(mappedBy: 'question', targetEntity: QuestionAsked::class)]
+    #[ORM\OneToMany(mappedBy: 'question', targetEntity: QuestionAsked::class, cascade: ['persist', 'remove'])]
     private Collection $questionAskeds;
 
     public function __construct()

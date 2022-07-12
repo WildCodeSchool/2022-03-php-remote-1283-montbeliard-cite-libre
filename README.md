@@ -145,11 +145,12 @@ Il permet de visualiser et d'administrer l'ensemble des questions du jeu, ainsi 
 
 Page Tableau de bord
 
--   [ ] question.question n'existe pas en twig il faut remplacer par question.content.
--   [ ] pareil pour les answers.
+-   [ x ] question.question n'existe pas en twig il faut remplacer par question.content.
+-   [ x ] pareil pour les answers.
 -   [ ] le menu est à clarifier.
 
 Page du jeu en cours
 
 -   [ ] A chaque validation de réponse le compteur de carte revient à 0.
 -   [ ] Pour perdre des points si un 1 est tiré il faut valider la réponse dans le parchemin.
+-   [ ] Le parchemin réapparait quand on valide une réponse.

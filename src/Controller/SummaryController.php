@@ -15,7 +15,7 @@ class SummaryController extends AbstractController
     public function index(QuestionAskedRepository $qAskedRepository, RequestStack $requestStack): Response
     {
         $session = $requestStack->getSession();
-        $qAsked = $qAskedRepository->findBy(['id' => $session->get("game")->getId()]);
+        $qAsked = $qAskedRepository->findBy(['game' => $session->get("game")->getId()]);
         return $this->render('summary/index.html.twig', [
             'question_asked' => $qAsked,
         ]);

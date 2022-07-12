@@ -7,11 +7,16 @@
 	<div class="container-fluid d-flex justify-content-center">
 		<div class="parchment">
 			<div class="parchment-body">
-                <h1>Page récapitulative</h1>
-                <pre>
-                    {{ dump(question_asked[0].question) }}
-                </pre>
-            </div>
-        </div>
+				<h1>Page récapitulative</h1>
+				{% for question in question_asked %}
+                <h1 class="text-start">{{ question.question.content }}</h1>
+
+					{% for answer in question.question.answers %}
+                        <p>{{ answer.content }}</p>
+					{% endfor %}
+
+				{% endfor %}
+			</div>
+		</div>
 	</div>
 {% endblock %}

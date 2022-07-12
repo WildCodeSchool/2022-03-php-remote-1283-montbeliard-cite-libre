@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\QuestionAsked;
+use App\Repository\GameRepository;
 use App\Repository\QuestionAskedRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -12,10 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class SummaryController extends AbstractController
 {
     #[Route('/summary', name: 'app_summary')]
-    public function index(QuestionAskedRepository $qAskedRepository, RequestStack $requestStack): Response
+    public function index(QuestionAskedRepository $qAskedRepository, GameRepository $gameRepository): Response
     {
-        $session = $requestStack->getSession();
-        $qAsked = $qAskedRepository->findBy(['game' => $session->get("game")->getId()]);
+        $game = $gameRepository->findBy([], ['id' => 'desc'], 1, 0);
+        $qAsked = $qAskedRepository->findBy(['game' => $game]);
         return $this->render('summary/index.html.twig', [
             'question_asked' => $qAsked,
         ]);

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page récapitulative
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid d-flex justify-content-center">
+		<div class="parchment">
+			<div class="parchment-body">
+				<h1>Page récapitulative</h1>
+				{% for question in question_asked %}
+                <h2 class="text-start">{{ question.question.content }}</h2>
+
+					{% for answer in question.question.answers %}
+                        <p>{{ answer.content }}</p>
+					{% endfor %}
+
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

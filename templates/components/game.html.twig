@@ -43,10 +43,9 @@
 					<div class="widget-icon">
 						<i class="fas fa-cards-blank fa-lg"></i>
 						<div class="widget-badge">
-							{% if qAsked is defined and qAsked is not empty %}
-								{{ qAsked|length }}
-								{% else %}0
-							{% endif %}
+
+								{{ app.session.get('game').getCardWons|length }}
+
 							/ 58
 						</div>
 					</div>
@@ -63,10 +62,9 @@
 				<div class="widget">
 					<div class="widget-text">Temps restant</div>
 					<div class="widget-icon widget-icon-timer">
+                        <div class="widget-icon-progress" {{ stimulus_target('game', 'chronoProgress') }}></div>
 						<i class="fas fa-hourglass-clock fa-lg"></i>
-						<div class="widget-badge">
-							{{ app.session.get('game').getDuration }}
-						</div>
+						<div class="widget-badge" {{ stimulus_target('game', 'chrono') }}></div>
 					</div>
 				</div>
 			</div>
@@ -78,7 +76,9 @@
 			</div>
 
 			<div class="center">
-				<div class="d-flex flex-column align-items-center justify-content-center">
+				<div
+					class="d-flex flex-column align-items-center justify-content-center" >
+
 					{% if this.roll %}
 						<div id="dice" data-side="{{this.roll}}" {% if this.reRoll %} class="reRoll" {% endif %}>
 							<div class="sides side-1">
@@ -120,7 +120,7 @@
 					<span data-loading="addClass(opacity-100)" style="opacity:0;">
 						<img src="{{asset('build/images/loader.svg')}}" alt="chargement"></span>
 
-					<a class="mx-auto d-inline btn-dice btn btn-secondary my-5" href="#" data-action-name="setQuestion()" data-action="live#action game#openRoll">
+					<a class="mx-auto d-inline btn-dice btn btn-secondary my-5" href="#" data-action-name="setQuestion()" data-action="live#action">
 						Lancer le dé
 					</a>
 
@@ -187,8 +187,9 @@
 		</div>
 
 
-		<div id="myModal" class="card-parchment card-parchment--modal d-none" {{stimulus_target('game', 'modal')}}>
-			<div class="parchment-background"></div>
+		<div id="myModal" class="card-parchment card-parchment--modal
+            {% if this.roll %}card-parchment--modal-auto-show{% else %}d-none{% endif %}" {{stimulus_target('game', 'modal')}}>
+			<div class="parchment-background" {{stimulus_action('game', 'click->game#closeModal')}}></div>
 			<div class="parchment-body">
 				<button aria-label="close" class="close-modal" {{stimulus_action('game', 'closeModal')}}></button>
 				{% if this.question %}

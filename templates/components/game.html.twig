@@ -78,16 +78,7 @@
 			</div>
 
 			<div class="center">
-				<div
-					class="d-flex flex-column align-items-center justify-content-center">
-					{# loader #}
-					<span data-loading="addClass(opacity-100)" style="opacity:0;">
-						<img src="{{asset('build/images/loader.svg')}}" alt="chargement"></span>
-
-					<a class="mx-auto d-inline btn-dice btn btn-secondary my-5" href="#" data-action-name="setQuestion()" data-action="live#action game#openRoll">
-						Lancer le dé
-					</a>
-
+				<div class="d-flex flex-column align-items-center justify-content-center">
 					{% if this.roll %}
 						<div id="dice" data-side="{{this.roll}}" {% if this.reRoll %} class="reRoll" {% endif %}>
 							<div class="sides side-1">
@@ -125,6 +116,14 @@
 							</div>
 						</div>
 					{% endif %}
+					{# loader #}
+					<span data-loading="addClass(opacity-100)" style="opacity:0;">
+						<img src="{{asset('build/images/loader.svg')}}" alt="chargement"></span>
+
+					<a class="mx-auto d-inline btn-dice btn btn-secondary my-5" href="#" data-action-name="setQuestion()" data-action="live#action game#openRoll">
+						Lancer le dé
+					</a>
+
 
 					{% if this.question %}
 						<button class="mx-auto show-modal btn btn-one my-5" {{stimulus_action('game', 'openModal')}}>Afficher la question active

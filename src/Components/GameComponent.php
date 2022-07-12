@@ -5,8 +5,6 @@ namespace App\Components;
 use App\Entity\Answer;
 use App\Entity\Question;
 use App\Repository\AnswerRepository;
-use App\Repository\GameRepository;
-use App\Repository\QuestionAskedRepository;
 use App\Service\QuestionAsk;
 use App\Service\RollDice;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -30,10 +28,8 @@ class GameComponent
     public function __construct(
         private RollDice $diceRoll,
         private QuestionAsk $questionAsk,
-        private RequestStack $requestStack,
-        private AnswerRepository $answerRepository,
-        private GameRepository $gameRepository,
-        private QuestionAskedRepository $qAskedRepository
+        RequestStack $requestStack,
+        private AnswerRepository $answerRepository
     ) {
         $this->session = $requestStack->getSession();
     }

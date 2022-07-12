@@ -17,10 +17,6 @@ class GameManager
         private Security $security,
         private CardApocalypseRepository $cardApoRepository,
     ) {
-        $this->gameRepository = $gameRepository;
-        $this->requestStack = $requestStack;
-        $this->security = $security;
-        $this->cardApoRepository = $cardApoRepository;
     }
 
     public function setGame(Game $game): void

@@ -167,7 +167,7 @@
             top: 100px;
             grid-area: card;
             display: inline-block;
-
+            width: 260px;
             .btn-classeur {
                 line-height: 1;
                 font-size: 1.5rem;
@@ -217,9 +217,19 @@
 }
 
 .question-card-selected {
-    opacity: 1;
+    animation: makeVisible 1.8s linear forwards;
 }
-
+@keyframes makeVisible {
+    0% {
+        opacity: 0.5;
+    }
+    99% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 .widget {
     padding: .5rem;
     margin-left: 1rem;
@@ -233,17 +243,29 @@
         padding: 0.25rem 1.25rem;
         background-color: $primary;
         filter: drop-shadow(2px 2px 1px #666);
+        overflow: hidden;
         &.widget-icon-timer {
-            background-color: $gray-600;
             color: color-contrast($gray-600);
             font-weight: 500;
+            .widget-icon-progress {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                background-color: $gray-600;
+                z-index: -1;
+                transition: width 1s linear;
+            }
+            .widget-badge {
+                --widget-badge-size: 90px;
+            }
         }
     }
     .widget-badge {
         --widget-badge-size: 75px;
         padding: .5rem;
         text-align: center;
-        width: var(--widget-badge-size);
+        min-width: var(--widget-badge-size);
         @include media-breakpoint-down(lg) {
             --widget-badge-size: auto;
         }

@@ -42,15 +42,15 @@ class CardWonRepository extends ServiceEntityRepository
         }
     }
 
-    public function findByCard(Game $game): array
-    {
-        return $this->createQueryBuilder('c')
-            ->select('identity(c.card)')
-            ->where('c.game = :game')
-            ->setParameter('game', $game)
-            ->getQuery()
-            ->getResult();
-    }
+    // public function findByCard(Game $game): array
+    // {
+    //     return $this->createQueryBuilder('c')
+    //         ->select('identity(c.card)')
+    //         ->where('c.game = :game')
+    //         ->setParameter('game', $game)
+    //         ->getQuery()
+    //         ->getResult();
+    // }
 
     public function withdrawTheLastCards(int $number, Category $category, Game $game): array
     {
@@ -82,10 +82,21 @@ class CardWonRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('cw')
             ->join('cw.card', 'c', 'WITH', 'cw.game=:game')
             ->setParameter('game', $game)
-            ->orderBy('c.family')
+            ->orderBy('c.family', 'ASC')
             ->getQuery()
             ->getResult();
     }
+
+    public function findByLinkedCard(Game $game): array
+    {
+        return $this->createQueryBuilder('cw')
+        ->join('cw.card', 'c', 'WITH', 'cw.game=:game')
+        ->setParameter('game', $game)
+        ->orderBy('c.rule')
+        ->getQuery()
+        ->getResult();
+    }
+
     //    /**
     //     * @return CardWon[] Returns an array of CardWon objects
     //     */

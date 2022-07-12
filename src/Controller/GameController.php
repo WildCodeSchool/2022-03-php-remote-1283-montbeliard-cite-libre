@@ -100,7 +100,7 @@ class GameController extends AbstractController
             $cardWons = $cardWonRepository->findByOrderFamily($game);
         }
         if ($filter === 'association') {
-            $cardWons = $cardWonRepository->findBy(['game' => $game]);
+            $cardWons = $cardWonRepository->findByLinkedCard($game);
         }
 
 

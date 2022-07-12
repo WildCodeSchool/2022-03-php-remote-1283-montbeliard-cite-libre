@@ -2,48 +2,56 @@
     filter: grayscale(100%);
 }
 
-.cards-title{
-    height: 50px;
-    p{
-        line-height: initial;
-    }
-}
-
-.card-img{
-    margin-top: 2.1rem;
-    height: 75%;
-    width: 80%;
-    .img-size{
+.card-box{
+    margin-bottom: 4rem;
+    .img-title{
         height: 100%;
         width: 100%;
     }
-}
-
-.card-content{
-    position: absolute;
-    top: 0;
-    z-index: 100;
-    height: 100%;
-    width: 100%;
-    p{
-        line-height: 1.30;
+    .cards-title{
+        height: 50px;
+        width: 90%;
+        top: 2%;
+        left: 5%;
+        position: absolute;
+        z-index: 100;
+        p{
+            line-height: initial;
+        }
     }
-    .text-card{
-        width: 85%;
-        margin: auto;
+    .card-img{
+        margin-top: 2.1rem;
+        height: 75%;
+        width: 80%;
+        .img-size{
+            height: 100%;
+            width: 100%;
+        }
+    }
+    .card-content{
+        position: absolute;
+        top: 0;
+        z-index: 100;
+        height: 100%;
+        width: 100%;
+        p{
+            line-height: 1.30;
+        }
+        .text-card{
+            width: 85%;
+            margin: auto;
+        }
     }
 }
-
-/**/
 
 .flip-card, .card-size {
     position: relative;
     height: 300px;
     width: 225px;
-    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+    perspective: 1000px; /* Supprimez cette option si vous ne voulez pas de l'effet 3D. */
 }
 
-/* This container is needed to position the front and back side */
+/* Ce conteneur est nécessaire pour positionner les côtés avant et arrière. */
 .flip-card-inner {
     width: 100%;
     height: 100%;
@@ -52,19 +60,20 @@
     transform-style: preserve-3d;
 }
 
-/* Do an horizontal flip when you move the mouse over the flip box container */
+/* Effectuer un retournement horizontal lorsque vous passez la souris
+ sur le conteneur de la boîte de retournement. */
 .flip-card:hover .flip-card-inner {
     transform: rotateY(180deg);
 }
 
-/* Position the front and back side */
+/* Positionner le côté avant et arrière */
 .flip-card-front, .flip-card-back {
     position: absolute;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
 }
 
-/* Style the back side */
+/* Coiffez l'arrière */
 .flip-card-back {
     transform: rotateY(180deg);
 }

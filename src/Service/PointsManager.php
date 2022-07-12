@@ -53,26 +53,26 @@ class PointsManager
                 $category = $this->categoryRepository->findBy(['name' => $categories[array_rand($categories)]])[0];
             }
             //Retire les dernières cartes gagnées selon la catégorie
-            $removedCard = $this->cardWonRepository->withdrawTheLastCards($rules['value'], $category, $game);
-            foreach ($removedCard as $key => $card) {
-                if ($card->getCard()->getRule()['association']) {
+            $removedCards = $this->cardWonRepository->withdrawTheLastCards($rules['value'], $category, $game);
+            foreach ($removedCards as $key => $lostCard) {
+                if ($lostCard->getCard()->getRule()['association']) {
                     //Retire les points lié à l'association de carte si le joueur la possède
                     if (
                         $this->cardWonRepository->find(
-                            $card->getCard()->getRule()['association']
+                            $lostCard->getCard()->getRule()['association']
                         ) || in_array(
-                            $card,
-                            $removedCard
+                            $lostCard,
+                            $removedCards
                         )
                     ) {
-                        unset($removedCard[$key]);
-                        $points -= $card->getCard()->getCredit();
+                        unset($removedCards[$key]);
+                        $points -= $lostCard->getCard()->getCredit();
                     }
                 }
                 //Si la famille est complète, on retire les points
-                $this->checkingFamily('-', $points, $card->getCard(), $game);
+                $this->checkingFamily('-', $points, $lostCard->getCard(), $game);
                 //Puis on retire la carte de la table cardWon
-                $this->cardWonRepository->remove($card, true);
+                $this->cardWonRepository->remove($lostCard, true);
                 $points -= 10;
             }
         }

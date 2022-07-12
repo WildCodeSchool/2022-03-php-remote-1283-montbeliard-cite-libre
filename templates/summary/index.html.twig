@@ -9,7 +9,7 @@
 			<div class="parchment-body">
 				<h1>Page récapitulative</h1>
 				{% for question in question_asked %}
-                <h1 class="text-start">{{ question.question.content }}</h1>
+                <h2 class="text-start">{{ question.question.content }}</h2>
 
 					{% for answer in question.question.answers %}
                         <p>{{ answer.content }}</p>

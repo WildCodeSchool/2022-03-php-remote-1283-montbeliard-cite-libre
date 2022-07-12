@@ -145,8 +145,8 @@ Il permet de visualiser et d'administrer l'ensemble des questions du jeu, ainsi 
 
 Page Tableau de bord
 
--   [ x ] question.question n'existe pas en twig il faut remplacer par question.content.
--   [ x ] pareil pour les answers.
+-   [x] question.question n'existe pas en twig il faut remplacer par question.content.
+-   [x] pareil pour les answers.
 -   [ ] le menu est à clarifier.
 
 Page du jeu en cours

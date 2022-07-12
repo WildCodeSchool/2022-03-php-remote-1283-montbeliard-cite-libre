@@ -18,7 +18,7 @@ class QuestionAsk
 {
     private QuestionRepository $questionRepository;
     private QuestionAskedRepository $qAskedRepository;
-    private Question $question;
+    private Question|string $question;
     private CardApocalypse $cardApocalypse;
     private RequestStack $requestStack;
 
@@ -34,13 +34,33 @@ class QuestionAsk
         $this->gameRepository = $gameRepository;
     }
 
-    public function rollQuestion(int $level): Question
+    public function rollQuestion(int $level): Question|string
     {
         $session = $this->requestStack->getSession();
         $gameId = $session->get('game')->getId();
+        $session->set('alert', null);
+        if (!isset($this->questionRepository->selectRandomByLevel($level, $gameId)[0])) {
+            $this->question = "Plus aucune question de disponible pour ce niveau";
+            $session->set('question', null);
+            $session->set('alert', $this->question);
+            return $this->question;
+        }
         $this->question =  $this->questionRepository->selectRandomByLevel($level, $gameId)[0];
         $this->addQuestionAsked($this->question);
         return $this->question;
+    }
+
+    public function addQuestionAsked(Question $question): void
+    {
+
+        $session = $this->requestStack->getSession();
+        $game = $this->gameRepository->findOneById($session->get('game')->getId());
+        $questionAsked = new QuestionAsked();
+        $questionAsked->setQuestion($question);
+        $questionAsked->setGame($game);
+        $this->addTurn();
+        $this->qAskedRepository->add($questionAsked, true);
+        $session->set('question', $question);
     }
     /**
      * Get the value of question
@@ -77,18 +97,5 @@ class QuestionAsk
         $game->setTurn($game->getTurn() + 1);
         $this->gameRepository->add($game, true);
         $session->set('game', $game);
-    }
-
-    public function addQuestionAsked(Question $question): void
-    {
-
-        $session = $this->requestStack->getSession();
-        $game = $this->gameRepository->findOneById($session->get('game')->getId());
-        $questionAsked = new QuestionAsked();
-        $questionAsked->setQuestion($question);
-        $questionAsked->setGame($game);
-        $this->addTurn();
-        $this->qAskedRepository->add($questionAsked, true);
-        $session->set('question', $question);
     }
 }

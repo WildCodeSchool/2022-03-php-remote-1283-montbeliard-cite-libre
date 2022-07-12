@@ -3,17 +3,6 @@
 {% block title %}Partie de jeu d'histoire
 {% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-    {% if app.session.get('roll') is defined %}
-        <script>
-            document.addEventListener('DOMContentLoaded', function (event) {
-                rollDice({{ app.session.get('roll') }})
-            })
-        </script>
-    {% endif %}
-{% endblock %}
-
 {% block main %}
 
     <div class="body-game">
@@ -165,4 +154,5 @@
 
     </div>
     {% include "include/_questions.html.twig" %}
+	{{component('game')}}
 {% endblock %}

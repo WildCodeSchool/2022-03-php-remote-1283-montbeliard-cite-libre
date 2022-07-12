@@ -66,7 +66,6 @@ class CardWonRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-
     //    /**
     //     * @return CardWon[] Returns an array of CardWon objects
     //     */

@@ -39,5 +39,19 @@
             color: $primary;
             text-decoration: underline;
         }
+
     }
+}
+
+::-webkit-scrollbar{
+    width: 1rem;
+}
+::-webkit-scrollbar-track{
+    background: $dark;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb{
+    background: $primary;
+    border-radius: 12px;
+    border: 5px solid $dark;
 }

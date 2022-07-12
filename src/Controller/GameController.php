@@ -4,22 +4,25 @@ namespace App\Controller;
 
 use App\Entity\Game;
 use App\Form\GameType;
-use App\Service\PointsManager;
-use App\Repository\AnswerRepository;
-use App\Repository\CardRepository;
-use App\Repository\CardWonRepository;
-use App\Repository\GameRepository;
 use App\Service\RollDice;
+use App\Service\GameManager;
 use App\Service\QuestionAsk;
+use App\Service\PointsManager;
+use App\Repository\CardRepository;
+use App\Repository\GameRepository;
+use App\Repository\AnswerRepository;
+use App\Repository\CardWonRepository;
 use App\Repository\QuestionRepository;
 use App\Repository\QuestionAskedRepository;
-use App\Service\GameManager;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[IsGranted('ROLE_USER')]
 #[Route('/game', name: 'game')]
@@ -93,20 +96,18 @@ class GameController extends AbstractController
     ): Response {
         $session = $requestStack->getSession();
         $game = $gameRepository->findOneById($session->get('game')->getId());
-        $cards = $cardRepository->findByUnearnedCard($game);
+        $cards = $cardRepository->findAll();
         $cardWons = $cardWonRepository->findBy(['game' => $game]);
 
-        if ($filter === 'family') {
-            $cardWons = $cardWonRepository->findByOrderFamily($game);
+        $cardWonsIds = [];
+        foreach ($cardWons as $cardWon) {
+            $cardWonsIds[] = $cardWon->getCard()->getId();
         }
-        if ($filter === 'association') {
-            $cardWons = $cardWonRepository->findByLinkedCard($game);
-        }
-
 
         return $this->render('game/collection.html.twig', [
             'cards' => $cards,
             'cardWons' => $cardWons,
+            'cardWonsIds' => $cardWonsIds,
         ]);
     }
 

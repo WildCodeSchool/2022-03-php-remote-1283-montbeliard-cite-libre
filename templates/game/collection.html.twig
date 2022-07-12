@@ -4,81 +4,54 @@
     Collection de cartes
 {% endblock %}
 
-{% block body %}
+{% block main %}
     <h1 class="text-center collection-title">
         Classeur de cartes
     </h1>
 
-    <div class="row mt-2 btn-box">
-        <div class="col-6 text-center">
-            <a class=" btn btn-one btn-filter" href="{{ path('game_collection', {'filter': 'family'}) }}">
-                <i class="bi bi-funnel"></i>
-                 par famille
-            </a>
-        </div>
-        <div class="col-6 text-center">
-            <a class=" btn btn-one btn-filter" href="{{ path('game_collection', {'filter': 'association'}) }}">
-                <i class="bi bi-funnel"></i>
-                par carte liée
-            </a>
-        </div>
-    </div>
-
     <div class="collection mb-3">
         <div class="row d-flex flex-row justify-content-around gy-4 overflow-auto collection-content">
-            {% for cardWon in cardWons %}
-                <div class="col-12 col-md-4 col-lg-3 d-flex flex-row justify-content-center card-box">
+            {% set previousFamilly = '' %}
+            {% for card in cards|sort((a, b) => a.family.name <=> b.family.name) %}
+                {% if card.family.name != previousFamilly  %}
+                <h2 class="fs-1 text-center">{{card.family.name}}</h2>
+                {% endif %}
+
+                <div class="col-12 col-md-5 col-lg-3 d-flex flex-row justify-content-center card-box
+                    {% if card.id not in cardWonsIds %}grey{% endif %}
+                ">
                     <div class="flip-card ">
-                        <div>
-                            <img src="{{ asset('build/images/gold-metal.png')}}" alt="" class="img-title">
-                            <div class="cards-title my-auto text-center d-flex flex-column justify-content-center"><p>{{ cardWon.card.name }}</p></div>
-                        </div>
                         <div class="flip-card-inner">
                             <div class="flip-card-front card-size">
-                                <img src="{{ asset('build/images/parchemin.png')}}" alt="" class="h-100 w-100 filter-shadow">
-                                <div class="card-content d-flex flex-column align-items-center">
-                                    <div class="card-img"><img src="{{ asset('build/images/img-carte/' ~ cardWon.card.image)}}" alt="{{cardWon.card.name}}" class="img-size"></div>
-                                </div>
+                            <div class="box-title">
+                                <img src="{{ asset('build/images/gold-metal.png')}}" alt="" class="img-title">
+                                <div class="cards-title my-auto text-center d-flex flex-column justify-content-center"><p>{{ card.name }}</p></div>
                             </div>
-                            <div class="flip-card-back">
-                                <div class="card-size">
-                                    <img src="{{ asset('build/images/parchemin.png')}}" alt="" class="h-100 w-100 filter-shadow">
-                                    <div class="card-content d-flex flex-column align-items-center">
-                                        <div class="text-card "><p>{{ cardWon.card.description }}</p></div>
-                                        {# <div>{{ cardWon.card.family.name }}</div> #}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-            {% for card in cards %}
-                <div class="col-12 col-md-4 col-lg-3 d-flex flex-row justify-content-center card-box grey">
-                    <div class="flip-card ">
-                        <div>
-                            <img src="{{ asset('build/images/gold-metal.png')}}" alt="" class="img-title">
-                            <div class="cards-title my-auto text-center d-flex flex-column justify-content-center"><p>{{ card.name }}</p></div>
-                        </div>
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front card-size">
                                 <img src="{{ asset('build/images/parchemin.png')}}" alt="" class="h-100 w-100 filter-shadow">
                                 <div class="card-content d-flex flex-column align-items-center">
                                     <div class="card-img"><img src="{{ asset('build/images/img-carte/' ~ card.image)}}" alt="{{card.name}}" class="img-size"></div>
                                 </div>
                             </div>
                             <div class="flip-card-back">
+                            <div class="box-title">
+                                <img src="{{ asset('build/images/gold-metal.png')}}" alt="" class="img-title">
+                                <div class="cards-title my-auto text-center d-flex flex-column justify-content-center">
+                                <p>carte gagnée 10 pts </p>
+                                <p>{% if card.credit and  card.id == 57 or card.id == 42 %}malus {{ card.credit }} pts{% endif %}</p>
+                                <p>{% if card.credit and card.id != 57 and card.id != 42 %}bonus {{ card.credit }} pts{% endif %}</p>
+                               </div>
+                            </div>
                                 <div class="card-size">
                                     <img src="{{ asset('build/images/parchemin.png')}}" alt="" class="h-100 w-100 filter-shadow">
                                     <div class="card-content d-flex flex-column align-items-center">
                                         <div class="text-card "><p>{{ card.description }}</p></div>
-                                        {# <div>{{ card.family.name }}</div> #}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                {% set previousFamilly = card.family.name %}
             {% endfor %}
         </div>
     </div>

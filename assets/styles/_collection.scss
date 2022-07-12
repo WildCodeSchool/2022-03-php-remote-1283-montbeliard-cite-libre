@@ -1,5 +1,10 @@
 .collection-title{
-    margin-top: 15rem;
+    position: absolute;
+    top: 1%;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+
 }
 
 .collection{
@@ -7,6 +12,7 @@
     background-image: url('/assets/images/parchemin.png');
     background-size: 100% 100%;
     position: relative;
+    margin-top: 2rem;
     .collection-content{
         height: 76%;
         width: 85%;

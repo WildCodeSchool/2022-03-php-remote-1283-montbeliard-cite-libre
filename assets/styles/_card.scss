@@ -3,20 +3,27 @@
 }
 
 .card-box{
-    margin-bottom: 4rem;
-    .img-title{
+    margin: 5rem 0 2rem 0;
+
+    .box-title{
+        position: absolute;
+        top: -20%;
         height: 100%;
         width: 100%;
-    }
-    .cards-title{
-        height: 50px;
-        width: 90%;
-        top: 2%;
-        left: 5%;
-        position: absolute;
-        z-index: 100;
-        p{
-            line-height: initial;
+        .img-title{
+            height: 20%;
+            width: 100%;
+        }
+        .cards-title{
+            height: 50px;
+            width: 90%;
+            top: 2%;
+            left: 5%;
+            position: absolute;
+            z-index: 100;
+            p{
+                line-height: initial;
+            }
         }
     }
     .card-img{

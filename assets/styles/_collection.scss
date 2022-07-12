@@ -1,10 +1,9 @@
 .collection-title{
     position: absolute;
-    top: 1%;
+    top: 3%;
     left: 0;
     z-index: 1000;
     width: 100%;
-
 }
 
 .collection{
@@ -27,6 +26,9 @@
         .collection-content{
             top: 17.5%;
         }
+    }
+    .collection-title{
+        top: 0;
     }
 }
 .btn-filter{

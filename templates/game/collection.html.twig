@@ -37,8 +37,10 @@
                                 <img src="{{ asset('build/images/gold-metal.png')}}" alt="" class="img-title">
                                 <div class="cards-title my-auto text-center d-flex flex-column justify-content-center">
                                 <p>carte gagnée 10 pts </p>
-                                <p>{% if card.credit and  card.id == 57 or card.id == 42 %}malus {{ card.credit }} pts{% endif %}</p>
-                                <p>{% if card.credit and card.id != 57 and card.id != 42 %}bonus {{ card.credit }} pts{% endif %}</p>
+                                <p>{% if card.credit and  card.name == 'Le marchand de vin' or
+                                         card.name == 'Le cabaretier' %}malus {{ card.credit }} pts{% endif %}</p>
+                                <p>{% if card.credit and card.name != 'Le marchand de vin' and
+                                         card.name != 'Le cabaretier' %}bonus {{ card.credit }} pts{% endif %}</p>
                                </div>
                             </div>
                                 <div class="card-size">

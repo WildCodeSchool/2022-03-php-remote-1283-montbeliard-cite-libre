@@ -57,7 +57,6 @@ class GameController extends AbstractController
 
         if ($session->get('game')->getScore() >= 1000) {
             $gameRepository->add($game, true);
-            $session->invalidate();
             return $this->render('confetties/index.html.twig');
         }
         $answer = null;
@@ -122,5 +121,17 @@ class GameController extends AbstractController
         $session = $requestStack->getSession();
         $session->invalidate();
         return $this->redirectToRoute('game_index');
+    }
+
+    #[Route('/endGame', name: '_endGame')]
+    public function endGame(RequestStack $requestStack, GameRepository $gameRepository): Response
+    {
+        $session = $requestStack->getSession();
+        $game = $gameRepository->findOneById($session->get('game')->getId());
+        $session->invalidate();
+        return $this->redirectToRoute(
+            'summary',
+            ['id' => $game->getId()]
+        );
     }
 }

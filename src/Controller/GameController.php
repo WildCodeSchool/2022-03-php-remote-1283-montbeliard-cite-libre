@@ -57,9 +57,14 @@ class GameController extends AbstractController
         QuestionAskedRepository $qAskedRepository
     ): Response {
         $session = $requestStack->getSession();
+        $game = $gameRepository->findOneById($session->get('game')->getId());
+
+        if ($session->get('game')->getScore() >= 1000) {
+            $gameRepository->add($game, true);
+            return $this->render('confetties/index.html.twig');
+        }
         $answer = null;
         $qAsked = null;
-        $game = $gameRepository->findOneById($session->get('game')->getId());
         if ($session->has('question') and !empty($session->get('question'))) {
             $question = $session->get('question')->getID();
             $answer = $answerRepository->findBy(['id' => $question], ['id' => 'desc'], 1);
@@ -118,6 +123,7 @@ class GameController extends AbstractController
         RequestStack $requestStack,
         GameRepository $gameRepository,
     ): Response {
+
         if ($answer !== "false") {
             $session = $requestStack->getSession();
             $game = $gameRepository->findOneById($session->get('game')->getId());
@@ -137,5 +143,17 @@ class GameController extends AbstractController
         $session = $requestStack->getSession();
         $session->invalidate();
         return $this->redirectToRoute('game_index');
+    }
+
+    #[Route('/endGame', name: '_endGame')]
+    public function endGame(RequestStack $requestStack, GameRepository $gameRepository): Response
+    {
+        $session = $requestStack->getSession();
+        $game = $gameRepository->findOneById($session->get('game')->getId());
+        $session->invalidate();
+        return $this->redirectToRoute(
+            'summary',
+            ['id' => $game->getId()]
+        );
     }
 }

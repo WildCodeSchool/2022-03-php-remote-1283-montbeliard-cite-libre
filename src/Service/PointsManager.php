@@ -39,7 +39,7 @@ class PointsManager
         $points = $game->getScore();
         $pointStart = $points;
         $rules = $cardApo->getRule();
-        $this->lastTurnManager->setCardApocalypse($cardApo);
+        $this->lastTurnManager->addCardApocalypse($cardApo);
         //Retrait des points
         if ($rules['type'] === 'points') {
             // S'il n'y pas d'exception ex:(carte banquier)
@@ -55,9 +55,8 @@ class PointsManager
             //Retire les dernières cartes gagnées selon la catégorie
             $removedCards = $this->cardWonRepository->withdrawTheLastCards($rules['value'], $category, $game);
 
-
+            $this->lastTurnManager->setCardLost($removedCards);
             foreach ($removedCards as $key => $lostCard) {
-                $this->lastTurnManager->setCardLost($lostCard);
                 if ($lostCard->getCard()->getRule()['association']) {
                     //Retire les points lié à l'association de carte si le joueur la possède
                     if (
@@ -103,11 +102,11 @@ class PointsManager
         //Récupère le score en session
         $points = $game->getScore();
         $pointStart = $points;
+        $this->lastTurnManager->setCardWons($cards);
         foreach ($cards as $card) {
             $cardWon = new CardWon();
             $cardWon->setCard($card);
             $cardWon->setGame($game);
-            $this->lastTurnManager->setCardWons($card);
             $rules = $card->getRule();
             //S'il y a une association
             if (!empty($rules['association'])) {

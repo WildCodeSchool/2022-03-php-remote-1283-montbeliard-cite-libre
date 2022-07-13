@@ -44,7 +44,7 @@
 						<i class="fas fa-cards-blank fa-lg"></i>
 						<div class="widget-badge">
 
-								{{ app.session.get('game').getCardWons|length }}
+							{{ app.session.get('game').getCardWons|length }}
 
 							/ 58
 						</div>
@@ -62,7 +62,7 @@
 				<div class="widget">
 					<div class="widget-text">Temps restant</div>
 					<div class="widget-icon widget-icon-timer">
-                        <div class="widget-icon-progress" {{ stimulus_target('game', 'chronoProgress') }}></div>
+						<div class="widget-icon-progress" {{ stimulus_target('game', 'chronoProgress') }}></div>
 						<i class="fas fa-hourglass-clock fa-lg"></i>
 						<div class="widget-badge" {{ stimulus_target('game', 'chrono') }}></div>
 					</div>
@@ -76,8 +76,7 @@
 			</div>
 
 			<div class="center">
-				<div
-					class="d-flex flex-column align-items-center justify-content-center" >
+				<div class="d-flex flex-column align-items-center justify-content-center">
 
 					{% if this.roll %}
 						<div id="dice" data-side="{{this.roll}}" {% if this.reRoll %} class="reRoll" {% endif %}>
@@ -188,7 +187,7 @@
 
 
 		<div id="myModal" class="card-parchment card-parchment--modal
-            {% if this.roll %}card-parchment--modal-auto-show{% else %}d-none{% endif %}" {{stimulus_target('game', 'modal')}}>
+												 {% if this.roll %}card-parchment--modal-auto-show{% else %}d-none{% endif %}" {{stimulus_target('game', 'modal')}}>
 			<div class="parchment-background" {{stimulus_action('game', 'click->game#closeModal')}}></div>
 			<div class="parchment-body">
 				<button aria-label="close" class="close-modal" {{stimulus_action('game', 'closeModal')}}></button>
@@ -208,13 +207,20 @@
 
 				<div class="text-center">
 					<button id="btn-display-response" class="btn btn-one mt-3">Afficher la réponse</button>
+
+					{% if this.message %}
+						<h3 class="alert alert-secondary">{{this.message}}
+						</h3>
+					{% endif %}
+
 					<div id="response" class="d-none mt-3">
 						{% if this.answer %}
 							<p>{{this.answer.content}}</p>
 						{% endif %}
 						<div class="d-flex justify-content-center mt-5">
-							<a href="{{path('game_calculate_score', {'answer': 'true'})}}" id="p" class="btn btn-one bg-white bg-opacity-75 me-5 w-25 close">Bonne réponse</a>
-							<a href="{{path('game_calculate_score', {'answer': 'false'})}}" class="btn btn-one bg-white bg-opacity-75 w-25 close">Mauvaise réponse</a>
+							<a href="#" id="p" class="btn btn-one bg-white bg-opacity-75 me-5 w-25 close" data-action-name="goodAnswer" data-action="live#action" {{stimulus_action('game', 'closeModal')}}>Bonne réponse</a>
+							<a href="#" class="btn btn-one bg-white bg-opacity-75 w-25 close" data-action-name="falseAnswer" data-action="live#action">Mauvaise réponse</a>
+
 						</div>
 					</div>
 				</div>

@@ -42,11 +42,11 @@ class CardWonRepository extends ServiceEntityRepository
     }
 
 
-    public function withdrawTheLastCards(int $number, string $category, Game $game): array
+    public function withdrawTheLastCards(int $number, int $category, Game $game): array
     {
         return $this->createQueryBuilder('c')
             ->join('c.card', 'cat', 'WITH', 'c.game=:game')
-            ->where('cat = :category')
+            ->where('cat.category = :category')
             ->setParameter('game', $game)
             ->setParameter('category', $category)
             ->orderBy('c.id', 'DESC')

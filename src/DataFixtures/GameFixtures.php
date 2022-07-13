@@ -22,6 +22,7 @@ class GameFixtures extends Fixture
         $game->setDuration($interval->format('%H heure %I minutes %S secondes'));
         $game->setTurn(22);
         $game->setScore(150);
+        $game->setClasse($this->getReference('classe_' . ClasseFixtures::CLASSES[0]));
         $manager->persist($game);
         $manager->flush();
     }

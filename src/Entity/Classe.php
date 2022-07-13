@@ -21,9 +21,13 @@ class Classe
     #[ORM\OneToMany(mappedBy: 'classe', targetEntity: User::class)]
     private ?Collection $users;
 
+    #[ORM\OneToMany(mappedBy: 'classe', targetEntity: Game::class)]
+    private ?Collection $games;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->games = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -67,6 +71,36 @@ class Classe
             // set the owning side to null (unless already changed)
             if ($user->getClasse() === $this) {
                 $user->setClasse(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Game>
+     */
+    public function getGames(): Collection
+    {
+        return $this->games;
+    }
+
+    public function addGame(Game $game): self
+    {
+        if (!$this->games->contains($game)) {
+            $this->games[] = $game;
+            $game->setClasse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGame(Game $game): self
+    {
+        if ($this->games->removeElement($game)) {
+            // set the owning side to null (unless already changed)
+            if ($game->getClasse() === $this) {
+                $game->setClasse(null);
             }
         }
 

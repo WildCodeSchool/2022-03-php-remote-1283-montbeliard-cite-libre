@@ -23,8 +23,6 @@ class ClasseFixtures extends Fixture
             $manager->persist($classeStudent);
             $this->addReference('classe_' . $classe, $classeStudent);
         }
-
-
         $manager->flush();
     }
 }

@@ -47,6 +47,9 @@ class Game
     #[ORM\Column(type: 'integer', nullable: true)]
     private int $turn;
 
+    #[ORM\ManyToOne(targetEntity: Classe::class, inversedBy: 'games')]
+    private Classe $classe;
+
     public function __construct()
     {
         $this->questionAskeds = new ArrayCollection();
@@ -209,6 +212,18 @@ class Game
     public function setTurn(?int $turn): self
     {
         $this->turn = $turn;
+
+        return $this;
+    }
+
+    public function getClasse(): ?Classe
+    {
+        return $this->classe;
+    }
+
+    public function setClasse(?Classe $classe): self
+    {
+        $this->classe = $classe;
 
         return $this;
     }

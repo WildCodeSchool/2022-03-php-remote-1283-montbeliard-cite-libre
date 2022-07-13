@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Game;
 use App\Entity\Family;
 use App\Entity\CardWon;
+use App\Entity\Category;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
@@ -41,15 +42,14 @@ class CardWonRepository extends ServiceEntityRepository
         }
     }
 
-
-    public function withdrawTheLastCards(int $number, string $category, Game $game): array
+    public function withdrawTheLastCards(int $number, Category $category, Game $game): array
     {
-        return $this->createQueryBuilder('c')
-            ->join('c.card', 'cat', 'WITH', 'c.game=:game')
-            ->where('cat = :category')
+        return $this->createQueryBuilder('cw')
+            ->join('cw.card', 'c', 'WITH', 'cw.game=:game')
+            ->where('c.category = :category')
             ->setParameter('game', $game)
             ->setParameter('category', $category)
-            ->orderBy('c.id', 'DESC')
+            ->orderBy('cw.id', 'DESC')
             ->setMaxResults($number)
             ->getQuery()
             ->getResult();
@@ -58,9 +58,9 @@ class CardWonRepository extends ServiceEntityRepository
 
     public function findByFamily(Family $family, Game $game): array
     {
-        return $this->createQueryBuilder('c')
-            ->join('c.card', 'cf', 'WITH', 'c.game=:game')
-            ->where('cf = :family')
+        return $this->createQueryBuilder('cw')
+            ->join('cw.card', 'c', 'WITH', 'cw.game=:game')
+            ->where('c.family = :family')
             ->setParameter('game', $game)
             ->setParameter('family', $family)
             ->getQuery()

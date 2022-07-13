@@ -43,7 +43,6 @@ class Game
     #[ORM\OneToMany(mappedBy: 'game', targetEntity: CardWon::class)]
     private Collection $cardWons;
 
-
     #[ORM\Column(type: 'integer', nullable: true)]
     private int $turn;
 

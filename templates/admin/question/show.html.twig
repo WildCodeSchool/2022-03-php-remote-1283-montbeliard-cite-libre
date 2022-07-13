@@ -13,7 +13,7 @@
 				<th class="table-dark">Niveau</th>
 			</tr>
 			<tr>
-				<td>{{ question.question|raw }}</td>
+				<td>{{ question.content|raw }}</td>
 				<td>{{ question.level }}</td>
 			</tr>
 			{% for answer in question.answers %}
@@ -22,7 +22,7 @@
 					<th class="table-primary">Correcte</th>
 				</tr>
 				<tr>
-					<td>{{ answer.answer|raw }}</td>
+					<td>{{ answer.content|raw }}</td>
 					<td>{{ answer.isCorrect ? '🟢 oui' : '❌ non' }}</td>
 				</tr>
 			{% endfor %}

@@ -13,10 +13,10 @@ class CardWon
     #[ORM\Column(type: 'integer')]
     private int $id;
 
-    #[ORM\ManyToOne(targetEntity: Game::class, inversedBy: 'cardWons')]
+    #[ORM\ManyToOne(targetEntity: Game::class, inversedBy: 'cardWons', fetch:"EAGER")]
     private ?Game $game;
 
-    #[ORM\ManyToOne(targetEntity: Card::class, inversedBy: 'cardWons')]
+    #[ORM\ManyToOne(targetEntity: Card::class, inversedBy: 'cardWons', fetch:"EAGER")]
     private Card $card;
 
     public function getId(): ?int

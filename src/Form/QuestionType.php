@@ -15,7 +15,7 @@ class QuestionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('question', CKEditorType::class, [
+            ->add('content', CKEditorType::class, [
                 'config_name' => 'medium',
                 'config' => [
                     'language' => 'fr'

@@ -1,5 +1,5 @@
 {{ form_start(form) }}
-{{ form_row(form.question) }}
+{{ form_row(form.content) }}
 {{ form_row(form.level) }}
 
 
@@ -7,7 +7,7 @@
 <ul class="answers bg-light rounded list-unstyled p-3" data-index="{{ form.answers|length > 0 ? form.answers|last.vars.name + 1 : 0 }}" data-prototype="{{ form_widget(form.answers.vars.prototype)|e('html_attr') }}">
 	{% for answer in form.answers %}
 		<li>
-			{{ form_row(answer.answer) }}
+			{{ form_row(answer.content) }}
 			{{ form_row(answer.isCorrect) }}
 		</li>
 	{% endfor %}

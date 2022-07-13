@@ -15,7 +15,7 @@ class RightAnswerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('answer', CKEditorType::class, [
+            ->add('content', CKEditorType::class, [
                 'label' => 'Réponse',
                 'config_name' => 'medium',
                 'config' => [

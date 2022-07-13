@@ -9,6 +9,7 @@ use App\Entity\CardApocalypse;
 use App\Repository\GameRepository;
 use App\Repository\CardWonRepository;
 use App\Repository\CardApocalypseRepository;
+use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class PointsManager
@@ -17,6 +18,7 @@ class PointsManager
         private RequestStack $requestStack,
         private GameRepository $gameRepository,
         private CardWonRepository $cardWonRepository,
+        private CategoryRepository $categoryRepository,
         private CardApocalypseRepository $cardApoRepository,
     ) {
     }
@@ -44,32 +46,33 @@ class PointsManager
         } else {
             //Retrait des cartes
             if ($rules['category'] === 'artisan' || $rules['category'] === 'marchand') {
-                $category = $rules['category'];
+                $category = $this->categoryRepository->findBy(['name' => $rules['category']])[0];
+                // dd($category);
             } else {
                 $categories = ['Artisan', 'Marchand'];
-                $category = $categories[array_rand($categories)];
+                $category = $this->categoryRepository->findBy(['name' => $categories[array_rand($categories)]])[0];
             }
             //Retire les dernières cartes gagnées selon la catégorie
-            $removedCard = $this->cardWonRepository->withdrawTheLastCards($rules['value'], $category, $game);
-            foreach ($removedCard as $key => $card) {
-                if ($card['association']) {
+            $removedCards = $this->cardWonRepository->withdrawTheLastCards($rules['value'], $category, $game);
+            foreach ($removedCards as $key => $lostCard) {
+                if ($lostCard->getCard()->getRule()['association']) {
                     //Retire les points lié à l'association de carte si le joueur la possède
                     if (
                         $this->cardWonRepository->find(
-                            $rules['association']
+                            $lostCard->getCard()->getRule()['association']
                         ) || in_array(
-                            $rules['association'],
-                            $removedCard
+                            $lostCard,
+                            $removedCards
                         )
                     ) {
-                        unset($removedCard[$key]);
-                        $points -= $card->getCredit();
+                        unset($removedCards[$key]);
+                        $points -= $lostCard->getCard()->getCredit();
                     }
                 }
                 //Si la famille est complète, on retire les points
-                $this->checkingFamily('-', $points, $card, $game);
+                $this->checkingFamily('-', $points, $lostCard->getCard(), $game);
                 //Puis on retire la carte de la table cardWon
-                $this->cardWonRepository->remove($card, true);
+                $this->cardWonRepository->remove($lostCard, true);
                 $points -= 10;
             }
         }
@@ -134,11 +137,11 @@ class PointsManager
             $families = $this->cardWonRepository->findByFamily($card->getFamily(), $game);
             if (count($families) == 4) {
                 $points += 10;
-            }
-        } else {
-            $families = $this->cardWonRepository->findByFamily($card->getFamily(), $game);
-            if (count($families) == 4) {
-                $points -= 10;
+            } else {
+                $families = $this->cardWonRepository->findByFamily($card->getFamily(), $game);
+                if (count($families) == 4) {
+                    $points -= 10;
+                }
             }
         }
     }

@@ -84,9 +84,9 @@ class QuestionRepository extends ServiceEntityRepository
     public function findLikeQuestion(string $question): array
     {
         return $this->createQueryBuilder('q')
-            ->where('q.question LIKE :question')
+            ->where('q.content LIKE :question')
             ->setParameter('question', '%' . $question . '%')
-            ->orderBy('q.question', 'DESC')
+            ->orderBy('q.content', 'DESC')
             ->getQuery()
             ->getResult();
     }

@@ -18,10 +18,10 @@ class Family
     #[ORM\Column(type: 'string', length: 255)]
     private string $name;
 
-    #[ORM\OneToMany(mappedBy: 'family', targetEntity: Card::class)]
+    #[ORM\OneToMany(mappedBy: 'family', targetEntity: Card::class, fetch: "EAGER")]
     private Collection $cards;
 
-    #[ORM\OneToMany(mappedBy: 'family', targetEntity: CardApocalypse::class)]
+    #[ORM\OneToMany(mappedBy: 'family', targetEntity: CardApocalypse::class, fetch: "EAGER")]
     private Collection $cardApocalypses;
 
     public function __construct()

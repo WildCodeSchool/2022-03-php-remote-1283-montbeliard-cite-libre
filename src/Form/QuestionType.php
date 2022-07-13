@@ -15,7 +15,7 @@ class QuestionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('question', CKEditorType::class, [
+            ->add('content', CKEditorType::class, [
                 'config_name' => 'medium',
                 'config' => [
                     'language' => 'fr'
@@ -29,8 +29,7 @@ class QuestionType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

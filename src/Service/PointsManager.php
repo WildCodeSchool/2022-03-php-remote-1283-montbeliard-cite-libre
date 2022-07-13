@@ -9,6 +9,7 @@ use App\Entity\CardApocalypse;
 use App\Repository\GameRepository;
 use App\Repository\CardWonRepository;
 use App\Repository\CardApocalypseRepository;
+use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class PointsManager
@@ -17,6 +18,7 @@ class PointsManager
         private RequestStack $requestStack,
         private GameRepository $gameRepository,
         private CardWonRepository $cardWonRepository,
+        private CategoryRepository $categoryRepository,
         private CardApocalypseRepository $cardApoRepository,
         private LastTurnManager $lastTurnManager
     ) {
@@ -46,15 +48,15 @@ class PointsManager
             $this->lostPointsByTypePoints($rules, $points, $game);
         } else {
             //Retrait des cartes
-            if ($rules['category'] === 1 || $rules['category'] === 2) {
-                $category = $rules['category'];
+            if ($rules['category'] === 'artisan' || $rules['category'] === 'marchand') {
+                $category = $this->categoryRepository->findBy(['name' => $rules['category']])[0];
+                // dd($category);
             } else {
-                $categories = [1, 2];
-                $category = $categories[array_rand($categories)];
+                $categories = ['Artisan', 'Marchand'];
+                $category = $this->categoryRepository->findBy(['name' => $categories[array_rand($categories)]])[0];
             }
             //Retire les dernières cartes gagnées selon la catégorie
             $removedCards = $this->cardWonRepository->withdrawTheLastCards($rules['value'], $category, $game);
-
             $this->lastTurnManager->setCardLost($removedCards);
             foreach ($removedCards as $key => $lostCard) {
                 if ($lostCard->getCard()->getRule()['association']) {
@@ -146,11 +148,11 @@ class PointsManager
             $families = $this->cardWonRepository->findByFamily($card->getFamily(), $game);
             if (count($families) == 4) {
                 $points += 10;
-            }
-        } else {
-            $families = $this->cardWonRepository->findByFamily($card->getFamily(), $game);
-            if (count($families) == 4) {
-                $points -= 10;
+            } else {
+                $families = $this->cardWonRepository->findByFamily($card->getFamily(), $game);
+                if (count($families) == 4) {
+                    $points -= 10;
+                }
             }
         }
     }

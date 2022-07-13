@@ -34,6 +34,6 @@ window.launchConfetties = () => {
     if (Date.now() < end) {
         requestAnimationFrame(window.launchConfetties);
     } else {
-        window.location.pathname = "/game"
+        window.location.pathname = "/game/endGame"
     }
 }

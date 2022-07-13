@@ -54,6 +54,17 @@ class CardRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findByUnearnedCard(Game $game): array
+    {
+        return $this->createQueryBuilder('c')
+            ->leftjoin('c.cardWons', 'cw', 'WITH', 'cw.game=:game')
+            ->where('c.id != cw.card')
+            ->orWhere('cw.id IS NULL')
+            ->setParameter('game', $game)
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Card[] Returns an array of Card objects
     //     */

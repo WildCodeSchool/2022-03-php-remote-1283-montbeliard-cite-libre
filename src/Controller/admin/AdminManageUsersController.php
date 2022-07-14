@@ -5,6 +5,7 @@ namespace App\Controller\admin;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Form\KeywordSearchType;
+use App\Repository\GameRepository;
 use App\Repository\UserRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -55,11 +56,25 @@ class AdminManageUsersController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'show', methods: ['GET'])]
-    public function show(User $user): Response
-    {
-        return $this->render('admin/manage_users/show.html.twig', [
+    #[Route('/{id}', name: 'show', methods: ['GET', 'POST'])]
+    public function show(
+        User $user,
+        UserRepository $userRepository,
+        GameRepository $gameRepository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
+        $query = $gameRepository->findBy(['user' => $user], ['id' => 'DESC']);
+
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            10 /*limit per page*/
+        );
+
+        return $this->renderForm('admin/manage_users/show.html.twig', [
             'user' => $user,
+            'pagination' => $pagination,
         ]);
     }
 

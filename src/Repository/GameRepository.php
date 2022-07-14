@@ -55,7 +55,7 @@ class GameRepository extends ServiceEntityRepository
             ->orWhere('c.classe LIKE :keyword')
             ->orWhere('g.name LIKE :keyword')
             ->setParameter('keyword', '%' . $keyword . '%')
-            ->orderBy('g.actualDuration')
+            ->orderBy('g.name')
             ->getQuery()
             ->getResult();
     }

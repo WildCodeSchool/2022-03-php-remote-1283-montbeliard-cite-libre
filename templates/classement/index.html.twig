@@ -4,10 +4,12 @@
 {% endblock %}
 
 {% block body %}
+    <h1 class="text-center">Page des classements</h1>
+
 	<div class="container-fluid d-flex justify-content-center">
 		<div class="parchment">
 			<div class="parchment-body">
-				<h1>Page des classements</h1>
+                <div class="">{% include "include/_search_form.html.twig" %}</div>
 				<div class="d-flex flex-column">
 					<table class="text-center w-100">
 						<tr>
@@ -15,7 +17,7 @@
 								<h2><a class="text-decoration-none" href="{{ path('classement', {'filter': 'name'}) }}">Nom de la partie</a></h2>
 							</th>
 							<th>
-								<h2><a class="text-decoration-none" href="{{ path('classement', {'filter': 'time'}) }}">Durée de la partie</a></h2>
+								<h2><a class="text-decoration-none" href="{{ path('classement', {'filter': 'default'}) }}">Durée de la partie</a></h2>
 							</th>
                             <th>
                                 <h2><a class="text-decoration-none" href="{{ path('classement', {'filter': 'classe'}) }}">classe</a></h2>

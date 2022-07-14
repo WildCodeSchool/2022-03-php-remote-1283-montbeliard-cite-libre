@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\KeywordSearchType;
 use App\Repository\GameRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,6 +17,7 @@ class ClassementController extends AbstractController
     public function index(
         GameRepository $gameRepository,
         Request $request,
+        PaginatorInterface $paginator,
         string $filter,
     ): Response {
         $form = $this->createForm(KeywordSearchType::class);
@@ -41,12 +43,16 @@ class ClassementController extends AbstractController
             }
         }
 
-
+        $pagination = $paginator->paginate(
+            $games, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            10 /*limit per page*/
+        );
 
         return $this->renderForm('classement/index.html.twig', [
             'controller_name' => 'ClassementController',
-            'games' => $games,
             'form' => $form,
+            'pagination' => $pagination,
         ]);
     }
 }

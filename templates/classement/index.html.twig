@@ -26,7 +26,7 @@
                                 <h2><a class="text-decoration-none" href="{{ path('classement', {'filter': 'user'}) }}">utilisateur</a></h2>
                             </th>
 						</tr>
-						{% for game in games %}
+						{% for game in pagination %}
 							<tr>
 								<td><a class="text-decoration-none" href="{{ path('summary', {'id': game.id}) }}">{{ game.name }}</a></td>
 								<td>{{ game.duration }}</td>
@@ -35,6 +35,9 @@
 							</tr>
 						{% endfor %}
 					</table>
+                    <div class="navigation d-flex flex-row justify-content-center align-items-center mt-2">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
 				</div>
 			</div>
 		</div>

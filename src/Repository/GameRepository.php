@@ -69,13 +69,13 @@ class GameRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    // public function findByTime(): array
-    // {
-    //     return $this->createQueryBuilder('g')
-    //         ->orderBy('g.actualDuration')
-    //         ->getQuery()
-    //         ->getResult();
-    // }
+    public function findByTime(): array
+    {
+        return $this->createQueryBuilder('g')
+            ->orderBy('g.duration')
+            ->getQuery()
+            ->getResult();
+    }
 
     public function findByClasse(): array
     {

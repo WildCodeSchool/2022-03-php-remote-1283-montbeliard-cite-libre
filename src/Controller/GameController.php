@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Game;
 use App\Form\GameType;
+use DateTimeImmutable;
 use App\Service\RollDice;
 use App\Service\GameManager;
 use App\Service\QuestionAsk;
@@ -60,6 +61,10 @@ class GameController extends AbstractController
         $game = $gameRepository->findOneById($session->get('game')->getId());
 
         if ($session->get('game')->getScore() >= 1000) {
+            $date = new DateTimeImmutable();
+            $game->setDuration((
+                $game->getStartedAt()->diff($date, absolute: true)
+                )->format('%H heure %I minutes %S secondes'));
             $gameRepository->add($game, true);
             return $this->render('confetties/index.html.twig');
         }

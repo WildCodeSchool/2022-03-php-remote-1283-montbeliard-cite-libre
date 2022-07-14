@@ -26,10 +26,10 @@ class ClassementController extends AbstractController
             if (!empty($search)) {
                 $games = $gameRepository->findLikeKeyword($search);
             } else {
-                $games = $gameRepository->findByScore();
+                $games = $gameRepository->findByTime();
             }
         } else {
-            $games = $gameRepository->findByScore();
+            $games = $gameRepository->findByTime();
             if ($filter === 'user') {
                 $games = $gameRepository->findByUser();
             }

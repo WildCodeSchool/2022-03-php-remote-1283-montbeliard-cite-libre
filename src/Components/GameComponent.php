@@ -5,6 +5,9 @@ namespace App\Components;
 use App\Entity\Answer;
 use App\Entity\Question;
 use App\Repository\AnswerRepository;
+use App\Repository\CardRepository;
+use App\Repository\GameRepository;
+use App\Service\PointsManager;
 use App\Service\QuestionAsk;
 use App\Service\RollDice;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -24,12 +27,18 @@ class GameComponent
     #[LiveProp()]
     public bool $reRoll = false;
 
+    #[LiveProp()]
+    public ?string $message = null;
+
 
     public function __construct(
         private RollDice $diceRoll,
         private QuestionAsk $questionAsk,
         RequestStack $requestStack,
-        private AnswerRepository $answerRepository
+        private AnswerRepository $answerRepository,
+        private GameRepository $gameRepository,
+        private PointsManager $pointsManager,
+        private CardRepository $cardRepository
     ) {
         $this->session = $requestStack->getSession();
     }
@@ -45,6 +54,7 @@ class GameComponent
             $this->questionAsk->rollQuestion($roll);
         }
         $this->reRoll = !$this->reRoll;
+        $this->message = null;
     }
 
     public function getQuestion(): ?Question
@@ -67,5 +77,25 @@ class GameComponent
     public function getRoll(): null|int
     {
         return $this->session->has('roll') ? $this->session->get('roll') : null;
+    }
+
+
+    #[LiveAction]
+    public function goodAnswer(): void
+    {
+
+        $game = $this->gameRepository->findOneById($this->session->get('game')->getId());
+        if ($this->session->get('roll') === 1) {
+            $this->pointsManager->lostPoints($this->session->get('apocalypse'), $game);
+        } else {
+            $cards = $this->cardRepository->selectRandomByNumber($this->session->get('roll'), $game);
+            $this->pointsManager->pointsWon($cards, $game);
+        }
+    }
+
+    #[LiveAction]
+    public function falseAnswer(): void
+    {
+        $this->message = "Mauvaise Réponse, relance le dé";
     }
 }

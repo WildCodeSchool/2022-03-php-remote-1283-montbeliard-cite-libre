@@ -18,7 +18,7 @@ class Card
     #[ORM\Column(type: 'string', length: 100)]
     private string $name;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'text')]
     private string $description;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -30,13 +30,13 @@ class Card
     #[ORM\Column(type: 'json', nullable: true)]
     private array $rule = [];
 
-    #[ORM\ManyToOne(targetEntity: Family::class, inversedBy: 'cards', fetch:"EAGER")]
+    #[ORM\ManyToOne(targetEntity: Family::class, inversedBy: 'cards', fetch: "EAGER")]
     private ?Family $family;
 
-    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'cards', fetch:"EAGER")]
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'cards', fetch: "EAGER")]
     private ?Category $category;
 
-    #[ORM\OneToMany(mappedBy: 'card', targetEntity: CardWon::class, fetch:"EAGER")]
+    #[ORM\OneToMany(mappedBy: 'card', targetEntity: CardWon::class, fetch: "EAGER")]
     private Collection $cardWons;
 
     public function __construct()

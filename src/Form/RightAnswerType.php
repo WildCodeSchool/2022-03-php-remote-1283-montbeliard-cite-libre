@@ -26,8 +26,7 @@ class RightAnswerType extends AbstractType
             ->add('isCorrect', CheckboxType::class, [
                 'label' => 'Cette réponse, est-elle correcte ?',
                 'required' => false,
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

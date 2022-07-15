@@ -26,14 +26,20 @@
                                 <h2><a class="text-decoration-none" href="{{ path('classement', {'filter': 'user'}) }}">utilisateur</a></h2>
                             </th>
 						</tr>
-						{% for game in pagination %}
-							<tr>
-								<td><a class="text-decoration-none" href="{{ path('summary', {'id': game.id}) }}">{{ game.name }}</a></td>
-								<td>{{ game.duration }}</td>
+                        {% for game in pagination %}
+                            <tr {% if loop.index is odd %} class="color" {% endif %}>
+                                <td><a class="text-decoration-none" href="{{ path('summary', {'id': game.id}) }}">{{ game.name }}</a></td>
+                                <td>{{ game.duration }}</td>
                                 <td> {{ game.classe ? game.classe.classe : '' }}</td>
                                 <td>{{ game.user.username }}</td>
-							</tr>
-						{% endfor %}
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="4">Aucune partie trouvée</td>
+                            </tr>
+                        {% endfor %}
+
+
 					</table>
                     <div class="navigation d-flex flex-row justify-content-center align-items-center mt-2">
                         {{ knp_pagination_render(pagination) }}

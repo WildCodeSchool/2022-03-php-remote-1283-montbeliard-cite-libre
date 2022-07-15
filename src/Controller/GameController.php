@@ -143,9 +143,11 @@ class GameController extends AbstractController
     }
 
     #[Route('/reset', name: '_reset')]
-    public function reset(RequestStack $requestStack): Response
+    public function reset(RequestStack $requestStack, GameRepository $gameRepository): Response
     {
         $session = $requestStack->getSession();
+        $game = $gameRepository->findOneById($session->get('game')->getId());
+        $gameRepository->remove($game, true);
         $session->invalidate();
         return $this->redirectToRoute('game_index');
     }

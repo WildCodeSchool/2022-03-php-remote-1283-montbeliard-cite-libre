@@ -57,6 +57,8 @@ class AdminClasseController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $classeRepository->add($classe, true);
 
+            $this->addFlash('success', 'La nouvelle classe a bien été créée');
+
             return $this->redirectToRoute('classe_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -98,6 +100,7 @@ class AdminClasseController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $classe->getId(), $request->request->get('_token'))) {
             $classeRepository->remove($classe, true);
         }
+        $this->addFlash('success', 'La question a bien été supprimée');
 
         return $this->redirectToRoute('classe_index', [], Response::HTTP_SEE_OTHER);
     }

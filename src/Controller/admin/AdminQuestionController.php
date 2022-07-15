@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/admin/question', name: 'admin_question_')]
+#[Route('/admin/question', name: 'question_')]
 class AdminQuestionController extends AbstractController
 {
     #[Route('/', name: 'index', methods: ['GET', 'POST'])]
@@ -67,7 +67,7 @@ class AdminQuestionController extends AbstractController
 
             $this->addFlash('success', 'La nouvelle question a bien été créée');
 
-            return $this->redirectToRoute('admin_question_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('question_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('admin/question/new.html.twig', [
@@ -109,7 +109,7 @@ class AdminQuestionController extends AbstractController
 
             $this->addFlash('success', 'La question a bien été modifiée');
 
-            return $this->redirectToRoute('admin_question_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('question_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('admin/question/edit.html.twig', [
@@ -126,6 +126,6 @@ class AdminQuestionController extends AbstractController
         }
         $this->addFlash('success', 'La question a bien été supprimée');
 
-        return $this->redirectToRoute('admin_question_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('question_index', [], Response::HTTP_SEE_OTHER);
     }
 }

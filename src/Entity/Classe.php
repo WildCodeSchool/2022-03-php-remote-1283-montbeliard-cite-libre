@@ -18,10 +18,10 @@ class Classe
     #[ORM\Column(type: 'string', length: 10)]
     private string $classe;
 
-    #[ORM\OneToMany(mappedBy: 'classe', targetEntity: User::class)]
+    #[ORM\OneToMany(mappedBy: 'classe', targetEntity: User::class, cascade: ['persist', 'remove'])]
     private ?Collection $users;
 
-    #[ORM\OneToMany(mappedBy: 'classe', targetEntity: Game::class)]
+    #[ORM\OneToMany(mappedBy: 'classe', targetEntity: Game::class, cascade: ['persist', 'remove'])]
     private ?Collection $games;
 
     public function __construct()

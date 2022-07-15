@@ -4,28 +4,38 @@
 			cité libre</span>
 	</a>
 	<hr>
-	<ul class="nav nav-pills flex-column mb-auto">
-		<li class="nav-item">
-			<a href="{{ path('admin') }}" class="nav-link active ps-5 text-light mt-4" aria-current="page">
+	<ul class="nav flex-column mb-auto">
+		<li class="nav-item nav-pills">
+			<a href="{{ path('admin') }}" class="nav-link ps-5 text-light mt-4
+                {{ app.request.attributes.get('_route') starts with 'admin' ? 'active' : '' }}"
+                {{ app.request.attributes.get('_route') starts with 'admin' ? "aria-current='page'" : '' }}>
 				Accueil
 			</a>
 		</li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-light ps-5 mt-4" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <li class="nav-item dropdown nav-pills">
+          <a class="nav-link dropdown-toggle text-light ps-5 mt-4
+                {{ app.request.attributes.get('_route') starts with 'question' ? 'active' : '' }}"
+                {{ app.request.attributes.get('_route') starts with 'question' ? "aria-current='page'" : '' }}
+                href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Question
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-            <li><a class="dropdown-item" href="{{ path('admin_question_index') }}">Afficher toutes les questions</a></li>
-            <li><a class="dropdown-item" href="{{ path('admin_question_new') }}">Créer une nouvelle question</a></li>
+            <li><a class="dropdown-item" href="{{ path('question_index') }}">Afficher toutes les questions</a></li>
+            <li><a class="dropdown-item" href="{{ path('question_new') }}">Créer une nouvelle question</a></li>
           </ul>
         </li>
-		<li>
-			<a href="{{ path('manage_users_index') }}" class="nav-link text-light ps-5 mt-4">
+		<li class="nav-item nav-pills">
+			<a href="{{ path('manage_users_index') }}" class="nav-link text-light ps-5 mt-4
+                {{ app.request.attributes.get('_route') starts with 'manage' ? 'active' : '' }}"
+                {{ app.request.attributes.get('_route') starts with 'manage' ? "aria-current='page'" : '' }}>
 				Gérer les utilisateur
 			</a>
 		</li>
-		<li>
-            <a class="nav-link dropdown-toggle text-light ps-5 mt-4" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+		<li class="nav-item nav-pills">
+            <a class="nav-link dropdown-toggle text-light ps-5 mt-4
+                {{ app.request.attributes.get('_route') starts with 'classe' ? 'active' : '' }}"
+                {{ app.request.attributes.get('_route') starts with 'classe' ? "aria-current='page'" : '' }}
+                href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Classe
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">

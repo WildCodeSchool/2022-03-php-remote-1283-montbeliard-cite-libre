@@ -29,9 +29,9 @@ class Question
     #[ORM\Column(type: 'integer')]
     #[Assert\NotBlank(message: 'Ce champ ne doit pas être vide')]
     #[Assert\Range(
-        min: 1,
-        max: 5,
-        notInRangeMessage: 'Veuillez choisir un niveau entre 1 et 5',
+        min: 2,
+        max: 6,
+        notInRangeMessage: 'Veuillez choisir un niveau entre 2 et 6',
     )]
     private int $level;
 

@@ -11,21 +11,21 @@
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th class="table-dark">Questions</th>
-				<th class="table-dark">Niveau</th>
-				<th class="table-dark">actions</th>
+				<th class="table-dark text-center">Questions</th>
+				<th class="table-dark text-center">Niveau</th>
+				<th class="table-dark text-center">actions</th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for question in pagination %}
 				<tr {% if loop.index is odd %} class="color" {% endif %}>
-					<td>{{ question.content|raw }}</td>
-					<td>{{ question.level }}</td>
-					<td>
-						<a class="btn btn-outline-primary" href="{{ path('admin_question_show', {'id': question.id}) }}">
+					<td class="ps-5">{{ question.content|raw }}</td>
+					<td class=" text-center">{{ question.level }}</td>
+					<td class=" text-center">
+						<a class="btn btn-outline-primary" href="{{ path('question_show', {'id': question.id}) }}">
 							<i class="bi bi-eye"></i>
 							afficher</a>
-						<a class="btn btn-outline-primary" href="{{ path('admin_question_edit', {'id': question.id}) }}">
+						<a class="btn btn-outline-primary" href="{{ path('question_edit', {'id': question.id}) }}">
 							<i class="bi bi-pencil"></i>
 							éditer</a>
 					</td>
@@ -42,7 +42,7 @@
 	<div class="navigation ">
 		{{ knp_pagination_render(pagination) }}
 	</div>
-	<a class="btn btn-outline-primary mt-2" href="{{ path('admin_question_new') }}">
+	<a class="btn btn-outline-primary mt-2" href="{{ path('question_new') }}">
 		<i class="bi bi-plus-circle"></i>
 		Créer</a>
 {% endblock %}

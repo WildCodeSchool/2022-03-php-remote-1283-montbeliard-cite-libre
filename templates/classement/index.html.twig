@@ -30,7 +30,7 @@
 							<tr>
 								<td><a class="text-decoration-none" href="{{ path('summary', {'id': game.id}) }}">{{ game.name }}</a></td>
 								<td>{{ game.duration }}</td>
-                                <td>{{ game.classe.classe }}</td>
+                                <td> {{ game.classe ? game.classe.classe : '' }}</td>
                                 <td>{{ game.user.username }}</td>
 							</tr>
 						{% endfor %}

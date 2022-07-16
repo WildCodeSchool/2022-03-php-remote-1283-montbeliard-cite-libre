@@ -26,6 +26,7 @@ class GameType extends AbstractType
                     'class' => 'fs-3 p-2 shadow-sm'
                 ]
             ])
+            ->add('classe', null, ['choice_label' => 'classe'])
             ->add('duration', IntegerType::class, [
                 'label' => 'Durée souhaitée (max 60 minutes)',
                 'label_attr' => ['class' => 'fs-3 mt-3 p-2   shadow-sm'],

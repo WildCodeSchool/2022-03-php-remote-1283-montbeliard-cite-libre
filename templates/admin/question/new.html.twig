@@ -3,9 +3,9 @@
 {% block title %}Nouvelle question{% endblock %}
 
 {% block body %}
-    <h1>Créer une nouvelle question</h1>
+    <h1 class="text-center mb-4">Créer une nouvelle question</h1>
 
     {{ include('admin/question/_form.html.twig') }}
 
-<a class="btn btn-outline-primary" href="{{ path('admin_question_index') }}"><i class="bi bi-backspace"></i> retour à la liste</a>
+<a class="btn btn-outline-primary" href="{{ path('question_index') }}"><i class="bi bi-backspace"></i> retour à la liste</a>
 {% endblock %}

@@ -3,22 +3,40 @@
 {% block title %}Fiche utilisateur{% endblock %}
 
 {% block body %}
-    <h1 class="text-center mt-3 mb-4">Fiche de {{ user.username }}</h1>
+    <h1 class="text-center mb-4">Fiche de {{ user.username }}</h1>
 
-    <table class="table table-hover">
+    <table class="table table-hover mb-5">
         <tbody>
             <tr class="table-dark">
-                <th>Nom</th>
-                <td>{{ user.username }}</td>
+                <th class="text-center">Nom</th>
+                <th class="text-center">Rôle(s)</th>
+                <th class="text-center">Classe</th>
             </tr>
             <tr>
-                <th>Rôle(s)</th>
-                <td>{{ user.roles ? user.roles|json_encode : 'aucun rôle' }}</td>
+                <td class="text-center">{{ user.username }}</td>
+                <td class="text-center">{{ user.roles ? user.roles|json_encode : 'aucun rôle' }}</td>
+                <td class="text-center">{{ user.classe ? user.classe.classe : 'aucune classe' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-hover">
+    <tbody>
+            <tr>
+                <th class="text-center table-dark" colspan="4">Partie jouée</th>
             </tr>
             <tr>
-                <th>Classe</th>
-                <td>{{ user.classe.classe}}</td>
+                <th class="table-primary text-center">Nom</th>
+                <th class="table-primary text-center">Durée de la partie</th>
+                <th class="table-primary text-center">Classe</th>
             </tr>
+            {% for game in pagination %}
+                <tr>
+                    <td class="text-center"><a class="text-decoration-none" href="{{ path('summary', {'id': game.id}) }}">{{ game.name }}</a></td>
+                    <td class="text-center">{{ game.duration }}</td>
+                    <td class="text-center">{{ user.classe ? game.classe.classe : 'aucune classe' }}</td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 
@@ -27,4 +45,8 @@
     <a class="btn btn-outline-primary" href="{{ path('manage_users_edit', {'id': user.id}) }}"><i class="bi bi-pencil"></i> éditer</a>
 
     {{ include('admin/manage_users/_delete_form.html.twig') }}
-{% endblock %}
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+    {% endblock %}

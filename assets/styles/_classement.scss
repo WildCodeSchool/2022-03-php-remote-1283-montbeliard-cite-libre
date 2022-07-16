@@ -2,3 +2,35 @@ table, th, td {
     border: 1px solid black;
   }
 
+table{
+    th,td{
+        padding: 0 1rem 0 1rem;
+    }
+}
+
+@media(max-width: 950px) and (orientation: landscape) {
+    .classement-form{
+        margin-top: 2rem;
+    }
+}
+
+.parchment{
+    .parchment-body{
+        .navigation{
+            nav{
+                ul{
+                    li{
+                       a{
+                        height: 100%;
+                        color: #DD7110;
+                        text-decoration: none;
+                        font-size: 1.2rem;
+                       }
+                    }
+                }
+
+            }
+        }
+    }
+}
+

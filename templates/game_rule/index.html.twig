@@ -35,11 +35,15 @@
             </div>
         </div>
 	</div>
-        <div class="d-flex justify-content-center mb-5">
-            <a href="{{ path('login') }}" class="btn btn-one">
-                Connexion
-            </a>
-        </div>
+
+        {% if is_granted('ROLE_User') %}
+            <div class="d-flex justify-content-center mb-5">
+                <a href="{{ path('login') }}" class="btn btn-one">
+                    Connexion
+                </a>
+            </div>
+        {% endif %}
+
 
 {% endblock %}
 

@@ -13,12 +13,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ClassementController extends AbstractController
 {
-    #[Route('/classement/{filter}', name: 'classement')]
+    #[Route('/classement', name: 'classement')]
     public function index(
         GameRepository $gameRepository,
         Request $request,
-        PaginatorInterface $paginator,
-        string $filter,
+        PaginatorInterface $paginator
     ): Response {
         $form = $this->createForm(KeywordSearchType::class);
         $form->handleRequest($request);
@@ -32,15 +31,6 @@ class ClassementController extends AbstractController
             }
         } else {
             $games = $gameRepository->findByTime();
-            if ($filter === 'user') {
-                $games = $gameRepository->findByUser();
-            }
-            if ($filter === 'classe') {
-                $games = $gameRepository->findByClasse();
-            }
-            if ($filter === 'name') {
-                $games = $gameRepository->findBy([], ['name' => 'ASC']);
-            }
         }
 
         $pagination = $paginator->paginate(
@@ -50,7 +40,6 @@ class ClassementController extends AbstractController
         );
 
         return $this->renderForm('classement/index.html.twig', [
-            'controller_name' => 'ClassementController',
             'form' => $form,
             'pagination' => $pagination,
         ]);

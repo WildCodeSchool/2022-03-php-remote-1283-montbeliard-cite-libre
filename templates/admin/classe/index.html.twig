@@ -9,10 +9,10 @@
 
     <table class="table table-hover">
         <thead>
-            <tr>
-                <th class="table-dark text-center">Id</th>
-                <th class="table-dark text-center">Classe</th>
-                <th class="table-dark text-center">actions</th>
+            <tr class="table-dark">
+                <th class="text-center">Id</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Classe', 'classe') }}</th>
+                <th class="text-center">actions</th>
             </tr>
         </thead>
         <tbody>

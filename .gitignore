@@ -33,5 +33,5 @@ yarn-error.log
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
-startup.sh
+start.sh
 run.sh

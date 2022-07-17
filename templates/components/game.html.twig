@@ -22,7 +22,7 @@
 
 				<a class="btn-classeur btn btn-primary" href="{{ path('game_collection') }}">Classeur de cartes</a>
 				<div>
-					<a href="{{ path('game_reset') }}" class="mx-auto d-inline btn-dice btn btn-primary my-5">Reset</a>
+					<a href="{{ path('game_reset') }}" class="mx-auto d-inline btn-dice btn mt-5 btn-primary my-5">Reset</a>
 				</div>
 			</div>
 
@@ -186,8 +186,7 @@
 		</div>
 
 
-		<div id="myModal" class="card-parchment card-parchment--modal
-												 {% if this.roll %}card-parchment--modal-auto-show{% else %}d-none{% endif %}" {{stimulus_target('game', 'modal')}}>
+		<div id="myModal" class="card-parchment card-parchment--modal {% if this.roll and this.answered == false %}card-parchment--modal-auto-show{% else %}d-none{% endif %}" {{stimulus_target('game', 'modal')}}>
 			<div class="parchment-background" {{stimulus_action('game', 'click->game#closeModal')}}></div>
 			<div class="parchment-body">
 				<button aria-label="close" class="close-modal" {{stimulus_action('game', 'closeModal')}}></button>
@@ -225,6 +224,25 @@
 					</div>
 				</div>
 			</div>
+
 		</div>
-	</div>
-</div>
+		<div class="container-fluid d-flex justify-content-center card-parchment card-parchment--modal {% if app.session.get('lastTurn')  and this.answered %}card-parchment--modal-auto-show2 {% else %}d-none{% endif %}" {{stimulus_target('game', 'modal2')}}>
+			<div class="parchment">
+				<div class="parchment-body">
+					<button aria-label="close" class="close-modal" {{stimulus_action('game', 'closeModal2')}}></button>
+
+					<h1>Cartes tirées lors du dernier tour</h1>
+					<div class="d-flex flex-column">
+						<div class="d-flex" justify-between>
+							{% if app.session.get('lastTurn') %}
+								{% for cardwon in app.session.get('lastTurn').getCardWons %}
+									<pre>
+                    {{ dump(cardwon) }}
+                </pre>
+								{% endfor %}
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>

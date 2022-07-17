@@ -28,6 +28,9 @@ class GameComponent
     public bool $reRoll = false;
 
     #[LiveProp()]
+    public bool $answered = false;
+
+    #[LiveProp()]
     public ?string $message = null;
 
 
@@ -54,6 +57,8 @@ class GameComponent
             $this->questionAsk->rollQuestion($roll);
         }
         $this->reRoll = !$this->reRoll;
+        $this->answered = !$this->answered;
+
         $this->message = null;
     }
 
@@ -91,6 +96,7 @@ class GameComponent
             $cards = $this->cardRepository->selectRandomByNumber($this->session->get('roll'), $game);
             $this->pointsManager->pointsWon($cards, $game);
         }
+        $this->answered = !$this->answered;
     }
 
     #[LiveAction]

@@ -36,6 +36,10 @@
             visibility: hidden;
             animation: showModal 1.8s linear forwards;
         }
+        &.card-parchment--modal-auto-show2 {
+            visibility: hidden;
+            animation: showModal 0.2s linear forwards;
+        }
         &:before {
             content: "";
             position: fixed;

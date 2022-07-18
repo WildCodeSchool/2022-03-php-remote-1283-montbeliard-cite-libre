@@ -8,18 +8,18 @@
 
 	<table class="table table-hover">
 		<tbody>
-			<tr>
-				<th class="table-dark text-center">Question</th>
-				<th class="table-dark">Niveau</th>
+			<tr class="table-dark">
+				<th class="text-center">Question</th>
+				<th>Niveau</th>
 			</tr>
 			<tr>
 				<td class="ps-5">{{ question.content|raw }}</td>
 				<td class="ps-4">{{ question.level }}</td>
 			</tr>
 			{% for answer in question.answers %}
-				<tr>
-					<th class="table-primary text-center">Réponse</th>
-					<th class="table-primary">Correcte</th>
+				<tr class="table-primary">
+					<th class="text-center">Réponse</th>
+					<th>Correcte</th>
 				</tr>
 				<tr>
 					<td class="ps-5">{{ answer.content|raw }}</td>

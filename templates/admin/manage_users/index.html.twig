@@ -9,9 +9,9 @@
     <table class="table table-hover">
         <thead>
             <tr class="table-dark">
-                <th class="text-center">Nom</th>
-                <th class="text-center">Rôle(s)</th>
-                <th class="text-center">Classe</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Nom', 'username') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Rôle(s)', 'roles') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Classe', 'classe') }}</th>
                 <th class="text-center">actions</th>
             </tr>
         </thead>

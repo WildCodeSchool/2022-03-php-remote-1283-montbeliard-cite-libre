@@ -36,7 +36,7 @@
         </div>
 	</div>
 
-        {% if is_granted('ROLE_User') %}
+        {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
             <div class="d-flex justify-content-center mb-5">
                 <a href="{{ path('login') }}" class="btn btn-one">
                     Connexion

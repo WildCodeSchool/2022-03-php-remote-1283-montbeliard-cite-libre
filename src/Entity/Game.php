@@ -37,14 +37,17 @@ class Game
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'games')]
     private ?UserInterface $user;
 
-    #[ORM\OneToMany(mappedBy: 'game', targetEntity: QuestionAsked::class)]
+    #[ORM\OneToMany(mappedBy: 'game', targetEntity: QuestionAsked::class, cascade: ['persist', 'remove'])]
     private Collection $questionAskeds;
 
-    #[ORM\OneToMany(mappedBy: 'game', targetEntity: CardWon::class)]
+    #[ORM\OneToMany(mappedBy: 'game', targetEntity: CardWon::class, cascade: ['persist', 'remove'])]
     private Collection $cardWons;
 
     #[ORM\Column(type: 'integer', nullable: true)]
     private int $turn;
+
+    #[ORM\ManyToOne(targetEntity: Classe::class, inversedBy: 'games')]
+    private ?Classe $classe;
 
     public function __construct()
     {
@@ -208,6 +211,18 @@ class Game
     public function setTurn(?int $turn): self
     {
         $this->turn = $turn;
+
+        return $this;
+    }
+
+    public function getClasse(): ?Classe
+    {
+        return $this->classe;
+    }
+
+    public function setClasse(?Classe $classe): self
+    {
+        $this->classe = $classe;
 
         return $this;
     }

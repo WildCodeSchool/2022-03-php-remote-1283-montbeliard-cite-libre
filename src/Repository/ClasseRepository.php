@@ -39,6 +39,15 @@ class ClasseRepository extends ServiceEntityRepository
         }
     }
 
+    public function findLikeClasse(string $keyword): array
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.classe LIKE :keyword')
+            ->setParameter('keyword', '%' . $keyword . '%')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Classe[] Returns an array of Classe objects
 //     */

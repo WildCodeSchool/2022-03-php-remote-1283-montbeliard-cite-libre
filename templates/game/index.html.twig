@@ -8,12 +8,22 @@
 
 		{{ form_start(form, {
             'attr':
-            {'class': 'container-fluid d-flex flex-column justify-content-center align-items-center h-100 w-100 bg-white  bg-opacity-50'}}) }}
+            {'class': 'container-fluid  h-100 w-100 bg-white  bg-opacity-50'}}) }}
+        <div class="d-flex flex-row justify-content-center align-items-center">
+            {{ form_row(form.name) }}
+            {{ form_row(form.classe, {
+                'attr':
+                {'class': 'mt-5 ms-2'}
+            }) }}
+        </div>
 		{{ form_widget(form) }}
 
-		<button type="submit" class="btn btn-one mt-5 bg-opacity-75 mb-2 shadow-sm" value="Submit">
-            Lancer la partie
-		</button>
+        <div class="d-flex flex-row justify-content-center align-items-center">
+        	<button type="submit" class="btn btn-one mt-5 bg-opacity-75 mb-2 shadow-sm" value="Submit">
+                Lancer la partie
+		    </button>
+        </div>
+
 
 		{{ form_end(form) }}
 

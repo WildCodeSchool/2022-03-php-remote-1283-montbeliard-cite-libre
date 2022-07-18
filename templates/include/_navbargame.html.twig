@@ -36,7 +36,9 @@
 							<a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="#">Mes scores</a>
 						</li> #}
 						<li class="nav-item">
-							<a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="#">Classement</a>
+							<a class="nav-link mt-5 fs-5 text-light text-center link-navbar" href="{{ path('classement', {'filter': 'default'}) }}">
+                                Classement
+                            </a>
 						</li>
 						<li class="nav-item">
 							{% if app.user %}

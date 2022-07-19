@@ -260,10 +260,11 @@
 						<h2>Cartes tirées lors du dernier tour</h2>
 						<div class="d-flex flex-column">
 							<div class="d-flex justify-content-between  flex-wrap">
-								{% if app.session.get('lastTurn').getCardApocalypses is defined %}
-									<pre>
-    {{ dump(app.session.get('lastTurn').getCardApocalypses) }}
-</pre>
+								{% if app.session.get('lastTurn').getCardApocalypses is defined and app.session.get('lastTurn').getCardApocalypses is not empty %}
+
+									{% for card in app.session.get('lastTurn').cardApocalypses %}
+										{{card.name}}
+									{% endfor %}
 								{% endif %}
 
 								{% if app.session.get('lastTurn') %}

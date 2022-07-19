@@ -62,9 +62,8 @@ class GameController extends AbstractController
 
         if ($session->get('game')->getScore() >= 1000) {
             $date = new DateTimeImmutable();
-            $game->setDuration((
-                $game->getStartedAt()->diff($date, absolute: true)
-                )->format('%H heure %I minutes %S secondes'));
+            $game->setDuration(($game->getStartedAt()->diff($date, absolute: true)
+            )->format('%H heure %I minutes %S secondes'));
             $gameRepository->add($game, true);
             return $this->render('confetties/index.html.twig');
         }
@@ -150,6 +149,12 @@ class GameController extends AbstractController
         $gameRepository->remove($game, true);
         $session->invalidate();
         return $this->redirectToRoute('game_index');
+    }
+
+    #[Route('/win', name: '_confettis')]
+    public function win(): Response
+    {
+        return $this->render('confetties/index.html.twig');
     }
 
     #[Route('/endGame', name: '_endGame')]

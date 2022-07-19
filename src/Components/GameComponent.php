@@ -10,7 +10,10 @@ use App\Repository\GameRepository;
 use App\Service\PointsManager;
 use App\Service\QuestionAsk;
 use App\Service\RollDice;
+use DateTimeImmutable;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
@@ -18,7 +21,7 @@ use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 
 #[AsLiveComponent('game')]
-class GameComponent
+class GameComponent extends AbstractController
 {
     use DefaultActionTrait;
 
@@ -33,10 +36,11 @@ class GameComponent
     #[LiveProp()]
     public bool $badAnswer = false;
 
-
     #[LiveProp()]
     public ?string $message = null;
 
+    #[LiveProp()]
+    public bool $gameWon = false;
 
     public function __construct(
         private RollDice $diceRoll,
@@ -57,11 +61,13 @@ class GameComponent
         $roll = $this->diceRoll->getRoll();
         if ($roll === 1) {
             $this->questionAsk->apocalypse();
+            $game = $this->gameRepository->findOneById($this->session->get('game')->getId());
+            $this->pointsManager->lostPoints($this->session->get('apocalypse'), $game);
         } else {
             $this->questionAsk->rollQuestion($roll);
         }
         $this->reRoll = !$this->reRoll;
-        $this->answered = !$this->answered;
+        $this->answered = false;
         $this->badAnswer = false;
         $this->message = null;
     }
@@ -90,17 +96,24 @@ class GameComponent
 
 
     #[LiveAction]
-    public function goodAnswer(): void
+    public function goodAnswer(): null|Response
     {
 
         $game = $this->gameRepository->findOneById($this->session->get('game')->getId());
-        if ($this->session->get('roll') === 1) {
-            $this->pointsManager->lostPoints($this->session->get('apocalypse'), $game);
-        } else {
-            $cards = $this->cardRepository->selectRandomByNumber($this->session->get('roll'), $game);
-            $this->pointsManager->pointsWon($cards, $game);
-        }
+
+        $cards = $this->cardRepository->selectRandomByNumber($this->session->get('roll'), $game);
+        $this->pointsManager->pointsWon($cards, $game);
+
         $this->answered = !$this->answered;
+        if ($game->getScore() >= 1000) {
+            $date = new DateTimeImmutable();
+            $game->setDuration(($game->getStartedAt()->diff($date, absolute: true)
+            )->format('%H heure %I minutes %S secondes'));
+            $this->gameRepository->add($game, true);
+            $this->gameWon = true;
+            return $this->redirectToRoute('game_confettis');
+        }
+        return null;
     }
 
     #[LiveAction]

@@ -31,6 +31,10 @@ class GameComponent
     public bool $answered = false;
 
     #[LiveProp()]
+    public bool $badAnswer = false;
+
+
+    #[LiveProp()]
     public ?string $message = null;
 
 
@@ -58,7 +62,7 @@ class GameComponent
         }
         $this->reRoll = !$this->reRoll;
         $this->answered = !$this->answered;
-
+        $this->badAnswer = false;
         $this->message = null;
     }
 
@@ -103,5 +107,13 @@ class GameComponent
     public function falseAnswer(): void
     {
         $this->message = "Mauvaise Réponse, relance le dé";
+        $this->badAnswer = true;
+        $this->answered = !$this->answered;
+    }
+
+    #[LiveAction]
+    public function nextTurn(): void
+    {
+        $this->answered = !$this->answered;
     }
 }

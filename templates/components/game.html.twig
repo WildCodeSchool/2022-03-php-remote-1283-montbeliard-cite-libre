@@ -20,9 +20,9 @@
 				<div class="show-card mb-1 position-relative">carte gagnées</div>
 
 
-				<a class="btn-classeur btn btn-primary" href="{{ path('game_collection') }}">Classeur de cartes</a>
+				<a class="btn-classeur btn btn-primary mb-5 w-50" href="{{ path('game_collection') }}">Classeur de cartes</a>
 				<div>
-					<a href="{{ path('game_reset') }}" class="mx-auto d-inline btn-dice btn mt-5 btn-primary my-5">Reset</a>
+					<a href="{{ path('game_reset') }}" class="btn-classeur btn btn-primary mb-5 w-25 ">Reset</a>
 				</div>
 			</div>
 
@@ -124,10 +124,14 @@
 					</a>
 
 
-					{% if this.question %}
+					{% if this.question and this.answered == false %}
 						<button class="mx-auto show-modal btn btn-one my-5" {{stimulus_action('game', 'openModal')}}>Afficher la question active
 						</button>
 
+					{% endif %}
+					{% if this.message %}
+						<h3 class="alert alert-secondary">{{this.message}}
+						</h3>
 					{% endif %}
 				</div>
 			</div>
@@ -199,50 +203,130 @@
 					</h1>
 
 				{% endif %}
+				{% if this.roll == 1  %}
+					<div class="d-flex justify-content-center mt-5">
+						<img class="right-img" src="{{ asset('build/images/dos_apocalypse.svg') }}" alt="dos apocalypse">
+					</div>
+
+					<h1>Pas de chance vous avez tiré une carte apocalypse !!
+					</h1>
+					<p>
+						Cliquez ici pour découvrir les effets :
+					</p>
+					<div class="d-flex justify-content-center mt-5">
+						<a href="#" id="p" class="btn btn-one bg-white bg-opacity-75 me-5 w-25 close" data-action-name="nextTurn" data-action="live#action" {{stimulus_action('game', 'closeModal')}}>Effets</a>
+
+					</div>
+				{% endif %}
 				{% if app.session.get('alert') is not empty %}
 					<p class="fs-3 mb-1 mt-5">
 						{{ app.session.get('alert') }}</p>
 				{% endif %}
 
-				<div class="text-center">
-					<button id="btn-display-response" class="btn btn-one mt-3">Afficher la réponse</button>
+				{% if this.question %}
+					<div class="text-center">
+						<button id="btn-display-response" class="btn btn-one mt-3">Afficher la réponse</button>
 
-					{% if this.message %}
-						<h3 class="alert alert-secondary">{{this.message}}
-						</h3>
-					{% endif %}
 
-					<div id="response" class="d-none mt-3">
-						{% if this.answer %}
-							<p>{{this.answer.content}}</p>
-						{% endif %}
-						<div class="d-flex justify-content-center mt-5">
-							<a href="#" id="p" class="btn btn-one bg-white bg-opacity-75 me-5 w-25 close" data-action-name="goodAnswer" data-action="live#action" {{stimulus_action('game', 'closeModal')}}>Bonne réponse</a>
-							<a href="#" class="btn btn-one bg-white bg-opacity-75 w-25 close" data-action-name="falseAnswer" data-action="live#action">Mauvaise réponse</a>
+						<div id="response" class="d-none mt-3">
+							{% if this.answer %}
+								<p>{{this.answer.content}}</p>
+							{% endif %}
+							<div class="d-flex justify-content-center mt-5">
+								<a href="#" id="p" class="btn btn-one bg-white bg-opacity-75 me-5 w-25 close" data-action-name="goodAnswer" data-action="live#action" {{stimulus_action('game', 'closeModal')}}>Bonne réponse</a>
+								<a href="#" class="btn btn-one bg-white bg-opacity-75 w-25 close" data-action-name="falseAnswer" data-action="live#action" {{stimulus_action('game', 'closeModal')}}>Mauvaise réponse</a>
 
+							</div>
 						</div>
 					</div>
-				</div>
+				{% endif %}
 			</div>
 
 		</div>
-		<div class="container-fluid d-flex justify-content-center card-parchment card-parchment--modal {% if app.session.get('lastTurn')  and this.answered %}card-parchment--modal-auto-show2 {% else %}d-none{% endif %}" {{stimulus_target('game', 'modal2')}}>
-			<div class="parchment">
-				<div class="parchment-body">
+
+
+		{% if this.badAnswer == false %}
+			<div class="popup-collection mb-3 {% if app.session.get('lastTurn')  and this.answered %}card-parchment--modal-auto-show2 {% else %}d-none{% endif %}" {{stimulus_target('game', 'modal2')}}>
+				<div class="row d-flex flex-row justify-content-around overflow-auto collection-content">
 					<button aria-label="close" class="close-modal" {{stimulus_action('game', 'closeModal2')}}></button>
 
-					<h1>Cartes tirées lors du dernier tour</h1>
-					<div class="d-flex flex-column">
-						<div class="d-flex" justify-between>
-							{% if app.session.get('lastTurn') %}
-								{% for cardwon in app.session.get('lastTurn').getCardWons %}
-									<pre>
-                    {{ dump(cardwon) }}
-                </pre>
-								{% endfor %}
-							{% endif %}
+					<div class="parchment-body row d-flex flex-row justify-content-around gy-4 overflow-auto collection-content">
+						<h1>Recap Dernier tour
+						</h1>
+						<h2>Point gagnés :
+							{% if app.session.get('lastTurn').pointwons is defined %}
+								{{ app.session.get('lastTurn').pointwons }}</h2>
+						{% endif %}
+						<h2>Cartes tirées lors du dernier tour</h2>
+						<div class="d-flex flex-column">
+							<div
+								class="d-flex justify-content-between  flex-wrap">
+								{# 	{% if app.session.get('lastTurn').getCardApocalypses is defined %}
+																	{{app.session.get('lastTurn').getCardApocalypses.description}}
+
+																{% endif %} #}
+
+								{% if app.session.get('lastTurn') %}
+									{% if app.session.get('lastTurn').getCardWons %}
+
+										{% for card in app.session.get('lastTurn').getCardWons %}
+											<div class="col-12 col-md-5 col-lg-3 d-flex flex-row justify-content-center card-box">
+												<div class="flip-card ">
+													<div class="flip-card-inner">
+														<div class="flip-card-front card-size">
+															<div class="box-title">
+																<img src="{{ asset('build/images/gold-metal.png')}}" alt="" class="img-title">
+																<div class="cards-title my-auto text-center d-flex flex-column justify-content-center">
+																	<p>{{ card.name }}</p>
+																</div>
+															</div>
+															<img src="{{ asset('build/images/parchemin.png')}}" alt="" class="h-100 w-100 filter-shadow">
+															<div class="card-content d-flex flex-column align-items-center">
+																<div class="card-img"><img src="{{ asset('build/images/img-carte/' ~ card.image)}}" alt="{{card.name}}" class="img-size"></div>
+															</div>
+														</div>
+														<div class="flip-card-back">
+															<div class="box-title">
+																<img src="{{ asset('build/images/gold-metal.png')}}" alt="" class="img-title">
+																<div class="cards-title my-auto text-center d-flex flex-column justify-content-center">
+																	<p>carte gagnée 10 pts
+																	</p>
+																	<p>
+																		{% if card.credit and  card.name == 'Le marchand de vin' or
+                                         card.name == 'Le cabaretier' %}malus
+																			{{ card.credit }}
+																			pts
+																		{% endif %}
+																	</p>
+																	<p>
+																		{% if card.credit and card.name != 'Le marchand de vin' and
+                                         card.name != 'Le cabaretier' %}bonus
+																			{{ card.credit }}
+																			pts
+																		{% endif %}
+																	</p>
+																</div>
+															</div>
+															<div class="card-size">
+																<img src="{{ asset('build/images/parchemin.png')}}" alt="" class="h-100 w-100 filter-shadow">
+																<div class="card-content d-flex flex-column align-items-center">
+																	<div class="text-card ">
+																		<p>{{ card.description }}</p>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+
+											</div>
+										{% endfor %}
+									{% endif %}
+								{% endif %}
+							</div>
 						</div>
+
 					</div>
 				</div>
 			</div>
-		</div>
+		{% endif %}

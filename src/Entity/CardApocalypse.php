@@ -27,7 +27,7 @@ class CardApocalypse
     #[ORM\Column(type: 'string', length: 255)]
     private string $image;
 
-    #[ORM\ManyToOne(targetEntity: Family::class, inversedBy: 'cardApocalypses')]
+    #[ORM\ManyToOne(targetEntity: Family::class, inversedBy: 'cardApocalypses', fetch: "EAGER")]
     private Family $family;
 
     public function getId(): ?int

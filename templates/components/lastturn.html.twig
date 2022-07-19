@@ -1,0 +1,15 @@
+<div {{attributes}}>
+	<div class="container-fluid d-flex justify-content-center {% if this.answer==this.question.answer %} {% else %}d-none{% endif %}">
+		<div class="parchment">
+			<div class="parchment-body">
+				<h1>Cartes tirées lors du dernier tour</h1>
+				<div class="d-flex flex-column">
+					<div class="d-flex" justify-between>
+						<pre>
+                    {{ dump(app.session.get('lastTurn')) }}
+                </pre>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

@@ -20,6 +20,7 @@ class PointsManager
         private CardWonRepository $cardWonRepository,
         private CategoryRepository $categoryRepository,
         private CardApocalypseRepository $cardApoRepository,
+        private LastTurnManager $lastTurnManager
     ) {
     }
 
@@ -38,7 +39,9 @@ class PointsManager
     {
         //Récupère le score en session
         $points = $game->getScore();
+        $pointStart = $points;
         $rules = $cardApo->getRule();
+        $this->lastTurnManager->addCardApocalypse($cardApo);
         //Retrait des points
         if ($rules['type'] === 'points') {
             // S'il n'y pas d'exception ex:(carte banquier)
@@ -54,6 +57,7 @@ class PointsManager
             }
             //Retire les dernières cartes gagnées selon la catégorie
             $removedCards = $this->cardWonRepository->withdrawTheLastCards($rules['value'], $category, $game);
+            $this->lastTurnManager->setCardLost($removedCards);
             foreach ($removedCards as $key => $lostCard) {
                 if ($lostCard->getCard()->getRule()['association']) {
                     //Retire les points lié à l'association de carte si le joueur la possède
@@ -76,9 +80,12 @@ class PointsManager
                 $points -= 10;
             }
         }
+        $pointsEnd = $points - $pointStart;
         $game->setScore($points);
+        $this->lastTurnManager->setPointLost($pointsEnd);
         $this->gameRepository->add($game, true);
         $this->requestStack->getSession()->set('game', $game);
+        $this->requestStack->getSession()->set('lastTurn', $this->lastTurnManager);
     }
 
     private function getCardApoWhenConstraint(Card $card): ?CardApocalypse
@@ -96,7 +103,8 @@ class PointsManager
     {
         //Récupère le score en session
         $points = $game->getScore();
-
+        $pointStart = $points;
+        $this->lastTurnManager->setCardWons($cards);
         foreach ($cards as $card) {
             $cardWon = new CardWon();
             $cardWon->setCard($card);
@@ -125,10 +133,13 @@ class PointsManager
             //Ajoute 10 pts par carte gagnée
             $points += 10;
         }
+        $pointsEnd = $points - $pointStart;
         //Mise à jour du score en BDD et en session
         $game->setScore($points);
+        $this->lastTurnManager->setPointWons($pointsEnd);
         $this->gameRepository->add($game, true);
         $this->requestStack->getSession()->set('game', $game);
+        $this->requestStack->getSession()->set('lastTurn', $this->lastTurnManager);
     }
 
     private function checkingFamily(string $operator, int &$points, Card $card, Game $game): void

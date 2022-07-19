@@ -39,10 +39,24 @@ class GameRepository extends ServiceEntityRepository
         }
     }
 
-    public function findByScore(): array
+    public function findLikeKeyword(string $keyword): array
     {
         return $this->createQueryBuilder('g')
-            ->orderBy('g.score', 'DESC')
+            ->leftJoin('g.classe', 'c')
+            ->leftJoin('g.user', 'u')
+            ->where('u.username LIKE :keyword')
+            ->orWhere('c.classe LIKE :keyword')
+            ->orWhere('g.name LIKE :keyword')
+            ->setParameter('keyword', '%' . $keyword . '%')
+            ->orderBy('g.name')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByTime(): array
+    {
+        return $this->createQueryBuilder('g')
+            ->orderBy('g.duration')
             ->getQuery()
             ->getResult();
     }

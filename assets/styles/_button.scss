@@ -32,13 +32,14 @@
     border-bottom-color: $primary;
     transform: scale(0.1, 1);
   }
-  .btn-one:hover  {
+  .btn-one:hover,
+  .btn-one:focus {
     letter-spacing: 2px;
     color: $primary;
-  }
-  .btn-one:hover::before {
-    opacity: 1;
-    transform: scale(1, 1);
+      &:before {
+          opacity: 1;
+          transform: scale(1, 1);
+      }
   }
   .btn-one::after {
     content: '';

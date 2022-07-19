@@ -1,0 +1,47 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Classe index{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mb-4">Classe index</h1>
+
+    {% include "admin/include/_search_form.html.twig" %}
+
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-dark">
+                <th class="text-center">Id</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Classe', 'classe') }}</th>
+                <th class="text-center">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for classe in pagination %}
+            <tr>
+                <td class="text-center">{{ classe.id }}</td>
+                <td class="text-center">{{ classe.classe }}</td>
+                <td class="text-center">
+                    <a class="btn btn-outline-primary" href="{{ path('classe_show', {'id': classe.id}) }}">
+                        <i class="bi bi-eye"></i>
+                        afficher</a>
+                    <a class="btn btn-outline-primary" href="{{ path('classe_edit', {'id': classe.id}) }}">
+                        <i class="bi bi-pencil"></i>
+                        éditer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td class="text-center" colspan="3">aucune classe trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-outline-primary mt-2" href="{{ path('classe_new') }}">
+        <i class="bi bi-plus-circle"></i>
+        Créer</a>
+
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+{% endblock %}

@@ -152,6 +152,12 @@ class GameController extends AbstractController
         return $this->redirectToRoute('game_index');
     }
 
+    #[Route('/win', name: '_confettis')]
+    public function win(): Response
+    {
+        return $this->render('confetties/index.html.twig');
+    }
+
     #[Route('/endGame', name: '_endGame')]
     public function endGame(RequestStack $requestStack, GameRepository $gameRepository): Response
     {

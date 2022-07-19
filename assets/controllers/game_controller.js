@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-    static targets = ["modal", "modal2", "bodyGame", "chrono", "chronoProgress"];
+    static targets = ["modal", "modal2", "bodyGame", "chrono", "chronoProgress", "response"];
     openModal() {
         this.bodyGameTarget.classList.add("pointer-event-none");
         this.modalTarget.classList.remove("d-none");
@@ -16,7 +16,9 @@ export default class extends Controller {
         this.modal2Target.classList.add("d-none");
         this.modal2Target.classList.remove("card-parchment--modal-auto-show");
     }
-
+    displayResponse(event) {
+        this.responseTarget.classList.remove("d-none")
+    }
     connect(event) {
         const updateChrono = (seconds) => {
             const duration = getCookie("duration") * 60;
@@ -69,5 +71,7 @@ export default class extends Controller {
         };
 
         chronometer();
+
+
     }
 }

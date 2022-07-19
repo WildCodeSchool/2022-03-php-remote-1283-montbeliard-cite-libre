@@ -1,0 +1,20 @@
+<div {{attributes}}>
+    <div>
+        <div  class="d-flex flex-column justify-content-around align-items-center">
+                {% set index = ['A', 'B', 'C', 'D'] %}
+
+            <div class="d-flex flex-column justify-content-around align-items-start">
+                {% if app.session.get('question') %}
+                    {% for answer in this.answers %}
+                        <a href="#" id="p" class="text-dark fs-5" data-action-name="answer(id={{ answer.id }})"
+                           data-action="live#action" {{stimulus_action('game', 'closeModal')}}>
+                            <span class="fs-1 text-primary bg-dark fw-bold px-3 qcm-index">{{ index[loop.index0] }}</span>
+                            {{ answer.content }}</a>
+                    {% endfor %}
+                {% else %}
+                    {{ this.answerIsCorrect ? 'bonne réponse' : 'mauvaise réponse' }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

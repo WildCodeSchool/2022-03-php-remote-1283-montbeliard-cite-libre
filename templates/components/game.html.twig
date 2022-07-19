@@ -259,12 +259,12 @@
 						{% endif %}
 						<h2>Cartes tirées lors du dernier tour</h2>
 						<div class="d-flex flex-column">
-							<div
-								class="d-flex justify-content-between  flex-wrap">
-								{# 	{% if app.session.get('lastTurn').getCardApocalypses is defined %}
-																	{{app.session.get('lastTurn').getCardApocalypses.description}}
-
-																{% endif %} #}
+							<div class="d-flex justify-content-between  flex-wrap">
+								{% if app.session.get('lastTurn').getCardApocalypses is defined %}
+									<pre>
+    {{ dump(app.session.get('lastTurn').getCardApocalypses) }}
+</pre>
+								{% endif %}
 
 								{% if app.session.get('lastTurn') %}
 									{% if app.session.get('lastTurn').getCardWons %}

@@ -15,12 +15,19 @@ class AnswerFixtures extends Fixture implements DependentFixtureInterface
         $handle = fopen("assets/data/question.csv", "r");
         if ($handle !== false) {
             while (($data = fgetcsv($handle, null, ";")) !== false) {
-                if ($row >  0) {
+                if ($row > 0) {
                     $answer = new Answer();
                     $answer->setQuestion($this->getReference('question_' . $row));
                     $answer->setContent($data[2]);
                     $answer->setIsCorrect($data[3]);
                     $manager->persist($answer);
+                    for ($i = 0; $i < 3; $i++) {
+                        $answer = new Answer();
+                        $answer->setQuestion($this->getReference('question_' . $row));
+                        $answer->setContent('fausse réponse' . $row . '-' . $i);
+                        $answer->setIsCorrect(false);
+                        $manager->persist($answer);
+                    }
                 }
                 $row++;
             }

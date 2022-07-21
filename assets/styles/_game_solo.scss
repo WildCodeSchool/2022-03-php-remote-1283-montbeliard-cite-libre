@@ -1,0 +1,42 @@
+//fs-1 text-primary bg-dark fw-bold px-3
+.list-qcm {
+    list-style: none;
+    text-align: left;
+    width: 80ch;
+    margin: 0 auto;
+    > li {
+        position: relative;
+        margin-bottom: 1rem;
+        a {
+            display: flex;
+            align-items: center;
+            color: $dark;
+            font-size: $h5-font-size;
+            line-height: 1.25;
+            .qcm-index {
+                --index-size: 40px;
+                position: absolute;
+                left: calc(((var(--index-size)) * -1) - 5px);
+                width: var(--index-size);
+                height: var(--index-size);
+                border-radius: 100%;
+                padding: 1rem;
+                font-weight: bold;
+                background-color: $dark;
+                color: $primary;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            &:hover,
+            &:focus {
+                .qcm-index {
+                    background-color: $white;
+                    color: $dark;
+                }
+            }
+        }
+    }
+}
+
+

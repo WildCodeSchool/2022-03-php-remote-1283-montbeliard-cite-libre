@@ -73,6 +73,7 @@
             </div>
 
             <div class="deck-left">
+                <p>Artisans et commerçants</p>
                 <div class="artisans cardgame">
                     <img class="left-img" src="{{ asset('build/images/dos_artisans.jpg') }}" alt="dos artisan">
                 </div>
@@ -120,8 +121,8 @@
                     </div>
 
                     {# loader #}
-                    <span data-loading="addClass(opacity-100)" style="opacity:0;">
-						<img src="{{ asset('build/images/loader.svg') }}" alt="chargement"></span>
+                    <div class="loader" data-loading="addClass(d-block)" >
+						<img src="{{ asset('build/images/loader.svg') }}" alt="chargement"></div>
 
                     <a class="mx-auto d-inline btn-dice btn btn-secondary my-5" href="#"
                        data-action-name="setQuestion()" data-action="live#action">
@@ -143,6 +144,7 @@
             </div>
 
             <div class="deck-right">
+                <p>Cavaliers de l'apocalyspe</p>
                 <div class="artisans cardgame">
                     <img class="right-img" src="{{ asset('build/images/dos_apocalypse.svg') }}" alt="dos apocalyspe">
                 </div>
@@ -197,7 +199,7 @@
 
 
         <div id="myModal" class="card-parchment card-parchment--modal
-																																																									            {% if this.roll and this.answered == false %}card-parchment--modal-auto-show{% else %}d-none{% endif %}" {{ stimulus_target('game', 'modal') }}>
+			 {% if this.roll and this.answered == false %}card-parchment--modal-auto-show{% else %}d-none{% endif %}" {{ stimulus_target('game', 'modal') }}>
             <div class="parchment-background"></div>
             <div class="parchment-body">
                 <button aria-label="close" class="close-modal" {{ stimulus_action('game', 'closeModal') }}></button>
@@ -258,7 +260,20 @@
                                 </div>
                             </div>
                         {% else %}
-                            {{ component('game_solo') }}
+                            {% set index = ['A', 'B', 'C', 'D'] %}
+                            <ul class="list-qcm">
+                                {% for answer in this.answers %}
+                                    <li>
+                                        <a href="#"
+                                           data-action-name="setSoloAnswer(id={{ answer.id }})"
+                                           data-action="live#action">
+                                    <span class="qcm-index">
+                                        {{ index[loop.index0] }}
+                                        </span>
+                                            {{ answer.content }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
                         {% endif %}
                     </div>
                 {% endif %}
@@ -268,95 +283,43 @@
 
 
         {% if this.badAnswer == false %}
-        <div class="popup-collection-modal
+            <div class="popup-collection-modal
              {% if app.session.get('lastTurn')  and this.answered %}card-parchment--modal-auto-show2 {% else %}d-none{% endif %}"
-            {{stimulus_target('game', 'modal2')}} >
-																																																					 {% if app.session.get('lastTurn')  and this.answered %}card-parchment--modal-auto-show2 {% else %}d-none{% endif %}" {{ stimulus_target('game', 'modal2') }}>
-            <div class="popup-collection mb-3 ">
-                <div class="row d-flex flex-row justify-content-around overflow-auto collection-content">
-                    <button aria-label="close"
-                            class="close-modal" {{ stimulus_action('game', 'closeModal2') }}></button>
-                    <div class="parchment-background"></div>
-                    <div
-                        class="parchment-body row d-flex flex-row justify-content-around gy-4 overflow-auto collection-content">
-                        <div class="row">
-                            <h1>Recap Dernier tour
-                            </h1>
-                            <div class="col-lg-3">
+                {{ stimulus_target('game', 'modal2') }} >
+                <div class="popup-collection mb-3 ">
+                    <div class="row d-flex flex-row justify-content-around overflow-auto collection-content">
+                        <button aria-label="close"
+                                class="close-modal" {{ stimulus_action('game', 'closeModal2') }}></button>
+                        <div class="parchment-background"></div>
+                        <div
+                            class="parchment-body row d-flex flex-row justify-content-around gy-4 overflow-auto collection-content">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="position-sticky top-0" >
+                                        <h1>
+                                            Recap Dernier tour<br>
+                                            Bonne réponse
+                                        </h1>
+                                        <h2>Points gagnés :
+                                            {% if app.session.get('lastTurn').pointwons is defined %}
+                                            {{ app.session.get('lastTurn').pointwons }}</h2>
+                                        {% endif %}
 
-                                <h2>Points gagnés :
-                                    {% if app.session.get('lastTurn').pointwons is defined %}
-                                    {{ app.session.get('lastTurn').pointwons }}</h2>
-                                {% endif %}
+                                        <h2>Points perdus :
+                                            {% if app.session.get('lastTurn').pointLost is defined %}
+                                            {{ app.session.get('lastTurn').pointLost }}</h2>
+                                        {% endif %}
+                                    </div>
 
-                                <h2>Points perdus :
-                                    {% if app.session.get('lastTurn').pointLost is defined %}
-                                    {{ app.session.get('lastTurn').pointLost }}</h2>
-                                {% endif %}
-
-                            </div>
-
-
-                            <div class="col-lg-9">
-
-                                {% if app.session.get('lastTurn') is not null and app.session.get('lastTurn').hasCardApocalypses() %}
-                                    <h2>Cartes Apocalypses tirées lors du dernier tour :</h2>
-                                    {% for card in app.session.get('lastTurn').cardApocalypses %}
-
-                                        <div
-                                            class="col-12 col-md-5 col-lg-3 d-flex flex-row justify-content-center card-box">
-                                            <div class="flip-card ">
-                                                <div class="flip-card-inner">
-                                                    <div class="flip-card-front card-size">
-                                                        <div class="box-title">
-                                                            <img src="{{ asset('build/images/gold-metal.png') }}" alt=""
-                                                                 class="img-title">
-                                                            <div
-                                                                class="cards-title my-auto text-center d-flex flex-column justify-content-center">
-                                                                <p>{{ card.name }}</p>
-                                                            </div>
-                                                        </div>
-                                                        <img src="{{ asset('build/images/parchemin.png') }}" alt=""
-                                                             class="h-100 w-100 filter-shadow">
-                                                        <div class="card-content d-flex flex-column align-items-center">
-                                                            <div class="card-img"><img
-                                                                    src="{{ asset('build/images/img-carte/' ~ card.image) }}"
-                                                                    alt="{{ card.name }}" class="img-size"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="flip-card-back">
-                                                        <div class="box-title">
-                                                            <img src="{{ asset('build/images/gold-metal.png') }}" alt=""
-                                                                 class="img-title">
-
-                                                        </div>
-                                                        <div class="card-size">
-                                                            <img src="{{ asset('build/images/parchemin.png') }}" alt=""
-                                                                 class="h-100 w-100 filter-shadow">
-                                                            <div
-                                                                class="card-content d-flex flex-column align-items-center">
-                                                                <div class="text-card ">
-                                                                    <p>{{ card.description }}</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    {% endfor %}
-
-                                {% endif %}
+                                </div>
 
 
-                                {% if app.session.get('lastTurn') %}
-                                {% if app.session.get('lastTurn').getCardWons %}
-                                <div class="d-flex flex-column">
-                                    <h2>Cartes tirées lors du dernier tour :</h2>
-                                    <div class="d-flex flex-wrap">
-                                        <br>
-                                        {% for card in app.session.get('lastTurn').getCardWons %}
+                                <div class="col-lg-9">
+
+                                    {% if app.session.get('lastTurn') is not null and app.session.get('lastTurn').hasCardApocalypses() %}
+                                        <h2 class="mt-4">Cartes Apocalypses tirées lors du dernier tour :</h2>
+                                        {% for card in app.session.get('lastTurn').cardApocalypses %}
+
                                             <div
                                                 class="col-12 col-md-5 col-lg-3 d-flex flex-row justify-content-center card-box">
                                                 <div class="flip-card ">
@@ -364,7 +327,8 @@
                                                         <div class="flip-card-front card-size">
                                                             <div class="box-title">
                                                                 <img src="{{ asset('build/images/gold-metal.png') }}"
-                                                                     alt="" class="img-title">
+                                                                     alt=""
+                                                                     class="img-title">
                                                                 <div
                                                                     class="cards-title my-auto text-center d-flex flex-column justify-content-center">
                                                                     <p>{{ card.name }}</p>
@@ -382,30 +346,14 @@
                                                         <div class="flip-card-back">
                                                             <div class="box-title">
                                                                 <img src="{{ asset('build/images/gold-metal.png') }}"
-                                                                     alt="" class="img-title">
-                                                                <div
-                                                                    class="cards-title my-auto text-center d-flex flex-column justify-content-center">
-                                                                    <p>carte gagnée 10 pts
-                                                                    </p>
-                                                                    <p>
-                                                                        {% if card.credit and  card.name == 'Le marchand de vin' or
-                                                                            card.name == 'Le cabaretier' %}malus
-                                                                            {{ card.credit }}
-                                                                            pts
-                                                                        {% endif %}
-                                                                    </p>
-                                                                    <p>
-                                                                        {% if card.credit and card.name != 'Le marchand de vin' and
-                                                                            card.name != 'Le cabaretier' %}bonus
-                                                                            {{ card.credit }}
-                                                                            pts
-                                                                        {% endif %}
-                                                                    </p>
-                                                                </div>
+                                                                     alt=""
+                                                                     class="img-title">
+
                                                             </div>
                                                             <div class="card-size">
                                                                 <img src="{{ asset('build/images/parchemin.png') }}"
-                                                                     alt="" class="h-100 w-100 filter-shadow">
+                                                                     alt=""
+                                                                     class="h-100 w-100 filter-shadow">
                                                                 <div
                                                                     class="card-content d-flex flex-column align-items-center">
                                                                     <div class="text-card ">
@@ -419,18 +367,95 @@
 
                                             </div>
                                         {% endfor %}
-                                        {% endif %}
-                                        {% endif %}
+
+                                    {% endif %}
+
+
+                                    {% if app.session.get('lastTurn') %}
+                                    {% if app.session.get('lastTurn').getCardWons %}
+                                    <div class="d-flex flex-column">
+                                        <h2 class="mt-4">Cartes tirées lors du dernier tour :</h2>
+                                        <div class="d-flex flex-wrap">
+                                            <br>
+                                            {% for card in app.session.get('lastTurn').getCardWons %}
+                                                <div
+                                                    class="col-12 col-md-5 col-lg-3 d-flex flex-row justify-content-center card-box">
+                                                    <div class="flip-card ">
+                                                        <div class="flip-card-inner">
+                                                            <div class="flip-card-front card-size">
+                                                                <div class="box-title">
+                                                                    <img
+                                                                        src="{{ asset('build/images/gold-metal.png') }}"
+                                                                        alt="" class="img-title">
+                                                                    <div
+                                                                        class="cards-title my-auto text-center d-flex flex-column justify-content-center">
+                                                                        <p>{{ card.name }}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <img src="{{ asset('build/images/parchemin.png') }}"
+                                                                     alt=""
+                                                                     class="h-100 w-100 filter-shadow">
+                                                                <div
+                                                                    class="card-content d-flex flex-column align-items-center">
+                                                                    <div class="card-img"><img
+                                                                            src="{{ asset('build/images/img-carte/' ~ card.image) }}"
+                                                                            alt="{{ card.name }}" class="img-size">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flip-card-back">
+                                                                <div class="box-title">
+                                                                    <img
+                                                                        src="{{ asset('build/images/gold-metal.png') }}"
+                                                                        alt="" class="img-title">
+                                                                    <div
+                                                                        class="cards-title my-auto text-center d-flex flex-column justify-content-center">
+                                                                        <p>carte gagnée 10 pts
+                                                                        </p>
+                                                                        <p>
+                                                                            {% if card.credit and  card.name == 'Le marchand de vin' or
+                                                                                card.name == 'Le cabaretier' %}malus
+                                                                                {{ card.credit }}
+                                                                                pts
+                                                                            {% endif %}
+                                                                        </p>
+                                                                        <p>
+                                                                            {% if card.credit and card.name != 'Le marchand de vin' and
+                                                                                card.name != 'Le cabaretier' %}bonus
+                                                                                {{ card.credit }}
+                                                                                pts
+                                                                            {% endif %}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="card-size">
+                                                                    <img src="{{ asset('build/images/parchemin.png') }}"
+                                                                         alt="" class="h-100 w-100 filter-shadow">
+                                                                    <div
+                                                                        class="card-content d-flex flex-column align-items-center">
+                                                                        <div class="text-card ">
+                                                                            <p>{{ card.description }}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            {% endfor %}
+                                            {% endif %}
+                                            {% endif %}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
 
                     </div>
-
                 </div>
             </div>
-        </div>
         {% endif %}
     </div>
 </div>

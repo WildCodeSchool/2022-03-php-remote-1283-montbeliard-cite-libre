@@ -75,6 +75,7 @@
     .deck-right,
     .center {
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
     }
@@ -241,6 +242,7 @@
         justify-content: center;
         border-radius: $border-radius;
         padding: 0.25rem 1.25rem;
+        min-height: 48px;
         background-color: $primary;
         filter: drop-shadow(2px 2px 1px #666);
         overflow: hidden;

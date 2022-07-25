@@ -8,13 +8,13 @@ use App\Entity\CardWon;
 
 class LastTurnManager
 {
-    private int $pointWons;
-    private array $cardWons;
-    private int $pointLost;
-    private array $cardLost;
-    private array $cardApocalypses;
+    private int $pointWons = 0;
+    private ?array $cardWons = null;
+    private int $pointLost = 0;
+    private ?array $cardLost = null;
+    private ?array $cardApocalypses = null;
 
-    public function getCardLost(): array
+    public function getCardLost(): ?array
     {
         return $this->cardLost;
     }
@@ -41,7 +41,7 @@ class LastTurnManager
     }
 
 
-    public function getCardWons(): array
+    public function getCardWons(): ?array
     {
         return $this->cardWons;
     }
@@ -68,10 +68,16 @@ class LastTurnManager
     }
 
 
-    public function getCardApocalypses(): array
+    public function getCardApocalypses(): ?array
     {
         return $this->cardApocalypses;
     }
+
+    public function hasCardApocalypses(): bool
+    {
+        return (bool) $this->cardApocalypses;
+    }
+
     public function setCardApocalypses(array $cardApocalypse): self
     {
         $this->cardApocalypses = $cardApocalypse;

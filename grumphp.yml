@@ -2,9 +2,9 @@ grumphp:
     tasks:
         composer:
             file: ./composer.json
-        eslint:
-            bin: node_modules/.bin/eslint
-            config: .eslintrc.yml
+        #eslint:
+        #    bin: node_modules/.bin/eslint
+        #    config: .eslintrc.yml
         phpversion:
             project: '8.0'
         phpcpd:

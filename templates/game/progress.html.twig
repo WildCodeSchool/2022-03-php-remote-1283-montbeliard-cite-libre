@@ -4,11 +4,13 @@
 {% endblock %}
 {% block body %}
 
+	<h1 class="office-banner">
+		BRAVO ! Vous avez atteint les 1000 points
+	</h1>
 
 	<div class="ingame mt-5">
 		<div class="container d-flex flex-column p-2 justify-content-between h-100">
 			<div class="row gx-0 d-flex  justify-content-between">
-
 				<div class="col col-sm-6 col-md-3 mb-2 d-flex justify-content-center ">
 					<div class="text-image">
 						<p class="text-muted text-center">Tour</p>
@@ -80,7 +82,7 @@
 					<div class="show-card mb-1 position-relative">carte gagnées</div>
 					<div class="show-card mb-1 position-relative">carte gagnées</div>
 
-                <a class="btn-classeur btn btn-primary" href="{{ path('game_collection') }}">Classeur de cartes</a>
+					<a class="btn-classeur btn btn-primary" href="{{ path('game_collection') }}">Classeur de cartes</a>
 
 				</div>
 
@@ -132,7 +134,12 @@
 
 			</div>
 		</div>
-
-
 	</div>
+
+{#     <script>
+    document.addEventListener('DOMContentLoaded', function(){
+        window.frame()
+    })
+    </script> #}
+
 {% endblock %}

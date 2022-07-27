@@ -140,6 +140,7 @@
             font-size: 0.8rem;
             font-family: 'Manuale';
             box-shadow: 1px 2px 3px 2px rgba(255, 255, 255, 0.38) inset;
+            z-index: -1;
 
         }
 
@@ -150,10 +151,12 @@
         .show-card:hover {
             transform: translateX(20px) scale(1.2);
 
+
             .card-won {
                 display: inherit;
+                z-index: 3000;
                 height: 180px;
-                box-shadow: -5px 12px 26px -5px rgba(0, 0, 0, 0.5);
+
             }
         }
 

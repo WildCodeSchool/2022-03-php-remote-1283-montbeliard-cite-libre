@@ -1,0 +1,77 @@
+Date : 2022-07-25 16:35:06
+Directory : d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets
+Total : 43 files,  19405 codes, 70 comments, 8953 blanks, all 28428 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| CSS        |          1 |     17,932 |          9 |      8,758 |     26,699 |
+| SCSS       |         22 |      1,111 |         30 |        153 |      1,294 |
+| XML        |         12 |        191 |          0 |         12 |        203 |
+| JavaScript |          7 |        157 |         31 |         29 |        217 |
+| JSON       |          1 |         14 |          0 |          1 |         15 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                 | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                    |         43 |     19,405 |         70 |      8,953 |     28,428 |
+| controllers                                                                                                          |          2 |         75 |         11 |          9 |         95 |
+| images                                                                                                               |         12 |        191 |          0 |         12 |        203 |
+| styles                                                                                                               |         23 |     19,043 |         39 |      8,911 |     27,993 |
+| styles\admin                                                                                                         |          5 |         34 |          0 |          9 |         43 |
+| styles\fontawesome                                                                                                   |          1 |     17,932 |          9 |      8,758 |     26,699 |
+| styles\fontawesome\css                                                                                               |          1 |     17,932 |          9 |      8,758 |     26,699 |
++----------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                             | language   | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\admin.js                        | JavaScript |         12 |          8 |          5 |         25 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\app.js                          | JavaScript |          5 |          9 |          6 |         20 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\bootstrap.js                    | JavaScript |          6 |          3 |          3 |         12 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\confettiparty.js                | JavaScript |         36 |          0 |          4 |         40 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\controllers.json                | JSON       |         14 |          0 |          1 |         15 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\controllers\game_controller.js  | JavaScript |         69 |          2 |          7 |         78 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\controllers\hello_controller.js | JavaScript |          6 |          9 |          2 |         17 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\diceanimation.js                | JavaScript |         23 |          0 |          2 |         25 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\images\bloc.svg                 | XML        |         23 |          0 |          1 |         24 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\images\bloc_card.svg            | XML        |         23 |          0 |          1 |         24 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\images\bloc_point.svg           | XML        |         23 |          0 |          1 |         24 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\images\bloc_time.svg            | XML        |         17 |          0 |          1 |         18 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\images\bloc_turn.svg            | XML        |         17 |          0 |          1 |         18 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\images\clock.svg                | XML        |          3 |          0 |          1 |          4 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\images\cup.svg                  | XML        |          7 |          0 |          1 |          8 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\images\dos_apocalypse.svg       | XML        |          9 |          0 |          1 |         10 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\images\loader.svg               | XML        |         60 |          0 |          1 |         61 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\images\save.svg                 | XML        |          3 |          0 |          1 |          4 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\images\school.svg               | XML        |          3 |          0 |          1 |          4 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\images\turn.svg                 | XML        |          3 |          0 |          1 |          4 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\styles\_button.scss             | SCSS       |         57 |          0 |          1 |         58 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\styles\_card.scss               | SCSS       |         74 |          5 |          9 |         88 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\styles\_cardparchment.scss      | SCSS       |         91 |          0 |         12 |        103 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\styles\_classement.scss         | SCSS       |         46 |          2 |          7 |         55 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\styles\_collection.scss         | SCSS       |         71 |          9 |          7 |         87 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\styles\_confettiparty.scss      | SCSS       |          7 |          0 |          1 |          8 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\styles\_dice.scss               | SCSS       |         87 |          0 |         12 |         99 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\styles\_diceanimation.scss      | SCSS       |        129 |          0 |         18 |        147 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\styles\_footer.scss             | SCSS       |          4 |          1 |          1 |          6 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\styles\_game.scss               | SCSS       |        246 |          0 |         36 |        282 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\styles\_game_solo.scss          | SCSS       |         39 |          1 |          3 |         43 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\styles\_global.scss             | SCSS       |         95 |          5 |         14 |        114 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\styles\_index.scss              | SCSS       |         30 |          0 |          7 |         37 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\styles\_navbar.scss             | SCSS       |         13 |          5 |          6 |         24 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\styles\_parchment.scss          | SCSS       |         53 |          2 |          3 |         58 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\styles\_variable.scss           | SCSS       |         15 |          0 |          6 |         21 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\styles\admin\_global.scss       | SCSS       |         11 |          0 |          3 |         14 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\styles\admin\_index.scss        | SCSS       |         10 |          0 |          2 |         12 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\styles\admin\_navbar.scss       | SCSS       |          3 |          0 |          1 |          4 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\styles\admin\_variable.scss     | SCSS       |          4 |          0 |          2 |          6 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\styles\admin\admin.scss         | SCSS       |          6 |          0 |          1 |          7 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\styles\app.scss                 | SCSS       |         20 |          0 |          1 |         21 |
+| d:\Documents\WILDCODE\projet-3\2022-03-php-remote-1283-montbeliard-cite-libre\assets\styles\fontawesome\css\all.css  | CSS        |     17,932 |          9 |      8,758 |     26,699 |
+| Total                                                                                                                |            |     19,405 |         70 |      8,953 |     28,428 |
++----------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

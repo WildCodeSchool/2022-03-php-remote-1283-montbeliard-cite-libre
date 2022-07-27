@@ -3,9 +3,11 @@
 namespace App\Components;
 
 use App\Entity\Answer;
+use App\Entity\CardWon;
 use App\Entity\Question;
 use App\Repository\AnswerRepository;
 use App\Repository\CardRepository;
+use App\Repository\CardWonRepository;
 use App\Repository\GameRepository;
 use App\Service\PointsManager;
 use App\Service\QuestionAsk;
@@ -43,6 +45,9 @@ class GameComponent extends AbstractController
     #[LiveProp]
     public bool $gameWon = false;
 
+    #[LiveProp]
+    public ?array $cardsWons = null;
+
     public ?bool $answerIsCorrect = false;
 
     public function __construct(
@@ -52,13 +57,17 @@ class GameComponent extends AbstractController
         protected AnswerRepository $answerRepository,
         protected GameRepository $gameRepository,
         protected PointsManager $pointsManager,
-        protected CardRepository $cardRepository
+        protected CardRepository $cardRepository,
+        protected CardWonRepository $cardWonRepository
     ) {
         $this->session = $requestStack->getSession();
     }
 
     public function getRoll(): null|int
     {
+        $game = $this->gameRepository->findOneById($this->session->get('game')->getId());
+
+        $this->cardsWons = $this->cardWonRepository->findBy(['game' => $game], ['id' => 'DESC'], 10);
         return $this->session->has('roll') ? $this->session->get('roll') : null;
     }
 
@@ -81,6 +90,9 @@ class GameComponent extends AbstractController
             $this->gameWon = true;
             return $this->redirectToRoute('game_confettis');
         }
+
+        $this->cardsWons = $this->cardWonRepository->findBy(['game' => $game], ['id' => 'DESC'], 10);
+
         return null;
     }
 
@@ -119,7 +131,7 @@ class GameComponent extends AbstractController
     public function getQuestion(): ?Question
     {
         return $this->session->has('question') &&
-        !empty($this->session->get('question')) ?
+            !empty($this->session->get('question')) ?
             $this->session->get('question') : null;
     }
 

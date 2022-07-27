@@ -56,6 +56,7 @@ class GameRepository extends ServiceEntityRepository
     public function findByTime(): array
     {
         return $this->createQueryBuilder('g')
+            ->where('g.score >= 1000')
             ->orderBy('g.duration')
             ->getQuery()
             ->getResult();

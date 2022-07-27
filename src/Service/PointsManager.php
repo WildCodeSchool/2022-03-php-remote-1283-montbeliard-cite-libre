@@ -126,10 +126,12 @@ class PointsManager
             if (empty($rules['association']) && empty($rules['constraint'])) {
                 $points += $card->getCredit();
             }
-            //Vérifie les familles
-            $this->checkingFamily('+', $points, $card, $game);
+
             //Ajoute la carte à la table cardWon
             $this->cardWonRepository->add($cardWon, true);
+            //Vérifie les familles
+            $this->checkingFamily('+', $points, $card, $game);
+
             //Ajoute 10 pts par carte gagnée
             $points += 10;
         }

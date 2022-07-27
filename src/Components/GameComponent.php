@@ -4,9 +4,11 @@ namespace App\Components;
 
 use App\Entity\Answer;
 use App\Entity\Question;
+use App\Entity\QuestionAsked;
 use App\Repository\AnswerRepository;
 use App\Repository\CardRepository;
 use App\Repository\GameRepository;
+use App\Repository\QuestionAskedRepository;
 use App\Service\PointsManager;
 use App\Service\QuestionAsk;
 use App\Service\RollDice;
@@ -52,7 +54,8 @@ class GameComponent extends AbstractController
         protected AnswerRepository $answerRepository,
         protected GameRepository $gameRepository,
         protected PointsManager $pointsManager,
-        protected CardRepository $cardRepository
+        protected CardRepository $cardRepository,
+        private QuestionAskedRepository $questionAskedRepo,
     ) {
         $this->session = $requestStack->getSession();
     }
@@ -134,10 +137,12 @@ class GameComponent extends AbstractController
 
     public function getAnswers(): false|array
     {
+        $array = $this->answerRepository->findBy([
+            'question' => $this->getQuestion()
+        ]);
+        shuffle($array);
         return $this->getQuestion() ?
-            $this->answerRepository->findBy([
-                'question' => $this->getQuestion()
-            ]) : false;
+            $array : false;
     }
 
     #[LiveAction]
@@ -148,6 +153,13 @@ class GameComponent extends AbstractController
             'question' => $this->getQuestion(),
             'isCorrect' => true
         ]);
+
+        $questionAsked = $this->questionAskedRepo->findOneBy([
+            'game' => $this->session->get('game')->getId(),
+            'question' => $this->getQuestion()
+        ]);
+        $questionAsked->setAnswerQcm($this->answerRepository->find($id));
+        $this->questionAskedRepo->add($questionAsked, true);
         if ($this->answerIsCorrect) {
             $this->goodAnswer();
         } else {

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AnswerRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -25,6 +27,14 @@ class Answer
 
     #[ORM\Column(type: 'boolean')]
     private bool $isCorrect;
+
+    #[ORM\OneToMany(mappedBy: 'answerQcm', targetEntity: QuestionAsked::class)]
+    private Collection $questionAskeds;
+
+    public function __construct()
+    {
+        $this->questionAskeds = new ArrayCollection();
+    }
 
     public function getId(): int
     {
@@ -63,6 +73,36 @@ class Answer
     public function setIsCorrect(bool $isCorrect): self
     {
         $this->isCorrect = $isCorrect;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, QuestionAsked>
+     */
+    public function getQuestionAskeds(): Collection
+    {
+        return $this->questionAskeds;
+    }
+
+    public function addQuestionAsked(QuestionAsked $questionAsked): self
+    {
+        if (!$this->questionAskeds->contains($questionAsked)) {
+            $this->questionAskeds[] = $questionAsked;
+            $questionAsked->setAnswerQcm($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuestionAsked(QuestionAsked $questionAsked): self
+    {
+        if ($this->questionAskeds->removeElement($questionAsked)) {
+            // set the owning side to null (unless already changed)
+            if ($questionAsked->getAnswerQcm() === $this) {
+                $questionAsked->setAnswerQcm(null);
+            }
+        }
 
         return $this;
     }

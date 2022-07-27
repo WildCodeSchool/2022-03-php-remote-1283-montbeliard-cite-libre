@@ -12,9 +12,20 @@
 				{% for question in game.questionAskeds %}
                 <h2 class="text-start">{{ question.question.content }}</h2>
 
-					{% for answer in question.question.answers %}
-                        <p>{{ answer.content }}</p>
-					{% endfor %}
+                    {% if game.type == 'solo' %}
+                        {% if question.answerQcm.isCorrect %}
+                            <p>{{ '✅ ' ~ question.answerQcm.content}}</p>
+                        {% else %}
+                            <p>{{ '❌ ' ~ question.answerQcm.content}}</p>
+                        {% endif %}
+                    {% else %}
+                        {% for answer in question.question.answers %}
+                            {% if answer.isCorrect %}
+                                <p>{{ answer.content }}</p>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+
 
 				{% endfor %}
 			</div>

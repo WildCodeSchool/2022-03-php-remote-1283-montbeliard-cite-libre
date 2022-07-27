@@ -1002,6 +1002,46 @@
   resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.11.5.tgz"
   integrity sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw==
 
+"@swup/debug-plugin@^1.0":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@swup/debug-plugin/-/debug-plugin-1.0.3.tgz#345d76f8fe5d0d6b062a9c8e4e59150e83b21562"
+  integrity sha512-uSGrrI0Z4yLvUIYUNAzOGFgotJgjdXPGYCZ/WVGUdkBUWO8rWfSkDi+qCp2V8AdPGFc9TNq8bcR4zO0FPJ+C5g==
+  dependencies:
+    "@swup/plugin" "^1.0.0"
+
+"@swup/fade-theme@^1.0":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@swup/fade-theme/-/fade-theme-1.0.5.tgz#8280c1782e9cb1f68f00d6cd3de024d4f9bfc341"
+  integrity sha512-9PwC7UmW0RZ5eda+JtWz0z0H3kWWW4Ir3fnEnQOLwdS5p+nrvrLGQM3WjUR/kFIuAsU6K40Ty99gtoW6spWYSA==
+  dependencies:
+    "@swup/theme" "^1.0.7"
+
+"@swup/forms-plugin@^1.0":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@swup/forms-plugin/-/forms-plugin-1.1.1.tgz#f466d47ab07507ee53b374a2664ebccc024a802a"
+  integrity sha512-XtzDN61Icpgxgv4NsZ8pOf7NyCGkchs0/sEYzYHwwwVihN+p/DCgJoSp/6in17nLKCsT3SuNEMgrKkiPYaX3CQ==
+  dependencies:
+    "@swup/plugin" "^1.0.0"
+    delegate "^3.1.3"
+    swup "^2.0.13"
+
+"@swup/plugin@^1.0.0":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@swup/plugin/-/plugin-1.0.1.tgz#10606322508724a5beaed6a09326d8c30c7041fa"
+  integrity sha512-QrTGn1DLx+50CNsk6oGzUFnyNyLkDK6iLb032qKImmAXS+0Dd1cwa8cSGvJ+I27J4qR8y6oJNurgHIEc6ZCTrg==
+
+"@swup/slide-theme@^1.0":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@swup/slide-theme/-/slide-theme-1.0.5.tgz#743aab844be68c089e0c9b49b906b2a4c2495738"
+  integrity sha512-0xxqtURSMDScjLMRdNjtxzo8NGCPcmp6VXrQcxIQzQDSAvwNnP8Zw871C+FSL1EMe8OhAzWAP3E3x9vzH+iLHg==
+  dependencies:
+    "@swup/theme" "^1.0.6"
+
+"@swup/theme@^1.0.6", "@swup/theme@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@swup/theme/-/theme-1.0.7.tgz#e276fa769af0d800a8df16cbaf71efb665bee297"
+  integrity sha512-OINEaf34fYs90l7/YUUKfOf+paY7/FDhOBLwYxrD0w1OjBiItZpw3N+ATA/QklJwmoUu3KkDFOaQG0zT4KxmmA==
+
 "@symfony/stimulus-bridge@^3.2.0":
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@symfony/stimulus-bridge/-/stimulus-bridge-3.2.1.tgz#b9c261ad72830fd17898cf27c97862d1cc15b46a"
@@ -1017,6 +1057,9 @@
   version "1.0.0"
   dependencies:
     morphdom "^2.6.1"
+
+"@symfony/ux-swup@file:vendor/symfony/ux-swup/Resources/assets":
+  version "1.1.0"
 
 "@symfony/webpack-encore@^1.7.0":
   version "1.8.2"
@@ -2146,6 +2189,18 @@ del@^4.1.1:
     p-map "^2.0.0"
     pify "^4.0.1"
     rimraf "^2.6.3"
+
+delegate-it@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/delegate-it/-/delegate-it-3.0.1.tgz#639f53bfcb73cb3a9606e64696cfde33a50fe626"
+  integrity sha512-XU8H4pjDGBW74hFIbjdLPnvtU3HF3P9bbZvoFBSBLb5JgNaTkRb/2lvC1V+9kmZsxVR0kad4bU3rYhQ/4Ij+Gw==
+  dependencies:
+    typed-query-selector "^2.6.1"
+
+delegate@^3.1.3:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/delegate/-/delegate-3.2.0.tgz#b66b71c3158522e8ab5744f720d8ca0c2af59166"
+  integrity sha512-IofjkYBZaZivn0V8nnsMJGBr4jVLxHDheKSW88PyxS5QC4Vo9ZbZVvhzlSxY87fVq3STR6r+4cGepyHkcWOQSw==
 
 depd@2.0.0:
   version "2.0.0"
@@ -3468,6 +3523,11 @@ open@^8.0.9:
     is-docker "^2.1.1"
     is-wsl "^2.2.0"
 
+opencollective-postinstall@^2.0.2:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/opencollective-postinstall/-/opencollective-postinstall-2.0.3.tgz#7a0fff978f6dbfa4d006238fbac98ed4198c3259"
+  integrity sha512-8AV/sCtuzUeTo8gQK5qDZzARrulB3egtLzFgteqB2tcT4Mw7B8Kt7JcDHmltjz6FOAHsvTevk70gZEbhM4ZS9Q==
+
 optionator@^0.9.1:
   version "0.9.1"
   resolved "https://registry.npmjs.org/optionator/-/optionator-0.9.1.tgz"
@@ -4534,6 +4594,14 @@ svgo@^2.7.0:
     picocolors "^1.0.0"
     stable "^0.1.8"
 
+swup@^2.0, swup@^2.0.13:
+  version "2.0.16"
+  resolved "https://registry.yarnpkg.com/swup/-/swup-2.0.16.tgz#8073c58dae9d8fe49d97042b35db1964cbd4075a"
+  integrity sha512-ozh3DuDDa6l7ctZcQ36DNROPo5CyTHMj7ob31kUkCrCGX8SimdqB0uK7PZnlEl4x3lmY12+eIdHji11q8SA6Aw==
+  dependencies:
+    delegate-it "^3.0.1"
+    opencollective-postinstall "^2.0.2"
+
 sync-rpc@^1.3.6:
   version "1.3.6"
   resolved "https://registry.npmjs.org/sync-rpc/-/sync-rpc-1.3.6.tgz"
@@ -4637,6 +4705,11 @@ type@^2.5.0:
   version "2.6.0"
   resolved "https://registry.npmjs.org/type/-/type-2.6.0.tgz"
   integrity sha512-eiDBDOmkih5pMbo9OqsqPRGMljLodLcwd5XD5JbtNB0o89xZAwynY9EdCDsJU7LtcVCClu9DvM7/0Ep1hYX3EQ==
+
+typed-query-selector@^2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/typed-query-selector/-/typed-query-selector-2.6.1.tgz#73b6f591974129669df59d90f0bec4216e68a434"
+  integrity sha512-nzzcDrI0nncM5XTNyqeG7MrcXTx8lelUtNlTP+NvpnOfRzApyr+ZW4H/FoOaPfzmjn++Tf0ZxXpBN7Q3FN3ERw==
 
 unicode-canonical-property-names-ecmascript@^2.0.0:
   version "2.0.0"

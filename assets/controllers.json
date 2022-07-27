@@ -8,6 +8,12 @@
                     "@symfony/ux-live-component/styles/live.css": true
                 }
             }
+        },
+        "@symfony/ux-swup": {
+            "swup": {
+                "enabled": true,
+                "fetch": "eager"
+            }
         }
     },
     "entrypoints": []

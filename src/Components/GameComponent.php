@@ -5,10 +5,12 @@ namespace App\Components;
 use App\Entity\Answer;
 use App\Entity\CardWon;
 use App\Entity\Question;
+use App\Entity\QuestionAsked;
 use App\Repository\AnswerRepository;
 use App\Repository\CardRepository;
 use App\Repository\CardWonRepository;
 use App\Repository\GameRepository;
+use App\Repository\QuestionAskedRepository;
 use App\Service\PointsManager;
 use App\Service\QuestionAsk;
 use App\Service\RollDice;
@@ -57,8 +59,9 @@ class GameComponent extends AbstractController
         protected AnswerRepository $answerRepository,
         protected GameRepository $gameRepository,
         protected PointsManager $pointsManager,
+        protected CardWonRepository $cardWonRepository,
         protected CardRepository $cardRepository,
-        protected CardWonRepository $cardWonRepository
+        private QuestionAskedRepository $questionAskedRepo,
     ) {
         $this->session = $requestStack->getSession();
     }
@@ -92,7 +95,7 @@ class GameComponent extends AbstractController
         }
 
         $this->cardsWons = $this->cardWonRepository->findBy(['game' => $game], ['id' => 'DESC'], 10);
-
+        $this->questionAsk->unsetQuestion();
         return null;
     }
 
@@ -102,6 +105,7 @@ class GameComponent extends AbstractController
         $this->message = "Mauvaise Réponse, relance le dé";
         $this->badAnswer = true;
         $this->answered = true;
+        $this->questionAsk->unsetQuestion();
     }
 
     #[LiveAction]
@@ -146,10 +150,12 @@ class GameComponent extends AbstractController
 
     public function getAnswers(): false|array
     {
+        $array = $this->answerRepository->findBy([
+            'question' => $this->getQuestion()
+        ]);
+        shuffle($array);
         return $this->getQuestion() ?
-            $this->answerRepository->findBy([
-                'question' => $this->getQuestion()
-            ]) : false;
+            $array : false;
     }
 
     #[LiveAction]
@@ -160,6 +166,13 @@ class GameComponent extends AbstractController
             'question' => $this->getQuestion(),
             'isCorrect' => true
         ]);
+
+        $questionAsked = $this->questionAskedRepo->findOneBy([
+            'game' => $this->session->get('game')->getId(),
+            'question' => $this->getQuestion()
+        ]);
+        $questionAsked->setAnswerQcm($this->answerRepository->find($id));
+        $this->questionAskedRepo->add($questionAsked, true);
         if ($this->answerIsCorrect) {
             $this->goodAnswer();
         } else {

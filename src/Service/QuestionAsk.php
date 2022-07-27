@@ -41,7 +41,7 @@ class QuestionAsk
         $session->set('alert', null);
         if (!isset($this->questionRepository->selectRandomByLevel($level, $gameId)[0])) {
             $this->question = "Plus aucune question de disponible pour ce niveau";
-            $session->set('question', null);
+            $this->unsetQuestion();
             $session->set('alert', $this->question);
             return $this->question;
         }
@@ -76,7 +76,7 @@ class QuestionAsk
         $apocalypses = $session->get('apocalypses');
         $this->cardApocalypse = $apocalypses[0];
         $session->set('apocalypse', $apocalypses[0]);
-        $session->set('question', null);
+        $this->unsetQuestion();
         $this->replaceCardApocalypse();
         $this->addTurn();
         return $this->cardApocalypse;
@@ -97,5 +97,11 @@ class QuestionAsk
         $game->setTurn($game->getTurn() + 1);
         $this->gameRepository->add($game, true);
         $session->set('game', $game);
+    }
+
+    public function unsetQuestion(): void
+    {
+        $session = $this->requestStack->getSession();
+        $session->set('question', null);
     }
 }

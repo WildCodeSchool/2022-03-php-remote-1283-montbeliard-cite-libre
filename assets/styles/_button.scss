@@ -1,4 +1,6 @@
 .btn-one {
+    --bs-bg-opacity: 0.75;
+    background-color: rgba(var(--bs-white-rgb), var(--bs-bg-opacity));
     color: $dark;
     transition: all 0.3s;
     position: relative;
@@ -30,13 +32,14 @@
     border-bottom-color: $primary;
     transform: scale(0.1, 1);
   }
-  .btn-one:hover  {
+  .btn-one:hover,
+  .btn-one:focus {
     letter-spacing: 2px;
-    color: $light;
-  }
-  .btn-one:hover::before {
-    opacity: 1;
-    transform: scale(1, 1);
+    color: $primary;
+      &:before {
+          opacity: 1;
+          transform: scale(1, 1);
+      }
   }
   .btn-one::after {
     content: '';

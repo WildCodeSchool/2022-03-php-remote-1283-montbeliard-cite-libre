@@ -1,8 +1,8 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout/main-center.html.twig' %}
 
 {% block title %}Register{% endblock %}
 
-{% block body %}
+{% block main %}
 <div class="row">
 		<div class="col-lg-6 offset-lg-3">
     <h1>Rejoignez la partie</h1>
@@ -15,6 +15,7 @@
         {{ form_row(registrationForm.plainPassword, {
             label: 'Mot de passe'
             }) }}
+        {{ form_row(registrationForm.classe) }}
         {{ form_row(registrationForm.agreeTerms) }}
         <div class="d-flex justify-content-between mt-4">
             <a href="/login">Déjà un compte?</a>

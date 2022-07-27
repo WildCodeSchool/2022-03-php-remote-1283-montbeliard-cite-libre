@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AnswerRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AnswerRepository::class)]
 class Answer
@@ -14,11 +15,13 @@ class Answer
     private int $id;
 
     #[ORM\ManyToOne(targetEntity: Question::class, inversedBy: 'answers')]
-    #[ORM\JoinColumn(nullable: false)]
-    private Question $question;
+    #[ORM\JoinColumn(nullable: true)]
+    #[Assert\NotBlank(message: 'Ce champ ne doit pas être vide')]
+    private ?Question $question;
 
     #[ORM\Column(type: 'text')]
-    private string $answer;
+    #[Assert\NotBlank(message: 'Ce champ ne doit pas être vide')]
+    private string $content;
 
     #[ORM\Column(type: 'boolean')]
     private bool $isCorrect;
@@ -40,14 +43,14 @@ class Answer
         return $this;
     }
 
-    public function getAnswer(): ?string
+    public function getContent(): ?string
     {
-        return $this->answer;
+        return $this->content;
     }
 
-    public function setAnswer(string $answer): self
+    public function setContent(string $content): self
     {
-        $this->answer = $answer;
+        $this->content = $content;
 
         return $this;
     }

@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout/main-center.html.twig' %}
 
 {% block title %}1283, Montbéliard cité libre
 {% endblock %}
 
-{% block body %}
+{% block main %}
 
 	<div class="container-fluid d-flex justify-content-center">
 		<div class="parchment">
@@ -15,12 +15,13 @@
                 <h2>Objectif didactique</h2>
                 <p>Répondre à des questions sur la société urbaine au Moyen Âge pour gagner des cartes qui rapportent des points.<br/><br/></p>
 
+                <h1>Partie avec un maître du jeu</h1>
                 <h2>Étape 1 :</h2>
                 <p>Un élève lance le dé 6 (le lanceur change à chaque tour)<br/><br/></p>
                 <h2>Étape 2 :</h2>
                 <p>
                     La valeur du dé annonce ce qui va se passer :<br/>
-                    <strong>Valeur 1 -</strong> L'enseignant tire une carte « cavaliers de l'Apocalypse » et la lit : perte de points ou de cartes.<br/>
+                    <strong>Valeur 1 -</strong> ECHEC CRITIQUE : on tire une carte « Cavaliers de l'Apocalypse » et on la lit. Effet : perte de points ou perte de cartes.<br/>
                     <strong>Valeur 2 -</strong> Question très facile : les élèves obtiennent 2 cartes si la réponse est juste. Sinon, un autre tour commence.<br/>
                     <strong>Valeur 3 -</strong> Question facile : les élèves obtiennent 3 cartes si la réponse est juste. Sinon, un autre tour commence.<br/>
                     <strong>Valeur 4 -</strong> Question intermédiaire : les élèves obtiennent 4 cartes si la réponse est juste. Sinon, un autre tour commence.<br/>
@@ -31,15 +32,26 @@
                 <h2>Étape 3 :</h2>
                 <p>L'enseignant lit les cartes gagnées, les bonus et les malus éventuels. En cas de « cavaliers de l'apocalypse », l'enseignant lit la carte et sa répercussion négative sur le jeu (perte de points, pertes de cartes).<br/><br/></p>
                 <h2>Étape 4 :</h2>
-                <p>Les élèves calculent les points gagnés ou perdus, vérifient les familles et les cartes liées sur les listes, les bonus ou les malus et annoncent la somme accumulée sur le tour.<br/></p>
+                <p>Le jeu calcule automatiquement les points gagnés ou perdus, vérifie les familles et les cartes liées visibles dans le classeur de cartes à n'importe quel moment de la partie.
+                Les dix dernières cartes tirées, le nombre de tours, le nombre de cartes tirées, les points accumulés et le temps restant apparaissent à l'écran (à gauche et en haut). <br/></p>
+
+                <h1>Partie individuelle</h1>
+                <p>La partie solo est jouée seul(e) face à l'ordinateur. <br/>
+                Les étapes sont les mêmes que dans la partie avec un maître du jeu. <br/>
+                Le joueur doit lire les textes des cartes tirées (on y trouve de nombreux indices pour répondre aux questions). <br/>
+                Le joueur répond seul aux questions sous forme de QCM (questions à choix multiple).</p>
             </div>
         </div>
 	</div>
-        <div class="d-flex justify-content-center mb-5">
-            <a href="/game" class="btn btn-one">
-                LANCER UNE PARTIE
-            </a>
-        </div>
+
+        {% if not is_granted('ROLE_USER') %}
+            <div class="d-flex justify-content-center mb-5">
+                <a href="{{ path('login') }}" class="btn btn-one">
+                    Connexion
+                </a>
+            </div>
+        {% endif %}
+
 
 {% endblock %}
 

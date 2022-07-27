@@ -1,0 +1,13 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Modifier la Classe{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mb-4">Modifier la Classe</h1>
+
+    {{ include('admin/classe/_form.html.twig', {'button_label': 'enregistrer'}) }}
+
+    <a class="btn btn-outline-primary" href="{{ path('classe_index') }}"><i class="bi bi-backspace"></i> retour à la liste</a>
+
+    {{ include('admin/classe/_delete_form.html.twig') }}
+{% endblock %}

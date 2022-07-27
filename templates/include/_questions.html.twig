@@ -1,0 +1,32 @@
+<div id="myModal" class="card-parchment card-parchment--modal d-none">
+	<div class="parchment-background"></div>
+	<div class="parchment-body">
+		<button aria-label="close" class="close-modal"></button>
+		{% if app.session.get('question').content is defined and  app.session.get('question').content is not empty  %}
+			<p class="fs-3 mb-1">
+				Niveau
+				{{app.session.get('question').getLevel}}
+			</p>
+			<h1>{{app.session.get('question').content}}
+			</h1>
+
+		{% endif %}
+		{% if app.session.get('alert') is not empty %}
+			<p class="fs-3 mb-1 mt-5">
+				{{ app.session.get('alert') }}</p>
+		{% endif %}
+
+		<div class="text-center">
+			<button id="btn-display-response" class="btn btn-one mt-3">Afficher la réponse</button>
+			<div id="response" class="d-none mt-3">
+				{% if app.session.get('question').content is defined and  app.session.get('question').content is not empty  %}
+					<p>{{answer[0].content}}</p>
+				{% endif %}
+				<div class="d-flex justify-content-center mt-5">
+					<a href="{{path('game_calculate_score', {'answer': 'true'})}}" id="p" class="btn btn-one bg-white bg-opacity-75 me-5 w-25 close">Bonne réponse</a>
+					<a href="{{path('game_calculate_score', {'answer': 'false'})}}" class="btn btn-one bg-white bg-opacity-75 w-25 close">Mauvaise réponse</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

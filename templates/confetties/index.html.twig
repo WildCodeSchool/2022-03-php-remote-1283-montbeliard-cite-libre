@@ -2,15 +2,20 @@
 
 {% block title %}1000 points!!!
 {% endblock %}
-{% block body %}
-	<h1 class="office-banner">
-		Félicitions ! Vous avez atteint les 1000 points
-	</h1>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', function(){
+{% block body %}
+
+	<div class="img-anim">
+        <div class="container-fluid d-flex flex-column justify-content-center align-items-center text-center h-100 ">
+                <h1>Félicitations !</h1>
+                <h2>Vous avez atteint les 1000 points, <br/>Vous avez gagné la charte libérant de Montbéliart</h2>
+            </div>
+    </div>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
         window.gameWin()
-    })
-    </script>
+        })
+	</script>
 
 {% endblock %}

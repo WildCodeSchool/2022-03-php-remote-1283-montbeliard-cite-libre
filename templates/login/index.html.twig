@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout/main-center.html.twig' %}
 
 {% block title %}Page de connexion
 {% endblock %}
 
-{% block body %}
+{% block main %}
 	{% if error %}
 		<div class="alert alert-danger">
 			{{ error.messageKey|trans(error.messageData, 'security') }}

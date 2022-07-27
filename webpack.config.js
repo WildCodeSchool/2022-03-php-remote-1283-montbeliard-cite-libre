@@ -27,7 +27,7 @@ Encore
     })
 
     .copyFiles({
-        from: './assets/sound/',
+        from: './assets/sounds',
 
         to: 'sounds/[path][name].[hash:8].[ext]',
     })

@@ -2,6 +2,7 @@
 @import "_variable";
 @import "~bootstrap/scss/bootstrap";
 @import "~bootstrap-icons/font/bootstrap-icons";
+@import "fontawesome/css/all.css";
 @import "_global";
 @import "_footer";
 @import "_navbar";
@@ -13,3 +14,7 @@
 @import "_game";
 @import "_dice";
 @import '_confettiparty';
+@import '_cardparchment';
+@import '_diceanimation';
+@import '_classement';
+@import '_game_solo';

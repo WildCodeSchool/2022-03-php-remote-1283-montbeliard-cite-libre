@@ -1,4 +1,5 @@
 <header>
+<<<<<<< HEAD
     <nav class="navbar navbar-light fixed-top">
         <div class="container-fluid">
             {% if app.user %}
@@ -50,3 +51,108 @@
     </nav>
 </header>
 
+=======
+	<nav class="navbar navbar-1 navbar-light fixed-top">
+		<div class="container-fluid">
+			<a href="{{ path('app_home') }}" class="ms-3">
+				<img class="blason" src="{{asset('build/images/blason.png')}}" aria-label="retour accueil" alt="blason Montbéliard">
+			</a>
+			<span class="ms-auto">
+				{% if app.user %}
+					{#					<span class="me-2 pt-3">{{ app.user.username }}</span>#}
+				{% endif %}
+				<button class="navbar-toggler me-3 mt-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+					<span class="navbar-toggler-icon burger"></span>
+				</button>
+			</span>
+			<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+				<div class="offcanvas-header">
+					<button type="button" class="btn-close text-reset me-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+					<h5 class="offcanvas-title me-auto" id="offcanvasNavbarLabel">1283, Montbéliard, cité libre</h5>
+				</div>
+				<div class="offcanvas-body bg-dark text-light">
+					<ul class="navbar-nav h-100 d-flex flex-column align-items-start pe-3">
+						<li class="nav-item">
+							<a class="nav-link active fs-5 text-light text-center link-navbar" aria-current="page" href="/">
+								Accueil
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link fs-5 text-light text-center link-navbar" href="{{ path('rule_index') }}">
+								<i class="fas fa-book-bookmark fa-fw"></i>
+								Règles du jeu
+							</a>
+						</li>
+						<li class="nav-item w-100"><hr></li>
+						{% if is_granted('ROLE_USER') %}
+							{% if app.session.get('game') %}
+								<li class="nav-item">
+									<a class="nav-link fs-5 text-light text-center link-navbar" href="{{ path('game_progress') }}">
+										<i class="fas fa-dice-six fa-fw"></i>
+										Partie en cours
+									</a>
+								</li>
+							{% else %}
+								<li class="nav-item">
+									<a class="nav-link fs-5 text-light text-center link-navbar" href="{{ path('game_index') }}">
+										<i class="fas fa-dice-six fa-fw"></i>
+										Nouvelle partie
+									</a>
+								</li>
+							{% endif %}
+{# 							<li class="nav-item">
+								<a class="nav-link fs-5 text-light text-center link-navbar" href="{{ path('app_score') }}">
+									<i class="fas fa-chart-column fa-fw"></i>
+									Mes scores</a>
+							</li> #}
+							<li class="nav-item">
+								<a class="nav-link fs-5 text-light text-center link-navbar" href="{{ path('classement') }}">
+									<i class="fas fa-chart-column fa-fw"></i>
+									Classement
+								</a>
+							</li>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link fs-5 text-light text-center link-navbar" href="#">
+								<i class="fas fa-user fa-fw"></i>
+								Mon compte
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link fs-5 text-light text-center link-navbar" href="{{ path('app_logout') }}">
+								<i class="fas fa-sign-out fa-fw"></i>
+								Déconnexion
+							</a>
+						</li>
+					{% else %}
+						<li class="nav-item">
+							<a class="nav-link fs-5 text-light text-center link-navbar" href="{{ path('login') }}">
+								<i class="fas fa-sign-in fa-fw"></i>
+								Connexion
+							</a>
+						</li>
+					{% endif %}
+					<li class="mt-auto"></li>
+					{% if is_granted("ROLE_ADMIN") %}
+						<li class="nav-item ">
+							<a class="nav-link active fs-5 text-light text-center link-navbar" href="{{ path('admin') }}">
+								<i class="fas fa-gauge-high fa-fw"></i>
+								Tableau de bord admin
+							</a>
+						</li>
+					{% endif %}
+					<li class="nav-item text-center">
+						<a href="{{ path('app_legal_notices', {'_fragment': 'ancre-credits'}) }}" class=" fs-6 text-light link-navbar">
+							Crédits
+						</a>
+						|
+						<a href="{{ path('app_legal_notices') }}" class=" fs-6 text-light link-navbar">
+							Mentions légales
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</nav></header>
+>>>>>>> 30687a7726fc486d4c81113b899b8e553c0e3958

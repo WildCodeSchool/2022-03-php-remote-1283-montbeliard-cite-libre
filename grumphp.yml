@@ -6,9 +6,9 @@ grumphp:
         #    bin: node_modules/.bin/eslint
         #    config: .eslintrc.yml
         phpversion:
-            project: '8.0'
+            project: "8.0"
         phpcpd:
-            directory: [ 'src' ]
+            directory: ["src"]
         phpcs:
             standard: ~
         phpstan:
@@ -16,8 +16,8 @@ grumphp:
             level: 6
         phpmd:
             whitelist_patterns:
-                - 'src'
+                - "src"
             exclude:
                 - '\src\Kernel.php'
             ruleset:
-                - 'phpmd.xml'
+                - "phpmd.xml"

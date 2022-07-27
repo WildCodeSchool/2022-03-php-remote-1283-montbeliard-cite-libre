@@ -1,0 +1,35 @@
+family;name;description;image;type;category;value;exception
+13;Rumeur de guerre;4 artisans s'enfuient !;59-rumeur_de_guerre.jpg;cards;artisan;4;
+13;Rumeur de guerre;"Le commerce s'effondre.
+Vous perdez 50 livres !";59-rumeur_de_guerre2.jpg;points;;50;
+13;Rumeur de guerre;"Les habitants veulent des remparts plus solide.
+Payez 100 livres !";59-rumeur_de_guerre3.jpg;points;;100;
+13;Famine;"Vous devez agrandir la cimetiere.
+Payez 100 livres";59-famine.jpg;points;;100;
+13;Famine;"Deux commercants ou artisants s'enffuient.
+Rendez deux cartes ";62-famine.jpg;cards;all;2;
+13;Famine;"Vous devez acheter de la nourriture pour la ville.
+Payez 100 livres. Si vous avez la carte banquier,
+vous ne payez pas !";62-famine2.jpg;points;;100;59
+13;Famine;"Six artisans ou marchand quittent la ville.
+Rendez six cartes ";62-famine3.jpg;cards;all;6;
+13;Epidemie de peste;"Vous devez faire construire un Hotel-Dieu.
+Payez 100 livres ";62-epidemie_de_peste.jpg;cards;artisan;4;
+13;Epidemie de peste;"Vous devez agrandir la cimetiere.
+Payez 100 livres";65-epidemi_de_peste.jpg;points;;100;
+13;Epidemie de peste;"3 marchands s'enfuient.
+Rendez 3 cartes !";65-epidemie_de_peste3.jpg;cards;marchand;3;
+13;Epidemie de peste;"Trois artisans s'enfuient.
+Rendez 3 cartes !";65-epidemie_de_peste4.jpg;cards;artisan;3;
+13;Epidemie de peste;"Organisez une journee de penitence pour que les habitants
+expient leurs pechers.
+Payez 50 livre";65-epidemie_de_peste5.jpg;points;;50;
+13;Flambee de violenc;"Vous devez developper un corp de chevaliers du guet
+pour maintenir l'ordre.
+Payez 50 livres !";68-flambee_de_violence.jpg;points;;50;
+13;Les inegalites augmentent;"Vous devez constuire des hospices pour les pauvres.
+Payez 100 livres !";68-inegalites_augmentent.jpg;points;;100;
+13;Les crimes augmentent;"Vous devez employer un boureau.
+Payez 50 livres !";68-crimes_augmentent.jpg;points;;50;
+13;Les ordures s'amoncellent;"Faites venir les cochons !
+Payez 50 livres !";68-ordures_s_amoncellent.jpg;points;;50;

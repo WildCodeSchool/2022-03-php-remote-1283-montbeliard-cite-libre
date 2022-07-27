@@ -1,12 +1,15 @@
 .dot {
+    --dot-size: 24px;
     display: block;
-    width: 24px;
-    height: 24px;
+    width: var(--dot-size);
+    height:  var(--dot-size);
     border-radius: 50%;
     margin: 4px;
     background-color: $secondary;
     box-shadow: inset 0 3px $dark, inset 0 -3px $secondary;
-
+    @include media-breakpoint-down(lg) {
+        --dot-size: 7px;
+    }
     &:nth-child(2) {
         grid-area: b;
     }
@@ -33,22 +36,25 @@
 }
 
 [class$="face"] {
-    margin: 16px;
+    --dice-size: 104px;
+    --dice-margin: 16px;
+    margin: var(--dice-margin);
     padding: 4px;
     justify-content: space-between;
     align-content: space-between;
     background-color: $light;
-    width: 104px;
-    height: 104px;
-
+    width: var(--dice-size);
+    height: var(--dice-size);
     box-shadow:
         inset 0 5px white,
         inset 0 -5px #bbb,
         inset 5px 0 #d7d7d7,
         inset -5px 0 #d7d7d7;
-
-
     border-radius: 10%;
+    @include media-breakpoint-down(lg) {
+        --dice-size: 50px;
+        --dice-margin: 7px;
+    }
 }
 
 .two-face {

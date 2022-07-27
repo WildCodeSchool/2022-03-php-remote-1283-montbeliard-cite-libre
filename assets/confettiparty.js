@@ -1,21 +1,15 @@
 const confetti = require('canvas-confetti');
 
-const canvasConfetti = document.createElement('canvas');
-document.body.appendChild(canvasConfetti);
-
-const myConfetti = confetti.create(canvasConfetti, {
+const myConfetti = confetti.create(false, {
     resize: true,
     useWorker: true
 });
-
-const colors = ["#8b5642", "#6a696b"];
-
-const duration = 27 * 1000;
+const colors = ["#DD7110", "#6a696b"];
+const duration = 10 * 1000;
 const end = Date.now() + duration;
 
 window.gameWin = () => {
-    new Audio('/sounds/sound-win.mp3').play();
-    launchConfetties();
+    window.launchConfetties();
 }
 
 window.launchConfetties = () => {
@@ -38,8 +32,8 @@ window.launchConfetties = () => {
         colors: colors,
     });
     if (Date.now() < end) {
-        requestAnimationFrame(launchConfetties);
+        requestAnimationFrame(window.launchConfetties);
     } else {
-        window.location.pathname = "/game"
+        window.location.pathname = "/game/endGame"
     }
 }

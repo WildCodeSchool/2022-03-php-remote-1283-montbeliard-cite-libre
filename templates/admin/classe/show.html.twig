@@ -1,0 +1,30 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Classe{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mb-4">Classe</h1>
+
+    <table class="table table-hover">
+        <tbody>
+            <tr class="table-dark">
+                <th class="text-center">Id</th>
+                <th class="text-center">Classe</th>
+            </tr>
+            <tr>
+                <td class="text-center">{{ classe.id }}</td>
+                <td class="text-center">{{ classe.classe }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-outline-primary" href="{{ path('classe_index') }}">
+        <i class="bi bi-backspace"></i>
+        retour à la liste</a>
+
+    <a class="btn btn-outline-primary" href="{{ path('classe_edit', {'id': classe.id}) }}">
+        <i class="bi bi-pencil"></i>
+        éditer</a>
+
+    {{ include('admin/classe/_delete_form.html.twig') }}
+{% endblock %}

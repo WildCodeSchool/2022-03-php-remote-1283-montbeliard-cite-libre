@@ -17,9 +17,19 @@
         {{ encore_entry_script_tags('app') }}
     {% endblock %}
 </head>
-<body class="h-100 d-flex flex-column justify-content-center">
+<body class="h-100 d-flex flex-column justify-content-center"
+    {{ stimulus_controller({
+        swup: {},
+        'symfony/ux-swup/swup': {
+            containers: ['#swup', '#header'],
+        }
+    }) }}
+    >
     {% include "include/_navbar.html.twig" %}
-    <main>{% block body %}{% endblock %}</main>
+    <main id="swup">{% block body %}{% endblock %}</main>
+    <audio loop src="{{ asset('build/sounds/musique.mp3') }}"
+           class="d-none" {{ stimulus_target('swup', 'audio') }}></audio>
+
     {% include "include/_footer.html.twig" %}
 </body>
 </html>

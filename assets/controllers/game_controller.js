@@ -72,6 +72,5 @@ export default class extends Controller {
 
         chronometer();
 
-
     }
 }

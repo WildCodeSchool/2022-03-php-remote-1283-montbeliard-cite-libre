@@ -36,7 +36,7 @@ class GameSoloComponent
     public function getAnswers(): false|array
     {
         return $this->session->has('question') &&
-        !empty($this->session->get('question')) ?
+            !empty($this->session->get('question')) ?
             $this->answerRepository->findBy([
                 'question' => $this->session->get('question')->getID()
             ]) : false;

@@ -100,6 +100,10 @@
         flex-wrap: wrap;
     }
 
+    p.size-response {
+        font-size: 4rem;
+    }
+
     @include media-breakpoint-down(lg) {
         background-image: url('/assets/images/plateau_jeu_phone.jpg');
         position: relative;

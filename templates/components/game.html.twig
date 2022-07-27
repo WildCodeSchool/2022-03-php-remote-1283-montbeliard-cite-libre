@@ -79,14 +79,15 @@
                 </div>
             </div>
 
-            <div class="deck-left">
-                <p>Artisans et commerçants</p>
+            <div class="deck-left d-flex flex-column justify-content-center align-items-end">
+                <p class="me-3">Artisans et commerçants</p>
                 <div class="artisans cardgame">
                     <img class="left-img" src="{{ asset('build/images/dos_artisans.jpg') }}" alt="dos artisan">
                 </div>
             </div>
 
             <div class="center">
+            <p class="mb-3">Niveau des questions</p>
                 <div class="d-flex flex-column align-items-center justify-content-center">
 
 
@@ -150,8 +151,8 @@
                 </div>
             </div>
 
-            <div class="deck-right">
-                <p>Cavaliers de l'apocalyspe</p>
+            <div class="deck-right d-flex flex-column justify-content-center align-items-start">
+                    <p class="ms-3">Cavaliers de l'apocalyspe</p>
                 <div class="artisans cardgame">
                     <img class="right-img" src="{{ asset('build/images/dos_apocalypse.svg') }}" alt="dos apocalyspe">
                 </div>
@@ -252,7 +253,7 @@
 
                             <div class="d-none mt-3" {{ stimulus_target('game', 'response') }}>
                                 {% if this.answer %}
-                                    <p>{{ this.answer.content }}</p>
+                                    <p class="fs-4">{{ this.answer.content }}</p>
                                 {% endif %}
                                 <div class="d-flex justify-content-center mt-5">
                                     <a href="#" id="p" class="btn btn-one bg-white bg-opacity-75 me-5 w-25 close"

@@ -106,22 +106,27 @@ class PointsManager
         $pointStart = $points;
         $this->lastTurnManager->setCardWons($cards);
         foreach ($cards as $card) {
+            $points = $game->getScore();
             $cardWon = new CardWon();
             $cardWon->setCard($card);
             $cardWon->setGame($game);
             $rules = $card->getRule();
+
+            //S'il y a une contrainte
+            if (!empty($rules['constraint'])) {
+                $cardApo = $this->getCardApoWhenConstraint($card);
+                $this->lostPoints($cardApo, $game);
+                $points = $game->getScore();
+                $points += $card->getCredit();
+            }
+
             //S'il y a une association
             if (!empty($rules['association'])) {
                 if ($this->cardWonRepository->findBy(['card' => $rules['association'], 'game' => $game])) {
                     $points += $card->getCredit();
                 }
             }
-            //S'il y a une contrainte
-            if (!empty($rules['constraint'])) {
-                $cardApo = $this->getCardApoWhenConstraint($card);
-                $points += $card->getCredit();
-                $this->lostPoints($cardApo, $game);
-            }
+
             //S'il n'y a pas de contrainte et pas d'association
             if (empty($rules['association']) && empty($rules['constraint'])) {
                 $points += $card->getCredit();
@@ -134,6 +139,7 @@ class PointsManager
 
             //Ajoute 10 pts par carte gagnée
             $points += 10;
+            $game->setScore($points);
         }
         $pointsEnd = $points - $pointStart;
         //Mise à jour du score en BDD et en session

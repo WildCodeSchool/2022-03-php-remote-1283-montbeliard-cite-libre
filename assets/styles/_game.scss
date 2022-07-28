@@ -100,6 +100,10 @@
         flex-wrap: wrap;
     }
 
+    p.size-response {
+        font-size: 4rem;
+    }
+
     @include media-breakpoint-down(lg) {
         background-image: url('/assets/images/plateau_jeu_phone.jpg');
         position: relative;
@@ -235,6 +239,9 @@
     padding: .5rem;
     margin-left: 1rem;
     font-weight: 600;
+    .widget-icon-audio {
+        z-index: 1050;
+    }
     .widget-icon {
         position: relative;
         display: flex;

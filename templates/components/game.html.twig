@@ -1,37 +1,90 @@
 <div {{ attributes }}>
-    <div {{ stimulus_controller('game') }}>
-        <div
-            class="body-game {% if this.roll and this.answered == false %}pointer-event-none{% endif %}" {{ stimulus_target('game', 'bodyGame') }}>
-            {# allcard #}
-            <div class="show-allcard ">
-                <h2>10 dernières cartes gagnées</h2>
-                <div class="show-card mb-1 position-relative">Le menuisier
-                    <img class="position-absolute top-50 start-100 translate-middle card-won"
-                         src="{{ asset('build/images/menuisier.jpg') }}" alt="carte gagnée"></div>
-                <div class="show-card mb-1 position-relative">Le briquier et le maçon coucheur
-                    <img class="position-absolute top-50 start-100 translate-middle card-won"
-                         src="{{ asset('build/images/briquier.jpg') }}" alt="carte gagnée">
-                </div>
-                <div class="show-card mb-1 position-relative">carte gagnées</div>
-                <div class="show-card mb-1 position-relative">carte gagnées</div>
-                <div class="show-card mb-1 position-relative">carte gagnées</div>
-                <div class="show-card mb-1 position-relative">carte gagnées</div>
-                <div class="show-card mb-1 position-relative">carte gagnées</div>
-                <div class="show-card mb-1 position-relative">carte gagnées</div>
-                <div class="show-card mb-1 position-relative">carte gagnées</div>
-                <div class="show-card mb-1 position-relative">carte gagnées</div>
+	<div {{ stimulus_controller('game') }}>
+		<div
+			class="body-game {% if this.roll and this.answered == false and this.question %}pointer-event-none{% endif %}" {{ stimulus_target('game', 'bodyGame') }}>
+			{# allcard #}
+			<div class="show-allcard ">
+				<h2>10 dernières cartes gagnées</h2>
 
 
-                <a class="btn-classeur btn btn-primary mb-5 w-50" href="{{ path('game_collection') }}">Classeur de
-                    cartes</a>
-                <div>
-                    <a href="{{ path('game_reset') }}" class="btn-classeur btn btn-primary mb-5 w-25 ">Reset</a>
-                </div>
-            </div>
+				{% if this.cardsWons is not empty %}
+					{% for card in this.cardsWons %}
+						<div class="show-card mb-1 position-relative">
+							<p>{{ card.card.name }}</p>
+							<div class="position-absolute top-50 start-100 translate-middle card-won text-dark">
+								<div class="col-12 col-md-5 col-lg-3 d-flex flex-row justify-content-center card-box">
+									<div class="">
+										<div class="flip-card-inner">
+											<div class="flip-card-front card-size">
+												<div class="box-title">
+													<img src="{{ asset('build/images/gold-metal.png') }}" alt="" class="img-title">
+													<div class="cards-title my-auto text-center d-flex flex-column justify-content-center">
+														<p>{{ card.card.name }}</p>
+													</div>
+												</div>
+												<img src="{{ asset('build/images/parchemin.png') }}" alt="" class="h-100 w-100 filter-shadow">
+												<div class="card-content d-flex flex-column align-items-center">
+													<div class="card-img"><img src="{{ asset('build/images/img-carte/' ~ card.card.image) }}" alt="{{ card.card.name }}" class="img-size">
+													</div>
+												</div>
+											</div>
+											<div class="flip-card-back">
+												<div class="box-title">
+													<img src="{{ asset('build/images/gold-metal.png') }}" alt="" class="img-title">
+													<div class="cards-title my-auto text-center d-flex flex-column justify-content-center">
+														<p>carte gagnée 10 pts
+														</p>
+														<p>
+															{% if card.card.credit and  card.card.name == 'Le marchand de vin' or
+                                                                                                                card.card.name == 'Le cabaretier' %}malus
+																{{ card.card.credit }}
+																pts
+															{% endif %}
+														</p>
+														<p>
+															{% if card.card.credit and card.card.name != 'Le marchand de vin' and
+                                                                                                                card.card.name != 'Le cabaretier' %}bonus
+																{{ card.card.credit }}
+																pts
+															{% endif %}
+														</p>
+													</div>
+												</div>
+												<div class="card-size">
+													<img src="{{ asset('build/images/parchemin.png') }}" alt="" class="h-100 w-100 filter-shadow">
+													<div class="card-content d-flex flex-column align-items-center">
+														<div class="text-card ">
+															<p>{{ card.card.description }}</p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				{% endif %}
+
+
+				<a class="btn-classeur btn btn-primary mb-5 w-50" href="{{ path('game_collection') }}">Classeur de
+																																																												                    cartes</a>
+				<div>
+					<a href="{{ path('game_reset') }}" class="btn-classeur btn btn-primary mb-5 w-25 ">Reset</a>
+				</div>
+			</div>
 
             {# widget-top #}
-
             <div class="widget-top">
+                <div class="widget">
+                    <div class="widget-text">&nbsp;</div>
+                    <div class="widget-icon widget-icon-audio ">
+                        <button class="btn btn-sm fs-5 d-flex align-items-center" {{ stimulus_action('swup', 'togglePlay') }}>
+                            <i class="fas fa-volume-mute fa-lg" {{ stimulus_target('swup', 'audioButton') }}></i>
+                        </button>
+                    </div>
+                </div>
                 <div class="widget">
                     <div class="widget-text">Tour</div>
                     <div class="widget-icon">
@@ -72,8 +125,8 @@
                 </div>
             </div>
 
-            <div class="deck-left">
-                <p>Artisans et commerçants</p>
+            <div class="deck-left d-flex flex-column justify-content-center align-items-end">
+                <p class="me-3">Artisans et commerçants</p>
                 <div class="artisans cardgame">
                     <img class="left-img" src="{{ asset('build/images/dos_artisans.jpg') }}" alt="dos artisan">
                 </div>
@@ -143,15 +196,15 @@
                 </div>
             </div>
 
-            <div class="deck-right">
-                <p>Cavaliers de l'apocalyspe</p>
+            <div class="deck-right d-flex flex-column justify-content-center align-items-start">
+                    <p class="ms-3">Cavaliers de l'apocalyspe</p>
                 <div class="artisans cardgame">
                     <img class="right-img" src="{{ asset('build/images/dos_apocalypse.svg') }}" alt="dos apocalyspe">
                 </div>
             </div>
 
             <div class="dices">
-
+                <p class="mb-3 w-100 text-center">Niveau des questions</p>
                 <div class="{{ app.session.get('roll') == 2 ? 'question-card-selected' : 'question-card' }} cardgame">
                     <div class="two-face">
                         <span class="dot"></span>

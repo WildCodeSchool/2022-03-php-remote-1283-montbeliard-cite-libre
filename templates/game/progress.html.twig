@@ -4,6 +4,8 @@
 {% endblock %}
 
 {% block main %}
-
 	{{component('game')}}
+    <div {{ stimulus_action('swup', 'togglePlay') }}>
+
+    </div>
 {% endblock %}

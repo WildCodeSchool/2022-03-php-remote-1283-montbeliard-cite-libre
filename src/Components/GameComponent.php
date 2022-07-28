@@ -3,10 +3,14 @@
 namespace App\Components;
 
 use App\Entity\Answer;
+use App\Entity\CardWon;
 use App\Entity\Question;
+use App\Entity\QuestionAsked;
 use App\Repository\AnswerRepository;
 use App\Repository\CardRepository;
+use App\Repository\CardWonRepository;
 use App\Repository\GameRepository;
+use App\Repository\QuestionAskedRepository;
 use App\Service\PointsManager;
 use App\Service\QuestionAsk;
 use App\Service\RollDice;
@@ -43,6 +47,9 @@ class GameComponent extends AbstractController
     #[LiveProp]
     public bool $gameWon = false;
 
+    #[LiveProp]
+    public ?array $cardsWons = null;
+
     public ?bool $answerIsCorrect = false;
 
     public function __construct(
@@ -52,13 +59,18 @@ class GameComponent extends AbstractController
         protected AnswerRepository $answerRepository,
         protected GameRepository $gameRepository,
         protected PointsManager $pointsManager,
-        protected CardRepository $cardRepository
+        protected CardWonRepository $cardWonRepository,
+        protected CardRepository $cardRepository,
+        private QuestionAskedRepository $questionAskedRepo,
     ) {
         $this->session = $requestStack->getSession();
     }
 
     public function getRoll(): null|int
     {
+        $game = $this->gameRepository->findOneById($this->session->get('game')->getId());
+
+        $this->cardsWons = $this->cardWonRepository->findBy(['game' => $game], ['id' => 'DESC'], 10);
         return $this->session->has('roll') ? $this->session->get('roll') : null;
     }
 
@@ -81,6 +93,9 @@ class GameComponent extends AbstractController
             $this->gameWon = true;
             return $this->redirectToRoute('game_confettis');
         }
+
+        $this->cardsWons = $this->cardWonRepository->findBy(['game' => $game], ['id' => 'DESC'], 10);
+        $this->questionAsk->unsetQuestion();
         return null;
     }
 
@@ -90,6 +105,7 @@ class GameComponent extends AbstractController
         $this->message = "Mauvaise Réponse, relance le dé";
         $this->badAnswer = true;
         $this->answered = true;
+        $this->questionAsk->unsetQuestion();
     }
 
     #[LiveAction]
@@ -119,7 +135,7 @@ class GameComponent extends AbstractController
     public function getQuestion(): ?Question
     {
         return $this->session->has('question') &&
-        !empty($this->session->get('question')) ?
+            !empty($this->session->get('question')) ?
             $this->session->get('question') : null;
     }
 
@@ -134,10 +150,12 @@ class GameComponent extends AbstractController
 
     public function getAnswers(): false|array
     {
+        $array = $this->answerRepository->findBy([
+            'question' => $this->getQuestion()
+        ]);
+        shuffle($array);
         return $this->getQuestion() ?
-            $this->answerRepository->findBy([
-                'question' => $this->getQuestion()
-            ]) : false;
+            $array : false;
     }
 
     #[LiveAction]
@@ -148,6 +166,13 @@ class GameComponent extends AbstractController
             'question' => $this->getQuestion(),
             'isCorrect' => true
         ]);
+
+        $questionAsked = $this->questionAskedRepo->findOneBy([
+            'game' => $this->session->get('game')->getId(),
+            'question' => $this->getQuestion()
+        ]);
+        $questionAsked->setAnswerQcm($this->answerRepository->find($id));
+        $this->questionAskedRepo->add($questionAsked, true);
         if ($this->answerIsCorrect) {
             $this->goodAnswer();
         } else {

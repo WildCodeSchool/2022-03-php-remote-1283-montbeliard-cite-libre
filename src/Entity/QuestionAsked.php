@@ -19,6 +19,9 @@ class QuestionAsked
     #[ORM\ManyToOne(targetEntity: Game::class, inversedBy: 'questionAskeds')]
     private ?Game $game;
 
+    #[ORM\ManyToOne(targetEntity: Answer::class, inversedBy: 'questionAskeds', fetch: "EAGER")]
+    private ?Answer $answerQcm;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +48,18 @@ class QuestionAsked
     public function setGame(?Game $game): self
     {
         $this->game = $game;
+
+        return $this;
+    }
+
+    public function getAnswerQcm(): ?Answer
+    {
+        return $this->answerQcm;
+    }
+
+    public function setAnswerQcm(?Answer $answerQcm): self
+    {
+        $this->answerQcm = $answerQcm;
 
         return $this;
     }

@@ -14,7 +14,7 @@ vous ne payez pas !";62-famine2.jpg;points;;100;59
 13;Famine;"Six artisans ou marchand quittent la ville.
 Rendez six cartes ";62-famine3.jpg;cards;all;6;
 13;Epidemie de peste;"Vous devez faire construire un Hotel-Dieu.
-Payez 100 livres ";62-epidemie_de_peste.jpg;cards;artisan;4;
+Payez 100 livres ";62-epidemie_de_peste.jpg;points;;100;
 13;Epidemie de peste;"Vous devez agrandir la cimetiere.
 Payez 100 livres";65-epidemi_de_peste.jpg;points;;100;
 13;Epidemie de peste;"3 marchands s'enfuient.
